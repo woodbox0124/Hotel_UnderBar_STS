@@ -1,0 +1,74 @@
+* {
+	font-family: 'twayair', 'Roboto', 'sans-serif';
+}
+
+#main {
+	width: 94.5%;
+	height: 781px;
+	padding: 183px;
+	position: relative;
+	bottom: 41px;
+}
+
+#header {
+	width: 1200px;
+	height: 260px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#membername {
+	position: relative;
+	bottom: 55px;
+	width: 1200px;
+	height: 83px;
+	padding: 13px;
+	position: relative;
+	right: 21%;
+}
+
+#button1 {
+	padding: 15px;
+	position: relative;
+	top: 44px;
+	left: 47px;
+}
+
+#button2 {
+	padding: 15px;
+	position: relative;
+	top: 30px;
+	left: 47px;
+}
+
+th {
+	float: left;
+}
+
+td {
+	width: 59%;
+	text-align: left;
+	float: right;
+}
+
+a {
+	text-decoration: none
+}
+
+input {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	width: 43%;
+}
+
+#pw {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+#resv_table {
+	border-collapse: separate;
+	border-spacing: 25px;
+	position: relative;
+	left: 23%;
+}

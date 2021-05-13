@@ -1,8 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	<!-- 1.jdbc.properties -->
+	<context:property-placeholder location="classpath:com/config/jdbc.properties"/>
+	<!-- 2.DBCP2 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${oracle.jdbc}"></property>
+		<property name="url" value="${oracle.url}"></property>
+		<property name="username" value="${oracle.userid}"></property>
+		<property name="password" value="${oracle.passwd}"></property>
+	</bean>
+	<!-- transaction의 시작 -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	   <property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<tx:annotation-driven transaction-manager="txManager"/><!-- tx어노테이션 활성화 -->
+	<!-- transaction처리 끝 -->
+	<!--3.SqlSessionFactoryBean  -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:com/config/BoardMapper.xml</value>
+				<value>classpath:com/config/HotelMapper.xml</value>
+				<value>classpath:com/config/MemberMapper.xml</value>				
+				<value>classpath:com/config/ResvMapper.xml</value>				
+			</list>		
+		</property>
+		<property name="typeAliases">
+			<list>
+				<value>com.dto.BoardDTO</value>
+				<value>com.dto.BoardPageDTO</value>
+				<value>com.dto.HotelDTO</value>
+				<value>com.dto.PageDTO</value>				
+				<value>com.dto.ResvDTO</value>				
+				<value>com.dto.ResvMyDTO</value>				
+				<value>com.dto.ResvPageDTO</value>				
+				<value>com.dto.RoomDTO</value>				
+				<value>com.dto.RoomInfoDTO</value>							
+				<value>com.dto.MemberDTO</value>							
+			</list>		
+		</property>
+	</bean>	
+	<!-- 4. SqlSessionTemplate : SqlSession기능 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sessionFactory"></constructor-arg>
+	</bean>
+	<!-- 종료 -->	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
 </beans>
