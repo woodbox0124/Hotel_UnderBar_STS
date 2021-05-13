@@ -14,5 +14,11 @@ public class MainController {
 		mav.setViewName("main"); //main.jsp=
 		return mav;			
 	}
+	
+	@RequestMapping("/login_register")//리스트 무조건 뿌리기
+	public String login_register() {
+		System.out.println("login");
+		return "login_register";			
+	}
 
 }

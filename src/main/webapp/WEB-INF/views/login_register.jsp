@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <head>
 <title>로그인 & 회원가입</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="styles/style.css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -96,11 +96,11 @@ session.removeAttribute("mesg");
                 <form id="login" action="LoginServlet" class="input-group" method="post">
                     <input name= "u_id" type="text" class="input-field" placeholder="Enter ID" required>
                     <input name= "u_pw" type="password"  class="input-field" value="<%=cookieVal !="" ? cookieVal : "" %>" placeholder="Enter Password" required>
-                    <p><input name= "savepw" type="checkbox" class="checkbox" <%=cookieVal!=""?"checked" : ""%>><span id="check_span">비밀번호저장 &nbsp;<a href="serachId.jsp" onclick="window.open(this.href, '_blank', 'width=500,height=700,toolbars=no,scrollbars=no'); return false;">아이디/비밀번호찾기</a></span></p>
+                    <p><input name= "savepw" type="checkbox" class="checkbox" <%=cookieVal!=""?"checked" : ""%>><span id="check_span">비밀번호저장 &nbsp;<a href="searchId" onclick="window.open(this.href, '_blank', 'width=500,height=700,toolbars=no,scrollbars=no'); return false;">아이디/비밀번호찾기</a></span></p>
                     <button class="submit">Login</button>
                     <button class="submit"><a href="main.jsp">메인으로 돌아가기</a></button>                    
                 </form>
-                <form id="register" action="MemberAddServlet" class="input-group" method="post">
+                <form id="register" action="MemberAdd" class="input-group" method="post">
                     <input name ="u_id" id="u_id" type="text" class="input-field u_id" placeholder="아이디" required>
                     <input name ="u_pw1" id="pw1" type="password" class="input-field u_pw1" placeholder="비밀번호" required>
                     <input name ="u_pw" id="pw" type="password" class="input-field u_pw2" placeholder="password" required>

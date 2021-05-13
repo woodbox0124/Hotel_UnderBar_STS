@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <head>
 <title>아이디 비밀번호 찾기</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="styles/style.css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <%
 	String mesg = (String)request.getAttribute("mesg");
@@ -58,14 +58,14 @@ if (mesg != null) {
                     <button type="button" class="togglebtn" onclick="serachId()">아이디 찾기</button>
                     <button type="button" class="togglebtn" onclick="password()">비밀번호 찾기</button>
                 </div>
-                <form id=formId action="MemberIdSearchServlet" class="input-group" method="post">
+                <form id=formId action="MemberIdSearch" class="input-group" method="post">
                     <input name= "u_name" type="text" class="input-field" placeholder="이름" required>
                     <input name= "u_phone" type="text"  class="input-field" placeholder="핸드폰 번호" required>                   
                     <input name= "u_email" type="text"  class="input-field" placeholder="이메일" required>                   
                     <button class="submit">확인</button>
                     <button class="submit"><a href="javascript:window.close();">창 닫기</a></button>                    
                 </form>
-                <form id="formPassword" action="MemberPwSearchServlet" class="input-group" method="post">
+                <form id="formPassword" action="MemberPwSearch" class="input-group" method="post">
                     <input name ="u_id" id="u_id" type="text" class="input-field u_id" placeholder="아이디" required>
                     <input name ="u_name" type="text" class="input-field u_name" placeholder="이름" required>
                     <input name ="u_email" type="email" class="input-field u_email" placeholder="이메일" required>

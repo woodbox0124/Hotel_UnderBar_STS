@@ -35,7 +35,7 @@ if (dto != null) {
 	<%
 		} else {
 	%>
-	<a href="login_register.jsp" class="a" id="a_login">로그인·회원가입</a>
+	<a href="login_register" class="a" id="a_login">로그인·회원가입</a>
 	<%
 		} //end if~else
 	%>

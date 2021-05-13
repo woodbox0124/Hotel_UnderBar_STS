@@ -10,9 +10,15 @@
 <mvc:default-servlet-handler/><!-- mvc기본태그 -->
 <!-- 직접 주소요청시 처리 페이지 등록 부분 -->
 <mvc:view-controller path="/" view-name="main"/><!-- main.jsp => mainController에서 처리 -->
+<mvc:view-controller path="/" view-name="main"/>
 <!-- web-inf 폴더는 반드시 리소스 등록 후 사용 -->
 <mvc:resources location="/WEB-INF/views/styles/" mapping="/styles/**"/>
-<mvc:resources location="/WEB-INF/views/assets/css/" mapping="/assets/**"/>
+<mvc:resources location="/WEB-INF/views/assets/" mapping="/assets/**"/>
+<mvc:resources location="/WEB-INF/views/images/" mapping="/images/**"/>
+<mvc:resources location="/WEB-INF/views/jquery-ui-1.12.1/" mapping="/jquery-ui-1.12.1/**"/>
+<mvc:resources location="/WEB-INF/views/common/" mapping="/common/**"/>
+<mvc:resources location="/WEB-INF/views/hotel/" mapping="/hotel/**"/>
+<mvc:resources location="/WEB-INF/views/pay/" mapping="/pay/**"/>
 <!-- interceptor의 사용 시작 -->
 <mvc:interceptors>
 	<mvc:interceptor>
@@ -24,10 +30,11 @@
 <bean id="loginCheckInterceptor" class="com.interceptor.LoginCheckInterceptor"></bean>
 <!-- interceptor의 사용 끝 -->
 <!-- controller 등록 부분 -->
-<context:component-scan base-package="com.*"></context:component-scan><!-- repoistory,service, controller 생성 -->
 <!-- @Controller, @Service, @Repository, @Component 자동 빈등록, @Autowired 활성화 -->
 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	<property name="prefix" value="/WEB-INF/views/"></property>
 	<property name="suffix" value=".jsp"></property>
+	
 </bean>
+<context:component-scan base-package="com.*"></context:component-scan><!-- repoistory,service, controller 생성 -->
 </beans>
