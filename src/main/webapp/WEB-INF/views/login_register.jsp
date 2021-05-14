@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <head>
 <title>로그인 & 회원가입</title>
 <link rel="stylesheet" href="styles/style.css">
@@ -55,20 +57,15 @@
 	.button-wrap > button{
 	}
 </style>
-<%
-String mesg = (String) session.getAttribute("mesg");
-if (mesg != null) {
-%>
-   <script type="text/javascript">
-     alert("<%=mesg%>");
-   </script>
-<%
-session.removeAttribute("mesg");
-   }
-%>
-<!-- 경고 문 끝 -->
+<!-- alert mesg 시작 -->
+<c:if test="${!empty mesg }">
+<script>
+    alert("${mesg}");
+</script>
+<%session.removeAttribute("mesg");%>
+</c:if>
+<!-- alert mesg 끝 -->
 </head>
-
 <%
     String msg = (String)request.getAttribute("msg");
     Cookie[] c = request.getCookies();
@@ -93,12 +90,12 @@ session.removeAttribute("mesg");
                     <img src="assets/css/images/kakao.png" alt="kakao">
                     <img src="assets/css/images/gl.png" alt="google">
                 </div>
-                <form id="login" action="LoginServlet" class="input-group" method="post">
+                <form id="login" action="login" class="input-group" method="post">
                     <input name= "u_id" type="text" class="input-field" placeholder="Enter ID" required>
                     <input name= "u_pw" type="password"  class="input-field" value="<%=cookieVal !="" ? cookieVal : "" %>" placeholder="Enter Password" required>
                     <p><input name= "savepw" type="checkbox" class="checkbox" <%=cookieVal!=""?"checked" : ""%>><span id="check_span">비밀번호저장 &nbsp;<a href="searchId" onclick="window.open(this.href, '_blank', 'width=500,height=700,toolbars=no,scrollbars=no'); return false;">아이디/비밀번호찾기</a></span></p>
                     <button class="submit">Login</button>
-                    <button class="submit"><a href="main.jsp">메인으로 돌아가기</a></button>                    
+                    <button class="submit"><a href="/hotelunderbar">메인으로 돌아가기</a></button>                    
                 </form>
                 <form id="register" action="MemberAdd" class="input-group" method="post">
                     <input name ="u_id" id="u_id" type="text" class="input-field u_id" placeholder="아이디" required>
@@ -109,7 +106,7 @@ session.removeAttribute("mesg");
                     <input name ="u_phone" type="text" class="input-field phone" placeholder="Phone Number" required>
                     <input type="checkbox" id="checkbox" class="checkbox"><span id="check_span">Terms and conditions</span>
                     <button class="submit" id ="submit">REGISTER</button>  
-                    <button class="submit"><a href="main.jsp">메인으로 돌아가기</a></button>                  
+                    <button class="submit"><a href="/hotelunderbar">메인으로 돌아가기</a></button>                  
                 </form>                      
             </div>
         </div>

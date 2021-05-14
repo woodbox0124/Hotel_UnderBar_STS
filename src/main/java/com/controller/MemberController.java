@@ -1,10 +1,11 @@
 package com.controller;
 
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.MemberDTO;
@@ -16,7 +17,7 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 	//시작점
-	@RequestMapping(value = "/MemberIdSearch")//리스트 무조건 뿌리기
+	@RequestMapping(value = "/MemberIdSearch")
 	public String searchId(MemberDTO dto, RedirectAttributes xx) {
 		String u_name = dto.getU_name();
 		String u_phone = dto.getU_phone();
@@ -33,7 +34,7 @@ public class MemberController {
 		return "redirect:/searchId";			
 	}
 	
-	@RequestMapping(value = "/MemberPwSearch")//리스트 무조건 뿌리기
+	@RequestMapping(value = "/MemberPwSearch")
 	public String searchPw(MemberDTO dto, RedirectAttributes xx) {
 		String u_name = dto.getU_name();
 		String u_phone = dto.getU_phone();
@@ -53,9 +54,8 @@ public class MemberController {
 		return "redirect:/searchId";			
 	}
 	
-	@RequestMapping(value = "/MemberAdd")//리스트 무조건 뿌리기
-	public ModelAndView MemberAdd(MemberDTO dto) {
-		
+	@RequestMapping(value = "/MemberAdd")
+	public String MemberAdd(MemberDTO dto, HttpSession session) {
 		String u_name = dto.getU_name();
 		String u_phone = dto.getU_phone();
 		String u_email = dto.getU_email();
@@ -73,13 +73,14 @@ public class MemberController {
 		int n = service.MemberAdd(mdto);
 		System.out.println(u_name + "\t" + u_phone + "\t" + u_email + "\t" + u_id + "\t" + u_pw);
 		System.out.println("회원가입 성공" + n);
-		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("mesg", "회원가입 성공");
-		mav.setViewName("login_register");
-		
-		
-		return mav;			
+		if(n==1){		
+			session.setAttribute("login", mdto);
+			session.setAttribute("mesg", "회원가입 성공");
+			}else {
+		    session.setAttribute("mesg", "비정상적인 접근 입니다.");
+			}							
+		return "main";			
 	}
+	
 
 }

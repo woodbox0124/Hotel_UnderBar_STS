@@ -3,8 +3,8 @@
     pageEncoding="UTF-8"%>
     <%@page import="com.dto.BoardDTO"%>
 <%@page import="java.util.List"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@page import="com.dto.MemberDTO"%>
 <!DOCTYPE html>
 <html>

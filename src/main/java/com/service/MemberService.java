@@ -1,5 +1,7 @@
 package com.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,22 @@ public class MemberService {
 
 	public int MemberAdd(MemberDTO mdto) {
 		int n = dao.MemberAdd(mdto);
+		return n;
+	}
+
+	public MemberDTO login(HashMap<String, String> map) {
+		System.out.println(map);
+		MemberDTO dto = dao.login(map);
+		return dto;
+	}
+
+	public int idCheck(String u_id) {
+		int n = dao.idCheck(u_id);
+		return n;
+	}
+
+	public int pwchk(String u_pw) {
+		int n = dao.pwchk(u_pw);
 		return n;
 	}
 

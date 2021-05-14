@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,8 +62,8 @@ a {
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item" id="li_main"><a class="nav-link active"
-						aria-current="page" href="main.jsp" id="main_header">Hotel
-							UnderBar</a></li>
+						aria-current="page" href="/hotelunderbar" id="main_header">Hotel
+							UnderBar</a></li><!-- 링크 "/hotelunderbar"시 메인으로 이동 -->
 					<li class="nav-item"></li>
 					<li class="nav-item dropdown">
 

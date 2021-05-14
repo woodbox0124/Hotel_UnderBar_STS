@@ -1,15 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML>
-<!--
-	Aerial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 <head>
-<title>Aerial by HTML5 UP</title>
+<title>Hotel UnderBar</title>
 <meta charset="utf-8">
 <!-- main배경 css -->
 <link rel="stylesheet" type="text/css"
@@ -60,17 +56,14 @@ $(function(){
 //]]>
 </script>
 <!-- 달력 쿼리 끝 -->
-<%
-   String mesg = (String)session.getAttribute("mesg");
-		System.out.println(mesg);
-   if(mesg!=null){
-%>
-<script type="text/javascript">
-     alert('<%=mesg%>');
-   </script>
-<% 
-session.removeAttribute("mesg");
-}%>
+<!-- alert mesg 시작 -->
+<c:if test="${!empty mesg }">
+<script>
+    alert("${mesg}");
+</script>
+<%session.removeAttribute("mesg");%>
+</c:if>
+<!-- alert mesg 끝 -->
 <!-- 자체 CSS -->
 <style type="text/css">
 body {

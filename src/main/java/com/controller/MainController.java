@@ -8,8 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class MainController {
 
 	//시작점
-	@RequestMapping("/")//리스트 무조건 뿌리기
-	public ModelAndView goodsList() {
+	@RequestMapping("/")
+	public ModelAndView main() {
 		ModelAndView mav= new ModelAndView();
 		mav.setViewName("main"); //main.jsp=
 		return mav;			
@@ -20,5 +20,7 @@ public class MainController {
 		System.out.println("login");
 		return "login_register";			
 	}
+	
+	
 
 }
