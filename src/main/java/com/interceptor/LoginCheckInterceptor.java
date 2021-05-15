@@ -14,7 +14,8 @@ public boolean preHandle(HttpServletRequest request, HttpServletResponse respons
 	System.out.println("preHandle");
 	HttpSession session = request.getSession();
 	if(session.getAttribute("login") == null) {
-		response.sendRedirect("../loginForm");//servlet-context.xml 
+		session.setAttribute("mesg", "로그인이 필요한 작업입니다.");	
+		response.sendRedirect("../login_register");//servlet-context.xml 
 		return false;  //주의
 	}else {
 		return true; //주의
@@ -30,6 +31,7 @@ public boolean preHandle(HttpServletRequest request, HttpServletResponse respons
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
 	System.out.println("afterCompletion");
+	
 	}
 
 }

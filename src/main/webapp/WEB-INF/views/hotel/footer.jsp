@@ -3,7 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <head>
 	
-<link rel="stylesheet" type="text/css" href="assets/css/footer.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/footer.css">
 	
 </head>
 <div id="footer">
@@ -42,10 +42,10 @@
 				<div class="copy en" style="color: #F8F4F0;">ⓒ Copyright HOTEL UNDERBAR All Reserved</div>
 			<div class="sns_box">
 					<a href="https://www.facebook.com/woodbox0124" target="_blank">
-						<img src="assets/css/images/fb.png" id="img">
+						<img src="${pageContext.request.contextPath}/assets/css/images/fb.png" id="img">
 					</a>
 					<a href="https://www.instagram.com/woodcase/" target="_blank">
-						<img src="assets/css/images/insta.png" id="img" style="position: relative; left: 4px;">
+						<img src="${pageContext.request.contextPath}/assets/css/images/insta.png" id="img" style="position: relative; left: 4px;">
 					</a>
 			</div>
 		</div>

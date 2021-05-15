@@ -81,6 +81,47 @@ public class MemberController {
 			}							
 		return "main";			
 	}
+	@RequestMapping("/loginCheck/myPage") //Interceptor
+	public String myPage(HttpSession session) {
+		MemberDTO dto =(MemberDTO)session.getAttribute("login");     
+		// 사용자 id를 꺼내 sevice.mypage(id)이용 DB에서 데이터를 다시 가져오기	
+		String u_id = dto.getU_id();
+		MemberDTO mdto = service.myPage(u_id);
+		System.out.println(mdto);
+		session.setAttribute("login", mdto);//다시 session에 저장
+		return "mypage";
+	}
+	@RequestMapping("/loginCheck/MemberUpdate")
+	public String MemberUpdate(MemberDTO mdto , HttpSession session) {
+		MemberDTO dto =(MemberDTO)session.getAttribute("login");
+		String nextPage = null; //이동할 페이지		
+		// 사용자 id를 꺼내 sevice.mypage(id)이용 DB에서 데이터를 다시 가져오기
+		if(dto!=null) {//로그인 정보가 있는 경우					
+			MemberDTO dto1 = new MemberDTO();
+			dto1.setU_id(mdto.getU_id());
+			dto1.setU_pw(mdto.getU_pw());
+			dto1.setU_name(mdto.getU_name());
+			dto1.setU_phone(mdto.getU_phone());
+			dto1.setU_email(mdto.getU_email());		
+			System.out.println(dto1);
+			service.memberUpdate(dto1);
+			System.out.println(mdto);
+			session.setAttribute("login", mdto);//다시 session에 저장
+			session.setAttribute("mesg", "회원 정보 수정 완료");	
+			nextPage = "mypage";
+		}else {//로그인이 안된 경우
+			nextPage = "login_register";
+			session.setAttribute("mesg", "로그인이 필요한 작업입니다.");			
+		}
+		return nextPage ;
+	}
 	
-
+	@RequestMapping("/loginCheck/MemberDelete")
+	public String MemberDelete(String u_id, HttpSession session) {
+		System.out.println(u_id);
+		service.MemberDelete(u_id);
+		session.removeAttribute("login");	
+		session.setAttribute("mesg", "회원 탈퇴 완료");	
+		return "redirect:../";
+	}
 }

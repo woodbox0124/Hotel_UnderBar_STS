@@ -15,12 +15,9 @@ public class MainController {
 		return mav;			
 	}
 	
-	@RequestMapping("/login_register")//리스트 무조건 뿌리기
+	@RequestMapping("/login_register")
 	public String login_register() {
 		System.out.println("login");
 		return "login_register";			
 	}
-	
-	
-
 }
