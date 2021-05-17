@@ -177,7 +177,7 @@ out.print("<a href='boardList?curPage="+i+"&searchName="+searchName+"&searchValu
 		   </div><br>
 
 <div id="write">
-<a class="btn btn-primary" href="boardWrite">글쓰기</a>	
+<a class="btn btn-primary" href="loginCheck/boardWrite">글쓰기</a>	
 </div>
 
 	

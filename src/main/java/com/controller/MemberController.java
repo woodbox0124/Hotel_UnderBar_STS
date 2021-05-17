@@ -153,7 +153,7 @@ public class MemberController {
 		System.out.println(pDTO);
 		session.setAttribute("pDTO", pDTO);
 		
-		return "boardList";
+		return "redirect:../boardList";
 	}
 	@RequestMapping("/loginCheck/boardWrite")
 	public String boardList(HttpSession session) {
