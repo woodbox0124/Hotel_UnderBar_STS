@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.MemberDAO;
+import com.dto.BoardPageDTO;
 import com.dto.MemberDTO;
 
 @Service
@@ -59,5 +60,7 @@ public class MemberService {
 		dao.MemberDelete(u_id);
 		
 	}
+
+	
 
 }

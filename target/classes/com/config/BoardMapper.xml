@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.board.BoardMapper">
+<mapper namespace="BoardMapper">
 
 	<!-- 게시글 목록 -->
-	<select id="listAll" resultType="BoardDTO"
+	<select id="boardList" resultType="BoardDTO"
 		parameterType="hashmap">
 		select num, title, author, content,
 		to_char(writeday, 'yyyy/MM/dd')
@@ -21,6 +21,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 게시글 목록 -->
 
+
+	<!-- 검색 기능 -->
+	<select id="totalCount" resultType="int" parameterType="hashmap">
+		select count(*)
+		from board
+
+		<if test="searchName == 'title'">
+			where title LIKE '%'||#{searchValue}||'%'
+		</if>
+		<if test="searchName == 'author'">
+			where author LIKE '%'||#{searchValue}||'%'
+		</if>
+
+		order by origin desc,grouplayer,groupnum asc
+	</select>
+	<!-- 검색 기능 -->
+	
+	
 	<!-- 게시글 추가 -->
 	<insert id="write" parameterType="BoardDTO">
 		insert into board(num, title, author, content,origin)
@@ -60,22 +78,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!-- 조회 수 증가 -->
 
-
-	<!-- 검색 기능 -->
-	<select id="totalCount" resultType="int" parameterType="hashmap">
-		select count(*)
-		from board
-
-		<if test="searchName == 'title'">
-			where title LIKE '%'||#{searchValue}||'%'
-		</if>
-		<if test="searchName == 'author'">
-			where author LIKE '%'||#{searchValue}||'%'
-		</if>
-
-		order by origin desc,grouplayer,groupnum asc
-	</select>
-	<!-- 검색 기능 -->
 
 	<!-- 댓글 -->
 	<insert id="answerinsert" parameterType="BoardDTO">

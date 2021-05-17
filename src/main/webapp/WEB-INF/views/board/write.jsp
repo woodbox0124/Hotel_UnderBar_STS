@@ -82,7 +82,7 @@ MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		<td colspan="2">
 			<input class="btn btn-primary" type="submit" value="글쓰기">
 			<input class="btn btn-primary" type="reset" value="다시작성"> 
-			<a class="btn btn-primary" href="boardlist.jsp">목록보기</a>
+			<a class="btn btn-primary" href="boardList">목록보기</a>
 		</td>
 		</tr>
 	</table>

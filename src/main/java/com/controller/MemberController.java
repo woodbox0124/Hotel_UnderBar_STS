@@ -1,21 +1,29 @@
 package com.controller;
 
 
+import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dto.BoardPageDTO;
 import com.dto.MemberDTO;
+import com.service.BoardService;
 import com.service.MemberService;
 
 @Controller
 public class MemberController {
 
 	@Autowired
-	MemberService service;
+	MemberService mService;
+	@Autowired
+	BoardService bService;
 	//시작점
 	@RequestMapping(value = "/MemberIdSearch")
 	public String searchId(MemberDTO dto, RedirectAttributes xx) {
@@ -27,7 +35,7 @@ public class MemberController {
 		mdto.setU_phone(u_phone);
 		mdto.setU_email(u_email);
 		System.out.println(u_name + "\t" + u_phone + "\t" + u_email);
-		String u_id = service.idSearch(mdto);
+		String u_id = mService.idSearch(mdto);
 		xx.addFlashAttribute("mesg1", "메일을 확인해주세요.");
 		
 		System.out.println("searchId 불러옴" + u_id);
@@ -47,7 +55,7 @@ public class MemberController {
 		mdto.setU_email(u_email);
 		mdto.setU_id(u_id);
 		System.out.println(u_name + "\t" + u_phone + "\t" + u_email + "\t" + u_id);
-		String u_pw = service.pwSearch(mdto);
+		String u_pw = mService.pwSearch(mdto);
 		xx.addFlashAttribute("mesg1", "메일을 확인해주세요.");
 		
 		System.out.println("searchPw 불러옴" + u_pw);
@@ -70,7 +78,7 @@ public class MemberController {
 		mdto.setU_id(u_id);
 		mdto.setU_pw(u_pw);
 		
-		int n = service.MemberAdd(mdto);
+		int n = mService.MemberAdd(mdto);
 		System.out.println(u_name + "\t" + u_phone + "\t" + u_email + "\t" + u_id + "\t" + u_pw);
 		System.out.println("회원가입 성공" + n);
 		if(n==1){		
@@ -86,7 +94,7 @@ public class MemberController {
 		MemberDTO dto =(MemberDTO)session.getAttribute("login");     
 		// 사용자 id를 꺼내 sevice.mypage(id)이용 DB에서 데이터를 다시 가져오기	
 		String u_id = dto.getU_id();
-		MemberDTO mdto = service.myPage(u_id);
+		MemberDTO mdto = mService.myPage(u_id);
 		System.out.println(mdto);
 		session.setAttribute("login", mdto);//다시 session에 저장
 		return "mypage";
@@ -104,7 +112,7 @@ public class MemberController {
 			dto1.setU_phone(mdto.getU_phone());
 			dto1.setU_email(mdto.getU_email());		
 			System.out.println(dto1);
-			service.memberUpdate(dto1);
+			mService.memberUpdate(dto1);
 			System.out.println(mdto);
 			session.setAttribute("login", mdto);//다시 session에 저장
 			session.setAttribute("mesg", "회원 정보 수정 완료");	
@@ -119,9 +127,41 @@ public class MemberController {
 	@RequestMapping("/loginCheck/MemberDelete")
 	public String MemberDelete(String u_id, HttpSession session) {
 		System.out.println(u_id);
-		service.MemberDelete(u_id);
+		mService.MemberDelete(u_id);
 		session.removeAttribute("login");	
 		session.setAttribute("mesg", "회원 탈퇴 완료");	
 		return "redirect:../";
+	}
+	
+	@RequestMapping("/loginCheck/boardList")
+	public String boardList(@RequestParam(required=false, defaultValue="1") String curPage ,
+			@RequestParam(required=false, defaultValue="title")String searchName,
+			@RequestParam(required=false, defaultValue="홍길동") String searchValue, 
+			HttpSession session) {
+		
+		System.out.println(curPage);
+		System.out.println(searchName);
+		System.out.println(searchValue);
+		
+		HashMap<String, String> map= new HashMap<String, String>();
+		map.put("searchName", searchName);
+		map.put("searchValue", searchValue);		
+		System.out.println(map);
+		
+	
+		BoardPageDTO pDTO= bService.boardList(Integer.parseInt(curPage),map);	
+		System.out.println(pDTO);
+		session.setAttribute("pDTO", pDTO);
+		
+		return "boardList";
+	}
+	@RequestMapping("/loginCheck/boardWrite")
+	public String boardList(HttpSession session) {
+		MemberDTO dto =(MemberDTO)session.getAttribute("login");
+		String u_id = dto.getU_id();
+		MemberDTO mdto = mService.myPage(u_id);
+		System.out.println(mdto);
+		session.setAttribute("login", mdto);//다시 session에 저장
+		return "boardWrite";
 	}
 }

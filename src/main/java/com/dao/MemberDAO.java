@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dto.BoardPageDTO;
 import com.dto.MemberDTO;
 
 @Repository
@@ -59,5 +60,6 @@ public class MemberDAO {
 		session.delete("MemberMapper.memberDelete", u_id);
 		
 	}
+
 
 }
