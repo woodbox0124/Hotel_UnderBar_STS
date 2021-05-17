@@ -6,6 +6,7 @@ import java.util.HashMap;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -157,7 +158,7 @@ public class MemberController {
 		
 		return "redirect:../boardList";
 	}
-	//board write UI
+	//board write
 	@RequestMapping("/loginCheck/boardWrite")
 	public String boardList(HttpSession session) {
 		MemberDTO dto =(MemberDTO)session.getAttribute("login");
@@ -169,8 +170,8 @@ public class MemberController {
 	}
 	
 	//board write Insert
-	@RequestMapping(value="/loginCheck/boardInsert")
-	public String boardInsert(@RequestParam String title,String author, String content) {
+	@RequestMapping(value="/loginCheck/boardInsert", method=RequestMethod.POST)
+	public String boardInsert(HttpRequest request,@RequestParam String title,String author, String content) {
 		System.out.println(title);
 		BoardDTO bDTO = new BoardDTO();
 		bDTO.setTitle(title);
