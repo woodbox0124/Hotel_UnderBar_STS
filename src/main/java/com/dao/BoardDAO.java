@@ -36,6 +36,11 @@ public class BoardDAO {
 		return num;
 	}
 
+	public int boardInsert(BoardDTO bDTO) {
+		int n = session.insert("BoardMapper.boardInsert", bDTO);
+		return n;
+	}
+
 	
 	
 

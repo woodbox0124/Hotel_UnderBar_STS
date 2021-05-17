@@ -11,7 +11,8 @@
 <!-- 직접 주소요청시 처리 페이지 등록 부분 -->
 <mvc:view-controller path="/" view-name="main"/><!-- main.jsp => mainController에서 처리 -->
 <mvc:view-controller path="/boardList" view-name="boardList"/><!-- main.jsp => mainController에서 처리 -->
-<mvc:view-controller path="/boardwrite" view-name="boardwrite"/><!-- main.jsp => mainController에서 처리 -->
+<mvc:view-controller path="/boardWrite" view-name="boardWrite"/>
+<mvc:view-controller path="/boardInsert" view-name="boardInsert"/>
 <!-- web-inf 폴더는 반드시 리소스 등록 후 사용 -->
 <mvc:resources location="/WEB-INF/views/styles/" mapping="/styles/**"/>
 <mvc:resources location="/WEB-INF/views/assets/" mapping="/assets/**"/>

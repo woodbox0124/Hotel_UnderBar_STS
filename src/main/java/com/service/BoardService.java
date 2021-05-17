@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.BoardDAO;
+import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
 
 
@@ -21,6 +22,11 @@ public class BoardService {
 		System.out.println(pDTO);
 		
 		return pDTO;
+	}
+
+	public int boardInsert(BoardDTO bDTO) {
+		int n = dao.boardInsert(bDTO);
+		return n;
 	}
 	
 	
