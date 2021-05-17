@@ -40,8 +40,4 @@ public class BoardDAO {
 		int n = session.insert("BoardMapper.boardInsert", bDTO);
 		return n;
 	}
-
-	
-	
-
 }

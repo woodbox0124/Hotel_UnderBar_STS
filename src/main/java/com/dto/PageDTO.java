@@ -2,6 +2,8 @@ package com.dto;
 
 import java.util.List;
 
+import org.apache.ibatis.type.Alias;
+@Alias("PageDTO")
 public class PageDTO {
 	
 	private List<HotelDTO> list;   //페이지번호(curPage)에 해당하는 perPage개수만큼만

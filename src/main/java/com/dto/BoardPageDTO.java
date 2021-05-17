@@ -2,6 +2,8 @@ package com.dto;
 
 import java.util.List;
 
+import org.apache.ibatis.type.Alias;
+@Alias("BoardPageDTO")
 public class BoardPageDTO {
 
 	private List<BoardDTO> list;
