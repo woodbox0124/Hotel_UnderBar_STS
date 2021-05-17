@@ -105,6 +105,8 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 		<td style="color: white;" width="100">작성일</td>
 		<td style="color: white;" width="50">조회수</td>
 	</tr>
+
+	
 	
 <%
 BoardPageDTO pDTO = (BoardPageDTO) session.getAttribute("pDTO");
@@ -177,7 +179,7 @@ out.print("<a href='boardList?curPage="+i+"&searchName="+searchName+"&searchValu
 		   </div><br>
 
 <div id="write">
-<a class="btn btn-primary" href="loginCheck/boardWrite">글쓰기</a>	
+<a class="btn btn-primary" href="boardWrite">글쓰기</a>	
 </div>
 
 	

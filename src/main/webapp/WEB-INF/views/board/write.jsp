@@ -60,7 +60,7 @@ margin-bottom: 10px;
 MemberDTO dto = (MemberDTO) session.getAttribute("login");
 %>
 <h3 id="title" style="text-align: center;">게시글 작성</h3>
-<form action="BoardWriteServlet" method="post" onsubmit="return formcheck()">
+<form action="boardInsert" method="post" onsubmit="return formcheck()">
 
 <table id="table" style="margin: 0 auto" border="1">
 		<tr>
@@ -75,7 +75,6 @@ MemberDTO dto = (MemberDTO) session.getAttribute("login");
 			<td width="70" align="center">글내용</td>
 			<td >
 			<textarea style="width: 426px; height: 500px; resize: none;" rows="25" cols="30" name="content" id="content"></textarea>
-				
 			</td>
 		</tr>
 		<tr style="text-align: center;">
@@ -86,7 +85,7 @@ MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		</td>
 		</tr>
 	</table>
-	</form>	
+</form>	
 	</div>
 	
 </body>
