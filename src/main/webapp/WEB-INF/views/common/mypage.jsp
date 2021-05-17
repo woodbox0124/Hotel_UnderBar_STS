@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <head>
-<!-- 글꼴 -->
+<!-- 글꼴 CSS 끝-->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/font.css">
-<!-- 글꼴 -->
+<!-- 글꼴  CSS 끝 -->
 <!-- mypage css 시작 -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/mypage.css">
 <!-- mypage css 끝 -->

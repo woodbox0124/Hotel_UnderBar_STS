@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="assets/css/font.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/font.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
@@ -179,7 +179,7 @@ out.print("<a href='boardList?curPage="+i+"&searchName="+searchName+"&searchValu
 		   </div><br>
 
 <div id="write">
-<a class="btn btn-primary" href="boardWrite">글쓰기</a>	
+<a class="btn btn-primary" href="loginCheck/boardWrite">글쓰기</a>	
 </div>
 
 	
