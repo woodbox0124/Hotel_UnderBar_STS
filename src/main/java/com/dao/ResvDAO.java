@@ -39,5 +39,13 @@ public class ResvDAO {
 		System.out.println("RpDTO\t"+RpDTO);
 		return RpDTO;
 	}
+	
+	public void resvCancel(int seq) {
+		session.delete("ResvMapper.resvCancel",seq);
+	}
 
 }
+
+
+
+
