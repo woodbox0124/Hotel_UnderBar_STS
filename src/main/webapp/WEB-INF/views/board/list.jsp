@@ -57,9 +57,7 @@ margin-bottom: 10px;
 {
 	text-align: center;
 }
-.container{
-	height:790px;
-}
+
 #texttitle{
 text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어가는 제목일 경우 "제목..."으로 표기됨 */
 }
@@ -125,14 +123,21 @@ for (BoardDTO dto : list) {
 	int origin=dto.getOrigin();
 	int groupnum=dto.getGroupnum();
 	int grouplayer=dto.getGrouplayer();
+
+
 	
 %>
+
+			
 				
 	<tbody>
+			
+				
 	<tr>
 		<td class="normal"><%=num %></td>
 		<td align="left">
 <% 
+		
 	for(int j=0;j<grouplayer;j++){
 %>
 		&nbsp;&nbsp;&nbsp;
@@ -177,6 +182,7 @@ out.print("<a href='boardList?curPage="+i+"&searchName="+searchName+"&searchValu
 <a class="btn btn-primary" href="loginCheck/boardWrite">글쓰기</a>	
 </div>
 
+	
 </div>
 </body>
 </html>

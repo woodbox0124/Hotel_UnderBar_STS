@@ -60,7 +60,7 @@ margin-bottom: 10px;
 MemberDTO dto = (MemberDTO) session.getAttribute("login");
 %>
 <h3 id="title" style="text-align: center;">게시글 작성</h3>
-<form action="loginCheck/boardInsert" method="post">
+<form action="boardInsert" method="post">
 <table id="table" style="margin: 0 auto" border="1">
 		<tr>
 			<td width="70" align="center">제목</td>
