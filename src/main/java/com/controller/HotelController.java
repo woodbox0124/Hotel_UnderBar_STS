@@ -42,4 +42,18 @@ HotelService service;
 		  session.setAttribute("guest",guest);
 		return "hotelList";
 	}
+	@RequestMapping(value = "/searchlocation")
+	public String searchlocation(HttpSession sesison,HttpServletRequest request,@RequestParam("location") String location) {
+		String curPage = request.getParameter("curPage");//현재 페이지 얻기
+		if(curPage==null)curPage = "1";
+		PageDTO pDTO=null;
+		if(location!="") {
+			pDTO=service.hotelList1(Integer.parseInt(curPage), location);
+		}else {
+			pDTO=service.hotelList1(Integer.parseInt(curPage));
+		}
+		request.setAttribute("pDTO", pDTO);
+		
+		return "hotelList";
+	}
 }

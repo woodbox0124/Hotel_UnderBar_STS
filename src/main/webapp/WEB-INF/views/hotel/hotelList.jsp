@@ -228,7 +228,7 @@ String guest = (String)session.getAttribute("guest");%>
 		<div class="wrapper">
 			<div class="filter">
 				<div id="filter">
-					<form action="SearchServlet" method="get">
+					<form action="searchlocation" method="get">
 						<div id="area">
 							<span>지역</span> <select class="place booking_input" id="place booking_input"
 								name="location">
