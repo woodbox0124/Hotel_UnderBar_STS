@@ -99,7 +99,7 @@ public class MemberController {
 		MemberDTO mdto = mService.myPage(u_id);
 		System.out.println(mdto);
 		session.setAttribute("login", mdto);//다시 session에 저장
-		return "mypage";
+		return "redirect:../mypage";
 	}
 	@RequestMapping("/loginCheck/MemberUpdate")
 	public String MemberUpdate(MemberDTO mdto , HttpSession session) {

@@ -40,6 +40,6 @@ HotelService service;
 		  session.setAttribute("checkout", checkout);
 		  session.setAttribute("location", location); 
 		  session.setAttribute("guest",guest);
-		return "hotel/hotelList";
+		return "hotelList";
 	}
 }
