@@ -6,12 +6,10 @@ import java.util.HashMap;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
@@ -49,12 +47,8 @@ public class BoardController {
 	}
 	//board write
 	@RequestMapping("/loginCheck/boardWrite")
-	public String boardList(HttpSession session) {
-		MemberDTO dto =(MemberDTO)session.getAttribute("login");
-		String u_id = dto.getU_id();
-		MemberDTO mdto = mService.myPage(u_id);
-		System.out.println(mdto);
-		session.setAttribute("login", mdto);//다시 session에 저장
+	public String boardList() {
+		
 		return "redirect:../boardWrite";
 	}
 	
@@ -72,16 +66,15 @@ public class BoardController {
 	}
 	//board write 불러오기 
 	@RequestMapping(value="/loginCheck/boardRetrive", produces="text/plain;charset=UTF-8")
-	public String boardRetrieve(@RequestParam int num, HttpSession session) {
+	public ModelAndView boardRetrieve(@RequestParam int num, HttpSession session) {
 		
 		BoardDTO bDTO = bService.selectByNum(num);
 		System.out.println(bDTO);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("bDTO", bDTO);
+		mav.setViewName("boardretrieve");
 		
 		
-		
-		
-		
-		
-		return "redirect:../loginCheck/boardList";
+		return mav;
 	}
 }

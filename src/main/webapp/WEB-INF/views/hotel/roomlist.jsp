@@ -4,6 +4,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="com.dto.RoomDTO"%>
 <%@ page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <head>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -75,13 +77,14 @@ img {
 	<div id="wrapper">
 	<div class="cards">
 	<div id="aa">
-		<% 
-	String hotelname = (String)session.getAttribute("hotelname");
-	String checkin = (String)session.getAttribute("checkin");
-	String checkout = (String)session.getAttribute("checkout");
-	String guest = (String)session.getAttribute("guest");
-	String location = (String)session.getAttribute("location");
-	System.out.println("hotelname :" + hotelname);
+		 
+	<%-- <p>${roomlist.seq}</p> --%>
+	${roomlist}
+	</div>
+	<% String hotelname = (String)request.getAttribute("hotelname");
+		System.out.println(hotelname);
+	%>
+	<%-- <%
 	
 	MemberDTO dto2 = (MemberDTO)session.getAttribute("login");
 	String u_id = dto2.getU_id();
@@ -123,6 +126,6 @@ for(int i=0; i<list.size(); i++){
 		</div>
 
 		<%} %>
-		</div>
-</div>		
+		</div>	 --%>
+</div>
 </div><!-- end cards  -->
