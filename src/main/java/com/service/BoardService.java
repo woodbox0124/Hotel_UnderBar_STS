@@ -28,6 +28,11 @@ public class BoardService {
 		int n = dao.boardInsert(bDTO);
 		return n;
 	}
+
+	public BoardDTO selectByNum(int num) {
+		BoardDTO bDTO = dao.selectByNum(num);
+		return bDTO;
+	}
 	
 	
 

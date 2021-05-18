@@ -11,7 +11,7 @@
 <!-- 직접 주소요청시 처리 페이지 등록 부분 -->
 <mvc:view-controller path="/" view-name="main"/><!-- main.jsp => mainController에서 처리 -->
 <mvc:view-controller path="/boardList" view-name="boardList"/>
-<mvc:view-controller path="/boardwrite" view-name="boardwrite"/>
+<mvc:view-controller path="/boardWrite" view-name="boardWrite"/>
 <mvc:view-controller path="/boardInsert" view-name="boardInsert"/>
 <mvc:view-controller path="/mypage" view-name="mypage"/>
 <mvc:view-controller path="/resvMy" view-name="resvMy"/>
@@ -44,4 +44,22 @@
 	
 </bean>
 <context:component-scan base-package="com.*"></context:component-scan><!-- repoistory,service, controller 생성 -->
+<!-- 메일 -->
+<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<property name="host" value="smtp.naver.com" />
+	<property name="port" value="465" />
+	<property name="username" value="" />
+	<property name="password" value="password" />
+	<property name="defaultEncoding" value="utf-8" />
+	<property name="javaMailProperties">
+		<props>
+			<prop key="mail.debug">true</prop>
+			<prop key="mail.smtp.starttls.enable">true</prop>
+			<prop key="mail.smtps.ssl.checkserveridentity">true</prop>
+			<prop key="mail.smtp.auth">true</prop>
+			<prop key="mail.smtps.ssl.trust">*</prop>
+			<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+		</props>
+	</property>
+</bean>
 </beans>
