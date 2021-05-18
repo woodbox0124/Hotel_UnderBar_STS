@@ -30,7 +30,7 @@ if (dto != null) {
 %>
 <div id=menu_bar>
 	<a class="a1"><%=u_id%>님 어서오세요.</a>
-    <a href="LogoutServlet" class="a">&nbsp;로그아웃</a>
+    <a href="loginCheck/logout" class="a">&nbsp;로그아웃</a>
 	<a href="MyPageServlet" class="a">&nbsp;마이페이지&nbsp;</a>
 	<a href="BoardListServlet" class="a">Q&A게시판</a>
 	<%

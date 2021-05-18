@@ -10,7 +10,10 @@
 <mvc:default-servlet-handler/><!-- mvc기본태그 -->
 <!-- 직접 주소요청시 처리 페이지 등록 부분 -->
 <mvc:view-controller path="/" view-name="main"/><!-- main.jsp => mainController에서 처리 -->
-<mvc:view-controller path="/" view-name="main"/>
+<mvc:view-controller path="/boardList" view-name="boardList"/>
+<mvc:view-controller path="/boardwrite" view-name="boardwrite"/>
+<mvc:view-controller path="/boardInsert" view-name="boardInsert"/>
+<mvc:view-controller path="/mypage" view-name="mypage"/>
 <!-- web-inf 폴더는 반드시 리소스 등록 후 사용 -->
 <mvc:resources location="/WEB-INF/views/styles/" mapping="/styles/**"/>
 <mvc:resources location="/WEB-INF/views/assets/" mapping="/assets/**"/>
@@ -23,10 +26,10 @@
 <mvc:interceptors>
 	<mvc:interceptor>
 		<mvc:mapping path="/loginCheck/**"/>
+		<mvc:exclude-mapping path="/views/**"/>
 		<ref bean="loginCheckInterceptor"/>
 	</mvc:interceptor>
 </mvc:interceptors>
-
 <bean id="loginCheckInterceptor" class="com.interceptor.LoginCheckInterceptor"></bean>
 <!-- interceptor의 사용 끝 -->
 <!-- controller 등록 부분 -->

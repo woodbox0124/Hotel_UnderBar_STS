@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="assets/css/font.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/font.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
@@ -60,8 +60,7 @@ margin-bottom: 10px;
 MemberDTO dto = (MemberDTO) session.getAttribute("login");
 %>
 <h3 id="title" style="text-align: center;">게시글 작성</h3>
-<form action="BoardWriteServlet" method="post" onsubmit="return formcheck()">
-
+<form action="boardInsert" method="post">
 <table id="table" style="margin: 0 auto" border="1">
 		<tr>
 			<td width="70" align="center">제목</td>
@@ -75,18 +74,17 @@ MemberDTO dto = (MemberDTO) session.getAttribute("login");
 			<td width="70" align="center">글내용</td>
 			<td >
 			<textarea style="width: 426px; height: 500px; resize: none;" rows="25" cols="30" name="content" id="content"></textarea>
-				
 			</td>
 		</tr>
 		<tr style="text-align: center;">
 		<td colspan="2">
 			<input class="btn btn-primary" type="submit" value="글쓰기">
 			<input class="btn btn-primary" type="reset" value="다시작성"> 
-			<a class="btn btn-primary" href="boardlist.jsp">목록보기</a>
+			<a class="btn btn-primary" href="boardList">목록보기</a>
 		</td>
 		</tr>
 	</table>
-	</form>	
+</form>	
 	</div>
 	
 </body>

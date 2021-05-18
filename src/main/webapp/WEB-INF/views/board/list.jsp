@@ -1,15 +1,14 @@
-<%@page import="com.dto.BoardPageDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="com.dto.BoardDTO"%>
+    <%@ page import="com.dto.BoardPageDTO" %>
+    <%@ page import="com.dto.BoardDTO" %>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@page import="com.dto.MemberDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="assets/css/font.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/font.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
@@ -85,11 +84,11 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 
 <body>
 <div class="container">
-<h3 id="title" align="center" style="font-weight: bold;"><a class="tablename" href="BoardListServlet">게시글 목록</a></h3>
+<h3 id="title" align="center" style="font-weight: bold;"><a class="tablename" href="boardList">게시글 목록</a></h3>
 <table id="search" class="table">
 	<tr>
 	 <td colspan="5">
-	  <form action="BoardListServlet" class="searchbar">
+	  <form action="boardList" class="searchbar">
 	   <select name="searchName">
 	    <option value="title">제목</option>
 	    <option value="author">작성자</option>
@@ -106,9 +105,11 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 		<td style="color: white;" width="100">작성일</td>
 		<td style="color: white;" width="50">조회수</td>
 	</tr>
+
+	
 	
 <%
-BoardPageDTO pDTO = (BoardPageDTO) session.getAttribute("list");
+BoardPageDTO pDTO = (BoardPageDTO) session.getAttribute("pDTO");
 
 List<BoardDTO> list = pDTO.getList();
 
@@ -172,13 +173,13 @@ for (BoardDTO dto : list) {
 		          	if(i== curPage){
 		          		out.print(i+"&nbsp;");
 		          	}else{
-out.print("<a href='BoardListServlet?curPage="+i+"&searchName="+searchName+"&searchValue="+searchValue+"'>"+i+"</a>&nbsp;"); 		          	}
+out.print("<a href='boardList?curPage="+i+"&searchName="+searchName+"&searchValue="+searchValue+"'>"+i+"</a>&nbsp;"); 		          	}
 		        }//end for
 		   %>
 		   </div><br>
 
 <div id="write">
-<a class="btn btn-primary" href="BoardWriteUIServlet">글쓰기</a>	
+<a class="btn btn-primary" href="loginCheck/boardWrite">글쓰기</a>	
 </div>
 
 	

@@ -1,5 +1,8 @@
 package com.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("RoomDTO")
 public class RoomDTO {
 	private String seq;
 	private String name;

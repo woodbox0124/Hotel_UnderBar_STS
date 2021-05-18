@@ -13,7 +13,7 @@ values(#{u_id}, #{u_pw}, #{u_name}, #{u_email}, #{u_phone})
       where u_id = #{u_id} and u_pw = #{u_pw}
 	</select>
 	
-	<select id="mypage" resultType="MemberDTO" parameterType="string">
+	<select id="myPage" resultType="MemberDTO" parameterType="string">
 	select * from member where u_id = #{u_id}
 	</select>
 	

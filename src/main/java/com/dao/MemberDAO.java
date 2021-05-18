@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dto.BoardPageDTO;
 import com.dto.MemberDTO;
 
 @Repository
@@ -41,8 +42,24 @@ public class MemberDAO {
 	}
 
 	public int pwchk(String u_pw) {
-		int n = session.selectOne( "MemberMapper.pwCheck", u_pw);
+		int n = session.selectOne("MemberMapper.pwChk", u_pw);
 		return n;
 	}
+
+	public MemberDTO myPage(String u_id) {
+		MemberDTO mdto = session.selectOne("MemberMapper.myPage",u_id);
+		return mdto;
+	}
+
+	public void memberUpdate(MemberDTO dto1) {
+		session.update("MemberMapper.memberUpdate",dto1);
+		
+	}
+
+	public void MemberDelete(String u_id) {
+		session.delete("MemberMapper.memberDelete", u_id);
+		
+	}
+
 
 }

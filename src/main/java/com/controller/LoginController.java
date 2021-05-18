@@ -18,7 +18,7 @@ import com.service.MemberService;
 public class LoginController {
 	@Autowired
 	MemberService service;
-	//시작점
+	//아이디 찾기 화면 전환
 	@RequestMapping("/searchId")//리스트 무조건 뿌리기
 	public String searchId() {
 		System.out.println("searchId.jsp 불러옴");
@@ -37,12 +37,12 @@ public class LoginController {
 		map.put("u_id", u_id);
 		map.put("u_pw", u_pw);
 		MemberDTO dto = service.login(map);//login 인증	
-		System.out.println(savepw);
+		System.out.println(dto);
 		String nextPage=null;//이동페이지 저장
 		if(dto!=null) {//회원인 경우
 		    nextPage="main"; // MainServlet 요청 데이터 가져와서 출력
 		    session.setAttribute("login", dto);	//로그인 정보 저장	
-		    }else { //dto==null 회원이 아닌 경우	
+		    }else{ //dto==null 회원이 아닌 경우	
 		    	int num  = service.idCheck(u_id);//아이디가 일치하지 않을 경우
 		    	int num1 = service.pwchk(u_pw);// 비밀번호가 일치하지 않을 경우
 		    	
@@ -57,11 +57,11 @@ public class LoginController {
 	     }//end else				
 		return nextPage ;
 	}
-	@RequestMapping("logout")
+	@RequestMapping("loginCheck/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("login");
 		session.setAttribute("mesg", "로그아웃이 완료 되었습니다.");
-		return "main";
+		return "redirect:../";
 	}
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.MemberDAO;
+import com.dto.BoardPageDTO;
 import com.dto.MemberDTO;
 
 @Service
@@ -44,5 +45,22 @@ public class MemberService {
 		int n = dao.pwchk(u_pw);
 		return n;
 	}
+
+	public MemberDTO myPage(String u_id) {
+		MemberDTO mdto = dao.myPage(u_id);
+		return mdto;
+	}
+
+	public void memberUpdate(MemberDTO dto1) {
+		dao.memberUpdate(dto1);
+		
+	}
+
+	public void MemberDelete(String u_id) {
+		dao.MemberDelete(u_id);
+		
+	}
+
+	
 
 }
