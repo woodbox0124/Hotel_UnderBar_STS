@@ -32,7 +32,7 @@ if (dto != null) {
 	<a class="a1"><%=u_id%>님 어서오세요.</a>
     <a href="loginCheck/logout" class="a">&nbsp;로그아웃</a>
 	<a href="loginCheck/myPage" class="a">&nbsp;마이페이지&nbsp;</a>
-	<a href="resvMy" class="a">예약 확인</a>
+	<a href="loginCheck/resvMy" class="a">예약 확인</a>
 	<a href="loginCheck/boardList" class="a">Q&A게시판</a>
 	<%
 		} else {

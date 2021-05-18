@@ -45,7 +45,7 @@
         var seq = $(this).attr("data-xxx");
         if(confirm("취소하시겠습니까?")){
         	alert("취소되었습니다.");
-        	location.href="ResvCancle?seq="+seq;
+        	location.href="resvCancel?seq="+seq;
           }
      })   
  });
@@ -75,12 +75,6 @@
 <!-- alert mesg 끝 -->
 </head>
 
-<%-- <%
-	MemberDTO mdto = (MemberDTO) session.getAttribute("login");
-String mu_id = mdto.getU_id();
-String mu_name = mdto.getU_name();
-%> --%>
-
 
 <body>
 	<div id="main">
@@ -88,7 +82,7 @@ String mu_name = mdto.getU_name();
 
 			<table class="resvmy" id="resvmy">
 				<tr>
-					<td colspan="11" id="resv_name">${login.u_name}님의예약 정보</td>
+					<td colspan="11" id="resv_name">${login.u_name}님의예약정보</td>
 				</tr>
 
 				<tr>
@@ -107,11 +101,9 @@ String mu_name = mdto.getU_name();
 
 				<%
 				
-					/* ResvPageDTO RpDTO = (ResvPageDTO)request.getAttribute("RpDTO");
-					
-					List<ResvMyDTO> list = RpDTO.getList(); */
-					
-					 List<ResvMyDTO> list = (List<ResvMyDTO>)session.getAttribute("list");
+					 ResvPageDTO RpDTO = (ResvPageDTO)session.getAttribute("RpDTO");
+				
+					List<ResvMyDTO> list = RpDTO.getList(); 
 					for (int i = 0; i < list.size(); i++) {
 					
 					ResvMyDTO dto = list.get(i); 
@@ -119,7 +111,6 @@ String mu_name = mdto.getU_name();
 					int seq = dto.getSeq();
 					double rating = dto.getRating();
 					String hotelname = dto.getHotelname();
-					String addr = dto.getAddr();
 					String roomname = dto.getRoomname();
 					String checkin = dto.getCheckin();
 					String checkout = dto.getCheckout();
@@ -161,7 +152,7 @@ String mu_name = mdto.getU_name();
 
 	</div>
 
-	<%-- <div class="page">
+	<div class="page">
 		<%
 			String u_id = (String)session.getAttribute("u_id");
 			int curPage = RpDTO.getCurPage();//현재페이지
@@ -186,7 +177,7 @@ String mu_name = mdto.getU_name();
 		%>
 
 
-	</div> --%>
+	</div>
 
 </body>
 </html>

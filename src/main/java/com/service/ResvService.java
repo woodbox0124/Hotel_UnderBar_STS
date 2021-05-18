@@ -14,6 +14,8 @@ public class ResvService {
 
 	@Autowired
 	ResvDAO dao;
+	
+	
 
 	public List<ResvMyDTO> resvMy(String u_id) {
 		List<ResvMyDTO> list = dao.resvMy(u_id);
@@ -21,9 +23,16 @@ public class ResvService {
 	}
 
 	public ResvPageDTO resvMyList(int curPage, String u_id) {
-		ResvPageDTO dto = dao.resvMyList(curPage, u_id);
-		System.out.println("ResvService" + dto);
-		return dto;
+		ResvPageDTO RPdto = dao.resvMyList(curPage, u_id);
+		System.out.println("resvMyList : " + RPdto);
+		return RPdto;
+	}
+
+	public void resvCancel(int seq) {
+		dao.resvCancel(seq);
 	}
 
 }
+
+
+
