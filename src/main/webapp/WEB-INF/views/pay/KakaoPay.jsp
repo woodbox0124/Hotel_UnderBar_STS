@@ -3,15 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
-String hotelseq = request.getParameter("hotelseq");
-String u_id = request.getParameter("u_id");
-String roomseq = request.getParameter("roomseq");
-String checkin = request.getParameter("checkin");
-String checkout = request.getParameter("checkout");
-int price = Integer.parseInt(request.getParameter("price"));
-String guest = request.getParameter("guest");
-String u_phone = request.getParameter("u_phone");
-String location = request.getParameter("location");
+String hotelseq = (String)session.getAttribute("hotelseq");
+String u_id = (String)session.getAttribute("u_id");
+String roomseq = (String)session.getAttribute("roomseq");
+String checkin = (String)session.getAttribute("checkin");
+String checkout = (String)session.getAttribute("checkout");
+int price = (int)session.getAttribute("price");
+String guest = (String)session.getAttribute("guest");
+String u_phone = (String)session.getAttribute("u_phone");
+String location = (String)session.getAttribute("location");
  
 
 

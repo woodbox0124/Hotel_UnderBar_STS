@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.ResvDAO;
+import com.dto.ResvDTO;
 import com.dto.ResvMyDTO;
 import com.dto.ResvPageDTO;
 
@@ -24,6 +25,11 @@ public class ResvService {
 		ResvPageDTO dto = dao.resvMyList(curPage, u_id);
 		System.out.println("ResvService" + dto);
 		return dto;
+	}
+
+	public int resvInsert(ResvDTO dto) {
+		int n = dao.resvInsert(dto);
+		return n;
 	}
 
 }

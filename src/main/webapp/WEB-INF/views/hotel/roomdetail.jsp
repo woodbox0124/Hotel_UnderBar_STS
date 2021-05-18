@@ -176,34 +176,7 @@ function doDisplay() {
 <div id ="main">
 <div id ="herder">객실정보</div><br>
 
-<%
-	String hotelname = (String)session.getAttribute("hotelname");
-	String checkin = (String) session.getAttribute("checkin");
-	String checkout = (String) session.getAttribute("checkout");
-	String guest = (String)session.getAttribute("guest");
-	String location = (String)session.getAttribute("location");
-	System.out.println("체크인" + checkin);
-	System.out.println("체크아웃" + checkout);
-	System.out.println("게스트" + guest);
-	System.out.println("location" + location);
-	%>
-	
-	<%
-	MemberDTO dto2 = (MemberDTO) session.getAttribute("login");
-	String u_id = dto2.getU_id();
-	System.out.println("U_ID" + u_id);
-	%>
-	
-	<%
-		List<RoomInfoDTO> list2 = (List<RoomInfoDTO>) request.getAttribute("roominfo");
-	for (RoomInfoDTO dto : list2) {
-		String bath = dto.getBath();
-		String eat = dto.getEat();
-		String internet = dto.getInternet();
-		String etc = dto.getEtc();
-	%>
-	
-
+	<c:forEach var="y" items="${roominfo }">
 	
 	<div id="aa">
 	<img src="images/icon/icon.jpg">청결 정책<br>
@@ -218,49 +191,34 @@ function doDisplay() {
 	<div><a style="font-size: 24px;">▶객실 편의시설</a></div>
 	
 	<img src="images/icon/icon_bath.jpg"><div style="font-size: 22px;">욕실</div>
-	<div style="font-size: 18px;">＊<%=bath%><br></div>    
+	<div style="font-size: 18px;">＊${roominfo.bath }<br></div>    
 	
 	<img src="images/icon/icon_eat.jpg"><div style="font-size: 22px;">식음료</div>
-	<div style="font-size: 18px;">＊<%=eat%><br></div>
+	<div style="font-size: 18px;">＊${roominfo.eat }<br></div>
 	
 	
 	<img src="images/icon/icon_etc.jpg"><div style="font-size: 22px;">인터넷</div>
-	<div style="font-size: 18px;">＊<%=internet%></div><br>
+	<div style="font-size: 18px;">＊${roominfo.internet }</div><br>
 
 	
 	<img src="images/icon/icon_internet.jpg"><div style="font-size: 22px;">기타</div>
-	<div style="font-size: 18px;">＊<%=etc%></div>
+	<div style="font-size: 18px;">＊${roominfo.etc }</div>
 
 	
 </div>
 	</div>
-	<%
-}
-%>
+	</c:forEach>
 
-
-	<%
-		List<RoomDTO> list = (List<RoomDTO>) request.getAttribute("roomlist");
-	for (int i = 0; i < list.size(); i++) {
-		RoomDTO dto = list.get(i);
-		String seq = dto.getSeq();
-		String name = dto.getName();
-		String hotelseq = dto.getHotelseq();
-		int price = dto.getPrice();
-		int max_guest = dto.getMax_guest();
-		String room_img = dto.getRoom_img();
-		String room_img_real = dto.getRoom_img_real();
-	%>
-
+	<c:forEach var="x" items="${roomlist }">
 
 	<div  id="cc">
 	
 	 <div class="slideshow-container">
        <div class="mySlides fadein" >
-        <img src="images/room/<%=room_img%>.jpg" style="width:100%; "> 
+        <img src="images/room/${roomlist.room_img }.jpg" style="width:100%; "> 
       </div>
       <div class="mySlides fadein">
-        <img src="images/room/<%=room_img_real%>.jpg" style="width:100%;">
+        <img src="images/room/${roomlist.room_ing_real }.jpg" style="width:100%;">
       </div>
     
       <!-- Next and previous buttons -->
@@ -278,26 +236,22 @@ function doDisplay() {
    
    
     <div id="jj">
-    <a href="RoomReservServlet?u_id=<%=u_id %>&checkin=<%=checkin%>
-				&checkout=<%=checkout%>&guest=<%=guest%>&hotelseq=<%=hotelseq%>&hotelname=<%=hotelname%>
-				&roomseq=<%=seq%>&price=<%=price%>&location=<%=location%>&name=<%=name%>"><div style="font-size:18px;">지금 예약하기</div></a>
+    <a href="RoomReserv?u_id=${login.u_id }&checkin=${checkin.checkin }
+				&checkout=${checkout.checkout }&guest=${guest.guest }&hotelseq=${roomlist.hotelseq }&hotelname=${hotelname.hotelname }
+				&roomseq=${roomlist.seq }&price=${roomlist.price }&location=${location.location }&name=${roomlist.name }"><div style="font-size:18px;">지금 예약하기</div></a>
 	<br>
 	<div id="ll">
 	
 	
-	<span><%=name%></span>
+	<span>${roomlist.name }</span>
 </div>
-	<div>가격  :<%=price %><br>
+	<div>가격  :${roomlist.price }<br>
 	
-	<img src="images/icon/icon_guest.jpg">최대인원수:<%=max_guest%> </div>
+	<img src="images/icon/icon_guest.jpg">최대인원수:${roomlist.max_guest } </div>
 	 </div>
 	</div>
 	</div>
-	
- 
-	<%
-	}
-	%>
+	</c:forEach>
 
 	
 

@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dto.ResvDTO;
 import com.dto.ResvMyDTO;
 import com.dto.ResvPageDTO;
 
@@ -38,6 +39,10 @@ public class ResvDAO {
 		RpDTO.setTotalCount(totalCount(u_id));//검색어도 넘겨서 검색에 관련 전체 레코드 개수 구하기
 		System.out.println("RpDTO\t"+RpDTO);
 		return RpDTO;
+	}
+	public int resvInsert(ResvDTO dto) {
+		int n = session.insert("ResvMapper.resvInsert", dto);
+		return n;
 	}
 
 }

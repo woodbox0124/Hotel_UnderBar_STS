@@ -96,7 +96,7 @@ form{
 
 </head>
 <body>
-	<form action="KakaopayServlet">
+	<form action="loginCheck/KakaoPay">
 	
 	<!-- kakao pay 값 전달을 위한 코드 -->
 	<input type="hidden" name="roomseq" value="<%=roomseq%>">
