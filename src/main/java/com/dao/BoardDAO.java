@@ -25,6 +25,7 @@ public class BoardDAO {
 		List<BoardDTO> list = session.selectList("BoardMapper.boardList", map, new RowBounds(offset,perPage));
 		pDTO.setCurPage(curPage);
 		pDTO.setList(list);
+		System.out.println(list);
 		pDTO.setTotalCount(totalCount(map));
 		System.out.println("BoardPageDTO : " + pDTO);
 		return pDTO;

@@ -5,8 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="BoardMapper">
 
 	<!-- 게시글 목록 -->
-	<select id="boardList" resultType="BoardDTO"
-		parameterType="hashmap">
+	<select id="boardList" resultType="BoardDTO" parameterType="hashmap">
 		select num, title, author, content,
 		to_char(writeday, 'yyyy/MM/dd')
 		writeday, readCnt,origin,groupnum,grouplayer

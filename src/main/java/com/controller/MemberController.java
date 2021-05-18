@@ -135,50 +135,5 @@ public class MemberController {
 		return "redirect:../";
 	}
 	
-	
-	//board List
-	@RequestMapping("/loginCheck/boardList")
-	public String boardList(@RequestParam(required=false, defaultValue="1") String curPage ,
-			@RequestParam(required=false, defaultValue="title")String searchName,
-			@RequestParam(required=false, defaultValue="0") String searchValue,
-			HttpSession session) {
-		
-		System.out.println(curPage);
-		System.out.println(searchName);
-		System.out.println(searchValue);
-		HashMap<String, String> map= new HashMap<String, String>();
-		map.put("searchName", searchName);
-		map.put("searchValue", searchValue);		
-		System.out.println(map);
-		
-	
-		BoardPageDTO pDTO= bService.boardList(Integer.parseInt(curPage),map);	
-		System.out.println(pDTO);
-		session.setAttribute("pDTO", pDTO);
-		
-		return "redirect:../boardList";
-	}
-	//board write
-	@RequestMapping("/loginCheck/boardWrite")
-	public String boardList(HttpSession session) {
-		MemberDTO dto =(MemberDTO)session.getAttribute("login");
-		String u_id = dto.getU_id();
-		MemberDTO mdto = mService.myPage(u_id);
-		System.out.println(mdto);
-		session.setAttribute("login", mdto);//다시 session에 저장
-		return "boardWrite";
-	}
-	
-	//board write Insert
-	@RequestMapping(value="/loginCheck/boardInsert", method=RequestMethod.POST)
-	public String boardInsert(HttpRequest request,@RequestParam String title,String author, String content) {
-		System.out.println(title);
-		BoardDTO bDTO = new BoardDTO();
-		bDTO.setTitle(title);
-		bDTO.setAuthor(author);
-		bDTO.setContent(content);
-		int n = bService.boardInsert(bDTO);
-		System.out.println(n);
-		return "redirect:../boardList";
-	}
+
 }
