@@ -4,8 +4,6 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="com.dto.RoomDTO"%>
 <%@ page import="java.util.List"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <head>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -119,7 +117,7 @@ for(int i=0; i<list.size(); i++){
 				&checkout=<%=checkout%>&guest=<%=guest%>&hotelseq=<%=hotelseq%>&hotelname=<%=hotelname%>
 				&roomseq=<%=seq%>&price=<%=price%>&location=<%=location%>&name=<%=name%>" id="resv">지금예약</a>
 				<ul>
-					<li><a href="RoomInfoServlet?seq=<%=seq%>"
+					<li><a href="roominfo?seq=<%=seq%>"
 						style="color: black">객실 정보 자세히보기</a><br>
 				</ul>
 			</div>

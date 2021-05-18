@@ -359,7 +359,7 @@ String guest = (String)session.getAttribute("guest");%>
 						</p>
 
 						<a
-							href="RoomSearchServlet?hotelname=<%=hotelname%>&seq=<%=seq%>&checkin=<%=checkin%>&checkout=<%=checkout%>&place=<%=place%>"
+							href="roomlist?hotelname=<%=hotelname%>&seq=<%=seq%>&checkin=<%=checkin%>&checkout=<%=checkout%>&place=<%=place%>"
 							class="btn btn-primary">OPEN</a>
 					</div>
 				</div>
