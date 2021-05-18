@@ -228,7 +228,7 @@ String guest = (String)session.getAttribute("guest");%>
 		<div class="wrapper">
 			<div class="filter">
 				<div id="filter">
-					<form action="SearchServlet" method="get">
+					<form action="searchlocation" method="get">
 						<div id="area">
 							<span>지역</span> <select class="place booking_input" id="place booking_input"
 								name="location">
@@ -384,7 +384,7 @@ String guest = (String)session.getAttribute("guest");%>
 					out.print(i+"&nbsp;");
 				}else{
 					System.out.print("else i"+i);
-					out.print("<a href='HotelSearchServlet?checkin="+checkin+"&checkout="+checkout+"&guest="+guest+"&curPage="+i+"&location="+location+"'>"+i+"</a>&nbsp;");
+					out.print("<a href='HotelSearch?checkin="+checkin+"&checkout="+checkout+"&guest="+guest+"&curPage="+i+"&location="+location+"'>"+i+"</a>&nbsp;");
 				}//end for		
 			}
 		%>

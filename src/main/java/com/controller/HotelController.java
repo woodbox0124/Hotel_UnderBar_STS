@@ -20,8 +20,8 @@ HotelService service;
 	
 	@RequestMapping(value="/HotelSearch")
 	public String HotelSearch(HttpServletRequest request,HttpSession session,@RequestParam("checkin") String checkin,@RequestParam("checkout") String checkout,
-			@RequestParam("guest") String guest,@RequestParam("location") String location) {
-		String curPage=null;
+			@RequestParam("guest") String guest,@RequestParam("location") String location ) {
+		String curPage=request.getParameter("curPage");
 		if(curPage==null)curPage = "1";
 		
 		PageDTO pDTO = null;
@@ -40,6 +40,20 @@ HotelService service;
 		  session.setAttribute("checkout", checkout);
 		  session.setAttribute("location", location); 
 		  session.setAttribute("guest",guest);
-		return "hotel/hotelList";
+		return "hotelList";
+	}
+	@RequestMapping(value = "/searchlocation")
+	public String searchlocation(HttpSession sesison,HttpServletRequest request,@RequestParam("location") String location) {
+		String curPage = request.getParameter("curPage");//현재 페이지 얻기
+		if(curPage==null)curPage = "1";
+		PageDTO pDTO=null;
+		if(location!="") {
+			pDTO=service.hotelList1(Integer.parseInt(curPage), location);
+		}else {
+			pDTO=service.hotelList1(Integer.parseInt(curPage));
+		}
+		request.setAttribute("pDTO", pDTO);
+		
+		return "hotelList";
 	}
 }
