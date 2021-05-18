@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="assets/css/font.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/font.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"

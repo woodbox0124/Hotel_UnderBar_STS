@@ -18,7 +18,7 @@ import com.service.MemberService;
 public class LoginController {
 	@Autowired
 	MemberService service;
-	//시작점
+	//아이디 찾기 화면 전환
 	@RequestMapping("/searchId")//리스트 무조건 뿌리기
 	public String searchId() {
 		System.out.println("searchId.jsp 불러옴");
