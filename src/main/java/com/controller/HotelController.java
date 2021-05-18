@@ -20,8 +20,8 @@ HotelService service;
 	
 	@RequestMapping(value="/HotelSearch")
 	public String HotelSearch(HttpServletRequest request,HttpSession session,@RequestParam("checkin") String checkin,@RequestParam("checkout") String checkout,
-			@RequestParam("guest") String guest,@RequestParam("location") String location) {
-		String curPage=null;
+			@RequestParam("guest") String guest,@RequestParam("location") String location ) {
+		String curPage=request.getParameter("curPage");
 		if(curPage==null)curPage = "1";
 		
 		PageDTO pDTO = null;

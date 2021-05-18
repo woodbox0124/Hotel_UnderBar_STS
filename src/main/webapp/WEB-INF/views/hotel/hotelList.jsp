@@ -384,7 +384,7 @@ String guest = (String)session.getAttribute("guest");%>
 					out.print(i+"&nbsp;");
 				}else{
 					System.out.print("else i"+i);
-					out.print("<a href='HotelSearchServlet?checkin="+checkin+"&checkout="+checkout+"&guest="+guest+"&curPage="+i+"&location="+location+"'>"+i+"</a>&nbsp;");
+					out.print("<a href='HotelSearch?checkin="+checkin+"&checkout="+checkout+"&guest="+guest+"&curPage="+i+"&location="+location+"'>"+i+"</a>&nbsp;");
 				}//end for		
 			}
 		%>
