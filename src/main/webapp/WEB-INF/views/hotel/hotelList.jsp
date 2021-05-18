@@ -223,7 +223,7 @@ img {
 <%String location = (String)session.getAttribute("location"); 
 String checkin = (String) session.getAttribute("checkin");
 String checkout = (String) session.getAttribute("checkout");
-String guest = (String) session.getAttribute("guest");%>
+String guest = (String)session.getAttribute("guest");%>
 	<div class="section">
 		<div class="wrapper">
 			<div class="filter">

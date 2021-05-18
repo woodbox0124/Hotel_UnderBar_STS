@@ -96,7 +96,7 @@ option {
 			<header id="header">
 				<div class="home_title">Hotel UnderBar</div>
 					<div class="booking_form_container">
-						<form action="HotelSearchServlet" class="booking_form">
+						<form action="HotelSearch" class="booking_form">
 							<div class="d-flex flex-xl-row flex-column align-items-start justify-content-start">
 								<div class="booking_input_container d-flex flex-lg-row flex-column align-items-start justify-content-start">
 									<div>
