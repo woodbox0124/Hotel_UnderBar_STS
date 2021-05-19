@@ -64,8 +64,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 게시글 삭제 -->
 
 	<!-- 조회 수 증가 -->
-	<select id="selectByNum" resultType="BoardDTO"
-		parameterType="int">
+	<select id="selectByNum" resultType="BoardDTO" parameterType="int">
 		select num, title, author, content, to_char(writeday, 'yyyy/MM/dd')
 		writeday, readCnt,origin,groupnum,grouplayer
 		from board where num= #{num}

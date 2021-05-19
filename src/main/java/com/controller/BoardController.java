@@ -67,6 +67,7 @@ public class BoardController {
 	//board write 불러오기 
 	@RequestMapping(value="/loginCheck/boardRetrive", produces="text/plain;charset=UTF-8")
 	public ModelAndView boardRetrieve(@RequestParam int num, HttpSession session) {
+		System.out.println(num);
 		BoardDTO bDTO = bService.selectByNum(num);
 		System.out.println(bDTO);
 		ModelAndView mav = new ModelAndView();
