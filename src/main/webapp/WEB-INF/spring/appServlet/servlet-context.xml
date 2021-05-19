@@ -13,6 +13,7 @@
 <mvc:view-controller path="/boardList" view-name="boardList"/>
 <mvc:view-controller path="/boardWrite" view-name="boardWrite"/>
 <mvc:view-controller path="/boardInsert" view-name="boardInsert"/>
+<mvc:view-controller path="/boardRetrive" view-name="boardRetrive"/>
 <mvc:view-controller path="/mypage" view-name="mypage"/>
 <mvc:view-controller path="/resvMy" view-name="resvMy"/>
 <mvc:view-controller path="/roomlist" view-name="roomlist"/>

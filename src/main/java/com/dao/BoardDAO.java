@@ -40,4 +40,9 @@ public class BoardDAO {
 		int n = session.insert("BoardMapper.boardInsert", bDTO);
 		return n;
 	}
+
+	public BoardDTO selectByNum(int num) {
+		BoardDTO bDTO = session.selectOne("BoardMapper.selectByNum", num);
+		return bDTO;
+	}
 }

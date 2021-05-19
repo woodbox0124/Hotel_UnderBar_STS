@@ -27,7 +27,6 @@
 <meta charset="UTF-8">
 <title>Q&#38;A 게시판</title>
 
-
 <style type="text/css">
 * {
 	font-family: 'twayair', 'Roboto', 'sans-serif' !important;
@@ -145,7 +144,7 @@ for (BoardDTO dto : list) {
 <%
 	}
 %> 
-		<a class="tablename" href="boardRetrive?num=<%=num%>"><%=title %></a> </td>
+		<a class="tablename" href="loginCheck/boardRetrive?num=<%=num%>"><%=title %></a> </td>
 		<td class="normal"><%=author %></td>
 		<td class="normal"><%=writeday %></td>
 		<td class="normal"><%=readcnt %></td>

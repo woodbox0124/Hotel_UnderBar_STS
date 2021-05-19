@@ -13,7 +13,6 @@ public class RoomDTO {
 	private String room_img_real;
 	public RoomDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public RoomDTO(String seq, String name, String hotelseq, int price, int max_guest, String room_img,
 			String room_img_real) {

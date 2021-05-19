@@ -56,9 +56,6 @@ margin-bottom: 10px;
 </head>
 <body>
 <div class="container">
-<%
-MemberDTO dto = (MemberDTO) session.getAttribute("login");
-%>
 <h3 id="title" style="text-align: center;">게시글 작성</h3>
 <form action="loginCheck/boardInsert" method="post">
 <table id="table" style="margin: 0 auto" border="1">
@@ -68,7 +65,7 @@ MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		</tr>
 		<tr>
 			<td width="70" align="center">작성자</td>
-			<td ><input type="text" size="45" name="author" id="author" value="<%=dto.getU_id()%>"></td>
+			<td ><input type="text" size="45" name="author" id="author" value="${login.u_id}"></td>
 		</tr>
 		<tr>
 			<td width="70" align="center">글내용</td>

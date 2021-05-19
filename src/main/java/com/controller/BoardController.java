@@ -29,8 +29,8 @@ public class BoardController {
 	//board List
 	@RequestMapping("/loginCheck/boardList")
 	public String boardList(@RequestParam(required=false, defaultValue="1") String curPage ,
-			HttpSession session, @RequestParam(required=false, defaultValue="title") String searchName,
-			@RequestParam(required=false, defaultValue="") String searchValue) throws Exception {
+		HttpSession session, @RequestParam(required=false, defaultValue="title") String searchName,
+		@RequestParam(required=false, defaultValue="") String searchValue) throws Exception {
 		System.out.println(curPage);
 		System.out.println(searchName);
 		System.out.println(searchValue);
@@ -47,7 +47,7 @@ public class BoardController {
 	}
 	//board write
 	@RequestMapping("/loginCheck/boardWrite")
-	public String boardList() {
+	public String boardList(HttpSession session) {
 		
 		return "redirect:../boardWrite";
 	}
@@ -67,14 +67,11 @@ public class BoardController {
 	//board write 불러오기 
 	@RequestMapping(value="/loginCheck/boardRetrive", produces="text/plain;charset=UTF-8")
 	public ModelAndView boardRetrieve(@RequestParam int num, HttpSession session) {
-		
 		BoardDTO bDTO = bService.selectByNum(num);
 		System.out.println(bDTO);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("bDTO", bDTO);
 		mav.setViewName("boardretrieve");
-		
-		
 		return mav;
 	}
 }
