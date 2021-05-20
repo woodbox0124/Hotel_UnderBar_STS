@@ -1,3 +1,4 @@
+<%@page import="org.apache.taglibs.standard.tag.common.xml.ForEachTag"%>
 <%@page import="com.dto.HotelDTO"%>
 <%@page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -77,55 +78,33 @@ img {
 	<div id="wrapper">
 	<div class="cards">
 	<div id="aa">
-		 
-	<%-- <p>${roomlist.seq}</p> --%>
-	${roomlist}
-	</div>
-	<% String hotelname = (String)request.getAttribute("hotelname");
-		System.out.println(hotelname);
-	%>
-	<%-- <%
-	
+	 <%
 	MemberDTO dto2 = (MemberDTO)session.getAttribute("login");
 	String u_id = dto2.getU_id();
+	%>
 	
+	<c:forEach var="list" items="${roomlist}">
 
-
-List<RoomDTO> list = (List<RoomDTO>)session.getAttribute("roomlist");
-for(int i=0; i<list.size(); i++){
-	RoomDTO dto = list.get(i);
-	
-	String seq = dto.getSeq();
-	String name = dto.getName();
-	String hotelseq = dto.getHotelseq();
-	int price = dto.getPrice();
-	int max_guest = dto.getMax_guest();
-	String room_img = dto.getRoom_img();
-	String room_img_real = dto.getRoom_img_real();
-	
-	request.setAttribute("list", list);
-%>
-		<div class="card">
-		
-			<img src="${pageContext.request.contextPath}/images/room/<%= room_img %>.jpg" class="card-img-top"
+	<div class="card">
+			<img src="${pageContext.request.contextPath}/images/room/${list.room_img}.jpg" class="card-img-top"
 				alt="...">
 			<div class="card-body">
-				<h5 class="card-title"><%= name %></h5>
+				<h5 class="card-title">${list.name}</h5>
 				<p class="card-text">
-					<span id="price">가격 <%= price %></span>
+					<span id="price">가격 ${list.price}</span>
 				</p>
 
-				<a href="RoomReserv?u_id=<%=u_id %>&checkin=<%=checkin%>
-				&checkout=<%=checkout%>&guest=<%=guest%>&hotelseq=<%=hotelseq%>&hotelname=<%=hotelname%>
-				&roomseq=<%=seq%>&price=<%=price%>&location=<%=location%>&name=<%=name%>" id="resv">지금예약</a>
+				<a href="RoomReserv?u_id=<%=u_id%>&checkin=${checkin}
+				&checkout=${checkout}&guest=${guest}&hotelseq=${list.hotelseq}&hotelname=${hotelname}
+				&roomseq=${list.seq}&price=${list.price}&location=${place}&name=${list.name}" id="resv">지금예약</a>
 				<ul>
-					<li><a href="roominfo?seq=<%=seq%>"
+					<li><a href="roominfo?seq=${list.seq}"
 						style="color: black">객실 정보 자세히보기</a><br>
 				</ul>
 			</div>
 		</div>
-
-		<%} %>
-		</div>	 --%>
+	</c:forEach>
+	
+	</div>
+		</div>	 
 </div>
-</div><!-- end cards  -->
