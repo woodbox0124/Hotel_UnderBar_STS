@@ -48,24 +48,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 게시글 추가 -->
 
 	<!-- 게시글 수정 -->
-	<update id="updateByNum" parameterType="BoardDTO">
+	<update id="updateBoard" parameterType="BoardDTO">
 		update board
 		set title= #{title},
 		author=#{author},
 		content=#{content}
 		where num = #{num}
 	</update>
-	<!-- 게시글 수정 -->
 
 	<!-- 게시글 삭제 -->
-	<delete id="deleteByNum" parameterType="int">
+	<delete id="boardDelete" parameterType="int">
 		delete from board where num= #{num}
 	</delete>
 	<!-- 게시글 삭제 -->
 
 	<!-- 조회 수 증가 -->
-	<select id="selectByNum" resultType="BoardDTO"
-		parameterType="int">
+	<select id="selectByNum" resultType="BoardDTO" parameterType="int">
 		select num, title, author, content, to_char(writeday, 'yyyy/MM/dd')
 		writeday, readCnt,origin,groupnum,grouplayer
 		from board where num= #{num}
@@ -88,15 +86,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 댓글 -->
 
 	<!-- 대댓글 -->
-	<update id="updatelayer" parameterType="hashmap">
+	<update id="updateLayer" parameterType="hashmap">
      <![CDATA[ update board set groupnum = groupnum + 1 where origin = #{origin} and groupnum > #{groupnum} ]]>
 	</update>
 	<!-- 대댓글 -->
 
 
-<select id="selectauthor" parameterType="int" resultType="string">
-select author from board where num=#{num}
-</select>
+	<select id="selectauthor" parameterType="int" resultType="string">
+	select author from board where num=#{num}
+	</select>
 
 
 </mapper>

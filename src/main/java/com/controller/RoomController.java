@@ -56,7 +56,7 @@ public class RoomController
 			,@RequestParam("checkout") String checkout,@RequestParam("hotelname") String hotelname
 			,@RequestParam("guest") String guest, @RequestParam("roomseq") String roomseq
 			,@RequestParam("price") int price, @RequestParam("u_id") String u_id 
-			,@RequestParam("location") String location, @RequestParam("name") String name) throws IOException {
+			,@RequestParam("location") String location, @RequestParam("name") String name) throws Exception {
 		
 		model.addAttribute(hotelseq);
 		model.addAttribute(u_id);

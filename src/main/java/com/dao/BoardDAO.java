@@ -3,6 +3,7 @@ package com.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -37,7 +38,40 @@ public class BoardDAO {
 	}
 
 	public int boardInsert(BoardDTO bDTO) {
+		int num = bDTO.getNum();
+		int origin = bDTO.getOrigin();
+		int groupnum = bDTO.getGroupnum();
+		int grouplayer = bDTO.getGrouplayer();
+		if(num!=0) {
+			layerUpdate(origin, groupnum );
+			groupnum++;
+			grouplayer++;
+		}
+		bDTO.setOrigin(origin);
+		bDTO.setGroupnum(groupnum);
+		bDTO.setGrouplayer(grouplayer);
+		System.out.println("BOARD INSERT : "+bDTO);
 		int n = session.insert("BoardMapper.boardInsert", bDTO);
+		System.out.println("after Insert"+bDTO);
 		return n;
+	}
+	public void layerUpdate(int origin, int groupnum) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("origin", origin);
+		map.put("groupnum", groupnum);
+		session.update("BoardMapper.updateLayer", map);
+	}
+	public BoardDTO selectByNum(int num) {
+		BoardDTO bDTO = session.selectOne("BoardMapper.selectByNum", num);
+		return bDTO;
+	}
+
+	public void boardUpdate(BoardDTO bDTO) {
+		session.update("BoardMapper.updateBoard", bDTO);
+		System.out.println("BoardDAO : "+bDTO);
+	}
+
+	public void boardDelete(int num) {
+		session.delete("BoardMapper.boardDelete", num);
 	}
 }
