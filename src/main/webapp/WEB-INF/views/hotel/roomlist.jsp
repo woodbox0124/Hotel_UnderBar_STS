@@ -94,7 +94,7 @@ img {
 					<span id="price">가격 ${list.price}</span>
 				</p>
 
-				<a href="RoomReserv?u_id=<%=u_id%>&checkin=${checkin}
+				<a href="loginCheck/RoomReserv?u_id=<%=u_id%>&checkin=${checkin}
 				&checkout=${checkout}&guest=${guest}&hotelseq=${list.hotelseq}&hotelname=${hotelname}
 				&roomseq=${list.seq}&price=${list.price}&location=${place}&name=${list.name}" id="resv">지금예약</a>
 				<ul>

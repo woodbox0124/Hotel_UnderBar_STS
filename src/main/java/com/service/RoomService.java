@@ -35,7 +35,15 @@ public class RoomService
 	}
 
 	public int date(HashMap<String, String> map) {
-		int n = dao.date(map);
+		int n = 0;
+		try {
+			RoomDAO dao = new RoomDAO();
+			n = dao.date(map);
+		}catch (Exception e) {
+			e.printStackTrace();
+		
+		}
 		return n;
 	}
+
 }

@@ -50,6 +50,12 @@ public class ResvDAO {
 		int n = session.insert("ResvMapper.resvInsert", dto);
 		return n;
 	}
+	public List<ResvDTO> payList(String roomseq) {
+		List<ResvDTO> rdto = session.selectList("ResvMapper.payList", roomseq);
+		System.out.println(rdto);
+		return rdto;
+	}
+
 	
 
 }

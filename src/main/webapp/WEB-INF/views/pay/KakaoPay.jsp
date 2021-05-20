@@ -3,21 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
-String hotelseq = (String)session.getAttribute("hotelseq");
-String u_id = (String)session.getAttribute("u_id");
-String roomseq = (String)session.getAttribute("roomseq");
-String checkin = (String)session.getAttribute("checkin");
-String checkout = (String)session.getAttribute("checkout");
+
 int price = (int)session.getAttribute("price");
-String guest = (String)session.getAttribute("guest");
-String u_phone = (String)session.getAttribute("u_phone");
-String location = (String)session.getAttribute("location");
- 
 
-
-/* int max_guest = Integer.parseInt(request.getParameter("max_guest"));
-String room_img = request.getParameter("room_img");
-String room_img_real = request.getParameter("room_img_real"); */
 %>
 <!DOCTYPE html>
 <html>
@@ -39,8 +27,8 @@ String room_img_real = request.getParameter("room_img_real"); */
             merchant_uid : 'merchant_' + new Date().getTime(),
             name : 'HotelUnderBar',
             amount : <%=price%>,
-            buyer_name : '<%=u_id%>',
-            buyer_tel : '<%=u_phone%>',
+            buyer_name : '${u_id}',
+            buyer_tel : '${u_phone}',
             //m_redirect_url : 'http://www.naver.com'
         }, function(rsp) {
             if ( rsp.success ) {
@@ -69,12 +57,12 @@ String room_img_real = request.getParameter("room_img_real"); */
                     }
                 });
                 //성공시 이동할 페이지 
-                location.href="<%=request.getContextPath()%>/paySuccess?hotelseq=<%=hotelseq%>&u_id=<%=u_id%>&roomseq=<%=roomseq%>&checkin=<%=checkin%>&checkout=<%=checkout%>&price=<%=price%>&guest=<%=guest%>";
+                location.href="<%=request.getContextPath()%>/paySuccess?hotelseq=${hotelseq}&u_id=${u_id}&roomseq=${roomseq}&checkin=${checkin}&checkout=${checkout}&price=${price}&guest=${guest}";
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지
-                location.href="<%=request.getContextPath()%>/payFail?checkin=<%=checkin%>&checkout=<%=checkout%>&guest=<%=guest%>&location=<%=location%>";
+                location.href="<%=request.getContextPath()%>/payFail?checkin=${checkin}&checkout=${checkout}&guest=${guest}&location=${location}";
                 alert(msg);
             }
         });
