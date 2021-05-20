@@ -144,7 +144,7 @@ for (BoardDTO dto : list) {
 <%
 	}
 %> 
-		<a class="tablename" href="loginCheck/boardRetrive?num=<%=num%>"><%=title %></a> </td>
+		<a class="tablename" href="loginCheck/boardRetrieve?num=<%=num%>"><%=title %></a> </td>
 		<td class="normal"><%=author %></td>
 		<td class="normal"><%=writeday %></td>
 		<td class="normal"><%=readcnt %></td>

@@ -1,11 +1,9 @@
 <%@page import="javafx.scene.control.Alert"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="com.dto.BoardDTO"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@page import="com.dto.MemberDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,10 +18,6 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
 	crossorigin="anonymous"></script>
-<script>
-	console.log("login",${login.u_id});
-	console.log("bDTO",${bDTO.author});
-</script>
 	<style type="text/css">
 * {
 	font-family: 'twayair', 'Roboto', 'sans-serif' !important;
@@ -57,15 +51,25 @@ margin-bottom: 10px;
 <script type="text/javascript">
 function updateBoard(e, f) {
 	e.preventDefault();//주의 preventDefault() 해야 함 
-	f.action="BoardUpdateServlet"; //action지정
+	f.action="boardUpdate"; //action지정
 	f.method="post";
 	f.submit();	//submit 이벤트반드시 해야함
 } 
-function deleteBoard(e, num) {
+function deleteBoard(e, f) {
 	//f.action="BoardDeleteServlet?num="+num;
 	//f.submit();	
-	e.preventDefault();//주의 preventDefault() 해야 함 
-	location.href="BoardDeleteSerlvet?num="+num;
+	e.preventDefault();//주의 preventDefault() 해야 함
+	f.action="boardDelete"; //action지정
+	f.method="get"
+	f.submit();	//submit 이벤트반드시 해야함
+}
+function boardAnswer(e, f) {
+	//f.action="BoardDeleteServlet?num="+num;
+	//f.submit();	
+	e.preventDefault();//주의 preventDefault() 해야 함
+	f.action="boardAnswer"; //action지정
+	f.method="get"
+	f.submit();	//submit 이벤트반드시 해야함
 }
 
 </script>
@@ -75,10 +79,13 @@ function deleteBoard(e, num) {
 <h3 id="title" style="text-align: center;">게시글 보기</h3>
 <form name="myForm">
 <input type="hidden" name="num" value="${bDTO.num}">
+<input type="hidden" name="groupnum" value="${bDTO.groupnum}">
+<input type="hidden" name="grouplayer" value="${bDTO.grouplayer}">
+<input type="hidden" name="origin" value="${bDTO.origin}">
 <table id="table" style="margin: 0 auto" border="1">
 		<tr>
 			<td width="70" align="center">작성자</td>
-			<td><input type="text" size="45" value="${bDTO.author}" name="author"></td>
+			<td><input type="text" size="45" value="${bDTO.author}" name="author" readonly></td>
 		</tr>
 		<tr>
 			<td width="70" align="center">글제목</td>
@@ -94,7 +101,11 @@ function deleteBoard(e, num) {
 			<td colspan="2" align="center">
 			<c:if test="${bDTO.author eq login.u_id}">
 				<input class="btn btn-primary" type="button" value="수정" onclick="updateBoard(event, myForm)">
-             	<input class="btn btn-primary" type="button" value="삭제" onclick="deleteBoard(event, ${bDTO.num})">
+             	<input class="btn btn-primary" type="button" value="삭제" onclick="deleteBoard(event, myForm)">
+             	<a class="btn btn-primary" href="boardList">목록보기</a>
+				<c:if test="${bDTO.author eq login.u_id || bDTO.author eq 'admin'}">
+					<input class="btn btn-primary" type="button" value="답글쓰기" onclick="boardAnswer(event, myForm)">
+				</c:if>
 			</c:if>
 			</td>
 		</tr>
@@ -102,12 +113,7 @@ function deleteBoard(e, num) {
 	</form>
 	
 	<br>
-	<div style="text-align: center;">
-	<a class="btn btn-primary" href="boardList">목록보기</a>
-	<c:if test="${bDTO.author eq 'admin'|| bDTO.author eq login.u_name}">
-		<a class="btn btn-primary" href="boardAnswer.jsp">답글쓰기</a>
-	</c:if>
-    </div>
+	
 	</div>
 	
 </body>

@@ -65,29 +65,13 @@ function formcheck(e) {
 </script>
 </head>
 <body>
-<%
-BoardDTO dto=(BoardDTO)session.getAttribute("retrieve");
-int num=dto.getNum();
-String title=dto.getTitle();
-String author=dto.getAuthor();
-String content=dto.getContent();
-String writeday=dto.getWriteday();
-int readCnt=dto.getReadCnt();
-int origin=dto.getOrigin();
-int groupnum=dto.getGroupnum();
-int grouplayer=dto.getGrouplayer();
-
-MemberDTO dto3 = (MemberDTO) session.getAttribute("login");
-String name=dto3.getU_id();
-
-%>
 <h3 id="title" style="text-align: center;">답글 게시판</h3>
 <div class="container" >
-<form action="BoardAnswerServlet" method="post" onsubmit="return formcheck()">
-	<input type="hidden" name="num" value="<%=num%>">
-	<input type="hidden" name="groupnum" value="<%=groupnum%>">
-    <input type="hidden" name="grouplayer" value="<%=grouplayer%>">
-    <input type="hidden" name="origin" value="<%=origin%>">
+<form action="boardInsert" method="post" onsubmit="return formcheck()">
+	<input type="hidden" name="num" value="${bDTO.num}">
+	<input type="hidden" name="groupnum" value="${bDTO.groupnum}">
+    <input type="hidden" name="grouplayer" value="${bDTO.grouplayer}">
+    <input type="hidden" name="origin" value="${bDTO.origin}">
 	<table id="table" style="margin: 0 auto;" border="1">
 
 		<tr>
@@ -100,7 +84,7 @@ String name=dto3.getU_id();
 		<tr>
 			<td width="70" align="center">작성자</td>
 			<td>
-			<input id="author" size="45" type="text" name="author" size="50" value="<%=name%>"> <!-- if로 인해 jstl 사용 -->
+			<input id="author" size="45" type="text" name="author" size="50" value="${bDTO.author}" readonly> <!-- if로 인해 jstl 사용 -->
 			</td>
 		</tr>
 		<tr>
@@ -113,7 +97,7 @@ String name=dto3.getU_id();
 		<td colspan="2">
 					<input class="btn btn-primary" type="submit" value="답글쓰기">
 			<input class="btn btn-primary" type="reset" value="다시작성"> 
-			<a class="btn btn-primary" href="BoardListServlet">목록보기</a>
+			<a class="btn btn-primary" href="boardList">목록보기</a>
 			</td>
 			</tr>
 	</table> 

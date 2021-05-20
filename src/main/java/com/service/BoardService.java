@@ -33,6 +33,14 @@ public class BoardService {
 		BoardDTO bDTO = dao.selectByNum(num);
 		return bDTO;
 	}
+
+	public void boardUpdate(BoardDTO bDTO) {
+		dao.boardUpdate(bDTO);
+	}
+
+	public void boardDelete(int num) {
+		dao.boardDelete(num);
+	}
 	
 	
 
