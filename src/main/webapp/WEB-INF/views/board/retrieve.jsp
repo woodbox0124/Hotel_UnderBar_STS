@@ -49,35 +49,28 @@ margin-bottom: 10px;
 <title>Q&#38;A 게시판</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-function updateBoard(e, f) {
-	e.preventDefault();//주의 preventDefault() 해야 함 
-	f.action="boardUpdate"; //action지정
-	f.method="post";
-	f.submit();	//submit 이벤트반드시 해야함
-} 
-function deleteBoard(e, f) {
-	//f.action="BoardDeleteServlet?num="+num;
-	//f.submit();	
-	e.preventDefault();//주의 preventDefault() 해야 함
-	f.action="boardDelete"; //action지정
-	f.method="get"
-	f.submit();	//submit 이벤트반드시 해야함
-}
-function boardAnswer(e, f) {
-	//f.action="BoardDeleteServlet?num="+num;
-	//f.submit();	
-	e.preventDefault();//주의 preventDefault() 해야 함
-	f.action="boardAnswer"; //action지정
-	f.method="get"
-	f.submit();	//submit 이벤트반드시 해야함
-}
+$(document).ready(function(e){
+		$("#update").click(function(){
+			$("#f_action").attr("action","loginCheck/boardUpdate");
+			$("#f_action").submit();
+		}) 
+		$("#delete").click(function(){
+			$("#f_action").attr("action","loginCheck/boardDelete");
+			$("#f_action").submit();
+		}) 
+		$("#answer").click(function(){
+			$("#f_action").attr("action","loginCheck/boardAnswer");
+			$("#f_action").submit();
+		}) 
+		
+	})
 
 </script>
 </head>
 <body>
 <div class="container">
 <h3 id="title" style="text-align: center;">게시글 보기</h3>
-<form name="myForm">
+<form action="" id="f_action">
 <input type="hidden" name="num" value="${bDTO.num}">
 <input type="hidden" name="groupnum" value="${bDTO.groupnum}">
 <input type="hidden" name="grouplayer" value="${bDTO.grouplayer}">
@@ -100,11 +93,11 @@ function boardAnswer(e, f) {
 			<tr>
 			<td colspan="2" align="center">
 			<c:if test="${bDTO.author eq login.u_id}">
-				<input class="btn btn-primary" type="button" value="수정" onclick="updateBoard(event, myForm)">
-             	<input class="btn btn-primary" type="button" value="삭제" onclick="deleteBoard(event, myForm)">
+				<input class="btn btn-primary" type="button" value="수정" id="update">
+             	<input class="btn btn-primary" type="button" value="삭제" id="delete">
              	<a class="btn btn-primary" href="boardList">목록보기</a>
 				<c:if test="${bDTO.author eq login.u_id || bDTO.author eq 'admin'}">
-					<input class="btn btn-primary" type="button" value="답글쓰기" onclick="boardAnswer(event, myForm)">
+					<input class="btn btn-primary" type="button" value="답글쓰기" id="answer">
 				</c:if>
 			</c:if>
 			</td>

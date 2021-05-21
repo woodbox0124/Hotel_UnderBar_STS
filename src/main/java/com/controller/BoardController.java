@@ -66,7 +66,7 @@ public class BoardController {
 		return "redirect:../loginCheck/boardList";
 	}
 	//board write 불러오기 
-	@RequestMapping(value="/loginCheck/boardRetrieve", produces="text/plain;charset=UTF-8")
+	@RequestMapping(value="/boardRetrieve", produces="text/plain;charset=UTF-8")
 	public ModelAndView boardRetrieve(@RequestParam int num) {
 		System.out.println(num);
 		BoardDTO bDTO = bService.selectByNum(num);
@@ -79,7 +79,7 @@ public class BoardController {
 	//board 답글쓰기
 	@RequestMapping(value="/loginCheck/boardUpdate", produces="text/plain;charset=UTF-8")
 	public String boardUpdate(BoardDTO bDTO) {
-		System.out.println(bDTO);
+		System.out.println(bDTO+"BOARDUPDATE");
 		bService.boardUpdate(bDTO);
 		
 		return "redirect:../loginCheck/boardList";
