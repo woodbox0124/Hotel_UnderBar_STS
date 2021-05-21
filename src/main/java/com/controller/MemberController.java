@@ -1,20 +1,18 @@
 package com.controller;
 
 
-import java.util.HashMap;
-
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.dto.BoardDTO;
-import com.dto.BoardPageDTO;
 import com.dto.MemberDTO;
 import com.service.BoardService;
 import com.service.MemberService;
@@ -27,6 +25,8 @@ public class MemberController {
 	@Autowired
 	BoardService bService;
 	//시작점
+	@Autowired
+	private JavaMailSender mailSender;
 	@RequestMapping(value = "/MemberIdSearch")
 	public String searchId(MemberDTO dto, RedirectAttributes xx) {
 		String u_name = dto.getU_name();
@@ -39,7 +39,32 @@ public class MemberController {
 		System.out.println(u_name + "\t" + u_phone + "\t" + u_email);
 		String u_id = mService.idSearch(mdto);
 		xx.addFlashAttribute("mesg1", "메일을 확인해주세요.");
+		// 메일 제목, 내용
+		String subject = "아이디 찾기에 성공 하였습니다.";
+		String content = "고객님의 아이디는 "+u_id+"입니다.";		
+		// 보내는 사람
+		String from = "dltjrwhd3@naver.com";
 		
+		// 받는 사람
+		String to = "32popo@naver.com";
+		
+		try {
+			// 메일 내용 넣을 객체와, 이를 도와주는 Helper 객체 생성
+			MimeMessage mail = mailSender.createMimeMessage();
+			MimeMessageHelper mailHelper = new MimeMessageHelper(mail, "UTF-8");
+
+			// 메일 내용을 채워줌
+			mailHelper.setFrom(from);	// 보내는 사람 셋팅
+			mailHelper.setTo(to);		// 받는 사람 셋팅
+			mailHelper.setSubject(subject);	// 제목 셋팅
+			mailHelper.setText(content);	// 내용 셋팅
+
+			// 메일 전송
+			mailSender.send(mail);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}		
 		System.out.println("searchId 불러옴" + u_id);
 		return "redirect:/searchId";			
 	}
