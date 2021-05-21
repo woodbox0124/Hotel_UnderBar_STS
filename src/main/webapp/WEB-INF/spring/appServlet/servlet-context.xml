@@ -20,6 +20,7 @@
 <mvc:view-controller path="/roomlist" view-name="roomlist"/>
 <mvc:view-controller path="/RoomReserv" view-name="RoomReserv"/>
 <mvc:view-controller path="/KakaoPay" view-name="KakaoPay"/>
+<mvc:view-controller path="/searchId" view-name="searchId"/>
 <!-- web-inf 폴더는 반드시 리소스 등록 후 사용 -->
 <mvc:resources location="/WEB-INF/views/styles/" mapping="/styles/**"/>
 <mvc:resources location="/WEB-INF/views/assets/" mapping="/assets/**"/>
@@ -50,16 +51,17 @@
 <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 	<property name="host" value="smtp.naver.com" />
 	<property name="port" value="465" />
-	<property name="username" value="" />
-	<property name="password" value="password" />
+	<property name="username" value="dltjrwhd3" />
+	<property name="password" value="s6355145" />
 	<property name="defaultEncoding" value="utf-8" />
 	<property name="javaMailProperties">
 		<props>
 			<prop key="mail.debug">true</prop>
 			<prop key="mail.smtp.starttls.enable">true</prop>
 			<prop key="mail.smtps.ssl.checkserveridentity">true</prop>
-			<prop key="mail.smtp.auth">true</prop>
+			<prop key="mail.smtp.auth">true</prop>	
 			<prop key="mail.smtps.ssl.trust">*</prop>
+			<prop key="mail.smtp.ssl.enable">true</prop>
 			<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
 		</props>
 	</property>
