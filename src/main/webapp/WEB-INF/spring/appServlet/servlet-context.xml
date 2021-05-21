@@ -20,6 +20,8 @@
 <mvc:view-controller path="/roomlist" view-name="roomlist"/>
 <mvc:view-controller path="/RoomReserv" view-name="RoomReserv"/>
 <mvc:view-controller path="/KakaoPay" view-name="KakaoPay"/>
+<mvc:view-controller path="/top" view-name="top"/>
+<mvc:view-controller path="/menu" view-name="menu"/>
 <!-- web-inf 폴더는 반드시 리소스 등록 후 사용 -->
 <mvc:resources location="/WEB-INF/views/styles/" mapping="/styles/**"/>
 <mvc:resources location="/WEB-INF/views/assets/" mapping="/assets/**"/>
