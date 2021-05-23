@@ -16,6 +16,7 @@
 <mvc:view-controller path="/boardRetrieve" view-name="boardRetrieve"/>
 <mvc:view-controller path="/boardUpdate" view-name="boardUpdate"/>
 <mvc:view-controller path="/mypage" view-name="mypage"/>
+<mvc:view-controller path="/loginCheck/mypage" view-name="mypage"/>
 <mvc:view-controller path="/resvMy" view-name="resvMy"/>
 <mvc:view-controller path="/roomlist" view-name="roomlist"/>
 <mvc:view-controller path="/RoomReserv" view-name="RoomReserv"/>
@@ -51,17 +52,18 @@
 <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 	<property name="host" value="smtp.naver.com" />
 	<property name="port" value="465" />
-	<property name="username" value="dltjrwhd3" />
-	<property name="password" value="s6355145" />
+	<property name="username" value="" />
+	<property name="password" value="" />
 	<property name="defaultEncoding" value="utf-8" />
 	<property name="javaMailProperties">
 		<props>
+		    <prop key="mail.transport.protocol">smtp</prop>
+		    <prop key="mail.smtp.ssl.trust">smtp.naver.com</prop>
+			<prop key="mail.smtp.ssl.enable">true</prop>
 			<prop key="mail.debug">true</prop>
 			<prop key="mail.smtp.starttls.enable">true</prop>
-			<prop key="mail.smtps.ssl.checkserveridentity">true</prop>
-			<prop key="mail.smtp.auth">true</prop>	
-			<prop key="mail.smtps.ssl.trust">*</prop>
-			<prop key="mail.smtp.ssl.enable">true</prop>
+			<prop key="mail.smtp.ssl.checkserveridentity">true</prop>
+			<prop key="mail.smtp.auth">true</prop>				
 			<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
 		</props>
 	</property>

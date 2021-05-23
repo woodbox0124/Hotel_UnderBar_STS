@@ -26,7 +26,7 @@ public class MemberController {
 	BoardService bService;
 	//시작점
 	@Autowired
-	private JavaMailSender mailSender;
+	JavaMailSender mailSender;
 	@RequestMapping(value = "/MemberIdSearch")
 	public String searchId(MemberDTO dto, RedirectAttributes xx) {
 		String u_name = dto.getU_name();
@@ -69,6 +69,7 @@ public class MemberController {
 		return "redirect:/searchId";			
 	}
 	
+	
 	@RequestMapping(value = "/MemberPwSearch")
 	public String searchPw(MemberDTO dto, RedirectAttributes xx) {
 		String u_name = dto.getU_name();
@@ -84,7 +85,32 @@ public class MemberController {
 		System.out.println(u_name + "\t" + u_phone + "\t" + u_email + "\t" + u_id);
 		String u_pw = mService.pwSearch(mdto);
 		xx.addFlashAttribute("mesg1", "메일을 확인해주세요.");
-		
+		// 메일 제목, 내용
+				String subject = "비밀번호 찾기에 성공 하였습니다.";
+				String content = "고객님의 비밀번호는 "+u_pw+"입니다.";		
+				// 보내는 사람
+				String from = "dltjrwhd3@naver.com";
+				
+				// 받는 사람
+				String to = "32popo@naver.com";
+				
+				try {
+					// 메일 내용 넣을 객체와, 이를 도와주는 Helper 객체 생성
+					MimeMessage mail = mailSender.createMimeMessage();
+					MimeMessageHelper mailHelper = new MimeMessageHelper(mail, "UTF-8");
+
+					// 메일 내용을 채워줌
+					mailHelper.setFrom(from);	// 보내는 사람 셋팅
+					mailHelper.setTo(to);		// 받는 사람 셋팅
+					mailHelper.setSubject(subject);	// 제목 셋팅
+					mailHelper.setText(content);	// 내용 셋팅
+
+					// 메일 전송
+					mailSender.send(mail);
+					
+				} catch(Exception e) {
+					e.printStackTrace();
+				}			
 		System.out.println("searchPw 불러옴" + u_pw);
 		return "redirect:/searchId";			
 	}
