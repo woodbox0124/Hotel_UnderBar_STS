@@ -14,7 +14,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="assets/css/font.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<style type="text/css">
+<!-- <style type="text/css">
 * {
 	font-family: 'twayair', 'Roboto', 'sans-serif' !important;
 }
@@ -35,10 +35,10 @@
 a {
 	text-decoration: none
 }
-</style>
+</style> -->
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light" id="menu">
+	<%-- <nav class="navbar navbar-expand-lg navbar-light bg-light" id="menu">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#"></a>
 			<button class="navbar-toggler" type="button"
@@ -68,8 +68,9 @@ a {
 					
 			</div>
 		</div>
-	</nav>
-	<jsp:include page="board/list.jsp" flush="true" /><br>
+	</nav> --%>
+	<jsp:include page="common/menu.jsp" flush="true"></jsp:include><br>
+	<jsp:include page="board/list.jsp" flush="true" ></jsp:include>
 	<jsp:include page="hotel/footer.jsp" flush="true"></jsp:include>
 </body>
 </html>

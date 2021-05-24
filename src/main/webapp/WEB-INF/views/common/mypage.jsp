@@ -8,6 +8,7 @@
 <!-- 글꼴  CSS 끝 -->
 <!-- mypage css 시작 -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/mypage.css">
+
 <!-- mypage css 끝 -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
@@ -52,8 +53,9 @@
 	}
 </script>
 </head>
-	<jsp:include page="menu_mypage.jsp"></jsp:include><br>
+<jsp:include page="menu_mypage.jsp" flush="true"></jsp:include>
 	<div id="main">
+	
 		<!-- Header -->
 		<div id="header">
 			<form action="" id=form method="post">
