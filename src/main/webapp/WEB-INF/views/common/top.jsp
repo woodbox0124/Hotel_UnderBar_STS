@@ -23,24 +23,14 @@ a {
 	color: blue;
 }
 </style>
-<%
-	MemberDTO dto = (MemberDTO) session.getAttribute("login");
-if (dto != null) {
-	String u_id = dto.getU_id();
-	
-%>
 <div id=menu_bar>
-	<a class="a"><%=u_id%>님 어서오세요.</a> <a href="loginCheck/logout" class="a">&nbsp;로그아웃</a>
+<c:if test="${!empty login}">
+	<a class="a">${login.u_id}님 어서오세요.</a> <a href="loginCheck/logout" class="a">&nbsp;로그아웃</a>
 	<a href="loginCheck/myPage" class="a">&nbsp;마이페이지&nbsp;</a>
 	<a href="loginCheck/resvMy" class="a">예약 확인</a>
-	<a href="loginCheck/boardList" class="a">Q&A게시판</a>
-	
-	<%
-		} else {
-	%>
+	<a href="loginCheck/boardList" class="a">Q&A게시판</a>	
+</c:if>
+<c:if test="${empty login}">
 	<a href="login_register" class="a" id="a_login">로그인·회원가입</a>
-	<%
-		} //end if~else
-	%>
-
+</c:if>
 </div>

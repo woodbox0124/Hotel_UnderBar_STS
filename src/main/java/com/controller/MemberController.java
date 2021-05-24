@@ -169,7 +169,7 @@ public class MemberController {
 			System.out.println(mdto);
 			session.setAttribute("login", mdto);//다시 session에 저장
 			session.setAttribute("mesg", "회원 정보 수정 완료");	
-			nextPage = "mypage";
+			nextPage = "redirect:../mypage";
 		}else {//로그인이 안된 경우
 			nextPage = "login_register";
 			session.setAttribute("mesg", "로그인이 필요한 작업입니다.");			

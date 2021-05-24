@@ -27,7 +27,7 @@ a {
 		 String u_id = dto.getU_id();
 %>
 <div id=menu_bar>
-	<a class="a"><%= u_id %>님 어서오세요.</a> <a href="logout" class="a">&nbsp;로그아웃</a> 
+	<a class="a"><%= u_id %>님 어서오세요.</a> <a href="loginCheck/logout" class="a">&nbsp;로그아웃</a> 
 	<a href="loginCheck/resvMy" class="a">&nbsp;예약 확인</a>
 	<a href="loginCheck/boardList" class="a">Q&A게시판</a>
 	<%

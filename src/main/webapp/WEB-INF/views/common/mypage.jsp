@@ -21,6 +21,10 @@
 		 console.log(u_id);
 		 location.href="MemberDelete?u_id="+u_id;
 	 })	
+	 $("#update").click(function(){
+			$("#form").attr("action","loginCheck/MemberUpdate");
+			$("#form").submit();
+		}) 
 });
 </script> 
 <!-- jQuery 끝-->
@@ -52,7 +56,7 @@
 	<div id="main">
 		<!-- Header -->
 		<div id="header">
-			<form action="MemberUpdate" id=form method="post">
+			<form action="" id=form method="post">
 				<table class="resv_table" id="resv_table">
 					<tr>
 						<th colspan="2" id="membername">
@@ -96,7 +100,7 @@
 					</tbody>
 				</table>
 				<div id="button1">
-					<button id="submit" type="submit" class="btn btn-outline-primary">회원정보
+					<button id="update" type="submit" class="btn btn-outline-primary">회원정보
 						수정하기</button>
 				</div>
 			</form>
