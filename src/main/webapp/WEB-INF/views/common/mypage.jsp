@@ -54,13 +54,13 @@
 	}
 </script>
 </head>
-	<div id="main1">
+	<div id="main">
 		<!-- Header -->
-		<div id="header1">
+		<div id="header">
 			<form action="" id=form method="post">
 				<table class="resv_table" id="resv_table">
 					<tr>
-						<th colspan="2" id="membername1">
+						<th colspan="2" id="membername">
 							<h1>${login.u_name}님의 정보
 							</h1>
 						</th>
