@@ -37,7 +37,7 @@
 				}
 			});//end ajax
 		});	//end u_id
-		$("#MemberAdd").click(function(event) {
+		$("#mAdd").click(function(event) {
 			$.ajax({
 				type:"post",
 				url:"MemberIdCheck",
@@ -48,11 +48,12 @@
 				success: function(responseData, status, xhr) {				
 					if(responseData=="아이디가 중복됩니다. 다시 입력해주세요"){
 					console.log("world");
-					alert(responseData);					
-					}
+					alert(responseData);
+					}else{
 					console.log("통과");
 					$("#register").attr("action", "MemberAdd");
-					$("#register").submit(); 				
+					$("#register").submit();
+					}
 				},
 				error: function(xhr, status, error) {
 					console.log("error")
@@ -136,7 +137,7 @@
                     <input name ="u_email" type="email" class="input-field u_email" placeholder="Email" required>
                     <input name ="u_phone" type="text" class="input-field phone" placeholder="Phone Number" required>
                     <input type="checkbox" id="checkbox" class="checkbox"><span id="check_span">Terms and conditions</span>
-                    <button class="submit" id ="MemberAdd">REGISTER</button>  
+                    <button class="submit" id ="mAdd">REGISTER</button>  
                     <button class="submit"><a href="/hotelunderbar">메인으로 돌아가기</a></button>                  
                 </form>                      
             </div>
