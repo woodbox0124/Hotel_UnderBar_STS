@@ -15,7 +15,9 @@
 	integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
 	crossorigin="anonymous">
 <style type="text/css">
-
+* {
+	font-family: 'twayair', 'Roboto', 'sans-serif';
+}
 #title{
 	font-size: 22px;
 	font-weight: bold;
