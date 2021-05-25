@@ -171,7 +171,7 @@
 					out.print(i + "&nbsp;");
 				} else {
 					System.out.print("else i" + i);
-					out.print("<a href='loginCheck/resvMy?curPage=" + i + "&u_id=" + u_id + "'>" + i + "</a>&nbsp;");
+					out.print("<a href='resvMy?curPage=" + i + "&u_id=" + u_id + "'>" + i + "</a>&nbsp;");
 				} //end for		
 			}
 		%>

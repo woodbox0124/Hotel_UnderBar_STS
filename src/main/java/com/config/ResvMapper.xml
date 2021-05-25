@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ResvMapper">
-	<insert id="resvInsert" parameterType="resvDTO">
+	<insert id="resvInsert" parameterType="ResvDTO">
 		insert into RESV
 		values(resv_seq.nextval,#{hotelseq},#{u_id},#{roomseq},#{checkin},#{checkout},SYSDATE,
 		#{price},#{guest},null)

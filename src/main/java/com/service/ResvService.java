@@ -1,9 +1,11 @@
 package com.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.dao.ResvDAO;
 import com.dto.ResvDTO;
@@ -34,6 +36,7 @@ public class ResvService {
 	}
 
 	public int resvInsert(ResvDTO dto) {
+		System.out.println("service : " + dto);
 		int n = dao.resvInsert(dto);
 		return n;
 	}

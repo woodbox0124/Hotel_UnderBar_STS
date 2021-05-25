@@ -57,12 +57,12 @@ int price = (int)session.getAttribute("price");
                     }
                 });
                 //성공시 이동할 페이지 
-                location.href="<%=request.getContextPath()%>/paySuccess?hotelseq=${hotelseq}&u_id=${u_id}&roomseq=${roomseq}&checkin=${checkin}&checkout=${checkout}&price=${price}&guest=${guest}";
+                location.href="<%=request.getContextPath()%>/loginCheck/paySuccess?hotelseq=${hotelseq}&u_id=${u_id}&roomseq=${roomseq}&checkin=${checkin}&checkout=${checkout}&price=<%=price%>&guest=${guest}";
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지
-                location.href="<%=request.getContextPath()%>/payFail?checkin=${checkin}&checkout=${checkout}&guest=${guest}&location=${location}";
+                location.href="<%=request.getContextPath()%>/HotelSearch?checkin=${checkin}&checkout=${checkout}&guest=${guest}&location=${location}";
                 alert(msg);
             }
         });

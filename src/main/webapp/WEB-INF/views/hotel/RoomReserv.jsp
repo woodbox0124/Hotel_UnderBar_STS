@@ -20,7 +20,8 @@ img {
 
 </style>
 <%
-
+String location = (String)session.getAttribute("location");
+String hotelname = (String)session.getAttribute("hotelname");
 int price = (int)session.getAttribute("price");
 
 
@@ -91,16 +92,16 @@ form{
 	<form action="loginCheck/KakaoPay">
 	<c:forEach var="pay" items="${paylist}" begin="0" end="0">
 	<!-- kakao pay 값 전달을 위한 코드 -->
-	<%-- <input type="hidden" name="roomseq" value="<%=roomseq%>">
+	<input type="hidden" name="roomseq" value="${pay.roomseq}">
 	<input type="hidden" name="location" value="<%=location%>">
-	<input type="hidden" name="hotelseq" value="<%=hotelseq%>">
-	<input type="hidden" name="guest" value="<%=guest%>">
-	<input type="hidden" name="checkin" value="<%=checkin%>">
-	<input type="hidden" name="checkout" value="<%=checkout%>">
-	<input type="hidden" name="u_id" value="<%=u_id%>">
+	<input type="hidden" name="hotelseq" value="${pay.hotelseq}">
+	<input type="hidden" name="guest" value="${pay.guest}">
+	<input type="hidden" name="checkin" value="${pay.checkin}">
+	<input type="hidden" name="checkout" value="${pay.checkout}">
+	<input type="hidden" name="u_id" value="${pay.u_id}">
 	<input type="hidden" name="name" value="<%=name%>">
 	<input type="hidden" name="phone" value="<%=phone%>">
-	<input type="hidden" name="price" value="<%=price%>"> --%>
+	<input type="hidden" name="price" value="<%=price%>">
 		<div class="list-caption">
 		<p class="hotelseq" style="text-align: center;">
 				호텔이름 : ${hotelname}</p> <br>
