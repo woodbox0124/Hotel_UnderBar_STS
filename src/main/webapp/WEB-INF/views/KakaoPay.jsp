@@ -7,5 +7,6 @@
 </head>
 <body>
 <jsp:include page="pay/KakaoPay.jsp"></jsp:include>
+
 </body>
 </html>
