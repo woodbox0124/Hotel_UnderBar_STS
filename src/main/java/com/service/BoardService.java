@@ -29,11 +29,7 @@ public class BoardService {
 		return n;
 	}
 
-	public BoardDTO selectByNum(int num) {
-		BoardDTO bDTO = dao.selectByNum(num);
-		return bDTO;
-	}
-
+	
 	public void boardUpdate(BoardDTO bDTO) {
 		dao.boardUpdate(bDTO);
 	}
@@ -46,6 +42,15 @@ public class BoardService {
 		int n = dao.boardAnsInsert(bDTO);
 		return n;
 	}
+
+	public void readCnt(int num) {
+		dao.readCnt(num);
+	}
+	public BoardDTO selectByNum(int num) {
+		BoardDTO bDTO = dao.selectByNum(num);
+		return bDTO;
+	}
+
 	
 	
 

@@ -47,10 +47,7 @@ public class BoardDAO {
 		map.put("groupnum", groupnum);
 		session.update("BoardMapper.updateLayer", map);
 	}
-	public BoardDTO selectByNum(int num) {
-		BoardDTO bDTO = session.selectOne("BoardMapper.selectByNum", num);
-		return bDTO;
-	}
+	
 
 	public void boardUpdate(BoardDTO bDTO) {
 		session.update("BoardMapper.updateBoard", bDTO);
@@ -78,5 +75,14 @@ public class BoardDAO {
 		int n = session.insert("BoardMapper.boardAnsInsert", bDTO);
 		System.out.println("after Insert"+bDTO);
 		return n;
+	}
+
+	public void readCnt(int num) {
+		session.update("BoardMapper.readCnt", num);
+		
+	}
+	public BoardDTO selectByNum(int num) {
+		BoardDTO bDTO = session.selectOne("BoardMapper.selectByNum", num);
+		return bDTO;
 	}
 }

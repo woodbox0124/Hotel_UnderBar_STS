@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dto.MemberDTO;
 import com.dto.ResvDTO;
 import com.dto.RoomDTO;
 import com.dto.RoomInfoDTO;
@@ -45,15 +46,23 @@ public class RoomController
 	}
 	
 	
-	@RequestMapping(value = "/loginForm/roomdetail")
-	public String RoomDetail(HttpServletRequest request, HttpSession session, @RequestParam("seq") String seq)
-	{	
-		List<RoomInfoDTO> ilist = service.roomInfo(seq);
-		List<RoomDTO> rlist = service.roomList2(seq);
-		
-		request.setAttribute("roominfo", ilist);
-		request.setAttribute("roomlist", rlist);
-		
-		return "/roomdetail";
-	}
+	@RequestMapping("/loginCheck/roomdetail")
+	   public String RoomDetail(HttpSession session, @RequestParam("seq") String seq, @RequestParam(value = "hotelname", required=false) String hotelname,
+	         @RequestParam(value = "checkin", required=false) String checkin, @RequestParam(value = "checkout", required=false) String checkout, 
+	         @RequestParam(value = "place", required=false) String place, RedirectAttributes attr)
+	   {   
+	      MemberDTO mdto = (MemberDTO)session.getAttribute("login");
+	      List<RoomInfoDTO> ilist = service.roomInfo(seq);
+	      List<RoomDTO> rlist = service.roomList2(seq);
+	      
+	      attr.addAttribute("login", mdto);
+	      attr.addAttribute("roominfo", ilist);
+	      attr.addAttribute("roomlist", rlist);
+	      attr.addAttribute("hotelname", hotelname);
+	      attr.addAttribute("checkin", checkin);
+	      attr.addAttribute("checkout", checkout);
+	      attr.addAttribute("place", place);
+	      
+	      return "/roomdetail";
+	   }
 }
