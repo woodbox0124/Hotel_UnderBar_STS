@@ -20,6 +20,7 @@
 <mvc:view-controller path="/resvMy" view-name="resvMy"/>
 <mvc:view-controller path="/roomlist" view-name="roomlist"/>
 <mvc:view-controller path="/RoomReserv" view-name="RoomReserv"/>
+<mvc:view-controller path="/roomdetail" view-name="roomdetail"/>
 <mvc:view-controller path="/KakaoPay" view-name="KakaoPay"/>
 <mvc:view-controller path="/searchId" view-name="searchId"/>
 <mvc:view-controller path="/Agree" view-name="Agree"/>
