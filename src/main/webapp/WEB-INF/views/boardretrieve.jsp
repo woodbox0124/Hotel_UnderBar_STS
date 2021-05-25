@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 <body>
-	<jsp:include page="common/menu2.jsp" flush="true" /><br>
+	<jsp:include page="common/menu.jsp" flush="true" /><br>
 	<jsp:include page="board/retrieve.jsp" flush="true" /><br>
 	<jsp:include page="hotel/footer.jsp" flush="true"></jsp:include>
 </body>

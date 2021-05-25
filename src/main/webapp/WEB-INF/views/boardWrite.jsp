@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="assets/css/font.css" />
 
-	<jsp:include page="common/menu2.jsp" flush="true" /><br>
+	<jsp:include page="common/menu.jsp" flush="true" /><br>
 	<jsp:include page="board/write.jsp" flush="true" /><br>
 	<jsp:include page="hotel/footer.jsp" flush="true"></jsp:include>
 </body>
