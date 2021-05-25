@@ -3,11 +3,12 @@
 }
 
 #main {
-	width: 94.5%;
-	height: 781px;
-	padding: 183px;
-	position: relative;
-	bottom: 41px;
+	height: 850px;
+    padding: 53px;
+    text-align: center;
+    position: relative;
+    top: 46px;
+    right: 18px;
 }
 
 #header {

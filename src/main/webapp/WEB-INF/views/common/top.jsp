@@ -8,8 +8,7 @@ a {
 	text-decoration: none
 }
 #menubar{
-	font-size: 16px;
-	 
+	font-size: 16px; 
 	font-weight: bolder;
 }
 

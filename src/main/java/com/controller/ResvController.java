@@ -47,7 +47,7 @@ public class ResvController {
 
 		session.setAttribute("RpDTO", RpDTO);
 		session.setAttribute("u_id", u_id);
-		return "resvMy";
+		return "redirect:../resvMy";
 
 
 	}
