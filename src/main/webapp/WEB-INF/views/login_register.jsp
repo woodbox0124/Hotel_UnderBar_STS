@@ -24,7 +24,7 @@
 		$("#u_id").blur(function(event) {
 			$.ajax({
 				type:"post",
-				url:"MemberIdCheckServlet",
+				url:"MemberIdCheck",
 				dataType:"text",
 				data: {
 					u_id : $("#u_id").val()
@@ -37,8 +37,39 @@
 				}
 			});//end ajax
 		});	//end u_id
+		$("#MemberAdd").click(function(event) {
+			$.ajax({
+				type:"post",
+				url:"MemberIdCheck",
+				dataType:"text",
+				data: {
+					u_id : $("#u_id").val()
+				},
+				success: function(responseData, status, xhr) {				
+					if(responseData=="아이디가 중복됩니다. 다시 입력해주세요"){
+					console.log("world");
+					alert(responseData);					
+					}
+					console.log("통과");
+					$("#register").attr("action", "MemberAdd");
+					$("#register").submit(); 				
+				},
+				error: function(xhr, status, error) {
+					console.log("error")
+				}
+			});//end ajax 
+			
+		});	//end u_id
 	});//end jQuery
 </script>
+<!-- alert mesg 시작 -->
+<c:if test="${!empty mesg }">
+<script>
+    alert("${mesg}");
+</script>
+<%session.removeAttribute("mesg");%>
+</c:if>
+<!-- alert mesg 끝 -->
 <style>
 	#login>p {
 		text-align: center;
@@ -97,7 +128,7 @@
                     <button class="submit">Login</button>
                     <button class="submit"><a href="/hotelunderbar">메인으로 돌아가기</a></button>                    
                 </form>
-                <form id="register" action="MemberAdd" class="input-group" method="post">
+                <form id="register" action="#" class="input-group" method="post">
                     <input name ="u_id" id="u_id" type="text" class="input-field u_id" placeholder="아이디" required>
                     <input name ="u_pw1" id="pw1" type="password" class="input-field u_pw1" placeholder="비밀번호" required>
                     <input name ="u_pw" id="pw" type="password" class="input-field u_pw2" placeholder="password" required>
@@ -105,7 +136,7 @@
                     <input name ="u_email" type="email" class="input-field u_email" placeholder="Email" required>
                     <input name ="u_phone" type="text" class="input-field phone" placeholder="Phone Number" required>
                     <input type="checkbox" id="checkbox" class="checkbox"><span id="check_span">Terms and conditions</span>
-                    <button class="submit" id ="submit">REGISTER</button>  
+                    <button class="submit" id ="MemberAdd">REGISTER</button>  
                     <button class="submit"><a href="/hotelunderbar">메인으로 돌아가기</a></button>                  
                 </form>                      
             </div>
