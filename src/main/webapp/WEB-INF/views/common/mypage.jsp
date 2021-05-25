@@ -20,18 +20,19 @@
 	 $("#delete").click(function() {
 		 var u_id = $(this).attr("data-xxx");
 		 console.log(u_id);
-		 location.href="MemberDelete?u_id="+u_id;
+		 location.href="loginCheck/MemberDelete?u_id="+u_id;
 	 })	
 	 $("#update").click(function(){
 			$("#form").attr("action","loginCheck/MemberUpdate");
 			$("#form").submit();
 		}) 
 });
-</script> 
+</script>
 <!-- jQuery 끝-->
-<!-- table css 끝 -->
+
 <title>MyPage</title>
 <meta charset="utf-8">
+
 <!-- alert mesg 시작 -->
 <c:if test="${!empty mesg }">
 <script>
@@ -53,15 +54,13 @@
 	}
 </script>
 </head>
-<jsp:include page="menu_mypage.jsp" flush="true"></jsp:include>
-	<div id="main">
-	
+	<div id="main1">
 		<!-- Header -->
-		<div id="header">
+		<div id="header1">
 			<form action="" id=form method="post">
 				<table class="resv_table" id="resv_table">
 					<tr>
-						<th colspan="2" id="membername">
+						<th colspan="2" id="membername1">
 							<h1>${login.u_name}님의 정보
 							</h1>
 						</th>
