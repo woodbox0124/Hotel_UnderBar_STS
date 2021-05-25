@@ -49,6 +49,7 @@ public class ResvController {
 		session.setAttribute("u_id", u_id);
 		return "resvMy";
 
+
 	}
 	 //예약 취소
 	@RequestMapping("/loginCheck/resvCancel")
@@ -140,7 +141,7 @@ public class ResvController {
 		int n = service.resvInsert(dto);
 		System.out.println(n);
 		
-		return "redirect:../resvMy.jsp";
+		return "redirect:../resvMy";
 	}
 	
 	@RequestMapping(value = "/loginCheck/PayFail")

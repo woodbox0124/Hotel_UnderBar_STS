@@ -77,7 +77,7 @@ a {
 				</ul>
 
 				<form class="d-flex">
-					<jsp:include page="top_mypage.jsp" flush="false" />
+					<jsp:include page="top_mypage.jsp" flush="true"></jsp:include><br>
 				</form>
 			</div>
 		</div>

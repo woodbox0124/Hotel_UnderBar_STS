@@ -55,6 +55,9 @@ $(function(){
 });
 //]]>
 </script>
+<style type="text/css">
+.ui-datepicker{ font-size: 15px; width: 325px; }
+</style>
 <!-- 달력 쿼리 끝 -->
 <!-- alert mesg 시작 -->
 <c:if test="${!empty mesg }">
@@ -68,7 +71,6 @@ $(function(){
 <style type="text/css">
 body {
 	font-family: 'twayair', 'Roboto', 'sans-serif' !important;
-	color: white;
 }
 
 .booking_input {
@@ -88,8 +90,9 @@ option {
 </style>
 <!-- 자체 CSS 끝-->
 </head>
+
 <body>
-	<jsp:include page="common/menu.jsp"></jsp:include>
+<jsp:include page="common/menu.jsp" flush="true"></jsp:include><br>
 	<div id="wrapper">
 		<div id="main">
 			<!-- Header -->
