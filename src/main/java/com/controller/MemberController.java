@@ -1,16 +1,19 @@
 package com.controller;
 
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.MemberDTO;
@@ -67,9 +70,7 @@ public class MemberController {
 		}		
 		System.out.println("searchId 불러옴" + u_id);
 		return "redirect:/searchId";			
-	}
-	
-	
+	}	
 	@RequestMapping(value = "/MemberPwSearch")
 	public String searchPw(MemberDTO dto, RedirectAttributes xx) {
 		String u_name = dto.getU_name();
@@ -184,5 +185,28 @@ public class MemberController {
 		session.removeAttribute("login");	
 		session.setAttribute("mesg", "회원 탈퇴 완료");	
 		return "redirect:../";
+	}
+	@RequestMapping(value = "/MemberIdCheck", method = RequestMethod.POST)
+	public void MemberIdCheck(String u_id, HttpSession session, HttpServletResponse response) {
+		System.out.println(u_id);
+		int count = mService.idCheck(u_id);
+		String mesg = "";
+		if(count == 1)
+		{
+			mesg = "아이디가 중복됩니다. 다시 입력해주세요";
+		}
+		else
+		{
+			mesg = "아이디를 사용가능합니다. 계속 진행해주세요";
+		}
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		out.print(mesg);
 	}
 }

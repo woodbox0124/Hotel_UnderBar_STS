@@ -1,4 +1,3 @@
-
 <%@page import="com.dto.PageDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -17,9 +16,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-
-
-
 	$(document).ready(function(){			
 		$(window).scroll(function(event) {
 			if(jQuery(window).scrollTop() > jQuery(".filter").offset().top)
