@@ -84,6 +84,9 @@ public class BoardController {
 	@RequestMapping(value="/loginCheck/boardUpdate", produces="text/plain;charset=UTF-8")
 	public String boardUpdate(BoardDTO bDTO) {
 		System.out.println(bDTO+"BOARDUPDATE");
+		//조회수 증가
+		int num = bDTO.getNum();
+		bService.readCnt(num);
 		bService.boardUpdate(bDTO);
 		
 		return "redirect:../loginCheck/boardList";
@@ -111,6 +114,9 @@ public class BoardController {
 		bDTO.setAuthor(bDTO.getAuthor());
 		bDTO.setTitle(bDTO.getTitle());
 		bDTO.setContent(bDTO.getContent());
+		//조회수 증가
+		int num = bDTO.getNum();
+		bService.readCnt(num);
 		
 		int n = bService.boardAnsInsert(bDTO);
 		System.out.println(bDTO);
