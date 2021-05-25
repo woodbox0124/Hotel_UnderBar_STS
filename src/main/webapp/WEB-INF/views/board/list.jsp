@@ -137,7 +137,7 @@ for (BoardDTO dto : list) {
 	if(grouplayer!=0)
 	{
 %>		
-	<img src='../images/board/reply_icon.gif' />
+	<img src='images/board/reply_icon.gif' />
 <%
 	}
 %> 
@@ -171,7 +171,7 @@ out.print("<a href='boardList?curPage="+i+"&searchName="+searchName+"&searchValu
 		   </div><br>
 
 <div id="write">
-<a class="btn btn-primary" href="boardWrite">글쓰기</a>	
+<a class="btn btn-primary" href="loginCheck/boardWrite">글쓰기</a>	
 </div>
 
 </div>

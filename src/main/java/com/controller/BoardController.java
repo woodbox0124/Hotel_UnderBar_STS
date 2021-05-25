@@ -30,7 +30,7 @@ public class BoardController {
 	
 	//board List
 	@RequestMapping("/loginCheck/boardList")
-	public ModelAndView boardList(@RequestParam(required=false, defaultValue="1") String curPage ,
+	public String boardList(RedirectAttributes attr,@RequestParam(required=false, defaultValue="1") String curPage ,
 		 @RequestParam(required=false, defaultValue="title") String searchName,
 		@RequestParam(required=false, defaultValue="") String searchValue) throws Exception {
 		System.out.println(curPage);
@@ -43,16 +43,14 @@ public class BoardController {
 		System.out.println(map);
 		BoardPageDTO pDTO= bService.boardList(Integer.parseInt(curPage),map);	
 		System.out.println("Controller"+pDTO);
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("pDTO", pDTO);
-		mav.setViewName("boardList");
-		return mav;
+		attr.addFlashAttribute("pDTO",pDTO);
+		return "redirect:../boardList";
 	}
 	//board write
 	@RequestMapping(value="loginCheck/boardWrite",method= {RequestMethod.GET, RequestMethod.POST})
 	public String boardList(HttpSession session) {
 		session.getAttribute("login");
-		return "boardWrite";
+		return "redirect:../boardWrite";
 	}
 	
 	//board write Insert
@@ -70,7 +68,7 @@ public class BoardController {
 		return "redirect:../loginCheck/boardList";
 	}
 	//board write 불러오기 
-	@RequestMapping(value="loginCheck/boardRetrieve", produces="text/plain;charset=UTF-8")
+	@RequestMapping(value="boardRetrieve", produces="text/plain;charset=UTF-8")
 	public ModelAndView boardRetrieve(@RequestParam int num) {
 		System.out.println(num);
 		BoardDTO bDTO = bService.selectByNum(num);

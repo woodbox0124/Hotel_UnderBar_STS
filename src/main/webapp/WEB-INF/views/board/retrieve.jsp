@@ -51,15 +51,15 @@ margin-bottom: 10px;
 <script type="text/javascript">
 $(document).ready(function(e){
 		$("#update").click(function(){
-			$("#f_action").attr("action","boardUpdate");
+			$("#f_action").attr("action","loginCheck/boardUpdate");
 			$("#f_action").submit();
 		}) 
 		$("#delete").click(function(){
-			$("#f_action").attr("action","boardDelete");
+			$("#f_action").attr("action","loginCheck/boardDelete");
 			$("#f_action").submit();
 		}) 
 		$("#answer").click(function(){
-			$("#f_action").attr("action","boardAnswer");
+			$("#f_action").attr("action","loginCheck/boardAnswer");
 			$("#f_action").submit();
 		}) 
 		
@@ -95,11 +95,11 @@ $(document).ready(function(e){
 			<c:if test="${bDTO.author eq login.u_id}">
 				<input class="btn btn-primary" type="button" value="수정" id="update">
              	<input class="btn btn-primary" type="button" value="삭제" id="delete">
-             	<a class="btn btn-primary" href="boardList">목록보기</a>
 				<c:if test="${bDTO.author eq login.u_id || bDTO.author eq 'admin'}">
 					<input class="btn btn-primary" type="button" value="답글쓰기" id="answer">
 				</c:if>
 			</c:if>
+             	<a class="btn btn-primary" href="boardList">목록보기</a>
 			</td>
 		</tr>
 	</table>
