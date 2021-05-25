@@ -41,6 +41,11 @@ public class BoardService {
 	public void boardDelete(int num) {
 		dao.boardDelete(num);
 	}
+
+	public int boardAnsInsert(BoardDTO bDTO) {
+		int n = dao.boardAnsInsert(bDTO);
+		return n;
+	}
 	
 	
 

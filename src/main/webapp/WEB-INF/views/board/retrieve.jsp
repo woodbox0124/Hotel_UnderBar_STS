@@ -51,15 +51,15 @@ margin-bottom: 10px;
 <script type="text/javascript">
 $(document).ready(function(e){
 		$("#update").click(function(){
-			$("#f_action").attr("action","loginCheck/boardUpdate");
+			$("#f_action").attr("action","boardUpdate");
 			$("#f_action").submit();
 		}) 
 		$("#delete").click(function(){
-			$("#f_action").attr("action","loginCheck/boardDelete");
+			$("#f_action").attr("action","boardDelete");
 			$("#f_action").submit();
 		}) 
 		$("#answer").click(function(){
-			$("#f_action").attr("action","loginCheck/boardAnswer");
+			$("#f_action").attr("action","boardAnswer");
 			$("#f_action").submit();
 		}) 
 		

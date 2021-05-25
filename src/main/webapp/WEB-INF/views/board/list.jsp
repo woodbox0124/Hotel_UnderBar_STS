@@ -57,7 +57,7 @@ margin-bottom: 10px;
 	text-align: center;
 }
 .container{
-	height:790px;
+	height:850px;
 }
 #texttitle{
 text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어가는 제목일 경우 "제목..."으로 표기됨 */
@@ -85,6 +85,7 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 
 <body>
 <div class="container">
+
 <h3 id="title" align="center" style="font-weight: bold;"><a class="tablename" href="boardList">게시글 목록</a></h3>
 <table id="search" class="table">
 	<tr>
@@ -107,13 +108,10 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 		<td style="color: white;" width="50">조회수</td>
 	</tr>
 
-	
-	
+
 <%
-BoardPageDTO pDTO = (BoardPageDTO) session.getAttribute("pDTO");
-
+BoardPageDTO pDTO = (BoardPageDTO) request.getAttribute("pDTO");
 List<BoardDTO> list = pDTO.getList();
-
 for (BoardDTO dto : list) {
 	int num=dto.getNum();
 	String title=dto.getTitle();
@@ -124,7 +122,6 @@ for (BoardDTO dto : list) {
 	int origin=dto.getOrigin();
 	int groupnum=dto.getGroupnum();
 	int grouplayer=dto.getGrouplayer();
-	
 %>
 				
 	<tbody>
@@ -140,7 +137,7 @@ for (BoardDTO dto : list) {
 	if(grouplayer!=0)
 	{
 %>		
-	<img src='images/board/reply_icon.gif' />
+	<img src='../images/board/reply_icon.gif' />
 <%
 	}
 %> 
@@ -170,10 +167,11 @@ for (BoardDTO dto : list) {
 out.print("<a href='boardList?curPage="+i+"&searchName="+searchName+"&searchValue="+searchValue+"'>"+i+"</a>&nbsp;"); 		          	}
 		        }//end for
 		   %>
+
 		   </div><br>
 
 <div id="write">
-<a class="btn btn-primary" href="loginCheck/boardWrite">글쓰기</a>	
+<a class="btn btn-primary" href="boardWrite">글쓰기</a>	
 </div>
 
 </div>

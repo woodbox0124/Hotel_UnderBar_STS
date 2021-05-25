@@ -67,7 +67,7 @@ function formcheck(e) {
 <body>
 <h3 id="title" style="text-align: center;">답글 게시판</h3>
 <div class="container" >
-<form action="boardInsert" method="post" onsubmit="return formcheck()">
+<form action="boardAnsInsert" method="post" onsubmit="return formcheck()">
 	<input type="hidden" name="num" value="${bDTO.num}">
 	<input type="hidden" name="groupnum" value="${bDTO.groupnum}">
     <input type="hidden" name="grouplayer" value="${bDTO.grouplayer}">

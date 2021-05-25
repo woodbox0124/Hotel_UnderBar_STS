@@ -30,8 +30,8 @@ public class BoardController {
 	
 	//board List
 	@RequestMapping("/loginCheck/boardList")
-	public String boardList(@RequestParam(required=false, defaultValue="1") String curPage ,
-		HttpSession session, @RequestParam(required=false, defaultValue="title") String searchName,
+	public ModelAndView boardList(@RequestParam(required=false, defaultValue="1") String curPage ,
+		 @RequestParam(required=false, defaultValue="title") String searchName,
 		@RequestParam(required=false, defaultValue="") String searchValue) throws Exception {
 		System.out.println(curPage);
 		System.out.println(searchName);
@@ -42,31 +42,35 @@ public class BoardController {
 		map.put("searchValue", searchValue);		
 		System.out.println(map);
 		BoardPageDTO pDTO= bService.boardList(Integer.parseInt(curPage),map);	
-		System.out.println(pDTO);
-		session.setAttribute("pDTO", pDTO);
-		return "redirect:../boardList";
+		System.out.println("Controller"+pDTO);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("pDTO", pDTO);
+		mav.setViewName("boardList");
+		return mav;
 	}
 	//board write
-	@RequestMapping(value="/loginCheck/boardWrite",method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="loginCheck/boardWrite",method= {RequestMethod.GET, RequestMethod.POST})
 	public String boardList(HttpSession session) {
 		session.getAttribute("login");
-		return "redirect:../boardWrite";
+		return "boardWrite";
 	}
 	
 	//board write Insert
 	@RequestMapping(value="/loginCheck/boardInsert", produces="text/plain;charset=UTF-8")
-	public String boardInsert(BoardDTO bDTO) {
+	public String boardInsert(BoardDTO bDTO,RedirectAttributes attr) {
 		System.out.println(bDTO);
 		bDTO.setAuthor(bDTO.getAuthor());
 		bDTO.setTitle(bDTO.getTitle());
 		bDTO.setContent(bDTO.getContent());
 		
 		int n = bService.boardInsert(bDTO);
+		System.out.println(bDTO);
+		attr.addFlashAttribute("bDTO",bDTO);
 		System.out.println(n);
 		return "redirect:../loginCheck/boardList";
 	}
 	//board write 불러오기 
-	@RequestMapping(value="/boardRetrieve", produces="text/plain;charset=UTF-8")
+	@RequestMapping(value="loginCheck/boardRetrieve", produces="text/plain;charset=UTF-8")
 	public ModelAndView boardRetrieve(@RequestParam int num) {
 		System.out.println(num);
 		BoardDTO bDTO = bService.selectByNum(num);
@@ -100,5 +104,18 @@ public class BoardController {
 		mav.setViewName("boardAnswer");
 		System.out.println("answer : "+bDTO);
 		return mav;
+	}
+	@RequestMapping(value="/loginCheck/boardAnsInsert", produces="text/plain;charset=UTF-8")
+	public String boardAnsInsert(BoardDTO bDTO,RedirectAttributes attr) {
+		System.out.println(bDTO);
+		bDTO.setAuthor(bDTO.getAuthor());
+		bDTO.setTitle(bDTO.getTitle());
+		bDTO.setContent(bDTO.getContent());
+		
+		int n = bService.boardAnsInsert(bDTO);
+		System.out.println(bDTO);
+		attr.addFlashAttribute("bDTO",bDTO);
+		System.out.println(n);
+		return "redirect:../loginCheck/boardList";
 	}
 }

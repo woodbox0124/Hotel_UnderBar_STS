@@ -38,21 +38,7 @@ public class BoardDAO {
 	}
 
 	public int boardInsert(BoardDTO bDTO) {
-		int num = bDTO.getNum();
-		int origin = bDTO.getOrigin();
-		int groupnum = bDTO.getGroupnum();
-		int grouplayer = bDTO.getGrouplayer();
-		if(num!=0) {
-			layerUpdate(origin, groupnum );
-			groupnum++;
-			grouplayer++;
-		}
-		bDTO.setOrigin(origin);
-		bDTO.setGroupnum(groupnum);
-		bDTO.setGrouplayer(grouplayer);
-		System.out.println("BOARD INSERT : "+bDTO);
 		int n = session.insert("BoardMapper.boardInsert", bDTO);
-		System.out.println("after Insert"+bDTO);
 		return n;
 	}
 	public void layerUpdate(int origin, int groupnum) {
@@ -73,5 +59,24 @@ public class BoardDAO {
 
 	public void boardDelete(int num) {
 		session.delete("BoardMapper.boardDelete", num);
+	}
+
+	public int boardAnsInsert(BoardDTO bDTO) {
+		int num = bDTO.getNum();
+		int origin = bDTO.getOrigin();
+		int groupnum = bDTO.getGroupnum();
+		int grouplayer = bDTO.getGrouplayer();
+		if(num!=0) {
+			layerUpdate(origin, groupnum );
+			groupnum++;
+			grouplayer++;
+		}
+		bDTO.setOrigin(origin);
+		bDTO.setGroupnum(groupnum);
+		bDTO.setGrouplayer(grouplayer);
+		System.out.println("BOARD INSERT : "+bDTO);
+		int n = session.insert("BoardMapper.boardAnsInsert", bDTO);
+		System.out.println("after Insert"+bDTO);
+		return n;
 	}
 }

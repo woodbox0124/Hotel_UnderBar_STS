@@ -78,7 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<!-- 댓글 -->
-	<insert id="answerinsert" parameterType="BoardDTO">
+	<insert id="boardAnsInsert" parameterType="BoardDTO">
 		insert into board (num,title,author,content,origin,groupnum, grouplayer)
 		values(board_seq.nextval,
 		#{title},#{author},#{content},#{origin},#{groupnum}, #{grouplayer})
