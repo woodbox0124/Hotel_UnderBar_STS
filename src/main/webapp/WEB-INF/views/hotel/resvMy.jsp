@@ -39,18 +39,19 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
+	$(function() {
+		$(".cancel").click(function() {
+			var seq = $(this).attr("data-xxx");
+			if (confirm("취소하시겠습니까?")) {
+				alert("취소되었습니다.");
+				location.href = "loginCheck/resvCancel?seq=" + seq;
+			}
+			$("#form").attr("action", "loginCheck/resvMy");
+			$("#form").submit();
+		})
+	});
 
- $(function() {
-     $(".cancel").click(function() {
-        var seq = $(this).attr("data-xxx");
-        if(confirm("취소하시겠습니까?")){
-        	alert("취소되었습니다.");
-        	location.href="resvCancel?seq="+seq;
-          }
-     })   
- });
- 
- window.onload = function() {
+	window.onload = function() {
 		document.body.classList.remove('is-preload');
 	}
 	window.ontouchmove = function() {
@@ -68,9 +69,11 @@
 <!-- alert mesg 시작 -->
 <c:if test="${!empty mesg }">
 	<script>
-    alert("${mesg}");
-</script>
-	<%session.removeAttribute("mesg");%>
+		alert("${mesg}");
+	</script>
+	<%
+		session.removeAttribute("mesg");
+	%>
 </c:if>
 <!-- alert mesg 끝 -->
 </head>
@@ -100,49 +103,45 @@
 				</tr>
 
 				<%
-				
-					 ResvPageDTO RpDTO = (ResvPageDTO)session.getAttribute("RpDTO");
-				
-					List<ResvMyDTO> list = RpDTO.getList(); 
-					for (int i = 0; i < list.size(); i++) {
-					
-					ResvMyDTO dto = list.get(i); 
-			
-					int seq = dto.getSeq();
-					double rating = dto.getRating();
-					String hotelname = dto.getHotelname();
-					String roomname = dto.getRoomname();
-					String checkin = dto.getCheckin();
-					String checkout = dto.getCheckout();
-					String resvdate = dto.getResvdate();
-					int guest = dto.getGuest();
-					int price = dto.getPrice();
-					int cancel = dto.getCancel();
+					ResvPageDTO RpDTO = (ResvPageDTO) session.getAttribute("RpDTO");
 
-					
+					List<ResvMyDTO> list = RpDTO.getList();
+					for (int i = 0; i < list.size(); i++) {
+
+						ResvMyDTO dto = list.get(i);
+
+						int seq = dto.getSeq();
+						double rating = dto.getRating();
+						String hotelname = dto.getHotelname();
+						String roomname = dto.getRoomname();
+						String checkin = dto.getCheckin();
+						String checkout = dto.getCheckout();
+						String resvdate = dto.getResvdate();
+						int guest = dto.getGuest();
+						int price = dto.getPrice();
+						int cancel = dto.getCancel();
 				%>
 
 
 				<tr>
 
-					<td><%=seq %></td>
-					<td><%=rating %></td>
-					<td><%=hotelname %></td>
-					<td><%=roomname %></td>
-					<td><%=checkin %></td>
-					<td><%=checkout %></td>
-					<td><%=resvdate %></td>
-					<td><%=guest %></td>
-					<td><%=price %></td>
+					<td><%=seq%></td>
+					<td><%=rating%></td>
+					<td><%=hotelname%></td>
+					<td><%=roomname%></td>
+					<td><%=checkin%></td>
+					<td><%=checkout%></td>
+					<td><%=resvdate%></td>
+					<td><%=guest%></td>
+					<td><%=price%></td>
 
 					<td>
 						<button type="button" class="btn btn-outline-primary cancel"
-							style="margin-bottom: 15px" data-xxx="<%=seq %>">취소</button>
+							style="margin-bottom: 15px" data-xxx="<%=seq%>">취소</button>
 					</td>
 				</tr>
 				<%
 					}
-				
 				%>
 
 
@@ -154,25 +153,26 @@
 
 	<div class="page">
 		<%
-			String u_id = (String)session.getAttribute("u_id");
+			String u_id = (String) session.getAttribute("u_id");
 			int curPage = RpDTO.getCurPage();//현재페이지
 			int perPage = RpDTO.getPerPage();//페이지당 게시물수
 			int totalCount = RpDTO.getTotalCount();//전체 레코드수 
-			int totalPage = totalCount/perPage;// 필요한 페이지
+			int totalPage = totalCount / perPage;// 필요한 페이지
 			System.out.println(curPage);
 			System.out.println(perPage);
 			System.out.println(totalCount);
 			System.out.println(totalPage);
-	
-			if(totalCount%perPage!=0) totalPage++;
-			for(int i = 1; i <= totalPage; i++){
-				if(i==curPage){
-					System.out.print("if i"+i);
-					out.print(i+"&nbsp;");
-				}else{
-					System.out.print("else i"+i);
-					out.print("<a href='resvMy?curPage="+i+"&u_id="+u_id+"'>"+i+"</a>&nbsp;");
-				}//end for		
+
+			if (totalCount % perPage != 0)
+				totalPage++;
+			for (int i = 1; i <= totalPage; i++) {
+				if (i == curPage) {
+					System.out.print("if i" + i);
+					out.print(i + "&nbsp;");
+				} else {
+					System.out.print("else i" + i);
+					out.print("<a href='loginCheck/resvMy?curPage=" + i + "&u_id=" + u_id + "'>" + i + "</a>&nbsp;");
+				} //end for		
 			}
 		%>
 
