@@ -89,7 +89,7 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 <table id="search" class="table">
 	<tr>
 	 <td colspan="5">
-	  <form action="boardList" class="searchbar">
+	  <form action="loginCheck/boardList" class="searchbar">
 	   <select name="searchName">
 	    <option value="title">제목</option>
 	    <option value="author">작성자</option>
