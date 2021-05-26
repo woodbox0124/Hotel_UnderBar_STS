@@ -57,7 +57,7 @@ margin-bottom: 10px;
 	text-align: center;
 }
 .container{
-	height:850px;
+	height:860px;
 }
 #texttitle{
 text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어가는 제목일 경우 "제목..."으로 표기됨 */
@@ -85,95 +85,93 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 
 <body>
 <div class="container">
+	<h3 id="title" align="center" style="font-weight: bold;"><a class="tablename" href="boardList">게시글 목록</a></h3>
+	<table id="search" class="table">
+		<tr>
+		 <td colspan="5">
+		  <form action="loginCheck/boardList" class="searchbar">
+		   <select name="searchName">
+		    <option value="title">제목</option>
+		    <option value="author">작성자</option>
+		   </select>
+		    <input type="text" id="bar" name="searchValue">
+		    <input type="submit"  class="btn btn-primary" value="검색">
+		 </form>  
+		 </td> 
+		</tr>
+		<tr id = "ab">
+			<td style="color: white;" width="50">번호</td>
+			<td style="color: white;" width="220">제 목</td>
+			<td style="color: white;" width="100">작성자</td>
+			<td style="color: white;" width="100">작성일</td>
+			<td style="color: white;" width="50">조회수</td>
+		</tr>
 
-<h3 id="title" align="center" style="font-weight: bold;"><a class="tablename" href="boardList">게시글 목록</a></h3>
-<table id="search" class="table">
-	<tr>
-	 <td colspan="5">
-	  <form action="loginCheck/boardList" class="searchbar">
-	   <select name="searchName">
-	    <option value="title">제목</option>
-	    <option value="author">작성자</option>
-	   </select>
-	    <input type="text" id="bar" name="searchValue">
-	    <input type="submit"  class="btn btn-primary" value="검색">
-	 </form>  
-	 </td> 
-	</tr>
-	<tr id = "ab">
-		<td style="color: white;" width="50">번호</td>
-		<td style="color: white;" width="220">제 목</td>
-		<td style="color: white;" width="100">작성자</td>
-		<td style="color: white;" width="100">작성일</td>
-		<td style="color: white;" width="50">조회수</td>
-	</tr>
-
-
-<%
-BoardPageDTO pDTO = (BoardPageDTO) request.getAttribute("pDTO");
-List<BoardDTO> list = pDTO.getList();
-for (BoardDTO dto : list) {
-	int num=dto.getNum();
-	String title=dto.getTitle();
-	String author=dto.getAuthor();
-	String content=dto.getContent();
-	String writeday=dto.getWriteday();
-	int readcnt=dto.getReadCnt();
-	int origin=dto.getOrigin();
-	int groupnum=dto.getGroupnum();
-	int grouplayer=dto.getGrouplayer();
-%>
-				
-	<tbody>
-	<tr>
-		<td class="normal"><%=num %></td>
-		<td align="left">
-<% 
-	for(int j=0;j<grouplayer;j++){
-%>
-		&nbsp;&nbsp;&nbsp;
-<%
-	}
-	if(grouplayer!=0)
-	{
-%>		
-	<img src='images/board/reply_icon.gif' />
-<%
-	}
-%> 
-		<a class="tablename" href="boardRetrieve?num=<%=num%>"><%=title %></a> </td>
-		<td class="normal"><%=author %></td>
-		<td class="normal"><%=writeday %></td>
-		<td class="normal"><%=readcnt %></td>
-	</tr>
 		
-	</tbody>
-	<%} %>
-</table>
-
-	<div style="text-align: center;">
-	   <%
-		   String searchName = (String)request.getAttribute("searchName");
-			String searchValue = (String)request.getAttribute("searchValue");
-		        int curPage = pDTO.getCurPage();//현재페이지
-		        int perPage = pDTO.getPerPage();//페이지당 게시물수 
-				int totalCount = pDTO.getTotalCount();//전체 레코드 수
-				int totalPage = totalCount/perPage;  //필요한 페이지 
-				if(totalCount%perPage!=0) totalPage++;
-		        for(int i=1; i<= totalPage; i++){
-		          	if(i== curPage){
-		          		out.print(i+"&nbsp;");
-		          	}else{
-out.print("<a href='boardList?curPage="+i+"&searchName="+searchName+"&searchValue="+searchValue+"'>"+i+"</a>&nbsp;"); 		          	}
-		        }//end for
-		   %>
-
-		   </div><br>
-
-<div id="write">
-<a class="btn btn-primary" href="loginCheck/boardWrite">글쓰기</a>	
+		<%
+		BoardPageDTO pDTO = (BoardPageDTO) request.getAttribute("pDTO");
+		List<BoardDTO> list = pDTO.getList();
+		for (BoardDTO dto : list) {
+			int num=dto.getNum();
+			String title=dto.getTitle();
+			String author=dto.getAuthor();
+			String content=dto.getContent();
+			String writeday=dto.getWriteday();
+			int readcnt=dto.getReadCnt();
+			int origin=dto.getOrigin();
+			int groupnum=dto.getGroupnum();
+			int grouplayer=dto.getGrouplayer();
+		%>
+						
+		<tbody>
+		<tr>
+			<td class="normal"><%=num %></td>
+			<td align="left">
+	<% 
+		for(int j=0;j<grouplayer;j++){
+	%>
+			&nbsp;&nbsp;&nbsp;
+	<%
+		}
+		if(grouplayer!=0)
+		{
+	%>		
+		<img src='images/board/reply_icon.gif' />
+	<%
+		}
+	%> 
+			<a class="tablename" href="boardRetrieve?num=<%=num%>"><%=title %></a> </td>
+			<td class="normal"><%=author %></td>
+			<td class="normal"><%=writeday %></td>
+			<td class="normal"><%=readcnt %></td>
+		</tr>
+			
+		</tbody>
+		<%} %>
+	</table>
+		<div style="text-align: center;">
+		   <%
+			   String searchName = (String)request.getAttribute("searchName");
+				String searchValue = (String)request.getAttribute("searchValue");
+			        int curPage = pDTO.getCurPage();//현재페이지
+			        int perPage = pDTO.getPerPage();//페이지당 게시물수 
+					int totalCount = pDTO.getTotalCount();//전체 레코드 수
+					int totalPage = totalCount/perPage;  //필요한 페이지 
+					if(totalCount%perPage!=0) totalPage++;
+			        for(int i=1; i<= totalPage; i++){
+			          	if(i== curPage){
+			          		out.print(i+"&nbsp;");
+			          	}else{
+	out.print("<a href='loginCheck/boardList?curPage="+i+"&searchName="+searchName+"&searchValue="+searchValue+"'>"+i+"</a>&nbsp;"); 		          	}
+			        }//end for
+			   %>
+	
+			   </div><br>
+	
+		<div id="write">
+		<a class="btn btn-primary" href="loginCheck/boardWrite">글쓰기</a>	
+		</div>
 </div>
-
-</div>
+<!-- end container -->
 </body>
 </html>
