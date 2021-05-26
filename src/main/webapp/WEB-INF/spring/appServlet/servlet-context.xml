@@ -24,7 +24,9 @@
 <mvc:view-controller path="/KakaoPay" view-name="KakaoPay"/>
 <mvc:view-controller path="/searchId" view-name="searchId"/>
 <mvc:view-controller path="/Agree" view-name="Agree"/>
-<mvc:view-controller path="/admin" view-name="admin"/>
+<mvc:view-controller path="/adminMember" view-name="adminMember"/>
+<mvc:view-controller path="/adminHotel" view-name="adminHotel"/>
+<mvc:view-controller path="/adminRoom" view-name="adminRoom"/>
 <!-- web-inf 폴더는 반드시 리소스 등록 후 사용 -->
 <mvc:resources location="/WEB-INF/views/styles/" mapping="/styles/**"/>
 <mvc:resources location="/WEB-INF/views/assets/" mapping="/assets/**"/>

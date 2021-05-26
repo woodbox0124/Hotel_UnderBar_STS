@@ -18,7 +18,7 @@ a {
 	<a href="loginCheck/resvMy" class="menubar2" style="color: blue; text-decoration: none;" >예약 확인</a>
 	<a href="loginCheck/boardList" class="menubar2" style="color: blue; text-decoration: none;" >Q&A게시판</a>
 <c:if test="${!empty login.admin}">		
-	<a href="loginCheck/admin" class="menubar2" style="color: blue; text-decoration: none;" >관리자게시판</a>
+	<a href="loginCheck/adminMember" class="menubar2" style="color: blue; text-decoration: none;" >관리자게시판</a>
 </c:if>	
 </c:if>
 <c:if test="${empty login}">

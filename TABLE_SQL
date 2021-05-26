@@ -10,9 +10,11 @@ u_phone1 VARCHAR2(20) NOT NULL,
 u_phone2 VARCHAR2(20) NOT NULL,
 u_phone3 VARCHAR2(20) NOT NULL
 );
-INSERT into member (u_id, u_pw, u_name, u_email, u_phone, admin) VALUES('admin','admin','admin', 'admin@naver.com', '010-9770-5298', '1');
+--admin 계정 생성
+INSERT into member (u_id, u_pw, u_name, u_email, u_phone, admin) VALUES('admin','admin','admin', 'admin@naver.com', '010-9770-5298', 'y');
+--어드민 컬럼 추가
 alter Table member add admin CHAR(2) DEFAULT Null;
-UPDATE  member set admin = 1 where u_id = 'admin';
+UPDATE  member set admin = y where u_id = 'admin';
 
 --호텔, 룸 테이블 생성
 CREATE SEQUENCE SEQ_HOTEL
