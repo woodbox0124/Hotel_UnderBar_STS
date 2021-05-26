@@ -30,6 +30,7 @@
 				<value>classpath:com/config/HotelMapper.xml</value>
 				<value>classpath:com/config/MemberMapper.xml</value>				
 				<value>classpath:com/config/ResvMapper.xml</value>				
+				<value>classpath:com/config/AdminMapper.xml</value>				
 			</list>		
 		</property>
 		<property name="typeAliases">

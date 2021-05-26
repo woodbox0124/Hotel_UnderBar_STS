@@ -41,7 +41,7 @@ public class LoginController {
 		String nextPage=null;//이동페이지 저장
 		if(dto!=null) {//회원인 경우
 		    nextPage="main"; // MainServlet 요청 데이터 가져와서 출력
-		    session.setAttribute("login", dto);	//로그인 정보 저장	
+		    session.setAttribute("login", dto);	//로그인 정보 저장
 		    }else{ //dto==null 회원이 아닌 경우	
 		    	int num  = service.idCheck(u_id);//아이디가 일치하지 않을 경우
 		    	int num1 = service.pwchk(u_pw);// 비밀번호가 일치하지 않을 경우

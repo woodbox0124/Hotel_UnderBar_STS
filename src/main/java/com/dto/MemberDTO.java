@@ -63,5 +63,5 @@ public class MemberDTO {
 	}
 	public void setAdmin(String admin) {
 		this.admin = admin;
-	}  
+	}
 }
