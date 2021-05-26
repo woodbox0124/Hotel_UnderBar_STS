@@ -99,7 +99,7 @@ $(document).ready(function(e){
 					<input class="btn btn-primary" type="button" value="답글쓰기" id="answer">
 				</c:if>
 			</c:if>
-             	<a class="btn btn-primary" href="boardList">목록보기</a>
+             	<a class="btn btn-primary" href="loginCheck/boardList">목록보기</a>
 			</td>
 		</tr>
 	</table>
