@@ -34,7 +34,7 @@ public class ResvController {
 
 	//예약 내역
 	@RequestMapping("/loginCheck/resvMy") // Interceptor
-	public String myPage(HttpSession session, HttpServletRequest request) {
+	public String myPage(HttpSession session, HttpServletRequest request,RedirectAttributes attr) {
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 
 		// 페이징
@@ -49,8 +49,8 @@ public class ResvController {
 		// 페이징 끝
 		System.out.println("ResvController : " + RpDTO);
 
-		session.setAttribute("RpDTO", RpDTO);
-		session.setAttribute("u_id", u_id);
+		attr.addFlashAttribute("RpDTO", RpDTO);
+		attr.addFlashAttribute("u_id", u_id);
 		return "redirect:../resvMy";
 
 
