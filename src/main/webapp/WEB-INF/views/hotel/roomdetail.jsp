@@ -176,6 +176,11 @@ function doDisplay() {
 <%
 MemberDTO mdto = (MemberDTO)session.getAttribute("login");
 String u_id = mdto.getU_id();
+
+String location = (String)session.getAttribute("location");
+String checkin = (String)session.getAttribute("checkin");
+String checkout = (String)session.getAttribute("checkout");
+String guest = (String)session.getAttribute("guest");
 %>
 <div id ="main">
 <div id ="herder">객실정보</div><br>
@@ -240,9 +245,8 @@ String u_id = mdto.getU_id();
    
    
     <div id="jj">
-    <a href="RoomReserv?u_id=<%=u_id%>&checkin=${checkin}
-				&checkout=${checkout}&guest=${guest}&hotelseq=${x.hotelseq }&hotelname=${hotelname}
-				&roomseq=${x.seq}&price=${x.price}&location=${location}&name=${x.name}">지금예약하기<!-- <div style="font-size:18px;">지금 예약하기</div> --></a>
+    <a href="loginCheck/RoomReserv?u_id=<%=u_id%>&hotelseq=${x.hotelseq }&hotelname=${hotelname}
+				&roomseq=${x.seq}&price=${x.price}&name=${x.name}">지금예약하기<!-- <div style="font-size:18px;">지금 예약하기</div> --></a>
 	<br>
 	<div id="ll">
 	

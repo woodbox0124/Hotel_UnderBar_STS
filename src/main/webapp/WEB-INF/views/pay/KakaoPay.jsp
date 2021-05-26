@@ -1,13 +1,20 @@
+<%@page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%
 
-int price = (int)session.getAttribute("price");
-
-%>
 <!DOCTYPE html>
+<%
+int price = (int)session.getAttribute("price");
+MemberDTO dto = (MemberDTO)session.getAttribute("login");
+String u_id = dto.getU_id();
+String u_phone = dto.getU_phone();
+String location = (String)session.getAttribute("location");
+String checkin = (String)session.getAttribute("checkin");
+String checkout = (String)session.getAttribute("checkout");
+String guest = (String)session.getAttribute("guest");
+%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -27,8 +34,8 @@ int price = (int)session.getAttribute("price");
             merchant_uid : 'merchant_' + new Date().getTime(),
             name : 'HotelUnderBar',
             amount : <%=price%>,
-            buyer_name : '${u_id}',
-            buyer_tel : '${u_phone}',
+            buyer_name : '<%=u_id%>',
+            buyer_tel : '<%=u_phone%>',
             //m_redirect_url : 'http://www.naver.com'
         }, function(rsp) {
             if ( rsp.success ) {
@@ -57,12 +64,12 @@ int price = (int)session.getAttribute("price");
                     }
                 });
                 //성공시 이동할 페이지 
-                location.href="<%=request.getContextPath()%>/loginCheck/paySuccess?hotelseq=${hotelseq}&u_id=${u_id}&roomseq=${roomseq}&checkin=${checkin}&checkout=${checkout}&price=<%=price%>&guest=${guest}";
+                location.href="<%=request.getContextPath()%>/loginCheck/paySuccess?hotelseq=${hotelseq}&u_id=<%=u_id%>&roomseq=${roomseq}&checkin=<%=checkin%>&checkout=<%=checkout%>&price=<%=price%>&guest=<%=guest%>";
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지
-                location.href="<%=request.getContextPath()%>/HotelSearch?checkin=${checkin}&checkout=${checkout}&guest=${guest}&location=${location}";
+                location.href="<%=request.getContextPath()%>/HotelSearch?checkin=<%=checkin%>&checkout=<%=checkout%>&guest=<%=guest%>&location=<%=location%>";
                 alert(msg);
             }
         });

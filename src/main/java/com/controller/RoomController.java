@@ -28,8 +28,9 @@ public class RoomController
 	public String RoomList(ResvDTO rDTO,String hotelname,String place, HttpSession session, RedirectAttributes attr)
 	{	
 		String seq = rDTO.getSeq();
-		String checkin = rDTO.getCheckin();
-		String checkout = rDTO.getCheckout();
+		/*
+		 * String checkin = rDTO.getCheckin(); String checkout = rDTO.getCheckout();
+		 */
 		
 		
 		List<RoomDTO> list = service.roomList(seq);
@@ -37,8 +38,10 @@ public class RoomController
 		attr.addFlashAttribute("roomlist", list);
 		attr.addFlashAttribute("hotelname", hotelname);
 		attr.addFlashAttribute("place", place);
-		attr.addFlashAttribute("checkin", checkin);
-		attr.addFlashAttribute("checkout", checkout);
+		/*
+		 * attr.addFlashAttribute("checkin", checkin);
+		 * attr.addFlashAttribute("checkout", checkout);
+		 */
 		
 		System.out.println(list);
 		return "redirect:../roomlist";
@@ -54,10 +57,8 @@ public class RoomController
 		
 	      attr.addFlashAttribute("roominfo", ilist);
 	      attr.addFlashAttribute("roomlist", rlist);
-	      attr.addAttribute("hotelname", hotelname);
-	      attr.addAttribute("checkin", checkin);
-	      attr.addAttribute("checkout", checkout);
-	      attr.addAttribute("place", place);
+	      attr.addFlashAttribute("hotelname", hotelname);
+
 	      
 	      return "redirect:../roomdetail";
 	   }

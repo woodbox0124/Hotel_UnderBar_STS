@@ -52,13 +52,5 @@ public class ResvDAO {
 	public void resvCancel(int seq) {
 		session.delete("ResvMapper.resvCancel",seq);
 	}
-	
-	
-	
-	public List<ResvDTO> payList(String roomseq) {
-		List<ResvDTO> rdto = session.selectList("ResvMapper.payList", roomseq);
-		System.out.println(rdto);
-		return rdto;
-	}
 
 }

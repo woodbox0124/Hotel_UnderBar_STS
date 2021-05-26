@@ -21,12 +21,12 @@ img {
 </style>
 <%
 String location = (String)session.getAttribute("location");
-String hotelname = (String)session.getAttribute("hotelname");
-int price = (int)session.getAttribute("price");
-
+String checkin = (String)session.getAttribute("checkin");
+String checkout = (String)session.getAttribute("checkout");
+String guest = (String)session.getAttribute("guest");
 
 MemberDTO dto = (MemberDTO) session.getAttribute("login");
-
+String u_id = dto.getU_id();
 String phone = dto.getU_phone();
 String name = dto.getU_name();
 
@@ -90,38 +90,38 @@ form{
 </head>
 <body>
 	<form action="loginCheck/KakaoPay">
-	<c:forEach var="pay" items="${paylist}" begin="0" end="0">
+	
 	<!-- kakao pay 값 전달을 위한 코드 -->
-	<input type="hidden" name="roomseq" value="${pay.roomseq}">
+	<input type="hidden" name="roomseq" value="${roomseq}">
 	<input type="hidden" name="location" value="<%=location%>">
-	<input type="hidden" name="hotelseq" value="${pay.hotelseq}">
-	<input type="hidden" name="guest" value="${pay.guest}">
-	<input type="hidden" name="checkin" value="${pay.checkin}">
-	<input type="hidden" name="checkout" value="${pay.checkout}">
-	<input type="hidden" name="u_id" value="${pay.u_id}">
+	<input type="hidden" name="hotelseq" value="${hotelseq}">
+	<input type="hidden" name="guest" value="<%=guest%>">
+	<input type="hidden" name="checkin" value="<%=checkin%>">
+	<input type="hidden" name="checkout" value="<%=checkout%>">
+	<input type="hidden" name="u_id" value="<%=u_id%>">
 	<input type="hidden" name="name" value="<%=name%>">
 	<input type="hidden" name="phone" value="<%=phone%>">
-	<input type="hidden" name="price" value="<%=price%>">
+	<input type="hidden" name="price" value="${price}">
 		<div class="list-caption">
 		<p class="hotelseq" style="text-align: center;">
 				호텔이름 : ${hotelname}</p> <br>
 				
 			<div class="room">
 				객실 이름 : <%=name%><br>
-				인원수 : ${pay.guest}<br> 
-				<p class="date">${pay.checkin}
+				인원수 : <%=guest %><br> 
+				<p class="date"><%=checkin %>
 					~
-					${pay.checkout}</p><br> 
+					<%=checkout %></p><br> 
 					
-				예약자 이름 : ${pay.u_id}<br> 
+				예약자 이름 : <%=u_id %><br> 
 				예약자 전화번호 : <input class="number" type="text"
 					value="<%=phone%>"> <br><br>
-					요금 : <%=price%><br>
+					요금 :  ${price}<br>
 			</div>
 			<input class="btn btn-primary input_btn" type="submit"
 							value="결제하기"/>
 		</div>
-	</c:forEach>
+
 	
 	</form>
 

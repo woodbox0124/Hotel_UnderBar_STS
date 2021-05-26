@@ -43,7 +43,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		re.hotelseq and re.roomseq = ro.seq and re.u_id = #{u_id}
 	</select>
 	
-	<select id="payList" resultType="ResvDTO" parameterType="String">
-	select * from resv where roomseq=#{roomseq}
-</select>
+	
 </mapper>

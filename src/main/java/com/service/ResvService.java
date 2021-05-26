@@ -41,15 +41,6 @@ public class ResvService {
 		return n;
 	}
 
-	public List<ResvDTO> payList(String roomseq) {
-		List<ResvDTO> rdto = dao.payList(roomseq);
-		System.out.println(rdto);
-		return rdto;
-	}
-
-
-
-
 }
 
 

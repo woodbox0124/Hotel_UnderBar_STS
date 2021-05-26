@@ -94,9 +94,8 @@ img {
 					<span id="price">가격 ${list.price}</span>
 				</p>
 
-				<a href="loginCheck/RoomReserv?u_id=<%=u_id%>&checkin=${checkin}
-				&checkout=${checkout}&guest=${guest}&hotelseq=${list.hotelseq}&hotelname=${hotelname}
-				&roomseq=${list.seq}&price=${list.price}&location=${place}&name=${list.name}" id="resv">지금예약</a>
+				<a href="loginCheck/RoomReserv?hotelseq=${list.hotelseq}&hotelname=${hotelname}
+				&roomseq=${list.seq}&price=${list.price}" id="resv">지금예약</a>
 				<ul>
 					<li><a href="loginCheck/roomdetail?seq=${list.seq}&hotelname=${hotelname}&checkin=${checkin}&checkout=${checkout}&place=${place}"
 						style="color: black">객실 정보 자세히보기</a><br>
