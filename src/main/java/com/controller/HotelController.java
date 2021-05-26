@@ -18,7 +18,7 @@ public class HotelController {
 	@Autowired
 HotelService service;
 	
-	@RequestMapping(value="/HotelSearch")
+	@RequestMapping(value="/HotelSearch") //처음 메인에서 호텔search할때
 	public String HotelSearch(HttpServletRequest request,HttpSession session,@RequestParam("checkin") String checkin,@RequestParam("checkout") String checkout,
 			@RequestParam("guest") String guest,@RequestParam("location") String location ) {
 		String curPage=request.getParameter("curPage");
@@ -32,9 +32,8 @@ HotelService service;
 			  } 
 		 
 		  request.setAttribute("pDTO", pDTO);
-		  request.setAttribute("location", location);
 		  System.out.println("pDTO"+pDTO);
-		  System.out.println("location"+location);
+		
 		  
 		  session.setAttribute("checkin",checkin); 
 		  session.setAttribute("checkout", checkout);
@@ -42,9 +41,14 @@ HotelService service;
 		  session.setAttribute("guest",guest);
 		return "hotelList";
 	}
-	@RequestMapping(value = "/searchlocation")
-	public String searchlocation(HttpSession sesison,HttpServletRequest request,@RequestParam("location") String location) {
+
+
+
+
+@RequestMapping(value = "/searchlocation")
+	public String searchlocation(HttpSession session,HttpServletRequest request,@RequestParam("location") String location) {
 		String curPage = request.getParameter("curPage");//현재 페이지 얻기
+		
 		if(curPage==null)curPage = "1";
 		PageDTO pDTO=null;
 		if(location!="") {
@@ -53,6 +57,7 @@ HotelService service;
 			pDTO=service.hotelList1(Integer.parseInt(curPage));
 		}
 		request.setAttribute("pDTO", pDTO);
+		session.setAttribute("location", location);
 		
 		return "hotelList";
 	}
