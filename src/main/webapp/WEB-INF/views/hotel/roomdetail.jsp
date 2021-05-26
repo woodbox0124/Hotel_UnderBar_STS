@@ -16,8 +16,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- 글꼴 CSS 시작-->
 <link rel="stylesheet" type="text/css" href="assets/css/font.css">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+<!-- <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet"> -->
 
 <!-- 글꼴 CSS 끝-->
 <link rel="stylesheet" type="text/css" href="assets/css/default.css">
@@ -173,10 +173,14 @@ function doDisplay() {
 </style>
 </head>
 <body>
+<%
+MemberDTO mdto = (MemberDTO)session.getAttribute("login");
+String u_id = mdto.getU_id();
+%>
 <div id ="main">
 <div id ="herder">객실정보</div><br>
 
-	<c:forEach var="y" items="${roominfo }">
+	<c:forEach var="y" items="${roominfo}">
 	
 	<div id="aa">
 	<img src="images/icon/icon.jpg">청결 정책<br>
@@ -188,37 +192,37 @@ function doDisplay() {
 
 	<div id="bb">
 	
-	<div><a style="font-size: 24px;">▶객실 편의시설</a></div>
+	<div><a style="font-size: 24px;">객실 편의시설</a></div>
 	
-	<img src="images/icon/icon_bath.jpg"><div style="font-size: 22px;">욕실</div>
-	<div style="font-size: 18px;">＊${roominfo.bath }<br></div>    
+	<img src="${pageContext.request.contextPath}/images/icon/icon_bath.jpg"><div style="font-size: 22px;">욕실</div>
+	<div style="font-size: 18px;">&#42;${y.bath}<br></div>    
 	
-	<img src="images/icon/icon_eat.jpg"><div style="font-size: 22px;">식음료</div>
-	<div style="font-size: 18px;">＊${roominfo.eat }<br></div>
+	<img src="${pageContext.request.contextPath}/images/icon/icon_eat.jpg"><div style="font-size: 22px;">식음료</div>
+	<div style="font-size: 18px;">&#42;${y.eat}<br></div>
 	
 	
-	<img src="images/icon/icon_etc.jpg"><div style="font-size: 22px;">인터넷</div>
-	<div style="font-size: 18px;">＊${roominfo.internet }</div><br>
+	<img src="${pageContext.request.contextPath}/images/icon/icon_etc.jpg"><div style="font-size: 22px;">인터넷</div>
+	<div style="font-size: 18px;">&#42;${y.internet}</div><br>
 
 	
-	<img src="images/icon/icon_internet.jpg"><div style="font-size: 22px;">기타</div>
-	<div style="font-size: 18px;">＊${roominfo.etc }</div>
+	<img src="${pageContext.request.contextPath}/images/icon/icon_internet.jpg"><div style="font-size: 22px;">기타</div>
+	<div style="font-size: 18px;">&#42;${y.etc}</div>
 
 	
 </div>
 	</div>
 	</c:forEach>
 
-	<c:forEach var="x" items="${roomlist }">
+	<c:forEach var="x" items="${roomlist}">
 
 	<div  id="cc">
 	
 	 <div class="slideshow-container">
        <div class="mySlides fadein" >
-        <img src="images/room/${roomlist.room_img }.jpg" style="width:100%; "> 
+        <img src="${pageContext.request.contextPath}/images/room/${x.room_img}.jpg" style="width:100%; "> 
       </div>
       <div class="mySlides fadein">
-        <img src="images/room/${roomlist.room_ing_real }.jpg" style="width:100%;">
+        <img src="${pageContext.request.contextPath}/images/room/${x.room_img_real}.jpg" style="width:100%;">
       </div>
     
       <!-- Next and previous buttons -->
@@ -236,18 +240,18 @@ function doDisplay() {
    
    
     <div id="jj">
-    <a href="RoomReserv?u_id=${login.u_id }&checkin=${checkin.checkin }
-				&checkout=${checkout.checkout }&guest=${guest.guest }&hotelseq=${roomlist.hotelseq }&hotelname=${hotelname.hotelname }
-				&roomseq=${roomlist.seq }&price=${roomlist.price }&location=${location.location }&name=${roomlist.name }"><div style="font-size:18px;">지금 예약하기</div></a>
+    <a href="RoomReserv?u_id=<%=u_id%>&checkin=${checkin}
+				&checkout=${checkout}&guest=${guest}&hotelseq=${x.hotelseq }&hotelname=${hotelname}
+				&roomseq=${x.seq}&price=${x.price}&location=${location}&name=${x.name}">지금예약하기<!-- <div style="font-size:18px;">지금 예약하기</div> --></a>
 	<br>
 	<div id="ll">
 	
 	
-	<span>${roomlist.name }</span>
+	<span>${x.name}</span>
 </div>
-	<div>가격  :${roomlist.price }<br>
+	<div>가격  :${x.price}<br>
 	
-	<img src="images/icon/icon_guest.jpg">최대인원수:${roomlist.max_guest } </div>
+	<img src="${pageContext.request.contextPath}/images/icon/icon_guest.jpg">최대인원수:${x.max_guest} </div>
 	 </div>
 	</div>
 	</div>

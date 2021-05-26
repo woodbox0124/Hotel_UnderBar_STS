@@ -46,22 +46,19 @@ public class RoomController
 	
 	
 	@RequestMapping("/loginCheck/roomdetail")
-	   public String RoomDetail(HttpSession session, @RequestParam("seq") String seq, @RequestParam(value = "hotelname", required=false) String hotelname,
-	         @RequestParam(value = "checkin", required=false) String checkin, @RequestParam(value = "checkout", required=false) String checkout, 
-	         @RequestParam(value = "place", required=false) String place, RedirectAttributes attr)
+	   public String RoomDetail(String seq, String hotelname,
+	          String checkin, String checkout, String place, RedirectAttributes attr)
 	   {   
-	      MemberDTO mdto = (MemberDTO)session.getAttribute("login");
 	      List<RoomInfoDTO> ilist = service.roomInfo(seq);
 	      List<RoomDTO> rlist = service.roomList2(seq);
-	      
-	      attr.addAttribute("login", mdto);
-	      attr.addAttribute("roominfo", ilist);
-	      attr.addAttribute("roomlist", rlist);
+		
+	      attr.addFlashAttribute("roominfo", ilist);
+	      attr.addFlashAttribute("roomlist", rlist);
 	      attr.addAttribute("hotelname", hotelname);
 	      attr.addAttribute("checkin", checkin);
 	      attr.addAttribute("checkout", checkout);
 	      attr.addAttribute("place", place);
 	      
-	      return "/roomdetail";
+	      return "redirect:../roomdetail";
 	   }
 }

@@ -103,7 +103,7 @@
 				</tr>
 
 				<%
-					ResvPageDTO RpDTO = (ResvPageDTO) session.getAttribute("RpDTO");
+					ResvPageDTO RpDTO = (ResvPageDTO)request.getAttribute("RpDTO");
 
 					List<ResvMyDTO> list = RpDTO.getList();
 					for (int i = 0; i < list.size(); i++) {
@@ -153,7 +153,7 @@
 
 	<div class="page">
 		<%
-			String u_id = (String) session.getAttribute("u_id");
+			String u_id = (String)request.getAttribute("u_id");
 			int curPage = RpDTO.getCurPage();//현재페이지
 			int perPage = RpDTO.getPerPage();//페이지당 게시물수
 			int totalCount = RpDTO.getTotalCount();//전체 레코드수 

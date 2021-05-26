@@ -88,6 +88,11 @@
 	}
 	.button-wrap > button{
 	}
+	#Agree {
+	text-align: center;
+	font-size: 14px;
+	padding: 10px;
+}
 </style>
 <!-- alert mesg 시작 -->
 <c:if test="${!empty mesg }">
@@ -136,7 +141,12 @@
                     <input name ="u_name" type="text" class="input-field u_name" placeholder="name" required>
                     <input name ="u_email" type="email" class="input-field u_email" placeholder="Email" required>
                     <input name ="u_phone" type="text" class="input-field phone" placeholder="Phone Number" required>
-                    <input type="checkbox" id="checkbox" class="checkbox"><span id="check_span">Terms and conditions</span>
+                   <p id="Agree">
+				<input type="checkbox" id="check_2" class="check" name="">&nbsp;&nbsp;&nbsp;<a
+					href="Agree"
+					onclick="window.open(this.href, '_blank', 'width=600,height=800,toolbars=no,scrollbars=no'); return false;"
+					style="vertical-align: 1.5px;">약관동의(필수)</a>
+			</p>
                     <button class="submit" id ="mAdd">REGISTER</button>  
                     <button class="submit"><a href="/hotelunderbar">메인으로 돌아가기</a></button>                  
                 </form>                      
