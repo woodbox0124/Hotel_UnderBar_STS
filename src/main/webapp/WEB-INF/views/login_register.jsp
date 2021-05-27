@@ -60,17 +60,15 @@
 			});//end ajax 
 		}); //end u_id
 
-		//약관 동의 체크 시 REGISTER 버튼 보임
-		$(".check").click(function() {
-			var agree = $(this).prop('checked');
-			if (agree) {
-				   $("#submit").show();
-			} else {
-				   $("#submit").hide();
-			}
-		});
-		//end 약관동의
 		
+		//약관 동의
+		$("#submit").click(function() {
+			if ($(".checked").is(":checked") == false) {
+				alert("약관 동의 하셔야 합니다.");
+				return false;
+			}
+		})//end 약관동의
+
 	});//end jQuery
 </script>
 <!-- alert mesg 시작 -->
@@ -109,6 +107,14 @@
 	padding: 6px;
 	position: relative;
 	left: 31px;
+}
+#mesg{
+	text-align: center;
+    font-size: 12px;
+}
+.checked{
+	position: relative;
+    left: 31px;
 }
 </style>
 <!-- alert mesg 시작 -->
@@ -167,7 +173,7 @@
 		</form>
 		<form id="register" action="#" class="input-group" method="post">
 			<input name="u_id" id="u_id" type="text" class="input-field u_id"
-				placeholder="아이디" required> <input name="u_pw1" id="pw1"
+				placeholder="아이디"  required> <input name="u_pw1" id="pw1"
 				type="password" class="input-field u_pw1" placeholder="비밀번호"
 				required> <input name="u_pw" id="pw" type="password"
 				class="input-field u_pw2" placeholder="password" required> <input
@@ -177,13 +183,14 @@
 				required> <input name="u_phone" type="text"
 				class="input-field phone" placeholder="Phone Number" required>
 			<span id="check_span"><p id="Agree">
-					<input type="checkbox" id="check_2" class="check" name="">&nbsp;&nbsp;&nbsp;<a
-						href="Agree"
+					<input type="checkbox" id="check_2" class="checked" name="check"
+						onclick="return false"><a
+						id="Agree" href="Agree"
 						onclick="window.open(this.href, '_blank', 'width=600,height=800,toolbars=no,scrollbars=no'); return false;"
-						style="vertical-align: 1.5px;">약관동의(필수)</a><br> 위 약관 동의를
-					클릭해주세요.
+						style="vertical-align: 1.5px;">약관동의(필수)</a>
 				</p></span>
-			<button class="submit" id="submit" style="display: none;">REGISTER</button>
+			<p id="mesg">위 약관 동의를 클릭해주세요.</p>
+			<button class="submit" id="submit" name="register">REGISTER</button>
 			<button class="submit">
 				<a href="/hotelunderbar">메인으로 돌아가기</a>
 			</button>

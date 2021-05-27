@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.review.ReviewMapper">
+
+	
+	<!-- 리뷰게시글 추가 -->
+	<insert id="write" parameterType="ReviewDTO">
+		insert into review(num, title, u_id, content,origin,hotelname,rating,review_img)
+		values (review_seq.nextval, #{title}, #{u_id},
+		#{content},review_seq.nextval,#{hotelname},#{rating},#{review_img})
+	</insert>
+	<!-- 리뷰게시글 추가 -->
+
+	<select id="review" parameterType="string" resultType="ReviewDTO">
+	select num,title, u_id, content,TO_CHAR(writedate, 'YYYY/MM/DD')writedate, origin,groupnum,hotelname,rating,review_img from review order by origin desc,groupnum asc
+	</select>
+
+	<select id="reviewOrder" parameterType="string" resultType="ReviewDTO">
+	select num,title, u_id, content,TO_CHAR(writedate, 'YYYY/MM/DD')writedate, origin,groupnum,hotelname,rating,review_img from review order by origin asc,groupnum asc
+	</select>
+	
+	<delete id="reviewDelete" parameterType="int">
+	delete from review where origin=#{origin}
+	</delete>
+
+	<delete id="reviewAdminDelete" parameterType="int">
+	delete from review where num=#{num}
+	</delete>
+
+</mapper>
