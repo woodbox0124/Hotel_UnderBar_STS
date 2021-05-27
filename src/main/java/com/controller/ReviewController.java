@@ -1,14 +1,20 @@
 package com.controller;
 
 import java.io.File;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dto.MemberDTO;
 import com.dto.ReviewDTO;
 import com.dto.UploadDTO;
 import com.service.ReviewService;
@@ -20,7 +26,7 @@ public class ReviewController {
 	ReviewService service;
 
 	@RequestMapping("/ReviewWrite") //리뷰쓰기
-	public String reviewlist(@RequestParam("hotelname") String hotelname,RedirectAttributes attr){
+	public String reviewwirte(@RequestParam("hotelname") String hotelname,RedirectAttributes attr){
 		attr.addFlashAttribute("hotelname",hotelname);
 		return "review/ReviewWrite";
 	}
@@ -47,6 +53,84 @@ public class ReviewController {
 		
 		
 		return "";
+	}
+	@RequestMapping("/loginCheck/Review") 
+	public String review(String hotelname,HttpSession session, HttpServletRequest request, RedirectAttributes attr){
+		List<ReviewDTO> list = service.review(hotelname);
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		int admin = dto.getAdmin();
+		String u_id1 = dto.getU_id();
+		
+		session.setAttribute("reviewlist", list);
+		session.setAttribute("hotelname", hotelname);
+		attr.addFlashAttribute("admin", admin);
+		attr.addFlashAttribute("u_id1", u_id1);
+		
+		return "redirect:../reviewlist";
+	}
+	@RequestMapping("/loginCheck/ReviewOrder") 
+	public String reviewOrder(HttpServletRequest request, RedirectAttributes attr, HttpSession session){
+		
+		String hotelname = (String)session.getAttribute("hotelname");
+		List<ReviewDTO> list = service.reviewOrder(hotelname);
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		int admin = dto.getAdmin();
+		String u_id1 = dto.getU_id();
+		
+		attr.addFlashAttribute("reviewlist", list);
+		attr.addFlashAttribute("admin", admin);
+		attr.addFlashAttribute("u_id1", u_id1);
+		
+		return "redirect:../reviewlist";
+	}
+	@RequestMapping("/loginCheck/ReviewNew") 
+	public String reviewNew(HttpServletRequest request, RedirectAttributes attr, HttpSession session){
+		
+		String hotelname = (String)session.getAttribute("hotelname");
+		List<ReviewDTO> list = service.review(hotelname);
+		
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		int admin = dto.getAdmin();
+		String u_id1 = dto.getU_id();
+		
+		attr.addFlashAttribute("reviewlist", list);
+		attr.addFlashAttribute("admin", admin);
+		attr.addFlashAttribute("u_id1", u_id1);
+		return "redirect:../reviewlist";
+	}
+	@RequestMapping("/loginCheck/ReviewDelete") 
+	public String reviewDelete(int origin, HttpSession session, RedirectAttributes attr){
+		service.reviewDelete(origin);
+		
+		String hotelname = (String)session.getAttribute("hotelname");
+		List<ReviewDTO> list = service.review(hotelname);
+		
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		int admin = dto.getAdmin();
+		String u_id1 = dto.getU_id();
+		
+		attr.addFlashAttribute("reviewlist", list);
+		attr.addFlashAttribute("admin", admin);
+		attr.addFlashAttribute("u_id1", u_id1);
+		
+		return "redirect:../reviewlist";
+	}
+	@RequestMapping("/loginCheck/ReviewAdminDelete") 
+	public String reviewAdminDelete(int num, HttpSession session, RedirectAttributes attr){
+		service.reviewAdminDelete(num);
+		
+		String hotelname = (String)session.getAttribute("hotelname");
+		List<ReviewDTO> list = service.review(hotelname);
+		
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		int admin = dto.getAdmin();
+		String u_id1 = dto.getU_id();
+		
+		attr.addFlashAttribute("reviewlist", list);
+		attr.addFlashAttribute("admin", admin);
+		attr.addFlashAttribute("u_id1", u_id1);
+		
+		return "redirect:../reviewlist";
 	}
 	
 }
