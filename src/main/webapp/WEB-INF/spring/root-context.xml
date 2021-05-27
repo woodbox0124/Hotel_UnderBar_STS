@@ -31,6 +31,7 @@
 				<value>classpath:com/config/MemberMapper.xml</value>				
 				<value>classpath:com/config/ResvMapper.xml</value>				
 				<value>classpath:com/config/AdminMapper.xml</value>				
+				<value>classpath:com/config/NotiMapper.xml</value>				
 			</list>		
 		</property>
 		<property name="typeAliases">
@@ -45,6 +46,7 @@
 				<value>com.dto.RoomDTO</value>				
 				<value>com.dto.RoomInfoDTO</value>							
 				<value>com.dto.MemberDTO</value>							
+				<value>com.dto.NotiDTO</value>							
 			</list>		
 		</property>
 	</bean>	

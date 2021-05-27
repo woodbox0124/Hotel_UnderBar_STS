@@ -27,6 +27,10 @@
 <mvc:view-controller path="/adminMember" view-name="adminMember"/>
 <mvc:view-controller path="/adminHotel" view-name="adminHotel"/>
 <mvc:view-controller path="/adminRoom" view-name="adminRoom"/>
+<mvc:view-controller path="/notification" view-name="notification"/>
+<mvc:view-controller path="/notiWrite" view-name="notiWrite"/>
+<mvc:view-controller path="/notiInsert" view-name="notiInsert"/>
+<mvc:view-controller path="/notiRetrieve" view-name="notiRetrieve"/>
 <!-- web-inf 폴더는 반드시 리소스 등록 후 사용 -->
 <mvc:resources location="/WEB-INF/views/styles/" mapping="/styles/**"/>
 <mvc:resources location="/WEB-INF/views/assets/" mapping="/assets/**"/>

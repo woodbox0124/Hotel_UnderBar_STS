@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="NotiMapper">
+
+	<!-- 공지사항 목록 -->
+	<select id="notiList" resultType="NotiDTO" parameterType="int">
+		select * from noti 
+	</select>
+	<!-- 페이징을 위한 전체목록 개수 -->
+	<select id="totalCount" resultType="int">
+		select count(*) from noti 
+	</select>
+	
+	<!-- 공지사항 작성  -->
+	<insert id="notiInsert" parameterType="NotiDTO">
+		insert into noti
+		values(noti_seq.nextval,#{subject},#{author},#{content},sysdate,#{hit})
+	</insert>
+	
+	<!-- 공지사항 보기  -->
+	<resultMap id="notiContent" type="NotiDTO" >
+    <result property="content" column="content" jdbcType="CLOB" javaType="java.lang.String" />
+	</resultMap>
+
+	<select id="notiRetrieve" parameterType="int" resultType="list" resultMap="notiContent">
+		select * from noti where num = #{num}
+	</select>
+
+
+</mapper>
