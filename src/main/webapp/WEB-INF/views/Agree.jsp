@@ -45,15 +45,15 @@ p {
 }
 
 .f textarea {
-    width: 571px;
-    height: 117px;
-    padding: 3px 3px 3px 6px;
-    border: 1px solid #ececec;
-    border-top-color: #e1e1e1;
-    border-left-color: #e1e1e1;
-    background: #ececec;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
+	width: 571px;
+	height: 117px;
+	padding: 3px 3px 3px 6px;
+	border: 1px solid #ececec;
+	border-top-color: #e1e1e1;
+	border-left-color: #e1e1e1;
+	background: #ececec;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
 }
 
 .scheme-g {
@@ -64,36 +64,37 @@ p {
 }
 
 .button_big {
-    position: relative;
-    top: 31px;
+	position: relative;
+	top: 31px;
 	width: 100%;
-    border: 0;
-    border-radius: 7px;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 15px;
-    line-height: 24px;
-    text-decoration: none;
-    color: #fff;
-    background: #0080ff;
-    text-shadow: 1px 1px 1px #0066cc;
-    -webkit-transition: all 0.2s ease-out;
+	border: 0;
+	border-radius: 7px;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 15px;
+	line-height: 24px;
+	text-decoration: none;
+	color: #fff;
+	background: #0080ff;
+	text-shadow: 1px 1px 1px #0066cc;
+	-webkit-transition: all 0.2s ease-out;
 }
 
 #h {
 	text-align: center;
 }
 
-textarea{
+textarea {
 	font-weight: normal;
 }
-input{
-vertical-align:-3px;
+
+input {
+	vertical-align: -3px;
 }
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		
 		$("#nextBtn").click(function() {
 			if ($("#check_1").is(":checked") == false) {
 				alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
@@ -103,12 +104,14 @@ vertical-align:-3px;
 				return;
 			} else {
 				$("#terms_form").submit();
+				console.log("클릭");
+				var checkbox = opener.document.getElementsByName('check');
+				 for(var i=0; i<checkbox.length; i++) {
+					 checkbox[i].checked=true;
+				} 
+				 window.close();	 
 			}
 		});
-		
-		$("#nextBtn").click(function(){
-			
-		})
 	});
 </script>
 
@@ -119,7 +122,7 @@ vertical-align:-3px;
 	<article id="content" class="cols-d">
 		<div>
 			<h3 id="h">Hotel UnderBar 이용약관</h3>
-			<form id="terms_form" class="f" action="">
+			<form id="terms_form" class="f">
 				<h4 class="scheme-g">●개인정보 수집∙이용 동의</h4>
 				<textarea readonly="readonly" disabled
 					style="font-size: 15px; resize: none;">
@@ -148,7 +151,7 @@ vertical-align:-3px;
             </textarea>
 				<p style="font-size: 12px;">
 					※ 상기 개인정보 수집∙이용에 대하여 귀하는 동의하지 않을 수 있습니다.<br>단, 동의 거부 시 홈페이지
-					회원가입 불가합니다.<br><br> <input type="checkbox" id="check_1"
+					회원가입 불가합니다.<br> <br> <input type="checkbox" id="check_1"
 						class="check" name=""> 이용약관에 동의합니다.(필수)
 				</p>
 				<h4 class="scheme-g">●회원가입 약관</h4>
@@ -233,8 +236,8 @@ vertical-align:-3px;
 본 약관은 2021년 5월 25일부터 시행합니다.
             </textarea>
 				<p style="font-size: 12px;">
-					<input type="checkbox" id="check_2" class="check" name=""> 이용약관에
-					동의합니다.(필수)
+					<input type="checkbox" id="check_2" class="check" name="">
+					이용약관에 동의합니다.(필수)
 				</p>
 				<h4 class="scheme-g">●마케팅/홍보의 수집 및 이용 동의</h4>
 				<textarea readonly="readonly" disabled
@@ -255,11 +258,10 @@ vertical-align:-3px;
             </textarea>
 				<p style="font-size: 12px;">
 					<input type="checkbox" id="check_3" class="check" name="">
-					마케팅/홍보를 위하여 귀하의 개인정보를 이용하는데 동의합니다.(선택) 
+					마케팅/홍보를 위하여 귀하의 개인정보를 이용하는데 동의합니다.(선택)
 				</p>
-				<input type="button"
-						id="nextBtn" class="button_big"
-						style="padding: 0 10px 10px 10px; height: 24px;" value="동의함" />
+				<input type="button" id="nextBtn" class="button_big"
+					style="padding: 0 10px 10px 10px; height: 24px;" value="동의함" />
 			</form>
 		</div>
 	</article>
