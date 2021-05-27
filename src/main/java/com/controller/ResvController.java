@@ -59,7 +59,7 @@ public class ResvController {
 	@RequestMapping("/loginCheck/resvCancel")
 	public String resvCancel(@RequestParam("seq") int seq) {
 		service.resvCancel(seq);
-		return "redirect:../resvMy";
+		return "redirect:../";
 	}
 	
 	@RequestMapping(value = "/loginCheck/RoomReserv")
