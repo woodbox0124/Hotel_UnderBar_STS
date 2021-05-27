@@ -27,6 +27,7 @@
 <mvc:view-controller path="/adminMember" view-name="adminMember"/>
 <mvc:view-controller path="/adminHotel" view-name="adminHotel"/>
 <mvc:view-controller path="/adminRoom" view-name="adminRoom"/>
+
 <!-- web-inf 폴더는 반드시 리소스 등록 후 사용 -->
 <mvc:resources location="/WEB-INF/views/styles/" mapping="/styles/**"/>
 <mvc:resources location="/WEB-INF/views/assets/" mapping="/assets/**"/>
@@ -34,6 +35,7 @@
 <mvc:resources location="/WEB-INF/views/jquery-ui-1.12.1/" mapping="/jquery-ui-1.12.1/**"/>
 <mvc:resources location="/WEB-INF/views/common/" mapping="/common/**"/>
 <mvc:resources location="/WEB-INF/views/hotel/" mapping="/hotel/**"/>
+<mvc:resources location="/WEB-INF/views/review/" mapping="/review/**"/>
 <mvc:resources location="/WEB-INF/views/pay/" mapping="/pay/**"/>
 <!-- interceptor의 사용 시작 -->
 <mvc:interceptors>

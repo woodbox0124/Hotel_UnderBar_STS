@@ -14,6 +14,25 @@
 
 <html>
 <head>
+<%
+					ResvPageDTO RpDTO = (ResvPageDTO)request.getAttribute("RpDTO");
+
+					List<ResvMyDTO> list = RpDTO.getList();
+					for (int i = 0; i < list.size(); i++) {
+
+						ResvMyDTO dto = list.get(i);
+
+						int seq = dto.getSeq();
+						double rating = dto.getRating();
+						String hotelname = dto.getHotelname();
+						String roomname = dto.getRoomname();
+						String checkin = dto.getCheckin();
+						String checkout = dto.getCheckout();
+						String resvdate = dto.getResvdate();
+						int guest = dto.getGuest();
+						int price = dto.getPrice();
+						int cancel = dto.getCancel();
+				%>
 <!-- 글꼴 -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/font.css">
@@ -50,6 +69,15 @@
 			$("#form").submit();
 		})
 	});
+	
+	 $(function(){ //리뷰쓰기 팝업창구현
+		 $("#a").click(function(){
+			 var url= "ReviewWrite?hotelname=<%=hotelname%>";    
+			 var name="popup test"
+			 var option="width = 500, height=500, top=100,left=200";
+			 window.open(url,name,option);
+		 })
+	 });
 
 	window.onload = function() {
 		document.body.classList.remove('is-preload');
@@ -99,28 +127,11 @@
 					<th id="guest">인원 수</th>
 					<th id="price">가격</th>
 					<th id="cancel">취소</th>
+					<td id="review">리뷰쓰기</td>
 
 				</tr>
 
-				<%
-					ResvPageDTO RpDTO = (ResvPageDTO)request.getAttribute("RpDTO");
-
-					List<ResvMyDTO> list = RpDTO.getList();
-					for (int i = 0; i < list.size(); i++) {
-
-						ResvMyDTO dto = list.get(i);
-
-						int seq = dto.getSeq();
-						double rating = dto.getRating();
-						String hotelname = dto.getHotelname();
-						String roomname = dto.getRoomname();
-						String checkin = dto.getCheckin();
-						String checkout = dto.getCheckout();
-						String resvdate = dto.getResvdate();
-						int guest = dto.getGuest();
-						int price = dto.getPrice();
-						int cancel = dto.getCancel();
-				%>
+				
 
 
 				<tr>
@@ -138,6 +149,10 @@
 					<td>
 						<button type="button" class="btn btn-outline-primary cancel"
 							style="margin-bottom: 15px" data-xxx="<%=seq%>">취소</button>
+					</td>
+					<td>
+					<button type="button" id="a" class="btn btn-outline-primary"
+							style="margin-bottom: 15px">리뷰쓰기</button>
 					</td>
 				</tr>
 				<%
