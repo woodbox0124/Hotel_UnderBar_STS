@@ -56,5 +56,9 @@ public class AdminController {
 		System.out.println(u_id);
 		mService.MemberDelete(u_id);
 	}
+	@RequestMapping("/loginCheck/update")
+	public String update() {
+		return "redirect:../admin/update";
+	}
 
 }
