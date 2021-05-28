@@ -9,12 +9,12 @@ public class MemberDTO {
 	private String u_name;
 	private String u_email;
 	private String u_phone;
-	private String admin;
+	private int admin;
 	public MemberDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MemberDTO(String u_id, String u_pw, String u_name, String u_email, String u_phone, String admin) {
+	public MemberDTO(String u_id, String u_pw, String u_name, String u_email, String u_phone, int admin) {
 		super();
 		this.u_id = u_id;
 		this.u_pw = u_pw;
@@ -58,10 +58,14 @@ public class MemberDTO {
 	public void setU_phone(String u_phone) {
 		this.u_phone = u_phone;
 	}
-	public String getAdmin() {
+	public int getAdmin() {
 		return admin;
 	}
-	public void setAdmin(String admin) {
+	public void setAdmin(int admin) {
 		this.admin = admin;
 	}
+	
+	
+	
+	
 }

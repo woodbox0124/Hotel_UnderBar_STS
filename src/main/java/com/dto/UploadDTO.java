@@ -8,7 +8,7 @@ public class UploadDTO { //리뷰내용받는데 필요한 dto
 	String content; //내용
 	int star; //평점
 	String hotelname; //호텔이름
-	CommonsMultipartFile theFile;
+	CommonsMultipartFile theFile; //파일
 	public UploadDTO() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -1,5 +1,8 @@
 package com.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("ReviewDTO")
 public class ReviewDTO {
 	int num;
 	String title;

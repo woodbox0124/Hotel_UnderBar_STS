@@ -14,25 +14,7 @@
 
 <html>
 <head>
-<%
-					ResvPageDTO RpDTO = (ResvPageDTO)request.getAttribute("RpDTO");
 
-					List<ResvMyDTO> list = RpDTO.getList();
-					for (int i = 0; i < list.size(); i++) {
-
-						ResvMyDTO dto = list.get(i);
-
-						int seq = dto.getSeq();
-						double rating = dto.getRating();
-						String hotelname = dto.getHotelname();
-						String roomname = dto.getRoomname();
-						String checkin = dto.getCheckin();
-						String checkout = dto.getCheckout();
-						String resvdate = dto.getResvdate();
-						int guest = dto.getGuest();
-						int price = dto.getPrice();
-						int cancel = dto.getCancel();
-				%>
 <!-- 글꼴 -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/font.css">
@@ -43,15 +25,27 @@
 <!-- 글꼴 -->
 
 <!-- resvMy css 시작 -->
+ <link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/assets/css/default.css"> 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/resvMy.css">
+	href="${pageContext.request.contextPath}/assets/css/vendor/animate/animate.css">
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/css/default.css">
+	href="${pageContext.request.contextPath}/assets/css/vendor/select2/select2.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/assets/css/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/assets/css/resvmy_css/util.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/assets/css/resvmy_css/main.css">
 <!-- resvMy css 끝 -->
 
 <!-- 부트스트랩 css 시작 -->
-<link rel="stylesheet" type="text/css"
+ <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/styles/bootstrap-4.1.2/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/assets/css/vendor/bootstrap/css/bootstrap.min.css">
+
 <!-- 부트스트랩 css 끝 -->
 
 <!-- jQuery 시작 -->
@@ -70,15 +64,6 @@
 		})
 	});
 	
-	 $(function(){ //리뷰쓰기 팝업창구현
-		 $("#a").click(function(){
-			 var url= "ReviewWrite?hotelname=<%=hotelname%>";    
-			 var name="popup test"
-			 var option="width = 500, height=500, top=100,left=200";
-			 window.open(url,name,option);
-		 })
-	 });
-
 	window.onload = function() {
 		document.body.classList.remove('is-preload');
 	}
@@ -108,67 +93,96 @@
 
 
 <body>
-	<div id="main">
-		<form action="#" id="form">
-
-			<table class="resvmy" id="resvmy">
-				<tr>
-					<td colspan="11" id="resv_name">${login.u_name}님의예약정보</td>
-				</tr>
-
-				<tr>
-					<th id="seq">예약번호</th>
-					<th id="rating">평점</th>
-					<th id="hotelname">호텔이름</th>
-					<th id="roomname">룸 종류</th>
-					<th id="checkin">체크인 날짜</th>
-					<th id="checkout">체크아웃 날짜</th>
-					<th id="resvdate">예약날짜</th>
-					<th id="guest">인원 수</th>
-					<th id="price">가격</th>
-					<th id="cancel">취소</th>
-					<td id="review">리뷰쓰기</td>
-
-				</tr>
-
-				
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100 ver1 m-b-110">
+					<div class="table100-head">
+						<div class="username">${login.u_name}님의예약정보</div>
+						<table>
+							<!-- <thead> -->
+							<tr class="row100 head">
+								<th class="cell100 column1">예약번호</th>
+								<th class="cell100 column2">평점</th>
+								<th class="cell100 column3">호텔이름</th>
+								<th class="cell100 column4">룸 종류</th>
+								<th class="cell100 column5">체크인 날짜</th>
+								<th class="cell100 column6">체크아웃 날짜</th>
+								<th class="cell100 column7">예약날짜</th>
+								<th class="cell100 column8">인원 수</th>
+								<th class="cell100 column9">가격</th>
+								<th class="cell100 column10">취소</th>
+								<th class="cell100 column11">리뷰쓰기</th>
+							</tr>
 
 
-				<tr>
+							<tr class="row100 body" class="table100-body js-pscroll">
+								<%
+										ResvPageDTO RpDTO = (ResvPageDTO) request.getAttribute("RpDTO");
 
-					<td><%=seq%></td>
-					<td><%=rating%></td>
-					<td><%=hotelname%></td>
-					<td><%=roomname%></td>
-					<td><%=checkin%></td>
-					<td><%=checkout%></td>
-					<td><%=resvdate%></td>
-					<td><%=guest%></td>
-					<td><%=price%></td>
+										List<ResvMyDTO> list = RpDTO.getList();
+										for (int i = 0; i < list.size(); i++) {
 
-					<td>
-						<button type="button" class="btn btn-outline-primary cancel"
-							style="margin-bottom: 15px" data-xxx="<%=seq%>">취소</button>
-					</td>
-					<td>
-					<button type="button" id="a" class="btn btn-outline-primary"
-							style="margin-bottom: 15px">리뷰쓰기</button>
-					</td>
-				</tr>
-				<%
-					}
-				%>
+											ResvMyDTO dto = list.get(i);
 
+											int seq = dto.getSeq();
+											double rating = dto.getRating();
+											String hotelname = dto.getHotelname();
+											String roomname = dto.getRoomname();
+											String checkin = dto.getCheckin();
+											String checkout = dto.getCheckout();
+											String resvdate = dto.getResvdate();
+											int guest = dto.getGuest();
+											int price = dto.getPrice();
+											int cancel = dto.getCancel();
+									%>
 
-			</table>
+								<td class="cell100 column1"><%=seq%></td>
+								<td class="cell100 column2"><%=rating%></td>
+								<td class="cell100 column3"><%=hotelname%></td>
+								<td class="cell100 column4"><%=roomname%></td>
+								<td class="cell100 column5"><%=checkin%></td>
+								<td class="cell100 column6"><%=checkout%></td>
+								<td class="cell100 column7"><%=resvdate%></td>
+								<td class="cell100 column8"><%=guest%></td>
+								<td class="cell100 column9"><%=price%></td>
 
-		</form>
+								<td>
+									<button type="button" class="btn btn-outline-primary cancel"
+										style="margin-bottom: 15px" data-xxx="<%=seq%>">취소</button>
+								</td>
+								<td>
+									<button type="button" id="a" class="btn btn-outline-primary"
+										style="margin-bottom: 15px">리뷰쓰기</button>
+								</td>
+							</tr>
+							<script type="text/javascript">
 
+$(function(){ //리뷰쓰기 팝업창구현
+	 $("#a").click(function(){
+		 var url= "ReviewWrite?hotelname=<%=hotelname%>";
+				var name = "popup test"
+				var option = "width = 500, height=500, top=100,left=200";
+				window.open(url, name, option);
+			})
+		});
+	</script>
+							<%
+		}
+	%>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	<div class="page">
+
+
+
+	<div class="page" style="text-align: center;">
 		<%
-			String u_id = (String)request.getAttribute("u_id");
+			String u_id = (String) request.getAttribute("u_id");
 			int curPage = RpDTO.getCurPage();//현재페이지
 			int perPage = RpDTO.getPerPage();//페이지당 게시물수
 			int totalCount = RpDTO.getTotalCount();//전체 레코드수 
@@ -190,7 +204,6 @@
 				} //end for		
 			}
 		%>
-
 
 	</div>
 
