@@ -16,6 +16,7 @@ public class ReviewDAO {
 
 	public void write(ReviewDTO rvdto) {
 		// TODO Auto-generated method stub
+		System.out.println("insert 확인======================"+rvdto);
 		session.insert("ReviewMapper.write");
 		
 	}
