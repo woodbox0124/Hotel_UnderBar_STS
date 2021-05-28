@@ -50,6 +50,7 @@
 				<value>com.dto.NotiDTO</value>	
 				<value>com.dto.ReviewDTO</value>	
 				<value>com.dto.UploadDTO</value>							
+				<value>com.dto.FaqDTO</value>							
 			</list>		
 		</property>
 	</bean>	
