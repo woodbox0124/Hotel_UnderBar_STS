@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +32,16 @@ public class ReviewController {
 	public String reviewwirte(@RequestParam("hotelname") String hotelname,RedirectAttributes attr){
 		attr.addFlashAttribute("hotelname",hotelname);
 		return "review/ReviewWrite";
+	}
+	@RequestMapping("/ReviewAdminUpdate") //리뷰쓰기
+	public String reviewadminup(int num,RedirectAttributes attr){
+		attr.addFlashAttribute("num", num);
+		return "review/ReviewAdminUpdate";
+	}
+	@RequestMapping("/ReviewUpdate") //리뷰쓰기
+	public String reviewupdate(int num,RedirectAttributes attr){
+		attr.addFlashAttribute("num", num);
+		return "review/ReviewUpdate";
 	}
 	@RequestMapping(value="/Reviewupload",method = RequestMethod.POST) //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
 	public String reviewinsert(UploadDTO dto,RedirectAttributes attr,HttpServletRequest request) { //자동주입
@@ -76,17 +87,54 @@ public class ReviewController {
 		
 		
 	}
+	
+	@RequestMapping(value="/ReviewUpdateUp",method = RequestMethod.POST) //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
+	public String reviewupdateup(String hotelname, int num, UploadDTO dto, HttpSession session,HttpServletRequest request) { //자동주입
+		
+		String content=dto.getContent();
+		String title=dto.getTitle();
+		int rating=dto.getStar();
+		
+		HashMap<Object, Object> map = new HashMap<Object, Object>();
+		map.put("num", num);
+		map.put("rating", rating);
+		map.put("content", content);
+		map.put("title", title);
+		service.reviewUpdateUp(map);
+		request.setAttribute("hotelname", hotelname);
+		request.setAttribute("mesg", "리뷰작성이 완료되었습니다");
+		
+		return "review/Reviewend";
+		
+	}
+	@RequestMapping(value="/ReviewAdminUp",method = RequestMethod.POST) //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
+	public String reviewadminup(String hotelname, int num, UploadDTO dto, HttpSession session,HttpServletRequest request) { //자동주입
+		
+		String content=dto.getContent();
+		String title=dto.getTitle();
+
+		HashMap<Object, Object> map = new HashMap<Object, Object>();
+		map.put("num", num);
+		map.put("content", content);
+		map.put("title", title);
+		System.out.println(map);
+		service.reviewAdminUp(map);
+		request.setAttribute("hotelname", hotelname);
+		 request.setAttribute("mesg", "리뷰작성이 완료되었습니다");
+		
+		return "review/Reviewend";
+		
+	}
 	@RequestMapping("/loginCheck/Review") 
 	public String review(String hotelname,HttpSession session, HttpServletRequest request, RedirectAttributes attr){
 		List<ReviewDTO> list = service.review(hotelname);
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
-		
 		session.setAttribute("reviewlist", list);
 		session.setAttribute("hotelname", hotelname);
-		attr.addFlashAttribute("admin", admin);
-		attr.addFlashAttribute("u_id1", u_id1);
+		session.setAttribute("admin", admin);
+		session.setAttribute("u_id1", u_id1);
 		
 		return "redirect:../reviewlist";
 	}
@@ -99,9 +147,9 @@ public class ReviewController {
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
 		
-		attr.addFlashAttribute("reviewlist", list);
-		attr.addFlashAttribute("admin", admin);
-		attr.addFlashAttribute("u_id1", u_id1);
+		session.setAttribute("reviewlist", list);
+		session.setAttribute("admin", admin);
+		session.setAttribute("u_id1", u_id1);
 		
 		return "redirect:../reviewlist";
 	}
@@ -115,9 +163,9 @@ public class ReviewController {
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
 		
-		attr.addFlashAttribute("reviewlist", list);
-		attr.addFlashAttribute("admin", admin);
-		attr.addFlashAttribute("u_id1", u_id1);
+		session.setAttribute("reviewlist", list);
+		session.setAttribute("admin", admin);
+		session.setAttribute("u_id1", u_id1);
 		return "redirect:../reviewlist";
 	}
 	@RequestMapping("/loginCheck/ReviewDelete") 
@@ -131,9 +179,9 @@ public class ReviewController {
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
 		
-		attr.addFlashAttribute("reviewlist", list);
-		attr.addFlashAttribute("admin", admin);
-		attr.addFlashAttribute("u_id1", u_id1);
+		session.setAttribute("reviewlist", list);
+		session.setAttribute("admin", admin);
+		session.setAttribute("u_id1", u_id1);
 		
 		return "redirect:../reviewlist";
 	}
@@ -148,9 +196,9 @@ public class ReviewController {
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
 		
-		attr.addFlashAttribute("reviewlist", list);
-		attr.addFlashAttribute("admin", admin);
-		attr.addFlashAttribute("u_id1", u_id1);
+		session.setAttribute("reviewlist", list);
+		session.setAttribute("admin", admin);
+		session.setAttribute("u_id1", u_id1);
 		
 		return "redirect:../reviewlist";
 	}

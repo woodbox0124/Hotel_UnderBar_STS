@@ -12,16 +12,21 @@
 <link rel="stylesheet" type="text/css" href="assets/css/font.css">
 <link rel="stylesheet" type="text/css" href="assets/css/default.css">
 <style type="text/css">
-  *{
-  color: black;
-  font-size: 18px;
-  }
+
   select {
   font-size: 18px;
   }
+  
   form {
   padding-left: 50px;
+  color: black;
+  font-size: 18px;
   }
+  
+  .hotellist{
+  font-size : 18px;
+  }
+
   summary {
     cursor: pointer;
   }
@@ -53,6 +58,7 @@ String location = (String)session.getAttribute("location");
 	<option value="오래된순">오래된순</option>
 </select>
 <input class="btn btn-primary" type="submit" value="변경">
+
 </form>
 
 <form class="review">
@@ -71,7 +77,7 @@ String location = (String)session.getAttribute("location");
 </c:choose>
 
 <c:if test="${u_id1 eq list.u_id and list.groupnum eq 0}">
-<input class="btn btn-primary update" type="button" value="수정"> <input class="btn btn-primary delete" type="button" value="삭제" onclick="reviewDelete(event, ${list.origin})">
+	<input class="btn btn-primary update" type="button" value="수정" onclick="reviewUpdate(event, ${list.num})"> <input class="btn btn-primary delete" type="button" value="삭제" onclick="reviewDelete(event, ${list.origin})">
 </c:if>
 
 <c:choose>
@@ -80,7 +86,7 @@ String location = (String)session.getAttribute("location");
 	</c:when>
 	
 	<c:when test="${admin eq 1 and list.groupnum eq 1}">
-		<input class="btn btn-primary update" type="button" value="수정"> <input class="btn btn-primary adminDelete" type="submit" value="삭제" onclick="loginCheck/ReviewAdminDelete=${reviewlisst.num}">
+		<input class="btn btn-primary update" type="button" value="수정" onclick="reviewAdminUpdate(event, ${list.num})"> <input class="btn btn-primary adminDelete" type="submit" value="삭제" onclick="loginCheck/ReviewAdminDelete=${reviewlisst.num}">
 	</c:when>
 </c:choose>
 
@@ -94,7 +100,9 @@ String location = (String)session.getAttribute("location");
 	
 	<c:when test="${!empty list.review_img}">
 		<details>
+			<c:out value="${list.num}"></c:out>
   			<summary>${list.title}</summary> 
+  			<c:out value="${list.review_img}" ></c:out>
   			<img src="c://upload/${list.review_img}">
  			<p>${list.content}</p>
 		</details><br>
@@ -103,8 +111,7 @@ String location = (String)session.getAttribute("location");
 	
 </c:forEach>	
 </form>		
-<a href="ReviewWriteUI?hotelname=<%=hotelname%>">작성</a>
-<a href="HotelSearch?checkin=<%=checkin%>&checkout=<%=checkout%>&guest=<%=guest%>&location=<%=location%>">호텔 리스트로 돌아가기</a>
+<a class="hotellist" href="HotelSearch?checkin=<%=checkin%>&checkout=<%=checkout%>&guest=<%=guest%>&location=<%=location%>">호텔 리스트로 돌아가기</a>
 <script type="text/javascript">
 $(function () {
 	$(".selectsort").change(function () {
@@ -116,10 +123,19 @@ $(function () {
 			$(".sort").attr("action","loginCheck/ReviewOrder?hotelname=<%=hotelname%>");
 		}
 		})
-		$(".update").click(function () {
-			location.href="ReviewUpdateServlet";
 	})
-})
+function reviewUpdate(e, num) {
+	var url= "ReviewUpdate?hotelname=<%=hotelname%>&num="+num;
+	var name = "popup test"
+	var option = "width = 500, height=500, top=100,left=200";
+	window.open(url, name, option);
+}
+function reviewAdminUpdate(e, num) {
+	var url= "ReviewAdminUpdate?hotelname=<%=hotelname%>&num="+num;
+	var name = "popup test"
+	var option = "width = 500, height=500, top=100,left=200";
+	window.open(url, name, option);
+}	
 function reviewDelete(e, origin) {
 	e.preventDefault();
 	location.href="loginCheck/ReviewDelete?origin="+origin;

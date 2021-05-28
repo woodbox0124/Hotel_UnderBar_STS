@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -40,6 +41,17 @@ public class ReviewDAO {
 
 	public void reviewAdminDelete(int num) {
 		session.delete("ReviewMapper.reviewAdminDelete", num);
+		
+	}
+
+	public void reviewUpdateUp(HashMap<Object, Object> map) {
+		System.out.println(map);
+		session.update("ReviewMapper.reviewUpdate", map);
+		
+	}
+
+	public void reviewAdminUp(HashMap<Object, Object> map) {
+		session.update("ReviewMapper.reviewAdminUp", map);
 		
 	}
 }

@@ -28,5 +28,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="reviewAdminDelete" parameterType="int">
 	delete from review where num=#{num}
 	</delete>
+	
+	<update id="reviewUpdate" parameterType="hashmap">
+	update review set title = #{title}, content = #{content}, rating = #{rating} where num = #{num}
+	</update>
+	
+	<update id="reviewAdminUp" parameterType="hashmap">
+	update review set title = #{title}, content = #{content} where num = #{num}
+	</update>
 
 </mapper>

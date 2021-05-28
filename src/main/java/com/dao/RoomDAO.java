@@ -34,6 +34,7 @@ public class RoomDAO {
 	}
 
 	public int date(HashMap<String, String> map) {
+		System.out.println(map);
 		int n = template.selectOne("HotelMapper.date",map);
 		return n;
 	}
