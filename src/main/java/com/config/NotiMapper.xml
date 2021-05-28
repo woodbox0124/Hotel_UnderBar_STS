@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 공지사항 목록 -->
 	<select id="notiList" resultType="NotiDTO" parameterType="int">
-		select * from noti 
+		select * from noti order by num desc
 	</select>
 	<!-- 페이징을 위한 전체목록 개수 -->
 	<select id="totalCount" resultType="int">
@@ -20,13 +20,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- 공지사항 보기  -->
-	<resultMap id="notiContent" type="NotiDTO" >
-    <result property="content" column="content" jdbcType="CLOB" javaType="java.lang.String" />
-	</resultMap>
-
+		<!-- clob처리를 위한 코드  -->
+		<resultMap id="notiContent" type="NotiDTO" >
+	    <result property="content" column="content" jdbcType="CLOB" javaType="java.lang.String" />
+		</resultMap>
 	<select id="notiRetrieve" parameterType="int" resultType="list" resultMap="notiContent">
 		select * from noti where num = #{num}
 	</select>
+	
+	<!--  공지사항삭제 -->
+	<delete id="notiDelete" parameterType="int">
+		delete from noti where num = #{num}
+	</delete>
+	
+	<!--  공지사항수정 -->
+	<update id="notiUpdate" parameterType="NotiDTO">
+		update noti 
+		set subject= #{subject}, author=#{author}, content=#{content}
+		where num = #{num}
+	</update>
+	
+	<!-- 조회수 증가  -->
+	<update id="updateHit" parameterType="int">
+		update noti
+		set hit=(hit+1)
+		where num = #{num}
+	</update>
+	
+	
+	<!-- FAQ 작성 -->
+	<insert id="faqInsert" parameterType="FaqDTO">
+		insert into 
+		values(num=#{faq_seq.nextval}, subject=#{subject}, content=#{content})
+	</insert>
+	<!-- FAQ 조회 -->
+		<!-- clob처리를 위한 코드 
+		<resultMap id="faqContent" type="NotiDTO" >
+	    <result property="content" column="content" jdbcType="CLOB" javaType="java.lang.String" />
+		</resultMap> -->
 
 
 </mapper>

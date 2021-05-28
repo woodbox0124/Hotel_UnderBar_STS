@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.dao.NotiDAO;
 import com.dto.BoardPageDTO;
+import com.dto.FaqDTO;
 import com.dto.NotiDTO;
 import com.dto.NotiPageDTO;
 
@@ -31,6 +32,25 @@ public class NotiService {
 		NotiDTO nDTO = dao.notiRetrieve(num);
 		return nDTO;
 		
+	}
+
+	public void notiUpdate(NotiDTO nDTO) {
+		System.out.println(nDTO+"넘겨준 nDTO");
+		dao.notiUpdate(nDTO);
+		
+	}
+
+	public void notiDelete(int num) {
+		dao.notiDelete(num);
+		
+	}
+
+	public void updateHit(int num) {
+		dao.updateHit(num);
+	}
+
+	public void faqInsert(FaqDTO dto) {
+		dao.faqInsert(dto);
 	}
 
 	

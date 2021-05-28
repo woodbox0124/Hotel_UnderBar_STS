@@ -31,33 +31,82 @@ th{
 
 
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#revise").on("click",function(){
+			$("form").attr("action","loginCheck/notiUpdate");
+			$("form").submit();
+		})
+		$("#delete").on("click",function(){
+			
+			$("form").attr("action","loginCheck/notiDelete");
+			$("form").submit();
+		})
+		
+	})
+</script>
 </head>
 <body>
 <div id="wrapper">
 	<div class="content">
-		<table>
-			<tr>
-				<th>제목</th>
-				<td><input type="text" class="form-control-plaintext" disabled name="subject" id="exampleFormControlInput1" value="${nDTO.subject }"></td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td><input type="text" class="form-control-plaintext" disabled id="exampleFormControlInput1"  value="${nDTO.author}" name="author" readonly></td>
-			</tr>
-			<tr>
-				<td colspan="2"><textarea class="form-control-plaintext" disabled  name="content" id="exampleFormControlTextarea1" rows="20" >${nDTO.content }</textarea></td>
-			</tr>
-		</table>
-	
-		<div class="buttons">
-			<c:if test="${u_id eq nDTO.author}">
-				<input class="btn btn-outline-secondary" type="submit" value="수정">
-				<!-- content or subject empty -> modal 적용  -->					
-				<input class="btn btn-outline-secondary" type="reset" value="다시작성"> 
-			</c:if>
-			<a class="btn btn-outline-secondary" href="notification">목록보기</a>
-		</div>
-	</div>
-</div>
+		<c:choose>
+			<c:when test="${login.u_id eq 'admin'}">
+				<form action="" method="post">
+					<input type="hidden" name=num value="${nDTO.num }">
+					<table>
+						<tr>
+							<th>제목</th>
+							<td><input type="text" class="form-control-plaintext" name="subject" id="exampleFormControlInput1" value="${nDTO.subject }"></td>
+						</tr>
+						<tr>
+							<th>작성자</th>
+							<td><input type="text" class="form-control-plaintext" name="author" id="exampleFormControlInput1"  value="${nDTO.author}"  readonly></td>
+						</tr>
+						<tr>
+							<th>작성일</th>
+							<td><input type="text" class="form-control-plaintext" name="regdate" id="exampleFormControlInput1"  value="${nDTO.regdate}" readonly></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<textarea class="form-control-plaintext"  name="content" id="exampleFormControlTextarea1" rows="20" >${nDTO.content }</textarea>
+							</td>
+						</tr>
+					</table>
+					<div class="buttons">
+						<input class="btn btn-outline-secondary" type="button" value="수정" id="revise">
+						<!-- content or subject empty -> modal 적용  -->					
+						<input class="btn btn-outline-secondary" type="button" value="삭제" id="delete"> 
+						<a class="btn btn-outline-secondary" href="notification">목록보기</a>
+					</div>
+				</form>
+			</c:when>
+			<c:otherwise>
+					<table>
+						<tr>
+							<th>제목</th>
+							<td><input type="text" class="form-control-plaintext" disabled name="subject" id="exampleFormControlInput1" value="${nDTO.subject }"></td>
+						</tr>
+						<tr>
+							<th>작성자</th>
+							<td><input type="text" class="form-control-plaintext" disabled id="exampleFormControlInput1"  value="${nDTO.author}"disabled></td>
+						</tr>
+						<tr>
+							<th>작성일</th>
+							<td><input type="text" class="form-control-plaintext" disabled id="exampleFormControlInput1"  value="${nDTO.regdate}"></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<textarea class="form-control-plaintext" disabled id="exampleFormControlTextarea1" rows="20" >${nDTO.content }</textarea>
+							</td>
+						</tr>
+					</table>
+					<div class="buttons">
+						<a class="btn btn-outline-secondary" href="notification">목록보기</a>
+					</div>
+			</c:otherwise>
+		</c:choose>
+	</div><!-- end content  -->
+</div><!-- end wrapper -->
 </body>
 </html>
