@@ -1,13 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <head>
 <title>로그인 & 회원가입</title>
 <link rel="stylesheet" href="styles/style.css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#pw").blur(function() {
@@ -69,6 +67,41 @@
 			}
 		})//end 약관동의
 
+		//팝업창 중앙 정렬
+		$("#Agree").click(function(){
+			window.screen.width
+			// 좌우 크기 반환 Ex) 1920
+
+			window.screen.height
+			// 상하 크기 반환, Ex) 1080
+			
+			var popupWidth = 600;
+
+			var popupHeight = 800;
+
+			 var popupX = (window.screen.width / 2) - (600 / 2);
+			// 만들 팝업창 width 크기의 1/2 만큼 보정값으로 빼주었음
+			
+			var popupY= (window.screen.height / 2) - (800 / 2);
+			// 만들 팝업창 height 크기의 1/2 만큼 보정값으로 빼주었음 
+		
+			window.open('Agree', '_blank', 'status=no, width=600,height=800, left='+ popupX + ', top='+ popupY);
+
+		})// end 팝업창 중앙 정렬
+		
+		
+		
+		//인증번호 버튼
+		$("#phone2").click(function(){
+			/* var count = $("#phone").length */
+			/* if($("#phone").length == 13){ */
+				$("#number").show();
+				$("#number").focus();
+			/* }else{
+				alert("전화번호를 작성해 주세요.");
+			} */
+			
+		})
 	});//end jQuery
 </script>
 <!-- alert mesg 시작 -->
@@ -108,14 +141,46 @@
 	position: relative;
 	left: 31px;
 }
-#mesg{
+
+#Agree2 {
 	text-align: center;
-    font-size: 12px;
+	font-size: 12px;
 }
-.checked{
+
+.checked {
 	position: relative;
-    left: 31px;
+	left: 31px;
 }
+.in-line{
+      height:40px;
+    }
+
+#phone{
+	width: 70%;
+    height: 100%;
+    font-size: 1em;
+    box-sizing: border-box;
+    color: black;
+}
+#phone2{
+    width: 31%;
+    height: 101%;
+    border: none;
+    font-size: 13px;
+    outline: none;
+    display: inline;
+    margin-left: -10px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    }
+    #phone2:hover{
+    color: black;
+    background-color: #6c757d;
+    border-color: #6c757d;
+    }
+    #number{
+    padding-top: 18px;
+    }
 </style>
 <!-- alert mesg 시작 -->
 <c:if test="${!empty mesg }">
@@ -144,26 +209,18 @@
 	<div class="form-wrap">
 		<div class="button-wrap">
 			<div id="btn"></div>
-			<button type="button" class="togglebtn" onclick="login()">LOG
-				IN</button>
+			<button type="button" class="togglebtn" onclick="login()">LOG IN</button>
 			<button type="button" class="togglebtn" onclick="register()">REGISTER</button>
 		</div>
 		<div class="social-icons">
-			<img src="assets/css/images/fb.png" alt="facebook"> <img
-				src="assets/css/images/kakao.png" alt="kakao"> <img
-				src="assets/css/images/gl.png" alt="google">
+			<img src="assets/css/images/fb.png" alt="facebook"> <img src="assets/css/images/kakao.png" alt="kakao"> <img src="assets/css/images/gl.png" alt="google">
 		</div>
 		<form id="login" action="login" class="input-group" method="post">
-			<input name="u_id" type="text" class="input-field"
-				placeholder="Enter ID" required> <input name="u_pw"
-				type="password" class="input-field"
-				value="<%=cookieVal != "" ? cookieVal : ""%>"
-				placeholder="Enter Password" required>
+			<input name="u_id" type="text" class="input-field" placeholder="Enter ID" required>
+			<input name="u_pw" type="password" class="input-field" value="<%=cookieVal != "" ? cookieVal : ""%>" placeholder="Enter Password" required>
 			<p>
-				<input name="savepw" type="checkbox" class="checkbox"
-					<%=cookieVal != "" ? "checked" : ""%>><span id="check_span">비밀번호저장
-					&nbsp;<a href="searchId"
-					onclick="window.open(this.href, '_blank', 'width=500,height=700,toolbars=no,scrollbars=no'); return false;">아이디/비밀번호찾기</a>
+				<input name="savepw" type="checkbox" class="checkbox" <%=cookieVal != "" ? "checked" : ""%>>
+				<span id="check_span">비밀번호저장 &nbsp;<a href="searchId" onclick="window.open(this.href, '_blank', 'width=500,height=700,toolbars=no,scrollbars=no'); return false;">아이디/비밀번호찾기</a>
 				</span>
 			</p>
 			<button class="submit">Login</button>
@@ -172,24 +229,21 @@
 			</button>
 		</form>
 		<form id="register" action="#" class="input-group" method="post">
-			<input name="u_id" id="u_id" type="text" class="input-field u_id"
-				placeholder="아이디"  required> <input name="u_pw1" id="pw1"
-				type="password" class="input-field u_pw1" placeholder="비밀번호"
-				required> <input name="u_pw" id="pw" type="password"
-				class="input-field u_pw2" placeholder="password" required> <input
-				name="u_name" type="text" class="input-field u_name"
-				placeholder="name" required> <input name="u_email"
-				type="email" class="input-field u_email" placeholder="Email"
-				required> <input name="u_phone" type="text"
-				class="input-field phone" placeholder="Phone Number" required>
+			<input name="u_id" id="u_id" type="text" class="input-field u_id" placeholder="아이디" required>
+			<input name="u_pw1" id="pw1" type="password" class="input-field u_pw1" placeholder="비밀번호" required>
+			<input name="u_pw" id="pw" type="password" class="input-field u_pw2" placeholder="password" required>
+			<input name="u_name" type="text" class="input-field u_name" placeholder="name" required>
+			<input name="u_email" type="email" class="input-field u_email" placeholder="Email" required>
+			<div class="in-line">
+			<input name="u_phone" type="text" class="input-field phone" id="phone" placeholder="Phone Number" required>
+			<input type="button" name="name" id ="phone2" value="인증번호 받기">
+			</div>
+			<input type="text" class="input-field number" id="number" placeholder="인증번호 입력" required style="display: none;"> 
 			<span id="check_span"><p id="Agree">
-					<input type="checkbox" id="check_2" class="checked" name="check"
-						onclick="return false"><a
-						id="Agree" href="Agree"
-						onclick="window.open(this.href, '_blank', 'width=600,height=800,toolbars=no,scrollbars=no'); return false;"
-						style="vertical-align: 1.5px;">약관동의(필수)</a>
+					<input type="checkbox" id="check_2" class="checked" name="check" onclick="return false">
+					<a id="Agree" style="vertical-align: 1.5px;">약관동의(필수)</a>
 				</p></span>
-			<p id="mesg">위 약관 동의를 클릭해주세요.</p>
+			<p id="Agree2">위 약관 동의를 클릭해주세요.</p>
 			<button class="submit" id="submit" name="register">REGISTER</button>
 			<button class="submit">
 				<a href="/hotelunderbar">메인으로 돌아가기</a>
