@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dto.FaqDTO;
 import com.dto.NotiDTO;
 import com.dto.NotiPageDTO;
 
@@ -34,16 +35,40 @@ public class NotiDAO {
 		return num;
 	}
 
+	//공지사항 작성
 	public void notiInsert(NotiDTO dto) {
 		session.insert("NotiMapper.notiInsert",dto);
 		System.out.println(dto);
 	}
-
+	
+	//공지사항 보기 
 	public NotiDTO notiRetrieve(int num) {
 		System.out.println("NotiDAO num : "+num);
 		NotiDTO nDTO = session.selectOne("NotiMapper.notiRetrieve",num);
 		return nDTO;
 	}
+	
+	
+	//공지사항 수정 
+	public void notiUpdate(NotiDTO nDTO) {
+		session.update("NotiMapper.notiUpdate",nDTO);
+	}
+	
+	//공지사항 삭제 
+	public void notiDelete(int num) {
+		session.delete("NotiMapper.notiDelete",num);
+		
+	}
+	//조회수 증가 
+	public void updateHit(int num) {
+		session.update("NotiMapper.updateHit", num);
+	}
+
+	public void faqInsert(FaqDTO dto) {
+		session.insert("NotiMapper.faqInsert",dto);
+		
+	}
+
 	
 	
 	

@@ -31,7 +31,10 @@
 <mvc:view-controller path="/notiWrite" view-name="notiWrite"/>
 <mvc:view-controller path="/notiInsert" view-name="notiInsert"/>
 <mvc:view-controller path="/notiRetrieve" view-name="notiRetrieve"/>
-<mvc:view-controller path="/reviewlist" view-name="reviewlist"/>
+<mvc:view-controller path="/notiUpdate" view-name="notiUpdate"/>
+<mvc:view-controller path="/faqWrite" view-name="faqWrite"/>
+<mvc:view-controller path="/faqInsert" view-name="faqInsert"/>
+
 <!-- web-inf 폴더는 반드시 리소스 등록 후 사용 -->
 <mvc:resources location="/WEB-INF/views/styles/" mapping="/styles/**"/>
 <mvc:resources location="/WEB-INF/views/assets/" mapping="/assets/**"/>
@@ -40,7 +43,6 @@
 <mvc:resources location="/WEB-INF/views/common/" mapping="/common/**"/>
 <mvc:resources location="/WEB-INF/views/hotel/" mapping="/hotel/**"/>
 <mvc:resources location="/WEB-INF/views/pay/" mapping="/pay/**"/>
-<mvc:resources location="/WEB-INF/views/review/" mapping="/review/**"/>
 <!-- interceptor의 사용 시작 -->
 <mvc:interceptors>
 	<mvc:interceptor>
@@ -78,8 +80,5 @@
 			<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
 		</props>
 	</property>
-</bean>
-<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	<property name="maxUploadSize" value="-1"></property>
 </bean>
 </beans>
