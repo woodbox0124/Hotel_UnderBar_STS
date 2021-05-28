@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +32,7 @@ public class ReviewController {
 		return "review/ReviewWrite";
 	}
 	@RequestMapping("/Reviewinsert") //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기ㄴ
-	public String reviewinsert(UploadDTO dto,RedirectAttributes attr) { //자동주입
+	public String reviewinsert(UploadDTO dto,RedirectAttributes attr,HttpServletRequest request) { //자동주입
 		String u_id=dto.getU_id();
 		String content=dto.getContent();
 		int rating=dto.getStar();
@@ -52,7 +53,27 @@ public class ReviewController {
 		System.out.println("정보들======="+u_id+content+rating+title+hotelname);
 		
 		
-		return "";
+		File f= new File("c://upload", originalFileName);
+		ReviewDTO rvdto=new ReviewDTO();
+		   rvdto.setU_id(u_id);
+		   rvdto.setTitle(title);
+		   rvdto.setContent(content);
+		   rvdto.setHotelname(hotelname);
+		   rvdto.setRating(rating);
+		   rvdto.setReview_img(originalFileName); //파일이름
+		   System.out.println("리뷰dto에 담은 정보들=============="+rvdto);
+		   service.write(rvdto);
+		  //attr.addAttribute("mesg","리뷰작성이 완료되었습니다");
+		 request.setAttribute("mesg", "리뷰작성이 완료되었습니다");
+		 
+		try {
+			theFile.transferTo(f);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "review/Reviewend";
+		
+		
 	}
 	@RequestMapping("/loginCheck/Review") 
 	public String review(String hotelname,HttpSession session, HttpServletRequest request, RedirectAttributes attr){
@@ -132,5 +153,7 @@ public class ReviewController {
 		
 		return "redirect:../reviewlist";
 	}
+
+	
 	
 }

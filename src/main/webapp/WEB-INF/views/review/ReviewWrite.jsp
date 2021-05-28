@@ -22,8 +22,8 @@
 <body>
 <%String hotelname=request.getParameter("hotelname");
 %>
-<form action="Reviewinsert" method="post" enctype="multipart/form-data" >
-<input type="hidden" id="hotelname" name="hotelname" value="${hotelname}">
+<form action="Reviewupload" method="POST" enctype="multipart/form-data" >
+<input type="hidden" id="hotelname" name="hotelname" value="<%=hotelname%>">
 <select id="star" name="star">
 	<option value="1">1</option>
 	<option value="2">2</option>

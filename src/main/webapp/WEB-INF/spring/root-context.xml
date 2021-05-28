@@ -48,7 +48,8 @@
 				<value>com.dto.RoomInfoDTO</value>							
 				<value>com.dto.MemberDTO</value>							
 				<value>com.dto.NotiDTO</value>	
-				<value>com.dto.ReviewDTO</value>							
+				<value>com.dto.ReviewDTO</value>	
+				<value>com.dto.UploadDTO</value>							
 			</list>		
 		</property>
 	</bean>	
