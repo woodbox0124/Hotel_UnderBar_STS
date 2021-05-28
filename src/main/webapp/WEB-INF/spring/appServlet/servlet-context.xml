@@ -34,6 +34,7 @@
 <mvc:view-controller path="/notiUpdate" view-name="notiUpdate"/>
 <mvc:view-controller path="/faqWrite" view-name="faqWrite"/>
 <mvc:view-controller path="/faqInsert" view-name="faqInsert"/>
+<mvc:view-controller path="/admin/update" view-name="admin/update"/>
 
 <!-- web-inf 폴더는 반드시 리소스 등록 후 사용 -->
 <mvc:resources location="/WEB-INF/views/styles/" mapping="/styles/**"/>

@@ -19,7 +19,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#delete").click(function() {
+	$(".delete").click(function() {
 		console.log("delete 클릭 ");
 		var u_id= $(this).attr("data-id");//삭제할 아이디
 		var xxx= $(this); //td태그 
@@ -41,7 +41,8 @@ $(document).ready(function() {
 			}			
 		});//end ajax
 	});//end #delete
-		 $("#update").click(function(){
+		 $(".update").click(function(){
+			 console.log("수정버튼 클릭");
 			 var url= "loginCheck/update";
 					var name = "popup test"
 					var option = "width = 500, height=500, top=100,left=200";
@@ -126,10 +127,8 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 			<td style="color: white;" width="70">비밀 번호</td>
 			<td style="color: white;" width="70">전화번호</td>
 			<td style="color: white;" width="120">이메일</td>
-			<c:if test="${!empty member}">
-			<td style="color: white;" width="50"></td>
-			<td style="color: white;" width="50"></td>
-			</c:if>
+			<td style="color: white;" width="50">수정</td>
+			<td style="color: white;" width="50">탈퇴</td>
 		</tr>
 		 <c:if test="${!empty member}">
 		 <c:forEach var ="item" items="${member}">			
@@ -140,10 +139,8 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 			<td class="normal">${item.u_pw}</td>
 			<td class="normal">${item.u_phone}</td>
 			<td class="normal">${item.u_email}</td>
-			<c:if test="${!empty member}">
-			<td class="normal"><input type="submit" value="수정" id="update" class="btn btn-primary" data-id="${list.u_id}"></td>
-			<td class="normal"><input type="button" value="탈퇴" id="delete" class="btn btn-primary" data-id="${list.u_id}"></td>			
-			</c:if>
+			<td class="normal"><input type="button" value="수정" class="btn btn-primary update" data-id="${list.u_id}"></td>
+			<td class="normal"><input type="button" value="탈퇴" class="btn btn-primary delete" data-id="${list.u_id}"></td>			
 		</tr>			
 		</tbody>
 		</c:forEach>
