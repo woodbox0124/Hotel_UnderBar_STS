@@ -11,6 +11,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -31,7 +32,7 @@ public class ReviewController {
 		attr.addFlashAttribute("hotelname",hotelname);
 		return "review/ReviewWrite";
 	}
-	@RequestMapping("/Reviewupload") //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
+	@RequestMapping(value="/Reviewupload",method = RequestMethod.POST) //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
 	public String reviewinsert(UploadDTO dto,RedirectAttributes attr,HttpServletRequest request) { //자동주입
 		String u_id=dto.getU_id();
 		String content=dto.getContent();
