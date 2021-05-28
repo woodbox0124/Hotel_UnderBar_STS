@@ -31,7 +31,7 @@ public class ReviewController {
 		attr.addFlashAttribute("hotelname",hotelname);
 		return "review/ReviewWrite";
 	}
-	@RequestMapping("/Reviewinsert") //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기ㄴ
+	@RequestMapping("/Reviewupload") //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
 	public String reviewinsert(UploadDTO dto,RedirectAttributes attr,HttpServletRequest request) { //자동주입
 		String u_id=dto.getU_id();
 		String content=dto.getContent();

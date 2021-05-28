@@ -95,7 +95,7 @@ String location = (String)session.getAttribute("location");
 	<c:when test="${!empty list.review_img}">
 		<details>
   			<summary>${list.title}</summary> 
-  			<img src="reviewFolder/${list.review_img}">
+  			<img src="c://upload/${list.review_img}">
  			<p>${list.content}</p>
 		</details><br>
 	</c:when>
