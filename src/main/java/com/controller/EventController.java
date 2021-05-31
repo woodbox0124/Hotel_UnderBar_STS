@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dto.CommentDTO;
 import com.dto.EventDTO;
 import com.dto.EventPageDTO;
-import com.dto.MemberDTO;
 import com.service.EventService;
 
 @RestController
