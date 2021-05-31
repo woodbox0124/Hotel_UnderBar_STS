@@ -13,21 +13,34 @@
 <link rel="stylesheet" type="text/css" href="assets/css/default.css">
 <style type="text/css">
 
-  select {
-  font-size: 18px;
+	select {
+ 		 font-size: 20px;
   }
   
-  form {
-  padding-left: 50px;
-  color: black;
-  font-size: 18px;
+	form {
+ 		 padding-left: 300px;
+ 		 padding-right: 600px;
+ 		 color: black;
+ 		 font-size: 20px;
   }
   
-  .hotellist{
-  font-size : 18px;
+	.hotellist{
+ 		 font-size : 20px;
+ 		 text-align: center;
   }
 
-  summary {
+	.title {
+		font-weight: 900;
+		font-size : 25px;
+	}
+	.content {
+		font-weigth: 400;
+		font-size: 20px;
+	}
+	.sort {
+		padding-top: 30px;
+	}
+/*   summary {
     cursor: pointer;
   }
 
@@ -36,7 +49,7 @@
   }
   summary::-webkit-details-marker {
     display: none;
-  }
+  } */
   
 </style>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -63,55 +76,68 @@ String location = (String)session.getAttribute("location");
 
 <form class="review">
 <c:forEach var="list" items="${reviewlist}">
-<c:if test="${list.groupnum == 1}">
-<img src='images/board/reply_icon.gif' />
-</c:if>
 
 <c:choose>
-	<c:when test="${list.groupnum eq 0}">
-		${list.u_id} : ${list.rating} ${list.writedate}
+	<c:when test="${list.groupnum eq 0 and list.rating eq 1}">
+		${list.u_id}님 : <img src='images/review/1star.png'/> ${list.rating}점 ${list.writedate}
 	</c:when>
+	<c:when test="${list.groupnum eq 0 and list.rating eq 2}">
+		${list.u_id}님 : <img src='images/review/2star.png'/> ${list.rating}점 ${list.writedate}
+	</c:when>
+	<c:when test="${list.groupnum eq 0 and list.rating eq 3}">
+		${list.u_id}님 : <img src='images/review/3star.png'/> ${list.rating}점 ${list.writedate}
+	</c:when>
+	<c:when test="${list.groupnum eq 0 and list.rating eq 4}">
+		${list.u_id}님 : <img src='images/review/4star.png'/> ${list.rating}점 ${list.writedate}
+	</c:when>
+	<c:when test="${list.groupnum eq 0 and list.rating eq 5}">
+		${list.u_id}님 : <img src='images/review/5star.png'/> ${list.rating}점 ${list.writedate}
+	</c:when>
+</c:choose>
+<c:choose>	
 	<c:when test="${list.groupnum eq 1}">
-		${list.u_id} : ${list.writedate}
+		&nbsp;&nbsp;&nbsp;<img src='images/board/reply_icon.gif'/> ${list.u_id}님 : ${list.writedate}
 	</c:when>
 </c:choose>
 
 <c:if test="${u_id1 eq list.u_id and list.groupnum eq 0}">
-	<input class="btn btn-primary update" type="button" value="수정" onclick="reviewUpdate(event, ${list.num})"> <input class="btn btn-primary delete" type="button" value="삭제" onclick="reviewDelete(event, ${list.origin})">
+	<input class="btn btn-primary update" type="button" value="수정" onclick="reviewUpdate(${list.num})"> <input class="btn btn-primary delete" type="button" value="삭제" onclick="reviewDelete(event, ${list.origin})"><br>
 </c:if>
 
 <c:choose>
 	<c:when test="${admin eq 1 and list.groupnum eq 0}">
-		<input class="btn btn-primary answer" type="button" value="답글"> <input class="btn btn-primary adminDelete" type="button" value="삭제" onclick="reviewAdminDelete(event, ${list.num})">
+		<input class="btn btn-primary answer" type="button" value="답글" onclick="reviewAnswer(${list.num})"> <input class="btn btn-primary adminDelete" type="button" value="삭제" onclick="reviewAdminDelete(event, ${list.num})"><br>
 	</c:when>
 	
 	<c:when test="${admin eq 1 and list.groupnum eq 1}">
-		<input class="btn btn-primary update" type="button" value="수정" onclick="reviewAdminUpdate(event, ${list.num})"> <input class="btn btn-primary adminDelete" type="submit" value="삭제" onclick="loginCheck/ReviewAdminDelete=${reviewlisst.num}">
+		<input class="btn btn-primary update" type="button" value="수정" onclick="reviewAdminUpdate(${list.num})"> <input class="btn btn-primary adminDelete" type="submit" value="삭제" onclick="reviewAdminDelete(event, ${list.num})"><br>
 	</c:when>
 </c:choose>
 
 <c:choose>
+	<c:when test="${list.groupnum eq 1}">
+  			<br>&nbsp;&nbsp;&nbsp;<span class="title">${list.title}</span><br>
+ 			&nbsp;&nbsp;&nbsp;<span class="content">${list.content}</span><br>
+ 			<hr><br>
+	</c:when>
 	<c:when test="${empty list.review_img}">
-		<details>
-  			<summary>${list.title}</summary> 
- 			<p>${list.content}</p>
-		</details><br>
+  			<p class="title">${list.title}</p><br>
+ 			<p class="content">${list.content}</p><br>
+ 			<hr><br>
 	</c:when>
 	
 	<c:when test="${!empty list.review_img}">
-		<details>
-			<c:out value="${list.num}"></c:out>
-  			<summary>${list.title}</summary> 
-  			<c:out value="${list.review_img}" ></c:out>
+  			<p class="title">${list.title}</p> 
   			<img src="c://upload/${list.review_img}">
- 			<p>${list.content}</p>
-		</details><br>
+ 			<p class="content">${list.content}</p><br>
+ 			<hr><br>
 	</c:when>
 </c:choose>
 	
 </c:forEach>	
 </form>		
-<a class="hotellist" href="HotelSearch?checkin=<%=checkin%>&checkout=<%=checkout%>&guest=<%=guest%>&location=<%=location%>">호텔 리스트로 돌아가기</a>
+
+<p class="hotellist"><a href="HotelSearch?checkin=<%=checkin%>&checkout=<%=checkout%>&guest=<%=guest%>&location=<%=location%>">호텔 리스트로 돌아가기</a></p>
 <script type="text/javascript">
 $(function () {
 	$(".selectsort").change(function () {
@@ -124,14 +150,20 @@ $(function () {
 		}
 		})
 	})
-function reviewUpdate(e, num) {
+function reviewUpdate(num) {
 	var url= "ReviewUpdate?hotelname=<%=hotelname%>&num="+num;
 	var name = "popup test"
 	var option = "width = 500, height=500, top=100,left=200";
 	window.open(url, name, option);
 }
-function reviewAdminUpdate(e, num) {
+function reviewAdminUpdate(num) {
 	var url= "ReviewAdminUpdate?hotelname=<%=hotelname%>&num="+num;
+	var name = "popup test"
+	var option = "width = 500, height=500, top=100,left=200";
+	window.open(url, name, option);
+}	
+function reviewAnswer(num) {
+	var url= "ReviewAnswer?hotelname=<%=hotelname%>&num="+num;
 	var name = "popup test"
 	var option = "width = 500, height=500, top=100,left=200";
 	window.open(url, name, option);

@@ -33,15 +33,20 @@ public class ReviewController {
 		attr.addFlashAttribute("hotelname",hotelname);
 		return "review/ReviewWrite";
 	}
-	@RequestMapping("/ReviewAdminUpdate") //리뷰쓰기
+	@RequestMapping("/ReviewAdminUpdate") // 어드민 리뷰 수정
 	public String reviewadminup(int num,RedirectAttributes attr){
 		attr.addFlashAttribute("num", num);
 		return "review/ReviewAdminUpdate";
 	}
-	@RequestMapping("/ReviewUpdate") //리뷰쓰기
+	@RequestMapping("/ReviewUpdate") //리뷰 수정
 	public String reviewupdate(int num,RedirectAttributes attr){
 		attr.addFlashAttribute("num", num);
 		return "review/ReviewUpdate";
+	}
+	@RequestMapping("/ReviewAnswer") // 답글 쓰기
+	public String reviewanswer(int num,RedirectAttributes attr){
+		attr.addFlashAttribute("num", num);
+		return "review/ReviewAnswer";
 	}
 	@RequestMapping(value="/Reviewupload",method = RequestMethod.POST) //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
 	public String reviewinsert(UploadDTO dto,RedirectAttributes attr,HttpServletRequest request) { //자동주입
@@ -64,8 +69,8 @@ public class ReviewController {
 		System.out.println("contentType:  "+ contentType);
 		System.out.println("정보들======="+u_id+content+rating+title+hotelname);
 		
-		
-		File f= new File("c://upload", originalFileName);
+		File f= new File("C:\\Users\\CHANGHO\\Documents\\GitHub\\Hotel_UnderBar_STS\\src\\main\\webapp\\WEB-INF\\views\\assets\\upload", originalFileName);
+		File f2= new File("C://Springmall/apache-tomcat-8.5.58-windows-x64/apache-tomcat-8.5.58/webapps/Hotel_UnderBar/WEB-INF/views/assets/upload", originalFileName);
 		ReviewDTO rvdto=new ReviewDTO();
 		   rvdto.setU_id(u_id);
 		   rvdto.setTitle(title);
@@ -102,7 +107,7 @@ public class ReviewController {
 		map.put("title", title);
 		service.reviewUpdateUp(map);
 		request.setAttribute("hotelname", hotelname);
-		request.setAttribute("mesg", "리뷰작성이 완료되었습니다");
+		request.setAttribute("mesg", "수정이 완료되었습니다");
 		
 		return "review/Reviewend";
 		
@@ -120,7 +125,28 @@ public class ReviewController {
 		System.out.println(map);
 		service.reviewAdminUp(map);
 		request.setAttribute("hotelname", hotelname);
-		 request.setAttribute("mesg", "리뷰작성이 완료되었습니다");
+		 request.setAttribute("mesg", "수정이 완료되었습니다");
+		
+		return "review/Reviewend";
+		
+	}
+	
+	@RequestMapping(value="/ReviewAnswerUp",method = RequestMethod.POST) //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
+	public String reviewanswer(String u_id, String hotelname, int num, UploadDTO dto, HttpSession session,HttpServletRequest request) { //자동주입
+		
+		String content=dto.getContent();
+		String title=dto.getTitle();
+
+		HashMap<Object, Object> map = new HashMap<Object, Object>();
+		map.put("num", num);
+		map.put("hotelname", hotelname);
+		map.put("content", content);
+		map.put("title", title);
+		map.put("u_id", u_id);
+		System.out.println(map);
+		service.reviewAnswerUp(map);
+		request.setAttribute("hotelname", hotelname);
+		 request.setAttribute("mesg", "답글작성이 완료되었습니다");
 		
 		return "review/Reviewend";
 		
@@ -187,6 +213,7 @@ public class ReviewController {
 	}
 	@RequestMapping("/loginCheck/ReviewAdminDelete") 
 	public String reviewAdminDelete(int num, HttpSession session, RedirectAttributes attr){
+		System.out.println(num);
 		service.reviewAdminDelete(num);
 		
 		String hotelname = (String)session.getAttribute("hotelname");

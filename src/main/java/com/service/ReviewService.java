@@ -51,4 +51,9 @@ public class ReviewService {
 		
 	}
 
+	public void reviewAnswerUp(HashMap<Object, Object> map) {
+		dao.reviewAnswerUp(map);
+		
+	}
+
 }
