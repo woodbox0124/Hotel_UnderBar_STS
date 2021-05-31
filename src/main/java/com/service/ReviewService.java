@@ -1,5 +1,6 @@
 package com.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,16 @@ public class ReviewService {
 
 	public void reviewAdminDelete(int num) {
 		dao.reviewAdminDelete(num);
+		
+	}
+
+	public void reviewUpdateUp(HashMap<Object, Object> map) {
+		dao.reviewUpdateUp(map);
+		
+	}
+
+	public void reviewAdminUp(HashMap<Object, Object> map) {
+		dao.reviewAdminUp(map);
 		
 	}
 

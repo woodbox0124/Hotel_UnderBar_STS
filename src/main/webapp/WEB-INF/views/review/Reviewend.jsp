@@ -7,10 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<%
+String hotelname = request.getParameter("hotelname");
+%>
 <c:if test="${!empty mesg }">
 	<script>
 		alert("${mesg}");
+		 opener.location.href="loginCheck/Review?hotelname=<%=hotelname%>";
 		 window.close();
 	</script>
 	<%
