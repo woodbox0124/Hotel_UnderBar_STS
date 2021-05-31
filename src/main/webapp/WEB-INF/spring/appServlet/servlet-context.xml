@@ -34,6 +34,9 @@
 <mvc:view-controller path="/notiUpdate" view-name="notiUpdate"/>
 <mvc:view-controller path="/faqWrite" view-name="faqWrite"/>
 <mvc:view-controller path="/faqInsert" view-name="faqInsert"/>
+<mvc:view-controller path="/eventWrite" view-name="eventWrite"/>
+<mvc:view-controller path="/eventInsert" view-name="eventInsert"/>
+<mvc:view-controller path="/event" view-name="event"/>
 
 <!-- web-inf 폴더는 반드시 리소스 등록 후 사용 -->
 <mvc:resources location="/WEB-INF/views/styles/" mapping="/styles/**"/>
@@ -61,6 +64,7 @@
 	
 </bean>
 <context:component-scan base-package="com.*"></context:component-scan><!-- repoistory,service, controller 생성 -->
+
 <!-- 메일 -->
 <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 	<property name="host" value="smtp.naver.com" />

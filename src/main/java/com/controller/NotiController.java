@@ -1,5 +1,7 @@
 package com.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dto.EventDTO;
+import com.dto.EventPageDTO;
 import com.dto.FaqDTO;
 import com.dto.NotiDTO;
 import com.dto.NotiPageDTO;
@@ -21,10 +25,18 @@ public class NotiController {
 	//시작점
 	@RequestMapping("/notification")
 	public ModelAndView noti_main(@RequestParam(required=false, defaultValue="1") String curPage) {
-		System.out.println("notification curpage" + curPage);
-		NotiPageDTO pDTO= nService.notiList(Integer.parseInt(curPage));	
+		//noti 불러오기 + 페이징 
+		System.out.println("공지 curpage" + curPage);
+		NotiPageDTO pDTO= nService.notiList(Integer.parseInt(curPage));
+		
+		//faq 불러오기 
+		List<FaqDTO> fList = nService.faqList();
+		System.out.println("FaqDTO : "+fList);
+		
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pDTO",pDTO);
+		mav.addObject("fList",fList);
 		mav.setViewName("notification");
 		System.out.println("notiPDTO : "+pDTO.toString());
 		return mav;			
@@ -71,6 +83,7 @@ public class NotiController {
 		return "notiRetrieve";
 	}
 	
+	
 	//FAQ글쓰기 클릭 
 	@RequestMapping("/loginCheck/faqWrite")
 	public String faq_write() {
@@ -80,9 +93,12 @@ public class NotiController {
 	//FAQ글쓰기 
 	@RequestMapping("/loginCheck/faqInsert")
 	public String faq_insert(FaqDTO dto) {
+		System.out.println("FAQ DTO"+dto);
 		nService.faqInsert(dto);
 		return "redirect:../notification";
 	}
+	
+	
 	
 	
 	

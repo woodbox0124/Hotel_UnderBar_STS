@@ -8,6 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dto.EventDTO;
+import com.dto.EventPageDTO;
 import com.dto.FaqDTO;
 import com.dto.NotiDTO;
 import com.dto.NotiPageDTO;
@@ -22,10 +24,12 @@ public class NotiDAO {
 		NotiPageDTO pDTO = new NotiPageDTO();
 		int perPage = pDTO.getPerPage(); //15
 		int offset = (curPage -1)*perPage; //0
-		List<NotiDTO> list = session.selectList("NotiMapper.notiList",new RowBounds(offset,perPage));
+		List<NotiDTO> list = session.selectList("NotiMapper.notiList",null,new RowBounds(offset,perPage));
 		pDTO.setCurPage(curPage);
 		pDTO.setList(list);
 		pDTO.setTotalCount(totalCount());
+		System.out.println(perPage);
+		System.out.println(offset);
 		System.out.println("NotiPageDTO : " + pDTO.toString());
 		return pDTO;
 	}
@@ -67,6 +71,11 @@ public class NotiDAO {
 	public void faqInsert(FaqDTO dto) {
 		session.insert("NotiMapper.faqInsert",dto);
 		
+	}
+
+	public List<FaqDTO> faqList() {
+		List<FaqDTO> fList = session.selectList("NotiMapper.faqList");
+		return fList;
 	}
 
 	

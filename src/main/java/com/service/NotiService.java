@@ -1,11 +1,14 @@
 package com.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.NotiDAO;
-import com.dto.BoardPageDTO;
+import com.dto.EventDTO;
+import com.dto.EventPageDTO;
 import com.dto.FaqDTO;
 import com.dto.NotiDTO;
 import com.dto.NotiPageDTO;
@@ -52,6 +55,13 @@ public class NotiService {
 	public void faqInsert(FaqDTO dto) {
 		dao.faqInsert(dto);
 	}
+
+	public List<FaqDTO> faqList() {
+		List<FaqDTO> fList = dao.faqList();
+		return fList;
+	}
+
+	
 
 	
 	

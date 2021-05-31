@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="com.dto.NotiPageDTO" %>
+<%@ page import="com.dto.EventPageDTO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +32,20 @@ rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbi
 	a:hover {
 		text-decoration:underline;
 	}
+	.card{
+		width:280px;
+		float:left;
+		margin:10px;
+	}
+	
+	.outer::after{
+		content:"";
+		display:block;
+		clear:both;
+	}
+	#paging{
+		text-align:center;
+	}
 	
 		
 </style>
@@ -44,9 +59,6 @@ rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbi
 	  </li>
 	  <li class="nav-item" role="presentation">
 	    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">FAQ</button>
-	  </li>
-	  <li class="nav-item" role="presentation">
-	    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">이벤트</button>
 	  </li>
 	</ul>
 <!--  탭별 내용  -->
@@ -74,6 +86,7 @@ rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbi
 				
 			</table>
 			<div style="text-align: center;">
+			
 			<% 
 			NotiPageDTO pDTO = (NotiPageDTO)request.getAttribute("pDTO");
 			int curPage = pDTO.getCurPage();//현재페이지
@@ -104,22 +117,22 @@ rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbi
 	
 		<!-- FAQ -->
 		<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+		<c:forEach var="fDTO" items="${fList}">
 			<div class="accordion" id="accordionExample">
 	  			<div class="accordion-item">
 		    		<h2 class="accordion-header" id="headingOne">
-			      		<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-			       			FAQ1
+			      		<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#${fDTO.code}" aria-expanded="false" aria-controls="collapseOne">
+			       			${fDTO.subject }
 			      		</button>
 		    		</h2>
-		    		<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+		    		<div id="${fDTO.code}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 		      			<div class="accordion-body">
-		       				This is the first item's accordion body. 
-		       				It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. 
-		       				These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+		       				${fDTO.content }
 						</div>
 		   			</div>
 				</div>
 	  		</div>
+	  	</c:forEach>
 			<div style="text-align: center;">
 					  
 			<c:if test="${login.u_id eq 'admin'}">
@@ -130,17 +143,6 @@ rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbi
 		
 			</div>
 		</div>
-		
-		<!-- 이벤트  -->
-		<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-				<div style="text-align: center;">
-				</div>
-				<c:if test="${login.u_id eq 'admin'}">
-					<div id="write">
-					<a class="btn btn-outline-secondary" href="loginCheck/notiWrite">글쓰기</a>	
-				</div>
-			</c:if>
-		</div><!-- end 이벤트 -->
 	</div><!-- end myContent  -->
 </div><!-- end wrapper -->
 </body>

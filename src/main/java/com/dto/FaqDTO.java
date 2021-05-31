@@ -5,7 +5,7 @@ import org.apache.ibatis.type.Alias;
 @Alias("FaqDTO")
 public class FaqDTO {
 
-	private int num;
+	private String code;
 	private String subject;
 	private String content;
 	
@@ -13,12 +13,12 @@ public class FaqDTO {
 		super();
 	}
 
-	public int getNum() {
-		return num;
+	public String getCode() {
+		return code;
 	}
 
-	public void setNum(int num) {
-		this.num = num;
+	public void setNum(String code) {
+		this.code = code;
 	}
 
 	public String getSubject() {
@@ -37,16 +37,16 @@ public class FaqDTO {
 		this.content = content;
 	}
 
-	public FaqDTO(int num, String subject, String content) {
+	public FaqDTO(String code, String subject, String content) {
 		super();
-		this.num = num;
+		this.code = code;
 		this.subject = subject;
 		this.content = content;
 	}
 
 	@Override
 	public String toString() {
-		return "FaqDTO [num=" + num + ", subject=" + subject + ", content=" + content + "]";
+		return "FaqDTO [code=" + code + ", subject=" + subject + ", content=" + content + "]";
 	}
 	
 }

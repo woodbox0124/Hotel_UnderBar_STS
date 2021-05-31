@@ -27,6 +27,9 @@ public class BoardDAO {
 		pDTO.setCurPage(curPage);
 		pDTO.setList(list);
 		pDTO.setTotalCount(totalCount(map));
+		System.out.println(perPage);
+		System.out.println(offset);
+		
 		System.out.println("BoardPageDTO : " + pDTO);
 		return pDTO;
 	}

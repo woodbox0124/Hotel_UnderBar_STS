@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="NotiMapper">
 
 	<!-- 공지사항 목록 -->
-	<select id="notiList" resultType="NotiDTO" parameterType="int">
+	<select id="notiList" resultType="NotiDTO">
 		select * from noti order by num desc
 	</select>
 	<!-- 페이징을 위한 전체목록 개수 -->
@@ -50,14 +50,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- FAQ 작성 -->
 	<insert id="faqInsert" parameterType="FaqDTO">
-		insert into 
-		values(num=#{faq_seq.nextval}, subject=#{subject}, content=#{content})
+		insert into faq 
+		values('A'||TO_CHAR(faq_seq.nextval), #{subject}, #{content})
 	</insert>
 	<!-- FAQ 조회 -->
-		<!-- clob처리를 위한 코드 
-		<resultMap id="faqContent" type="NotiDTO" >
-	    <result property="content" column="content" jdbcType="CLOB" javaType="java.lang.String" />
-		</resultMap> -->
+		<!-- clob처리를 위한 코드 -->
+		<resultMap id="faqContent" type="FaqDTO" >
+	    	<result property="content" column="content" jdbcType="CLOB" javaType="java.lang.String" />
+		</resultMap>
+	<select id="faqList" resultType="list" resultMap="faqContent">
+		select * from faq
+	</select>
+	
+
 
 
 </mapper>
