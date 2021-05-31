@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dto.HotelDTO;
 import com.dto.PageDTO;
+import com.dto.RatingDTO;
 
 @Repository
 public class HotelDAO {
@@ -46,4 +47,9 @@ public class HotelDAO {
 		System.out.println("totalCount\t"+num);
 		return num; 
 	}
+	public List<RatingDTO> rating() {
+		List<RatingDTO> list=template.selectList("HotelMapper.rating");
+		return list;
+	}
+	
 }

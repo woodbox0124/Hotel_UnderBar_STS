@@ -25,9 +25,14 @@
 font-size: 13px;
 }
 #title{
-font-size: 13px;}
+font-size: 13px;
+margin-left: 20px;}
+
 #content{
-font-size: 13px;}
+font-size: 13px;
+margin-left: 20px;
+width: 400px;}
+
 #u_id{
 font-size: 13px;
 }
@@ -40,6 +45,45 @@ height: 80px;
 width: 800px;
 margin: auto;
 }
+#top{
+font-size: 20px;
+}
+.aa{
+margin-left: 20px;
+}
+#staraa{
+margin-left: 20px;
+}
+#btn:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+#btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+#btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: ;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-left: 20px;
+}
+
 
 </style>
 </head>
@@ -48,12 +92,13 @@ margin: auto;
 %>
 
 <div id="jumbotron" class="jumbotron">
-<p style="font-size: 30px;">호텔에 대한 리뷰를 남겨주세요!</p>
+<p  id="top">호텔에 대한 리뷰를 남겨주세요!</p>
 </div>
 
 <form action="Reviewupload" method="POST" enctype="multipart/form-data" >
 <input type="hidden" id="hotelname" name="hotelname" value="<%=hotelname%>">
 <input type="hidden" name="u_id" id="u_id" value="${login.u_name}"><br>
+<div id=staraa>
 <a id="aa">평점</a>:<select id="star" name="star">
 	<option value="1">1</option>
 	<option value="2">2</option>
@@ -61,6 +106,7 @@ margin: auto;
 	<option value="4">4</option>
 	<option value="5">5</option>
 </select>
+</div>
  <input type="text" name="title" id="title" class="form-control mt-4 mb-2"
 		placeholder="제목을 입력해주세요." required
 	>
@@ -72,8 +118,8 @@ margin: auto;
 <input type="file" name="theFile" id="theFile">
 <br>
 <br>
-<input type="reset" class="btn btn-primary"  value="초기화">
-<input type="submit" class="btn btn-primary" value="리뷰작성"/>
+<input type="reset" id="btn"  value="초기화">
+<input type="submit" id="btn" value="리뷰작성"/>
 </form>
 </body>
 </html>

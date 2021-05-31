@@ -55,7 +55,8 @@
 				<value>com.dto.FaqDTO</value>							
 				<value>com.dto.EventDTO</value>							
 				<value>com.dto.EventPageDTO</value>							
-				<value>com.dto.CommentDTO</value>							
+				<value>com.dto.CommentDTO</value>	
+				<value>com.dto.RatingDTO</value>						
 			</list>		
 		</property>
 	</bean>	

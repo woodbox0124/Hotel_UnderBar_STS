@@ -162,7 +162,7 @@ $(function(){ //리뷰쓰기 팝업창구현
 	 $("#a").click(function(){
 		 var url= "ReviewWrite?hotelname=<%=hotelname%>";
 				var name = "popup test"
-				var option = "width = 500, height=500, top=100,left=200";
+				var option = "width = 500, height=580, top=100,left=200";
 				window.open(url, name, option);
 			})
 		});
