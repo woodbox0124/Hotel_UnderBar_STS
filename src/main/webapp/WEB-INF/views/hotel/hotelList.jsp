@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.dto.HotelDTO"%>
+<%@ page import="com.dto.RatingDTO" %>
 <%@ page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -343,15 +344,27 @@ String guest = (String)session.getAttribute("guest");%>
 				double rating = dto.getRating();
 				String hotel_img = dto.getHotel_img();
 				String hotel_img_real = dto.getHotel_img_real();
+				
+				
+				List<RatingDTO> rlist=(List<RatingDTO>)request.getAttribute("rating");
+				
 				%>
+
 
 				<div class="card">
 					<img src="images/hotel/<%= hotel_img %>.jpg" class="card-img-top"
 						alt="...">
 					<div class="card-body">
-						<h5 class="card-title"><%= hotelname %></h5>
+					<%
+						for (RatingDTO ratingDTO : rlist) {
+						%>
 						<p class="card-text">
-							<span style="color: red;"><%= rating %></span> <span id="place"><%= place %></span>
+						<%if(ratingDTO.getHotelname().equals(hotelname)) {%>
+							<span style="color: red;">평점:<%=ratingDTO.getRating() %></span> 
+							<%} %>
+							<%} %>
+							<h5 class="card-title"><%= hotelname %></h5>
+							<span id="place"><%= place %></span>
 						</p>
 						<a href="loginCheck/Review?hotelname=<%=hotelname%>">리뷰보기</a>
 						<a
@@ -362,6 +375,8 @@ String guest = (String)session.getAttribute("guest");%>
 				<%
 				}
 				%>
+				
+				
 		<div class="page">
 		<%
 			int curPage = pDTO.getCurPage();//현재페이지
