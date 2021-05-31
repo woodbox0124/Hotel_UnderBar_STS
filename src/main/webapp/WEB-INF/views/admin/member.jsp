@@ -1,3 +1,4 @@
+<%@page import="com.dto.AdminMemberPageDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -43,11 +44,13 @@ $(document).ready(function() {
 	});//end #delete
 		 $(".update").click(function(){
 			 console.log("수정버튼 클릭");
-			 var url= "loginCheck/update";
+			 var u_id= $(this).attr("data-id");
+			 console.log(u_id);
+			 var url= "loginCheck/update?u_id="+u_id;
 					var name = "popup test"
 					var option = "width = 500, height=500, top=100,left=200";
 					window.open(url, name, option);
-				})
+				})//end update
 			
 });//end jQuery
 </script>
@@ -111,7 +114,7 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 	<table id="search" class="table">
 		<tr>
 		 <td colspan="7">
-		  <form action="loginCheck/searchName" class="searchbar">
+		  <form action="loginCheck/adminMember" class="searchbar">
 		   <select name="searchName">
 		    <option value="name">이름</option>
 		    <option value="id">아이디</option>
@@ -130,8 +133,8 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 			<td style="color: white;" width="50">수정</td>
 			<td style="color: white;" width="50">탈퇴</td>
 		</tr>
-		 <c:if test="${!empty member}">
-		 <c:forEach var ="item" items="${member}">			
+		 <c:if test="${!empty ampDTO}">
+		 <c:forEach var ="item" items="${ampDTO.list}">			
 		<tbody>
 		<tr>
 			<td class="normal">${item.u_name}</td>
@@ -139,14 +142,30 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 			<td class="normal">${item.u_pw}</td>
 			<td class="normal">${item.u_phone}</td>
 			<td class="normal">${item.u_email}</td>
-			<td class="normal"><input type="button" value="수정" class="btn btn-primary update" data-id="${list.u_id}"></td>
-			<td class="normal"><input type="button" value="탈퇴" class="btn btn-primary delete" data-id="${list.u_id}"></td>			
+			<td class="normal"><input type="button" value="수정" class="btn btn-primary update" data-id="${item.u_id}"></td>
+			<td class="normal"><input type="button" value="탈퇴" class="btn btn-primary delete" data-id="${item.u_id}"></td>			
 		</tr>			
 		</tbody>
 		</c:forEach>
 	</c:if>
 	</table>
 		<div style="text-align: center;">
+				   <%
+				   AdminMemberPageDTO ampDTO = (AdminMemberPageDTO)request.getAttribute("ampDTO");
+			   String searchName = (String)request.getAttribute("searchName");
+				String searchValue = (String)request.getAttribute("searchValue");
+			        int curPage = ampDTO.getCurPage();//현재페이지
+			        int perPage = ampDTO.getPerPage();//페이지당 게시물수 
+					int totalCount = ampDTO.getTotalCount();//전체 레코드 수
+					int totalPage = totalCount/perPage;  //필요한 페이지 
+					if(totalCount%perPage!=0) totalPage++;
+			        for(int i=1; i<= totalPage; i++){
+			          	if(i== curPage){
+			          		out.print(i+"&nbsp;");
+			          	}else{
+	out.print("<a href='loginCheck/adminMember?curPage="+i+"&searchName="+searchName+"&searchValue="+searchValue+"'>"+i+"</a>&nbsp;"); 		          	}
+			        }//end for
+			   %>
 			   </div><br>
 </div>
 </body>

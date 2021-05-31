@@ -56,6 +56,7 @@
 				<value>com.dto.EventDTO</value>							
 				<value>com.dto.EventPageDTO</value>							
 				<value>com.dto.CommentDTO</value>							
+				<value>com.dto.AdminMemberPageDTO</value>							
 			</list>		
 		</property>
 	</bean>	
