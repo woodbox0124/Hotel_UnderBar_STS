@@ -87,3 +87,33 @@ content clob,
 regdate date,
 hit number(5) default 0 not null
 );
+
+--faq 테이블
+create table faq(
+		code varchar2(20) primary key not null,
+    subject varchar2(100) not null,
+    content clob
+);
+create sequence faq_seq start with 1 increment by 1 nocache;
+
+
+--event 테이블 
+create table event(
+code varchar2(20) primary key not null,
+subject varchar2(100) not null,
+author varchar2(30) not null,
+content clob,
+eventImg varchar2(200),
+regdate date
+);
+create sequence event_seq start with 1 increment by 1 nocache;
+
+--댓글테이블 
+create table comments(
+c_code varchar2(20) primary key not null,
+e_code varchar2(20) constraint e_code_FK references event(code) not null,
+comments clob not null,
+writer varchar2(30) not null,
+regdate date
+);
+create sequence com_seq start with 1 increment by 1 nocache;

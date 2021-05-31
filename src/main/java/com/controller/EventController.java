@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dto.CommentDTO;
@@ -23,7 +23,7 @@ import com.dto.EventDTO;
 import com.dto.EventPageDTO;
 import com.service.EventService;
 
-@RestController
+
 @Controller
 public class EventController {
 	@Autowired
@@ -67,6 +67,7 @@ public class EventController {
 		return mav;			
 	}
 	
+	@ResponseBody
 	@RequestMapping("/event/addComment")
 	public String ajax_addComment(CommentDTO cDTO, HttpServletRequest request){
 		
@@ -81,6 +82,8 @@ public class EventController {
 		return "success";
 		
 	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/event/commentList", produces="application/json; charset=utf8")
 	public ResponseEntity ajax_commentList(CommentDTO commentDTO, HttpServletRequest request) throws Exception{
 		
@@ -98,6 +101,7 @@ public class EventController {
                 map.put("c_code", cList.get(i).getC_code());
                 map.put("comment", cList.get(i).getComments());
                 map.put("writer", cList.get(i).getWriter());
+                map.put("regdate", cList.get(i).getRegdate());
                 
                 hmList.add(map);
             }

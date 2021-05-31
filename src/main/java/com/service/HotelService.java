@@ -1,10 +1,13 @@
 package com.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.HotelDAO;
 import com.dto.PageDTO;
+import com.dto.RatingDTO;
 
 @Service
 public class HotelService {
@@ -21,4 +24,11 @@ public class HotelService {
 		PageDTO PDTO=dao.hotelList1(curPage);
 		return PDTO;
 	}
+
+	public List<RatingDTO> rating() {
+		List<RatingDTO> list=dao.rating();
+		return list;
+	}
+
+	
 }
