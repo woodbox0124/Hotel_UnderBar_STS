@@ -203,7 +203,7 @@ function getCommentList(){
                 
                 for(i=0; i<data.length; i++){
                     html += "<div>";
-                    html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong></h6>";
+                    html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong>&nbsp;&nbsp;&nbsp;<span>"+data[i].regdate+"</h6>";
                     html += data[i].comment + "<tr><td></td></tr>";
                     html += "</table></div>";
                     html += "</div>";
