@@ -123,7 +123,7 @@ th{
 						<span><strong>Comments</strong></span> <span id="cCnt"></span>
 					</div>
 				<div>
-				<c:if test="${!login.u_id eq null }">
+				<%-- <c:if test="${!login.u_id eq null }"> --%>
 					<table class="table">                    
 						<tr>
 							<td>
@@ -135,7 +135,7 @@ th{
 						   	</td>
 						</tr>
 					</table>
-					</c:if>
+					<%-- </c:if> --%>
 				</div>
 			</div>
 			<input type="hidden" id="e_code" name="e_code" value="${eDTO.code }" />        
