@@ -16,7 +16,7 @@
 	integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
 	crossorigin="anonymous"></script>
 <meta charset="UTF-8">
-<title>회원관리</title>
+<title>관리자 회원관리</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -136,7 +136,7 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 		 <c:if test="${!empty ampDTO}">
 		 <c:forEach var ="item" items="${ampDTO.list}">			
 		<tbody>
-		<tr>
+		<tr class="tr">
 			<td class="normal">${item.u_name}</td>
 			<td class="normal">${item.u_id}</td>
 			<td class="normal">${item.u_pw}</td>
@@ -151,9 +151,9 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 	</table>
 		<div style="text-align: center;">
 				   <%
-				   AdminMemberPageDTO ampDTO = (AdminMemberPageDTO)request.getAttribute("ampDTO");
-			   String searchName = (String)request.getAttribute("searchName");
-				String searchValue = (String)request.getAttribute("searchValue");
+				   AdminMemberPageDTO ampDTO = (AdminMemberPageDTO)session.getAttribute("ampDTO");
+			   String searchName = (String)session.getAttribute("searchName");
+				String searchValue = (String)session.getAttribute("searchValue");
 			        int curPage = ampDTO.getCurPage();//현재페이지
 			        int perPage = ampDTO.getPerPage();//페이지당 게시물수 
 					int totalCount = ampDTO.getTotalCount();//전체 레코드 수
