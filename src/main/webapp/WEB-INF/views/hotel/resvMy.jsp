@@ -62,6 +62,14 @@
 			$("#form").attr("action", "loginCheck/resvMy");
 			$("#form").submit();
 		})
+		$(".write").click(function(){ //리뷰쓰기 팝업창구현
+		 var hotelname = $(this).attr("data-yyy");
+		 console.log(hotelname);
+		 var url= "ReviewWrite?hotelname="+hotelname;
+				var name = "popup test"
+				var option = "width = 500, height=500, top=100,left=200";
+				window.open(url, name, option);
+			})
 	});
 	
 	window.onload = function() {
@@ -152,21 +160,11 @@
 										style="margin-bottom: 15px" data-xxx="<%=seq%>">취소</button>
 								</td>
 								<td>
-									<button type="button" id="a" class="btn btn-outline-primary"
-										style="margin-bottom: 15px">리뷰쓰기</button>
+									<button type="button"  class="btn btn-outline-primary write"
+										style="margin-bottom: 15px" data-yyy="<%=hotelname%>">리뷰쓰기</button>
 								</td>
 							</tr>
-							<script type="text/javascript">
 
-$(function(){ //리뷰쓰기 팝업창구현
-	 $("#a").click(function(){
-		 var url= "ReviewWrite?hotelname=<%=hotelname%>";
-				var name = "popup test"
-				var option = "width = 500, height=580, top=100,left=200";
-				window.open(url, name, option);
-			})
-		});
-	</script>
 							<%
 		}
 	%>

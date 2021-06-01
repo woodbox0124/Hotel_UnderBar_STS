@@ -54,4 +54,9 @@ public class ReviewDAO {
 		session.update("ReviewMapper.reviewAdminUp", map);
 		
 	}
+
+	public void reviewAnswerUp(HashMap<Object, Object> map) {
+		session.insert("ReviewMapper.reviewAnswerUp", map);
+		
+	}
 }
