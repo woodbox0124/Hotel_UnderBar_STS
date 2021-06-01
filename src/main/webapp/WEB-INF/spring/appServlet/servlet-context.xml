@@ -35,7 +35,21 @@
 <mvc:view-controller path="/faqWrite" view-name="faqWrite"/>
 <mvc:view-controller path="/faqInsert" view-name="faqInsert"/>
 <mvc:view-controller path="/admin/update" view-name="admin/update"/>
+
 <mvc:view-controller path="/reviewlist" view-name="reviewlist"/>
+<mvc:view-controller path="/review/ReviewWrite" view-name="review/ReviewWrite"/>
+<mvc:view-controller path="/review/ReviewAnswer" view-name="review/ReviewAnswer"/>
+<mvc:view-controller path="/review/Reviewend" view-name="review/Reviewend"/>
+<mvc:view-controller path="/review/ReviewAdminUpdate" view-name="review/ReviewUpdate"/>
+<mvc:view-controller path="/review/ReviewUpdate" view-name="review/ReviewUpdate"/>
+<mvc:view-controller path="/ReviewUpdateUp" view-name="ReviewUpdateUp"/>
+<mvc:view-controller path="/ReviewAdminUp" view-name="ReviewAdminUp"/>
+<mvc:view-controller path="/ReviewAnswerUp" view-name="ReviewAnswerUp"/>
+<mvc:view-controller path="/ReviewOrder" view-name="ReviewOrder"/>
+<mvc:view-controller path="/ReviewNew" view-name="ReviewNew"/>
+<mvc:view-controller path="/ReviewDelete" view-name="ReviewDelete"/>
+<mvc:view-controller path="/ReviewAdminDelete" view-name="ReviewAdminDelete"/>
+
 <mvc:view-controller path="/eventWrite" view-name="eventWrite"/>
 <!-- web-inf 폴더는 반드시 리소스 등록 후 사용 -->
 <mvc:resources location="/WEB-INF/views/styles/" mapping="/styles/**"/>

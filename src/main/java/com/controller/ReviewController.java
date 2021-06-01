@@ -28,25 +28,25 @@ public class ReviewController {
 	@Autowired
 	ReviewService service;
 
-	@RequestMapping("/ReviewWrite") //리뷰쓰기
+	@RequestMapping("/loginCheck/ReviewWrite") //리뷰쓰기
 	public String reviewwirte(@RequestParam("hotelname") String hotelname,RedirectAttributes attr){
 		attr.addFlashAttribute("hotelname",hotelname);
-		return "review/ReviewWrite";
+		return "redirect:../review/ReviewWrite";
 	}
-	@RequestMapping("/ReviewAdminUpdate") // 어드민 리뷰 수정
+	@RequestMapping("/loginCheck/ReviewAdminUpdate") // 어드민 리뷰 수정
 	public String reviewadminup(int num,RedirectAttributes attr){
 		attr.addFlashAttribute("num", num);
-		return "review/ReviewAdminUpdate";
+		return "redirect:../review/ReviewAdminUpdate";
 	}
-	@RequestMapping("/ReviewUpdate") //리뷰 수정
+	@RequestMapping("/loginCheck/ReviewUpdate") //리뷰 수정
 	public String reviewupdate(int num,RedirectAttributes attr){
 		attr.addFlashAttribute("num", num);
-		return "review/ReviewUpdate";
+		return "redirect:../review/ReviewUpdate";
 	}
-	@RequestMapping("/ReviewAnswer") // 답글 쓰기
+	@RequestMapping("/loginCheck/ReviewAnswer") // 답글 쓰기
 	public String reviewanswer(int num,RedirectAttributes attr){
 		attr.addFlashAttribute("num", num);
-		return "review/ReviewAnswer";
+		return "redirect:../review/ReviewAnswer";
 	}
 	@RequestMapping(value="/Reviewupload",method = RequestMethod.POST) //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
 	public String reviewinsert(UploadDTO dto,RedirectAttributes attr,HttpServletRequest request) { //자동주입
@@ -93,7 +93,7 @@ public class ReviewController {
 		
 	}
 	
-	@RequestMapping(value="/ReviewUpdateUp",method = RequestMethod.POST) //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
+	@RequestMapping(value="/loginCheck/ReviewUpdateUp",method = RequestMethod.POST) //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
 	public String reviewupdateup(String hotelname, int num, UploadDTO dto, HttpSession session,HttpServletRequest request) { //자동주입
 		
 		String content=dto.getContent();
@@ -109,10 +109,10 @@ public class ReviewController {
 		request.setAttribute("hotelname", hotelname);
 		request.setAttribute("mesg", "수정이 완료되었습니다");
 		
-		return "review/Reviewend";
+		return "redirect:../review/Reviewend";
 		
 	}
-	@RequestMapping(value="/ReviewAdminUp",method = RequestMethod.POST) //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
+	@RequestMapping(value="/loginCheck/ReviewAdminUp",method = RequestMethod.POST) //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
 	public String reviewadminup(String hotelname, int num, UploadDTO dto, HttpSession session,HttpServletRequest request) { //자동주입
 		
 		String content=dto.getContent();
@@ -127,11 +127,11 @@ public class ReviewController {
 		request.setAttribute("hotelname", hotelname);
 		 request.setAttribute("mesg", "수정이 완료되었습니다");
 		
-		return "review/Reviewend";
+		return "redirect:../review/Reviewend";
 		
 	}
 	
-	@RequestMapping(value="/ReviewAnswerUp",method = RequestMethod.POST) //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
+	@RequestMapping(value="/loginCheck/ReviewAnswerUp",method = RequestMethod.POST) //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
 	public String reviewanswer(String u_id, String hotelname, int num, UploadDTO dto, HttpSession session,HttpServletRequest request) { //자동주입
 		
 		String content=dto.getContent();

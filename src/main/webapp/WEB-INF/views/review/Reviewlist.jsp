@@ -151,31 +151,31 @@ $(function () {
 		})
 	})
 function reviewUpdate(num) {
-	var url= "ReviewUpdate?hotelname=<%=hotelname%>&num="+num;
+	var url= "loginCheck/ReviewUpdate?hotelname=<%=hotelname%>&num="+num;
 	var name = "popup test"
 	var option = "width = 500, height=500, top=100,left=200";
 	window.open(url, name, option);
 }
 function reviewAdminUpdate(num) {
-	var url= "ReviewAdminUpdate?hotelname=<%=hotelname%>&num="+num;
+	var url= "loginCheck/ReviewAdminUpdate?hotelname=<%=hotelname%>&num="+num;
 	var name = "popup test"
 	var option = "width = 500, height=500, top=100,left=200";
 	window.open(url, name, option);
 }	
 function reviewAnswer(num) {
-	var url= "ReviewAnswer?hotelname=<%=hotelname%>&num="+num;
+	var url= "loginCheck/ReviewAnswer?hotelname=<%=hotelname%>&num="+num;
 	var name = "popup test"
 	var option = "width = 500, height=500, top=100,left=200";
 	window.open(url, name, option);
 }	
 function reviewDelete(e, origin) {
 	e.preventDefault();
-	location.href="loginCheck/ReviewDelete?origin="+origin;
+	location.href="loginCheck/loginCheck/ReviewDelete?origin="+origin;
 	alert("리뷰가 삭제 되었습니다");
 }
 function reviewAdminDelete(e, num) {
 	e.preventDefault();
-	location.href="loginCheck/ReviewAdminDelete?num="+num;
+	location.href="loginCheck/loginCheck/ReviewAdminDelete?num="+num;
 	alert("리뷰가 삭제 되었습니다");
 }
 </script>
