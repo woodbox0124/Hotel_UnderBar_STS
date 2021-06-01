@@ -6,7 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 회원 정보 수정</title>
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- JQuery -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -15,29 +18,53 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/update.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/font.css">
 <script type="text/javascript">
-
-		/* opener.document.location.reload();
-		self.close(); */
+$(document).ready(function() {
+	$(".update").click(function() {
+		var u_id=$("#u_id").val();
+		var u_pw=$("#u_pw").val();
+		var u_name=$("#u_name").val();
+		var u_phone=$("#u_phone").val();
+		var u_email=$("#u_email").val();
+		$.ajax({
+			url: "../loginCheck/AdminMemberUpdate",
+			type:"post",
+			dataType:"text",
+			data: {
+				u_id:u_id,
+				u_pw:u_pw,
+				u_name:u_name,
+				u_phone:u_phone,
+				u_email:u_email
+			},
+			success: function(data, status, xhr) {
+				console.log("success");
+				alert("회원정보 수정이 완료되었습니다.");
+				window.close();
+			},
+			error: function(xhr, status, error) {
+				console.log(error);
+			}			
+		});//end ajax
+	});		
+});
 	</script> 
 </head>
 <body>
 <div class="main">
-<form action="../loginCheck/AdminMemberUpdate">
-<input type="hidden" name="u_id" value="${mdto.u_id}">
+<input type="hidden" id="u_id" value="${mdto.u_id}">
 아이디: ${mdto.u_id}<br><br>
 
-이름: <input type="text" name="u_name" value="${mdto.u_name}"/><br><br>
+이름: <input type="text" id="u_name" value="${mdto.u_name}"/><br><br>
 
-비밀번호: <input type="text" name="u_pw" value="${mdto.u_pw}"/><br><br>
+비밀번호: <input type="text" id="u_pw" value="${mdto.u_pw}"/><br><br>
 
-전화번호:<input type="text" name="u_phone" value="${mdto.u_phone}"/><br><br>
+전화번호:<input type="text" id="u_phone" value="${mdto.u_phone}"/><br><br>
 
-이메일:<input type="text" name="u_email" value="${mdto.u_email}"/><br><br>
+이메일:<input type="text" id="u_email" value="${mdto.u_email}"/><br><br>
 
 <div id="test">
-<input type="submit" value="수정" class="btn btn-primary">
+<input type="button" value="수정" class="btn btn-primary update">
 </div>
-</form>
 </div>
 </body>
 </html>

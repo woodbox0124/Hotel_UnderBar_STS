@@ -3,20 +3,21 @@ package com.controller;
 import java.util.HashMap;
 import java.util.List;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestAttribute;
+
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.servlet.ModelAndView;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.AdminMemberPageDTO;
-import com.dto.BoardPageDTO;
+
 import com.dto.MemberDTO;
 import com.service.AdminService;
 import com.service.MemberService;
@@ -32,7 +33,7 @@ public class AdminController {
 	@RequestMapping("/loginCheck/adminMember")
 	public String member(@RequestParam(required=false, defaultValue="1") String curPage ,
 			 @RequestParam(required=false, defaultValue="id") String searchName,
-				@RequestParam(required=false, defaultValue="") String searchValue, RedirectAttributes attr)throws Exception {
+				@RequestParam(required=false, defaultValue="") String searchValue, HttpSession session)throws Exception {
 		System.out.println(curPage);
 		System.out.println(searchName);
 		System.out.println(searchValue);
@@ -42,7 +43,7 @@ public class AdminController {
 		System.out.println(map);
 		AdminMemberPageDTO ampDTO= service.adminMember(Integer.parseInt(curPage),map);	
 		System.out.println("Controller"+ampDTO);
-		attr.addFlashAttribute("ampDTO",ampDTO);
+		session.setAttribute("ampDTO",ampDTO);
 		return "redirect:../adminMember";
 	}
 	//호텔관리 페이지로 이동 합니다.
@@ -82,17 +83,21 @@ public class AdminController {
 		return "redirect:../admin/update";
 	}
 	
-	@RequestMapping("/loginCheck/AdminMemberUpdate")
-	public @ResponseBody void AdminMemberUpdate(MemberDTO mdto) {			
+	@RequestMapping(value = "/loginCheck/AdminMemberUpdate", method = RequestMethod.POST)
+	public @ResponseBody void AdminMemberUpdate(@RequestParam("u_id") String u_id,
+			@RequestParam("u_pw") String u_pw,
+			@RequestParam("u_name") String u_name,
+			@RequestParam("u_phone") String u_phoen,
+			@RequestParam("u_email") String u_email) {			
 			MemberDTO dto1 = new MemberDTO();
-			dto1.setU_id(mdto.getU_id());
-			dto1.setU_pw(mdto.getU_pw());
-			dto1.setU_name(mdto.getU_name());
-			dto1.setU_phone(mdto.getU_phone());
-			dto1.setU_email(mdto.getU_email());		
+			dto1.setU_id(u_id);
+			dto1.setU_pw(u_pw);
+			dto1.setU_name(u_name);
+			dto1.setU_phone(u_phoen);
+			dto1.setU_email(u_email);		
 			System.out.println(dto1);
 			mService.memberUpdate(dto1);
-			System.out.println("수정완료    "+mdto);
+			System.out.println("수정완료    "+dto1);
 	}
 
 }
