@@ -160,7 +160,7 @@
 										style="margin-bottom: 15px" data-xxx="<%=seq%>">취소</button>
 								</td>
 								<td>
-									<button type="button" id="a" class="btn btn-outline-primary write"
+									<button type="button"  class="btn btn-outline-primary write"
 										style="margin-bottom: 15px" data-yyy="<%=hotelname%>">리뷰쓰기</button>
 								</td>
 							</tr>

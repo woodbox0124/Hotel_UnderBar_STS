@@ -64,6 +64,11 @@ HotelService service;
 		}else {
 			pDTO=service.hotelList1(Integer.parseInt(curPage));
 		}
+		 List<RatingDTO> list=service.rating();
+			for (RatingDTO ratingDTO : list) {
+				System.out.println(ratingDTO.getHotelname()+" "+ratingDTO.getRating());
+			}
+		 request.setAttribute("rating", list); //호텔별 평점평균
 		request.setAttribute("pDTO", pDTO);
 		session.setAttribute("location", location);
 		
