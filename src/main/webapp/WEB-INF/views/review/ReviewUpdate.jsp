@@ -21,10 +21,10 @@
 </head>
 <body>
 <%
-int num =Integer.parseInt(request.getParameter("num"));
+int num = Integer.parseInt(request.getParameter("num"));
 String hotelname = request.getParameter("hotelname");
 %>
-<form action="loginCheck/ReviewUpdateUp" method="POST" enctype="multipart/form-data" >
+<form action="ReviewUpdateUp" method="POST" enctype="multipart/form-data" >
 <input type="hidden" id="num" name="num" value="<%=num%>">
 <input type="hidden" id="hotelname" name="hotelname" value="<%=hotelname%>">
 

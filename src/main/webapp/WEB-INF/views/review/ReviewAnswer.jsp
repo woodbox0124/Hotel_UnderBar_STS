@@ -38,7 +38,7 @@ margin: auto;
 </style>
 </head>
 <body>
-<%int num =Integer.parseInt(request.getParameter("num"));
+<%int num = Integer.parseInt(request.getParameter("num"));
 String hotelname = request.getParameter("hotelname");
 %>
 
@@ -46,7 +46,7 @@ String hotelname = request.getParameter("hotelname");
 <p style="font-size: 30px;">답글 작성</p>
 </div>
 
-<form action="loginCheck/ReviewAnswerUp" method="POST" enctype="multipart/form-data" >
+<form action="ReviewAnswerUp" method="POST" enctype="multipart/form-data" >
 <input type="hidden" id="num" name="num" value="<%=num%>">
 <input type="hidden" id="hotelname" name="hotelname" value="<%=hotelname%>">
 <input type="hidden" name="u_id" id="u_id" value="${login.u_name}"><br>
