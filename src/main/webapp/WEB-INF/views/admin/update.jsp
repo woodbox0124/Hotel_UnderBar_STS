@@ -37,17 +37,25 @@ $(document).ready(function() {
 				u_email:u_email
 			},
 			success: function(data, status, xhr) {
-				console.log("success");
-				alert("회원정보 수정이 완료되었습니다.");
+				console.log(data);
+				opener.$(".name"+u_id).text(u_name);
+				opener.$(".pw"+u_id).text(u_pw);
+				opener.$(".phone"+u_id).text(u_phone);
+				opener.$(".email"+u_id).text(u_email);
+				alert("회원정보 수정이 완료되었습니다.");				
 				window.close();
 			},
 			error: function(xhr, status, error) {
 				console.log(error);
 			}			
 		});//end ajax
+		$(".test").click(function() {
+			opener.parent.click();
+		});
+		
 	});		
 });
-	</script> 
+</script> 
 </head>
 <body>
 <div class="main">

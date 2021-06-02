@@ -50,7 +50,7 @@ $(document).ready(function() {
 					var name = "popup test"
 					var option = "width = 500, height=500, top=100,left=200";
 					window.open(url, name, option);
-				})//end update
+				}); //end update
 			
 });//end jQuery
 </script>
@@ -105,7 +105,6 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 	font-size: 15px;
 	width: 300px;
 }
-
 </style>
 </head>
 <body>
@@ -120,7 +119,7 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 		    <option value="id">아이디</option>
 		   </select>
 		    <input type="text" id="bar" name="searchValue">
-		    <input type="submit"  class="btn btn-primary" value="검색">
+		    <input type="submit" class="btn btn-primary" value="검색">
 		 </form>  
 		 </td> 
 		</tr>
@@ -137,11 +136,11 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 		 <c:forEach var ="item" items="${ampDTO.list}">			
 		<tbody>
 		<tr class="tr">
-			<td class="normal">${item.u_name}</td>
+			<td class="normal name${item.u_id}">${item.u_name}</td>
 			<td class="normal">${item.u_id}</td>
-			<td class="normal">${item.u_pw}</td>
-			<td class="normal">${item.u_phone}</td>
-			<td class="normal">${item.u_email}</td>
+			<td class="normal pw${item.u_id}">${item.u_pw}</td>
+			<td class="normal phone${item.u_id}">${item.u_phone}</td>
+			<td class="normal email${item.u_id}">${item.u_email}</td>
 			<td class="normal"><input type="button" value="수정" class="btn btn-primary update" data-id="${item.u_id}"></td>
 			<td class="normal"><input type="button" value="탈퇴" class="btn btn-primary delete" data-id="${item.u_id}"></td>			
 		</tr>			
