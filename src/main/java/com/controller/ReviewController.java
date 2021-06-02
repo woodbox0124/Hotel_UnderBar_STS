@@ -70,8 +70,7 @@ public class ReviewController {
 		System.out.println("contentType:  "+ contentType);
 		System.out.println("정보들======="+u_id+content+rating+title+hotelname);
 		
-		File f= new File("C:\\Users\\CHANGHO\\Documents\\GitHub\\Hotel_UnderBar_STS\\src\\main\\webapp\\WEB-INF\\views\\assets\\upload", originalFileName);
-		File f2= new File("C://Springmall/apache-tomcat-8.5.58-windows-x64/apache-tomcat-8.5.58/webapps/Hotel_UnderBar/WEB-INF/views/assets/upload", originalFileName);
+		File f= new File("C:\\upload", originalFileName);
 		ReviewDTO rvdto=new ReviewDTO();
 		   rvdto.setU_id(u_id);
 		   rvdto.setTitle(title);
@@ -101,15 +100,28 @@ public class ReviewController {
 		String title=dto.getTitle();
 		int rating=dto.getStar();
 		
+		CommonsMultipartFile theFile= dto.getTheFile();
+		long size = theFile.getSize();
+		String name= theFile.getName();
+		String originalFileName= theFile.getOriginalFilename();
+		String contentType= theFile.getContentType();
+		
+		File f= new File("C:\\upload", originalFileName);
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
 		map.put("num", num);
 		map.put("rating", rating);
 		map.put("content", content);
 		map.put("title", title);
+		map.put("review_img",originalFileName);
 		service.reviewUpdateUp(map);
 		request.setAttribute("hotelname", hotelname);
 		request.setAttribute("mesg", "수정이 완료되었습니다");
 		
+		try {
+			theFile.transferTo(f);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "review/Reviewend";
 		
 	}

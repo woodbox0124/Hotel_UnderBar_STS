@@ -172,7 +172,7 @@ List<ReviewCountDTO> rcount=(List<ReviewCountDTO>)request.getAttribute("reviewco
 	
 	<c:when test="${!empty list.review_img}">
   			<p class="title">${list.title}</p> 
-  			<img src="c://upload/${list.review_img}">
+  			<img src="/review/img/${list.review_img}" width="300" height="300">
  			<p class="content">${list.content}</p><br>
  			<hr>
 	</c:when>
