@@ -22,6 +22,8 @@
  		 padding-right: 600px;
  		 color: black;
  		 font-size: 20px;
+ 		 width: fit-content;
+ 		 margin-top: 10px;
   }
   
 	.hotellist{
@@ -30,16 +32,22 @@
   }
 
 	.title {
-		font-weight: 900;
-		font-size : 25px;
+		font-weight: 600;
+         font-size: 20px;
 	}
 	.content {
-		font-weigth: 400;
-		font-size: 20px;
+		font-size: 18px;
+    width: 400px;
+}
 	}
 	.sort {
 		padding-top: 30px;
 	}
+	
+	#check{
+	margin: -2px 8px 0px 0px;
+	}
+	
 /*   summary {
     cursor: pointer;
   }
@@ -65,6 +73,21 @@ String checkout = (String)session.getAttribute("checkout");
 String guest = (String)session.getAttribute("guest");
 String location = (String)session.getAttribute("location");
 %>
+<form>
+<p style="font-size:30px;margin-top: 20px;">이용후기</p>
+<small>100% 실제 투숙객이 작성한 후기입니다.</small>
+<div>
+<input id="check" type="checkbox"/>전체<br> 
+<input id="check" type="checkbox"/>매우만족 <progress value="20" max="100"></progress><br>
+<input id="check" type="checkbox"/>만족 <progress value="20" max="100"></progress><br>
+<input id="check" type="checkbox"/>보통 <progress value="20" max="100"></progress><br>
+<input id="check" type="checkbox"/>미흡 <progress value="20" max="100"></progress><br>
+<input id="check" type="checkbox"/>불만족 <progress value="20" max="100"></progress><br>
+
+</div>
+
+
+</form>
 <form class="sort">
 <select class="selectsort">
 	<option value="최신순">최신순</option>
@@ -73,30 +96,30 @@ String location = (String)session.getAttribute("location");
 <input class="btn btn-primary" type="submit" value="변경">
 
 </form>
-
+<br>
 <form class="review">
 <c:forEach var="list" items="${reviewlist}">
 
 <c:choose>
 	<c:when test="${list.groupnum eq 0 and list.rating eq 1}">
-		${list.u_id}님 : <img src='images/review/1star.png'/> ${list.rating}점 ${list.writedate}
+		${list.u_id}  <img src='images/review/1star.png'/> <br>${list.writedate}
 	</c:when>
 	<c:when test="${list.groupnum eq 0 and list.rating eq 2}">
-		${list.u_id}님 : <img src='images/review/2star.png'/> ${list.rating}점 ${list.writedate}
+		${list.u_id}  <img src='images/review/2star.png'/> <br>${list.writedate}
 	</c:when>
 	<c:when test="${list.groupnum eq 0 and list.rating eq 3}">
-		${list.u_id}님 : <img src='images/review/3star.png'/> ${list.rating}점 ${list.writedate}
+		${list.u_id}  <img src='images/review/3star.png'/><br> ${list.writedate}
 	</c:when>
 	<c:when test="${list.groupnum eq 0 and list.rating eq 4}">
-		${list.u_id}님 : <img src='images/review/4star.png'/> ${list.rating}점 ${list.writedate}
+		${list.u_id}  <img src='images/review/4star.png'/> <br>${list.writedate}
 	</c:when>
 	<c:when test="${list.groupnum eq 0 and list.rating eq 5}">
-		${list.u_id}님 : <img src='images/review/5star.png'/> ${list.rating}점 ${list.writedate}
+		${list.u_id}  <img src='images/review/5star.png'/><br> ${list.writedate}
 	</c:when>
 </c:choose>
 <c:choose>	
 	<c:when test="${list.groupnum eq 1}">
-		&nbsp;&nbsp;&nbsp;<img src='images/board/reply_icon.gif'/> ${list.u_id}님 : ${list.writedate}
+		&nbsp;&nbsp;&nbsp;<img src='images/board/reply_icon.gif'/> ${list.u_id} <br> ${list.writedate}
 	</c:when>
 </c:choose>
 
@@ -116,21 +139,21 @@ String location = (String)session.getAttribute("location");
 
 <c:choose>
 	<c:when test="${list.groupnum eq 1}">
-  			<br>&nbsp;&nbsp;&nbsp;<span class="title">${list.title}</span><br>
- 			&nbsp;&nbsp;&nbsp;<span class="content">${list.content}</span><br>
- 			<hr><br>
+  			<br>&nbsp;&nbsp;&nbsp;<span class="title">${list.title}</span>
+ 			<br>&nbsp;&nbsp;&nbsp;<span class="content">${list.content}</span><br>
+ 			<hr>
 	</c:when>
 	<c:when test="${empty list.review_img}">
   			<p class="title">${list.title}</p><br>
  			<p class="content">${list.content}</p><br>
- 			<hr><br>
+ 			<hr>
 	</c:when>
 	
 	<c:when test="${!empty list.review_img}">
   			<p class="title">${list.title}</p> 
   			<img src="c://upload/${list.review_img}">
  			<p class="content">${list.content}</p><br>
- 			<hr><br>
+ 			<hr>
 	</c:when>
 </c:choose>
 	
