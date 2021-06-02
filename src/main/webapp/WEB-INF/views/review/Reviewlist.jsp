@@ -50,6 +50,29 @@
 	width: 30px;
 	}
 	
+	.box{
+	 width: 360px; border : 1px solid #dddddd; padding: 8px; margin: 10px; 
+	
+	}
+	
+	.topreview{
+	    margin-left: 300px;
+ 		 color: black;
+ 		 font-size: 20px;
+ 		 width: fit-content;
+ 		 margin-top: 10px;
+	}
+	.top{
+	 padding-left: 300px;
+ 		 padding-right: 600px;
+ 		 color: black;
+ 		 font-size: 20px;
+ 		 width: fit-content;
+ 		 margin-top: 10px;
+	}
+	
+	
+	
 /*   summary {
     cursor: pointer;
   }
@@ -77,16 +100,19 @@ String location = (String)session.getAttribute("location");
 
 
 %>
-<form>
+<div class="top">
 <p style="font-size:30px;margin-top: 20px;">이용후기</p>
 <small>100% 실제 투숙객이 작성한 후기입니다.</small>
-
+</div>
 <%
 List<ReviewCountDTO> rcount=(List<ReviewCountDTO>)request.getAttribute("reviewcount");
 %>
 
-<div>
+<div class="topreview">
 
+<a class="box">10점 / 2960건</a>
+
+<div class="reviewbar">
 <input id="check" type="checkbox"/>전체<br> 
 <c:forEach var="list" items="${reviewcount}">
 <c:if test="${list.numrating eq 5}">
@@ -106,9 +132,10 @@ List<ReviewCountDTO> rcount=(List<ReviewCountDTO>)request.getAttribute("reviewco
 
 </c:forEach>
 </div>
+</div>
+</div>
 
 
-</form>
 <form class="sort">
 <select class="selectsort">
 	<option value="최신순">최신순</option>

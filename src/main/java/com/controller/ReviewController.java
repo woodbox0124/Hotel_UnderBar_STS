@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,7 +71,8 @@ public class ReviewController {
 		System.out.println("contentType:  "+ contentType);
 		System.out.println("정보들======="+u_id+content+rating+title+hotelname);
 		
-		File f= new File("C:\\upload", originalFileName);
+		File f= new File("C:\\Users\\CHANGHO\\Documents\\GitHub\\Hotel_UnderBar_STS\\src\\main\\webapp\\WEB-INF\\views\\assets\\upload", originalFileName);
+		File f2= new File("C://Springmall/apache-tomcat-8.5.58-windows-x64/apache-tomcat-8.5.58/webapps/Hotel_UnderBar/WEB-INF/views/assets/upload", originalFileName);
 		ReviewDTO rvdto=new ReviewDTO();
 		   rvdto.setU_id(u_id);
 		   rvdto.setTitle(title);
@@ -94,34 +96,22 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value="/ReviewUpdateUp",method = RequestMethod.POST) 
-	public String reviewupdateup(String hotelname, int num, UploadDTO dto, HttpSession session,HttpServletRequest request) { //자동주입
+	public String reviewupdateup(RedirectAttributes attr,String hotelname, int num, UploadDTO dto, HttpSession session,HttpServletRequest request) { //자동주입
 		
 		String content=dto.getContent();
 		String title=dto.getTitle();
 		int rating=dto.getStar();
-		
-		CommonsMultipartFile theFile= dto.getTheFile();
-		long size = theFile.getSize();
-		String name= theFile.getName();
-		String originalFileName= theFile.getOriginalFilename();
-		String contentType= theFile.getContentType();
-		
-		File f= new File("C:\\upload", originalFileName);
+		List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
 		map.put("num", num);
 		map.put("rating", rating);
 		map.put("content", content);
 		map.put("title", title);
-		map.put("review_img",originalFileName);
 		service.reviewUpdateUp(map);
 		request.setAttribute("hotelname", hotelname);
 		request.setAttribute("mesg", "수정이 완료되었습니다");
+		session.setAttribute("reviewcount", reviewcount);
 		
-		try {
-			theFile.transferTo(f);
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
 		return "review/Reviewend";
 		
 	}
@@ -213,16 +203,18 @@ public class ReviewController {
 		return "redirect:../reviewlist";
 	}
 	@RequestMapping("/loginCheck/ReviewDelete") 
-	public String reviewDelete(int origin, HttpSession session, RedirectAttributes attr){
+	public String reviewDelete(int origin, HttpSession session, HttpServletRequest request){
 		service.reviewDelete(origin);
 		
 		String hotelname = (String)session.getAttribute("hotelname");
 		List<ReviewDTO> list = service.review(hotelname);
+		List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
 		
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
 		
+		session.setAttribute("reviewcount", reviewcount);
 		session.setAttribute("reviewlist", list);
 		session.setAttribute("admin", admin);
 		session.setAttribute("u_id1", u_id1);
@@ -241,6 +233,7 @@ public class ReviewController {
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
 		
+	
 		session.setAttribute("reviewlist", list);
 		session.setAttribute("admin", admin);
 		session.setAttribute("u_id1", u_id1);
