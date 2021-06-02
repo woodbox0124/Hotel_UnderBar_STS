@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dto.ReviewCountDTO;
 import com.dto.ReviewDTO;
 
 @Repository
@@ -58,5 +59,10 @@ public class ReviewDAO {
 	public void reviewAnswerUp(HashMap<Object, Object> map) {
 		session.insert("ReviewMapper.reviewAnswerUp", map);
 		
+	}
+
+	public List<ReviewCountDTO> reviewcount(String hotelname) {
+		List<ReviewCountDTO> list = session.selectList("ReviewMapper.reviewCount", hotelname);
+		return list;
 	}
 }

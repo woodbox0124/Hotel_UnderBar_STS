@@ -18,6 +18,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.MemberDTO;
+import com.dto.ReviewCountDTO;
 import com.dto.ReviewDTO;
 import com.dto.UploadDTO;
 import com.service.ReviewService;
@@ -151,11 +152,11 @@ public class ReviewController {
 		return "review/Reviewend";
 		
 	}
-	@RequestMapping("/loginCheck/Review") //호텔에서 평점보기 눌렀을때 넘어가는 부분
+	@RequestMapping("/loginCheck/Review") //호텔에서 평점보기 눌렀을때 넘어가서 뿌려주는 부분
 	public String review(String hotelname,HttpSession session, HttpServletRequest request, RedirectAttributes attr){
 		List<ReviewDTO> list = service.review(hotelname); //호텔이름에 해당하는 리뷰들 뽑아오기
-		//int reviewcount5=service.reviewcount(hotelname); //리뷰점수 5점인 애들만 뽑아오기
-		
+		List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
+	    
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
@@ -164,7 +165,7 @@ public class ReviewController {
 		session.setAttribute("hotelname", hotelname);
 		session.setAttribute("admin", admin);
 		session.setAttribute("u_id1", u_id1);
-		
+		session.setAttribute("reviewcount", reviewcount);
 		
 		
 		return "redirect:../reviewlist";

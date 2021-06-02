@@ -1,3 +1,4 @@
+<%@page import="com.dto.ReviewCountDTO"%>
 <%@page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -46,6 +47,7 @@
 	
 	#check{
 	margin: -2px 8px 0px 0px;
+	width: 30px;
 	}
 	
 /*   summary {
@@ -72,18 +74,37 @@ String checkin = (String)session.getAttribute("checkin");
 String checkout = (String)session.getAttribute("checkout");
 String guest = (String)session.getAttribute("guest");
 String location = (String)session.getAttribute("location");
+
+
 %>
 <form>
 <p style="font-size:30px;margin-top: 20px;">이용후기</p>
 <small>100% 실제 투숙객이 작성한 후기입니다.</small>
-<div>
-<input id="check" type="checkbox"/>전체<br> 
-<input id="check" type="checkbox"/>매우만족 <progress value="20" max="100"></progress><br>
-<input id="check" type="checkbox"/>만족 <progress value="20" max="100"></progress><br>
-<input id="check" type="checkbox"/>보통 <progress value="20" max="100"></progress><br>
-<input id="check" type="checkbox"/>미흡 <progress value="20" max="100"></progress><br>
-<input id="check" type="checkbox"/>불만족 <progress value="20" max="100"></progress><br>
 
+<%
+List<ReviewCountDTO> rcount=(List<ReviewCountDTO>)request.getAttribute("reviewcount");
+%>
+
+<div>
+
+<input id="check" type="checkbox"/>전체<br> 
+<c:forEach var="list" items="${reviewcount}">
+<c:if test="${list.numrating eq 5}">
+<input id="check" type="checkbox"/>매우만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
+
+<c:if test="${list.numrating eq 4}">
+<input id="check" type="checkbox"/>만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
+
+<c:if test="${list.numrating eq 3}">
+<input id="check" type="checkbox"/>보통 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
+
+<c:if test="${list.numrating eq 2}">
+<input id="check" type="checkbox"/>미흡 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
+
+<c:if test="${list.numrating eq 1}">
+<input id="check" type="checkbox"/>불만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
+
+</c:forEach>
 </div>
 
 

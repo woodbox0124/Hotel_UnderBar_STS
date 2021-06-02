@@ -58,8 +58,13 @@
 				<value>com.dto.CommentDTO</value>							
 				<value>com.dto.AdminMemberPageDTO</value>							
 				<value>com.dto.CommentDTO</value>	
+<<<<<<< Updated upstream
 				<value>com.dto.RatingDTO</value>						
 				<value>com.dto.AdminHotelPageDTO</value>						
+=======
+				<value>com.dto.RatingDTO</value>	
+				<value>com.dto.ReviewCountDTO</value>					
+>>>>>>> Stashed changes
 
 			</list>		
 		</property>
