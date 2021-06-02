@@ -93,7 +93,7 @@ public class ReviewController {
 		
 	}
 	
-	@RequestMapping(value="/ReviewUpdateUp",method = RequestMethod.POST) //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
+	@RequestMapping(value="/ReviewUpdateUp",method = RequestMethod.POST) 
 	public String reviewupdateup(String hotelname, int num, UploadDTO dto, HttpSession session,HttpServletRequest request) { //자동주입
 		
 		String content=dto.getContent();
@@ -112,7 +112,7 @@ public class ReviewController {
 		return "review/Reviewend";
 		
 	}
-	@RequestMapping(value="/ReviewAdminUp",method = RequestMethod.POST) //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
+	@RequestMapping(value="/ReviewAdminUp",method = RequestMethod.POST) 
 	public String reviewadminup(String hotelname, int num, UploadDTO dto, HttpSession session,HttpServletRequest request) { //자동주입
 		
 		String content=dto.getContent();
@@ -131,7 +131,7 @@ public class ReviewController {
 		
 	}
 	
-	@RequestMapping(value="/ReviewAnswerUp",method = RequestMethod.POST) //리뷰정보들 sql에 insert하고 사진 지정폴더에 저장시켜주기
+	@RequestMapping(value="/ReviewAnswerUp",method = RequestMethod.POST) 
 	public String reviewanswer(String u_id, String hotelname, int num, UploadDTO dto, HttpSession session,HttpServletRequest request) { //자동주입
 		
 		String content=dto.getContent();
@@ -151,20 +151,25 @@ public class ReviewController {
 		return "review/Reviewend";
 		
 	}
-	@RequestMapping("/loginCheck/Review") 
+	@RequestMapping("/loginCheck/Review") //호텔에서 평점보기 눌렀을때 넘어가는 부분
 	public String review(String hotelname,HttpSession session, HttpServletRequest request, RedirectAttributes attr){
-		List<ReviewDTO> list = service.review(hotelname);
+		List<ReviewDTO> list = service.review(hotelname); //호텔이름에 해당하는 리뷰들 뽑아오기
+		//int reviewcount5=service.reviewcount(hotelname); //리뷰점수 5점인 애들만 뽑아오기
+		
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
+		
 		session.setAttribute("reviewlist", list);
 		session.setAttribute("hotelname", hotelname);
 		session.setAttribute("admin", admin);
 		session.setAttribute("u_id1", u_id1);
 		
+		
+		
 		return "redirect:../reviewlist";
 	}
-	@RequestMapping("/loginCheck/ReviewOrder") 
+	@RequestMapping("/loginCheck/ReviewOrder") //필터 오래된순정렬
 	public String reviewOrder(HttpServletRequest request, RedirectAttributes attr, HttpSession session){
 		
 		String hotelname = (String)session.getAttribute("hotelname");
@@ -179,7 +184,7 @@ public class ReviewController {
 		
 		return "redirect:../reviewlist";
 	}
-	@RequestMapping("/loginCheck/ReviewNew") 
+	@RequestMapping("/loginCheck/ReviewNew") //필터 최신순정렬 
 	public String reviewNew(HttpServletRequest request, RedirectAttributes attr, HttpSession session){
 		
 		String hotelname = (String)session.getAttribute("hotelname");
