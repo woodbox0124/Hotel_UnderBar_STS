@@ -23,7 +23,7 @@
 <mvc:view-controller path="/roomdetail" view-name="roomdetail"/>
 <mvc:view-controller path="/KakaoPay" view-name="KakaoPay"/>
 <mvc:view-controller path="/searchId" view-name="searchId"/>
-<mvc:view-controller path="/Agree" view-name="Agree"/>
+<mvc:view-controller path="/agree" view-name="agree"/>
 <mvc:view-controller path="/adminMember" view-name="adminMember"/>
 <mvc:view-controller path="/adminHotel" view-name="adminHotel"/>
 <mvc:view-controller path="/adminRoom" view-name="adminRoom"/>
