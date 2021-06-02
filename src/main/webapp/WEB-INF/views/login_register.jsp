@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="styles/style.css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#pw").blur(function() {
@@ -62,7 +63,12 @@
 		//약관 동의
 		$("#submit").click(function() {
 			if ($(".checked").is(":checked") == false) {
-				alert("약관 동의 하셔야 합니다.");
+				alert("약관 동의를 해주세요.");
+				return false;
+			}
+			if ($("#confirm").is(":disabled") == false){
+				alert("휴대폰 인증을 해주세요.");
+				$("#to").focus();
 				return false;
 			}
 		})//end 약관동의
@@ -85,25 +91,112 @@
 			var popupY= (window.screen.height / 2) - (800 / 2);
 			// 만들 팝업창 height 크기의 1/2 만큼 보정값으로 빼주었음 
 		
-			window.open('Agree', '_blank', 'status=no, width=600,height=800, left='+ popupX + ', top='+ popupY);
+			window.open('agree', '_blank', 'status=no, width=600,height=800, left='+ popupX + ', top='+ popupY);
 
 		})// end 팝업창 중앙 정렬
 		
 		
 		
-		//인증번호 버튼
-		$("#phone2").click(function(){
-			/* var count = $("#phone").length */
-			/* if($("#phone").length == 13){ */
-				$("#number").show();
-				$("#number").focus();
-			/* }else{
-				alert("전화번호를 작성해 주세요.");
-			} */
+		//	휴대폰 인증 
+		var count = 0;	//인증번호 받기 사용횟수
+		$("#send").click(function() {
+       
+       var number = Math.floor(Math.random() * 100000) + 100000;
+          if(number > 100000){
+             number = number - 10000;
+          }
+
+          $("#text").val(number);      /* 난수로 생성된 인증번호를 hidden name : text 에 숨긴다 */
+       
+       var to = $("#to").val();
+       
+       if(to == "" || to == null){
+          alert("핸드폰 번호를 입력해주세요.");
+       }
+       
+       else {
+       var con_test = confirm("해당번호로 인증문자를 발송하시겠습니까?");   /* 문자를 보낼껀지 물어본다 */  
+          if(con_test == true){ 
+             if(count < 2){      /*사용횟수 1번 */
+                 
+               $.ajax({
+                   url:"phone",
+                   type:"post",
+                   data:{to: $("#to").val(),
+                        text: $("#text").val()
+                        },
+                 success:function(){
+                   alert("인증번호를 발송했습니다");
+                   count++;
+                   $(".in-line2").show(); 
+             	  $("#number").focus(); 
+                   }
+                });
+             } else {
+                alert("경고!")
+             }
+          
+          }
+             else if(con_test == false){
+                
+             }
+         }   
+    })	// end 휴대폰 인증
+    
+			//인증번호 비교
+				    $("#confirm").click(function() {   /* 내가 작성한 번호와 인증번호를 비교한다 */
+				       
+				       var userNum = $("#number").val(); 
+				       
+				       var sysNum = $("#text").val();         
+				       
+				       if(userNum == null || userNum == ""){
+				          alert("인증번호를 입력해주세요");
+				       }     
+				       else{     
+				          if(userNum.trim() == sysNum.trim()){
+				              alert("인증이 완료되었습니다.");
+				              $(".in-line2").find("input").prop("disabled",true);
+				              $(".in-line2").animate({opacity:"0.5"});
+				           }
+				           else {
+				              alert("인증번호를 확인해주세요.");
+				           }          
+				       }
+				    });// end 인증번호 비교
 			
-		})
 	});//end jQuery
 </script>
+<script>
+//휴대폰번호 입력시 자동 하이픈(-) 추가
+function inputPhoneNumber(obj) {
+var number = obj.value.replace(/[^0-9]/g, "");
+var phone = "";
+
+if(number.length < 4) {
+    return number;
+} else if(number.length < 7) {
+    phone += number.substr(0, 3);
+    phone += "-";
+    phone += number.substr(3);
+} else if(number.length < 11) {
+    phone += number.substr(0, 3);
+    phone += "-";
+    phone += number.substr(3, 3);
+    phone += "-";
+    phone += number.substr(6);
+} else {
+    phone += number.substr(0, 3);
+    phone += "-";
+    phone += number.substr(3, 4);
+    phone += "-";
+    phone += number.substr(7);
+}
+obj.value = phone;
+}
+//end 휴대폰번호 입력시 자동 하이픈(-) 추가
+</script>
+
 <!-- alert mesg 시작 -->
 <c:if test="${!empty mesg }">
 	<script>
@@ -135,52 +228,84 @@
 }
 
 #Agree {
-	text-align: center;
 	font-size: 14px;
-	padding: 6px;
-	position: relative;
-	left: 31px;
+    width: 160%;
+    height: 40px;
+    position: relative;
+    left: 42px;
+    top: 8px;
 }
-
 #Agree2 {
 	text-align: center;
-	font-size: 12px;
+    font-size: 12px;
+    padding: 5px;
+    position: relative;
+    left: 5px;
 }
 
 .checked {
 	position: relative;
 	left: 31px;
 }
-.in-line{
-      height:40px;
-    }
 
-#phone{
-	width: 70%;
-    height: 100%;
-    font-size: 1em;
-    box-sizing: border-box;
-    color: black;
+.in-line {
+	height: 40px;
 }
-#phone2{
-    width: 31%;
-    height: 101%;
-    border: none;
-    font-size: 13px;
-    outline: none;
-    display: inline;
-    margin-left: -10px;
-    box-sizing: border-box;
-    border-radius: 12px;
-    }
-    #phone2:hover{
-    color: black;
-    background-color: #6c757d;
-    border-color: #6c757d;
-    }
-    #number{
-    padding-top: 18px;
-    }
+
+.in-line2 {
+	height: 40px;
+}
+
+#to {
+	width: 70%;
+	height: 100%;
+	box-sizing: border-box;
+	color: black;
+}
+
+#send {
+	width: 31%;
+	height: 101%;
+	border: none;
+	font-size: 13px;
+	outline: none;
+	display: inline;
+	margin-left: -10px;
+	box-sizing: border-box;
+	border-radius: 12px;
+	position: relative;
+	left: 3px;
+}
+
+#send:hover {
+	color: black;
+	background-color: #6c757d;
+	border-color: #6c757d;
+}
+
+#number {
+	padding-top: 18px;
+	width: 70%
+}
+
+#confirm {
+	width: 20%;
+	height: 100%;
+	border: none;
+	font-size: 13px;
+	outline: none;
+	display: inline;
+	box-sizing: border-box;
+	border-radius: 12px;
+	position: relative;
+	left: 9px;
+}
+
+#confirm:hover {
+	color: black;
+	background-color: #6c757d;
+	border-color: #6c757d;
+}
 </style>
 <!-- alert mesg 시작 -->
 <c:if test="${!empty mesg }">
@@ -213,14 +338,20 @@
 			<button type="button" class="togglebtn" onclick="register()">REGISTER</button>
 		</div>
 		<div class="social-icons">
-			<img src="assets/css/images/fb.png" alt="facebook"> <img src="assets/css/images/kakao.png" alt="kakao"> <img src="assets/css/images/gl.png" alt="google">
+			<img src="assets/css/images/fb.png" alt="facebook"> <img src="assets/css/images/kakao.png" alt="kakao"> <img
+				src="assets/css/images/gl.png" alt="google"
+			>
 		</div>
 		<form id="login" action="login" class="input-group" method="post">
 			<input name="u_id" type="text" class="input-field" placeholder="Enter ID" required>
-			<input name="u_pw" type="password" class="input-field" value="<%=cookieVal != "" ? cookieVal : ""%>" placeholder="Enter Password" required>
+			<input name="u_pw" type="password" class="input-field" value="<%=cookieVal != "" ? cookieVal : ""%>" placeholder="Enter Password"
+				required
+			>
 			<p>
 				<input name="savepw" type="checkbox" class="checkbox" <%=cookieVal != "" ? "checked" : ""%>>
-				<span id="check_span">비밀번호저장 &nbsp;<a href="searchId" onclick="window.open(this.href, '_blank', 'width=500,height=700,toolbars=no,scrollbars=no'); return false;">아이디/비밀번호찾기</a>
+				<span id="check_span">비밀번호저장 &nbsp;<a href="searchId"
+					onclick="window.open(this.href, '_blank', 'width=500,height=700,toolbars=no,scrollbars=no'); return false;"
+				>아이디/비밀번호찾기</a>
 				</span>
 			</p>
 			<button class="submit">Login</button>
@@ -235,13 +366,19 @@
 			<input name="u_name" type="text" class="input-field u_name" placeholder="name" required>
 			<input name="u_email" type="email" class="input-field u_email" placeholder="Email" required>
 			<div class="in-line">
-			<input name="u_phone" type="text" class="input-field phone" id="phone" placeholder="Phone Number" required>
-			<input type="button" name="name" id ="phone2" value="인증번호 받기">
+				<input name="u_phone" type="text" class="input-field phone" id="to" placeholder="Phone Number" onKeyup="inputPhoneNumber(this);"
+					maxlength='13' required
+				>
+				<input type="button" name="name" id="send" value="인증번호 받기">
 			</div>
-			<input type="text" class="input-field number" id="number" placeholder="인증번호 입력" required style="display: none;"> 
+			<div class="in-line2" style="display: none;">
+				<input type="text" class="input-field number" id="number" placeholder="인증번호 입력" maxlength='6' required>
+				<input type="button" name="name" id="confirm" value="확인">
+				<input type="hidden" name="text" id="text">
+			</div>
 			<span id="check_span"><p id="Agree">
 					<input type="checkbox" id="check_2" class="checked" name="check" onclick="return false">
-					<a id="Agree" style="vertical-align: 1.5px;">약관동의(필수)</a>
+					<a id="Agree" style="vertical-align: 9px;">약관동의(필수)</a>
 				</p></span>
 			<p id="Agree2">위 약관 동의를 클릭해주세요.</p>
 			<button class="submit" id="submit" name="register">REGISTER</button>
