@@ -9,7 +9,7 @@ public class AdminHotelPageDTO {
 	private List<HotelDTO> list;   //페이지번호(curPage)에 해당하는 perPage개수만큼만
 	//db에서 가져와서 리스트에 저장
 	private int curPage;  //현재 또는 요청 페이지 
-	private int perPage = 10;  //한페이지에 보여질 레코드 개수 
+	private int perPage = 6;  //한페이지에 보여질 레코드 개수 
 	private int totalCount;   //전체 레코드 갯수 
 	
 	public AdminHotelPageDTO() {

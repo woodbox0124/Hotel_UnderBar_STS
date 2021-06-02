@@ -24,7 +24,7 @@ select u_id, u_pw, u_name, u_phone, u_email from member
 		</if>
 	</select>
 <select id="adminHotel" parameterType="hashmap" resultType="HotelDTO">
-select seq, name, place, addr, use_count, rating, hotel_img from hotel 
+select seq, name, place, addr, rating, hotel_img from hotel 
         <if test="searchName == 'name' ">
 			where name LIKE '%'||#{searchValue}||'%'
 		</if>

@@ -63,6 +63,7 @@ public class MemberService {
 
 	public void memberUpdate1(MemberDTO dto1) {
 		dao.memberUpdate1(dto1);		
-	}	
+	}
+
 
 }

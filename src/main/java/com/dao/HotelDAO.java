@@ -51,5 +51,9 @@ public class HotelDAO {
 		List<RatingDTO> list=template.selectList("HotelMapper.rating");
 		return list;
 	}
+	public int HotelDelete(String seq) {
+		int n= template.delete("HotelMapper.HotelDelete", seq);
+		return n;
+	}
 	
 }

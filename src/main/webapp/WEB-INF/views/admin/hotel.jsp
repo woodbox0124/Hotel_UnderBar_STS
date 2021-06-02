@@ -19,6 +19,40 @@
 <title>관리자 호텔 관리</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
+$(document).ready(function() {
+	$(".delete").click(function() {
+		console.log("delete 클릭 ");
+		var seq= $(this).attr("data-seq");//삭제할 아이디
+		var xxx= $(this); //td태그 
+		$.ajax({
+			url: "loginCheck/HotelDelete",
+			type:"get",
+			dataType:"text",
+			data: {
+				seq:seq
+			},
+			success: function(data, status, xhr) {
+				console.log("success");
+				//dom삭제 
+				xxx.parents().filter("tr").remove();
+				alert("삭제 되었습니다.");
+			},
+			error: function(xhr, status, error) {
+				console.log(error);
+			}			
+		});//end ajax
+	});//end #delete
+		 $(".update").click(function(){
+			 console.log("수정버튼 클릭");
+			 var u_id= $(this).attr("data-id");
+			 console.log(u_id);
+			 var url= "loginCheck/update?u_id="+u_id;
+					var name = "popup test"
+					var option = "width = 500, height=500, top=100,left=200";
+					window.open(url, name, option);
+				}); //end update
+			
+});//end jQuery
 </script>
 <style type="text/css">
 * {
@@ -31,6 +65,7 @@
 }
 .normal{
 	text-align: center;
+	vertical-align: middle;
 }
 
 #title{
@@ -78,8 +113,8 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 	<h1 id="title" align="center" style="font-weight: bold; font-size: 40px;">호텔 관리</h1>
 	<table id="search" class="table">
 		<tr>
-		 <td colspan="8">
-		  <form action="loginCheck/adminMember" class="searchbar">
+		 <td colspan="7">
+		  <form action="loginCheck/adminHotel" class="searchbar">
 		   <select name="searchName">
 		    <option value="name">이름</option>
 		    <option value="addr">주소</option>
@@ -93,8 +128,7 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 			<td style="color: white;" width="100">호텔 이름</td>
 			<td style="color: white;" width="70">지역</td>
 			<td style="color: white;" width="150">주소</td>
-			<td style="color: white;" width="70">최대 인원수</td>
-			<td style="color: white;" width="30">평점</td>
+			<td style="color: white;" width="70">평점</td>
 			<td style="color: white;" width="70">호텔이미지</td>
 			<td style="color: white;" width="50">수정</td>
 			<td style="color: white;" width="50">탈퇴</td>
@@ -106,11 +140,10 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 			<td class="normal">${item.name}</td>
 			<td class="normal">${item.place}</td>
 			<td class="normal">${item.addr}</td>
-			<td class="normal">${item.use_count}</td>
 			<td class="normal">${item.rating}</td>
-			<td class="normal"><img src="images/hotel/${item.hotel_img}.jpg" width="200" height="200"></td>
-			<td class="normal"><input type="button" value="수정" class="btn btn-primary update" data-id=""></td>
-			<td class="normal"><input type="button" value="삭제" class="btn btn-primary delete" data-id=""></td>			
+			<td class="normal"><img src="images/hotel/${item.hotel_img}.jpg" width="150" height="150"></td>
+			<td class="normal"><input type="button" value="수정" class="btn btn-primary update" data-seq="${item.seq}"></td>
+			<td class="normal"><input type="button" value="삭제" class="btn btn-primary delete" data-seq="${item.seq}"></td>			
 		</tr>			
 		</tbody>
 		</c:forEach>

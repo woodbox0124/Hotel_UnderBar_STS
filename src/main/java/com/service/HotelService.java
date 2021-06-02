@@ -31,5 +31,11 @@ public class HotelService {
 		List<RatingDTO> list=dao.rating();
 		return list;
 	}
+
+	public int HotelDelete(String seq) {
+		int n = dao.HotelDelete(seq);
+	    return n;
+		
+	}
 	
 }

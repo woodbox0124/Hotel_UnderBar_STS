@@ -65,4 +65,6 @@ public class MemberDAO {
 		session.update("MemberMapper.memberUpdate1",dto1);
 	}
 
+
+
 }

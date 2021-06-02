@@ -340,7 +340,6 @@ String guest = (String)session.getAttribute("guest");%>
 				String hotelname = dto.getName();
 				String place = dto.getPlace();
 				String addr = dto.getAddr();
-				double use_count = dto.getUse_count();
 				double rating = dto.getRating();
 				String hotel_img = dto.getHotel_img();
 				String hotel_img_real = dto.getHotel_img_real();
