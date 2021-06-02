@@ -56,6 +56,7 @@ public class AdminController {
 	public String room() {
 		return "redirect:../adminRoom";
 	}
+	//회원정보 검색 기능입니다.
 	@RequestMapping("/loginCheck/searchName")
 	public String searchName(@RequestParam("searchName") String searchName, 
 			@RequestParam("searchValue")String searchValue,RedirectAttributes attr) {	
@@ -69,11 +70,13 @@ public class AdminController {
 		attr.addFlashAttribute("member", list);		
 		return "redirect:../adminMember";
 	}
+	//회원정보 삭제 기능입니다.
 	@RequestMapping("/loginCheck/delete")
 	public @ResponseBody void delete(@RequestParam("u_id") String u_id) {
 		System.out.println(u_id);
 		mService.MemberDelete(u_id);
 	}
+	//회원 정보 수정을 위해 자식창으로 정보 전달을 위한 기능입니다..
 	@RequestMapping("/loginCheck/update")
 	public String update(@RequestParam("u_id") String u_id, RedirectAttributes att) {
 		System.out.println(u_id);
@@ -82,22 +85,38 @@ public class AdminController {
 		att.addFlashAttribute("mdto", mdto);
 		return "redirect:../admin/update";
 	}
-	
+	//회원 정보 수정 후 DB 전송을 위한 기능입니다.(ajax)
 	@RequestMapping(value = "/loginCheck/AdminMemberUpdate", method = RequestMethod.POST)
-	public @ResponseBody void AdminMemberUpdate(@RequestParam("u_id") String u_id,
+	@ResponseBody
+	public void AdminMemberUpdate(@RequestParam("u_id") String u_id,
 			@RequestParam("u_pw") String u_pw,
 			@RequestParam("u_name") String u_name,
-			@RequestParam("u_phone") String u_phoen,
-			@RequestParam("u_email") String u_email) {			
+			@RequestParam("u_phone") String u_phone,
+			@RequestParam("u_email") String u_email,
+			@RequestParam(required=false, defaultValue="1") String curPage ,
+			 @RequestParam(required=false, defaultValue="id") String searchName,
+				@RequestParam(required=false, defaultValue="") String searchValue, HttpSession session) {			
 			MemberDTO dto1 = new MemberDTO();
+			System.out.println(u_id);
+			System.out.println(u_pw);
+			System.out.println(u_name);
+			System.out.println(u_phone);
+			System.out.println(u_email);
 			dto1.setU_id(u_id);
 			dto1.setU_pw(u_pw);
 			dto1.setU_name(u_name);
-			dto1.setU_phone(u_phoen);
+			dto1.setU_phone(u_phone);
 			dto1.setU_email(u_email);		
 			System.out.println(dto1);
-			mService.memberUpdate(dto1);
-			System.out.println("수정완료    "+dto1);
+		    mService.memberUpdate1(dto1);
+		    //새로고침을 해도 세션에 리스트 재 저장 하여 업데이트 된 데이터 뿌림
+		    HashMap<String, String> map= new HashMap<String, String>();
+			map.put("searchName", searchName);
+			map.put("searchValue", searchValue);		
+			System.out.println(map);
+			AdminMemberPageDTO ampDTO= service.adminMember(Integer.parseInt(curPage),map);	
+			System.out.println("Controller"+ampDTO);
+			session.setAttribute("ampDTO",ampDTO);
 	}
 
 }

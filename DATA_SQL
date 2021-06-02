@@ -148,3 +148,40 @@ VALUES (SEQ_BM_MEMBER.NEXTVAL, 'LEE', '1234', '이상엽', '010-9731-0550', 'san
 
 INSERT INTO BM_MEMBER(SEQ, ID, PWD, NAME, PHONENUM, EMAIL, AUTH, DEL)
 VALUES (SEQ_BM_MEMBER.NEXTVAL, 'admin', '1234', '관리자', '123-456-7890', 'admin@admin.com', 1, 0);
+
+--룸 편의 시설 내용
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (1,'헤어드라이어,고급세면용품' ,'전기주전자,냉장고' ,'무료 WiFi', '컨시어지 서비스'); 
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (2, '헤어드라이어,부분적으로 개방된 욕실' ,'전기주전자,냉장고' ,'무료 WiFi', '발코니,방음객실'); 
+
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (3, '친환경 세면용품,별도의 욕조 및 샤워기' ,'무료생수,냉장고,룸서비스' ,'무료 WiFi', '도시전망,하우스키핑(매일)'); 
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (4, '헤어드라이어,부분적으로 개방된 욕실' ,'전기주전자,냉장고' ,'무료 WiFi', '무료 신문,40인치 LED TV'); 
+
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (5, '전신 욕조 및 레인폴 샤워기,전용욕실' ,'전기주전자,냉장고' ,'무료 WiFi', '컨시어지 서비스'); 
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (6, '헤어드라이어,목욕가운,비데' ,'커피/티 메이커,냉장고' ,'무료 WiFi', '간이/추가 침대,냉난방 온도 조절'); 
+
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (7, '헤어드라이어,고급세면용품' ,'전기주전자,냉장고' ,'무료 WiFi', '노트북 작업 공간,다리미/다리미판'); 
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (8, '헤어드라이어,목욕가운,비데' ,'전기주전자,냉장고' ,'무료 WiFi', '도시전망,하우스키핑(매일)'); 
+
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (9, '헤어드라이어,샤워기 달린 욕조' ,'미니바,냉장고' ,'무료 WiFi', '각각 다른 스타일의 객실'); 
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (10, '헤어드라이어,비데' ,'전기주전자,냉장고' ,'무료 WiFi', '프리미엄 TV 채널,반려동물 동반 가능'); 
+
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (11, '친환경 세면용품,별도의 욕조 및 샤워기' ,'무료생수,냉장고,룸서비스' ,'무료 WiFi', '객실 내 마사지,턴다운 서비스'); 
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (12, '헤어드라이어,부분적으로 개방된 욕실' ,'전기주전자,냉장고' ,'무료 WiFi', '간이/추가 침대,냉난방 온도 조절'); 
+
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (13, '고급 세면용품,레인폴 샤워기' ,'24시간 룸서비스,냉장고' ,'무료 WiFi', '프리미엄 TV 채널,반려동물 동반 가능'); 
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (14, '전신 욕조 및 레인폴 샤워기,전용욕실' ,'전기주전자,냉장고' ,'무료 WiFi', '간이/추가 침대,냉난방 온도 조절'); 
+
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (15, '전신 욕조 및 레인폴 샤워기,전용욕실' ,'전기주전자,냉장고' ,'무료 WiFi', '노트북 작업 공간,다리미/다리미판'); 
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (16, '헤어드라이어,부분적으로 개방된 욕실' ,'전기주전자,냉장고' ,'무료 WiFi', '발코니,방음객실'); 
+
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (17, '전용욕실,무료세면용품' ,'냉장고,24시간 룸서비스' ,'무료 WiFi', '도시전망,하우스키핑(매일)'); 
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (18, '친환경 세면용품,별도의 욕조 및 샤워기' ,'전기주전자,냉장고,24시간 룸서비스' ,'무료 WiFi', '무료 신문,40인치 LED TV'); 
+
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (19, '헤어드라이어,고급세면용품' ,'무료생수,냉장고,룸서비스' ,'무료 WiFi', '프리미엄 TV 채널,반려동물 동반 가능'); 
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (20, '헤어드라이어,목욕가운,비데' ,'커피/티 메이커,냉장고' ,'무료 WiFi', '발코니,방음객실'); 
+
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (21, '헤어드라이어,고급세면용품' ,'전기주전자,냉장고' ,'무료 WiFi', '노트북 작업 공간,다리미/다리미판'); 
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (22, '헤어드라이어,목욕가운,비데' ,'전기주전자,냉장고' ,'무료 WiFi', '발코니,방음객실'); 
+
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (23, '헤어드라이어,샤워기 달린 욕조' ,'미니바,냉장고' ,'무료 WiFi', '각각 다른 스타일의 객실,도시전망'); 
+INSERT INTO roominfo(R_seq, bath, eat, internet, etc) VALUES (24, '헤어드라이어,비데' ,'전기주전자,냉장고' ,'무료 WiFi', '발코니,방음객실');
