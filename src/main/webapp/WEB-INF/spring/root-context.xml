@@ -59,6 +59,7 @@
 				<value>com.dto.AdminMemberPageDTO</value>							
 				<value>com.dto.CommentDTO</value>	
 				<value>com.dto.RatingDTO</value>						
+				<value>com.dto.AdminHotelPageDTO</value>						
 
 			</list>		
 		</property>

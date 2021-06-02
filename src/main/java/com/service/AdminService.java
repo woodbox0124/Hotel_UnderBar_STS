@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.AdminDAO;
+import com.dto.AdminHotelPageDTO;
 import com.dto.AdminMemberPageDTO;
 import com.dto.MemberDTO;
 
@@ -23,6 +24,11 @@ public class AdminService {
 	public AdminMemberPageDTO adminMember(int curPage, HashMap<String, String> map) {
 		AdminMemberPageDTO ampDTO = dao.adminMember(curPage, map);
 		return ampDTO;
+	}
+
+	public AdminHotelPageDTO adminHotel(int curPage, HashMap<String, String> map) {
+		AdminHotelPageDTO ahpDTO = dao.adminHotel(curPage, map);
+		return ahpDTO;
 	}
 
 }

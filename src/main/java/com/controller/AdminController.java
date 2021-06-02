@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dto.AdminHotelPageDTO;
 import com.dto.AdminMemberPageDTO;
 
 import com.dto.MemberDTO;
 import com.service.AdminService;
+import com.service.HotelService;
 import com.service.MemberService;
 
 @Controller
@@ -28,6 +30,8 @@ public class AdminController {
 	AdminService service;
 	@Autowired
 	MemberService mService;
+	@Autowired
+	HotelService hService;
 	
 	//회원관리 페이지로 이동 합니다.
 	@RequestMapping("/loginCheck/adminMember")
@@ -48,7 +52,19 @@ public class AdminController {
 	}
 	//호텔관리 페이지로 이동 합니다.
 	@RequestMapping("/loginCheck/adminHotel")
-	public String hotel() {
+	public String hotel(@RequestParam(required=false, defaultValue="1") String curPage ,
+			 @RequestParam(required=false, defaultValue="id") String searchName,
+				@RequestParam(required=false, defaultValue="") String searchValue, HttpSession session)throws Exception {
+		System.out.println(curPage);
+		System.out.println(searchName);
+		System.out.println(searchValue);
+		HashMap<String, String> map= new HashMap<String, String>();
+		map.put("searchName", searchName);
+		map.put("searchValue", searchValue);		
+		System.out.println(map);
+		AdminHotelPageDTO ahpDTO= service.adminHotel(Integer.parseInt(curPage),map);	
+		System.out.println("Controller"+ahpDTO);
+		session.setAttribute("ahpDTO",ahpDTO);
 		return "redirect:../adminHotel";
 	}
 	//호텔방관리 페이지로 이동 합니다.

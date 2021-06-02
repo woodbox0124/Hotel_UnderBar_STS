@@ -8,9 +8,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dto.AdminHotelPageDTO;
 import com.dto.AdminMemberPageDTO;
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
+import com.dto.HotelDTO;
 import com.dto.MemberDTO;
 
 @Repository
@@ -43,6 +45,26 @@ public class AdminDAO {
 	private int totalCount(HashMap<String, String> map) {
 		int num = template.selectOne("AdminMapper.totalCount", map);
 		System.out.println("memberTotalCount : "+num);
+		return num;
+	}
+
+
+	public AdminHotelPageDTO adminHotel(int curPage, HashMap<String, String> map) {
+		AdminHotelPageDTO ahpDTO = new AdminHotelPageDTO();
+		int perPage = ahpDTO.getPerPage(); //10
+		int offset = (curPage -1)*perPage; //0
+		List<HotelDTO> list = template.selectList("AdminMapper.adminHotel", map, new RowBounds(offset,perPage));
+		ahpDTO.setCurPage(curPage);
+		ahpDTO.setList(list);
+		ahpDTO.setTotalCount(HtotalCount(map));
+		System.out.println(perPage);
+		System.out.println(offset);	
+		System.out.println("AdminHotelPageDTO : " + ahpDTO);
+		return ahpDTO;
+	}
+	private int HtotalCount(HashMap<String, String> map) {
+		int num = template.selectOne("AdminMapper.HtotalCount", map);
+		System.out.println("HotelTotalCount : "+num);
 		return num;
 	}
 
