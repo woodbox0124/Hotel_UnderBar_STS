@@ -12,11 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -31,6 +33,8 @@ public class ResvController {
 
 	@Autowired
 	ResvService service;
+	@Autowired
+	RoomService rservice;
 
 	//예약 내역
 	@RequestMapping("/loginCheck/resvMy") // Interceptor
@@ -66,38 +70,35 @@ public class ResvController {
 	public String RoomReserv(ResvDTO rdto, String hotelname, String roomseq, int price, 
 		String hotelseq , HttpSession session, RedirectAttributes attr, HttpServletResponse response, HttpServletRequest request) throws Exception {
 		
-		/*
-		 * attr.addFlashAttribute("checkin", checkin);
-		 * attr.addFlashAttribute("checkout", checkout); attr.addFlashAttribute("guest",
-		 * guest);
-		 */
+		
 		attr.addFlashAttribute("hotelseq", hotelseq);
 		attr.addFlashAttribute("roomseq", roomseq);
-		//attr.addFlashAttribute("u_id", u_id);
-		/*
-		 * attr.addFlashAttribute("name", name); attr.addFlashAttribute("location",
-		 * location);
-		 */
 		attr.addFlashAttribute("hotelname", hotelname);
 		attr.addFlashAttribute("price", price);
-		System.out.println(price);
+		String checkin = (String)session.getAttribute("checkin");
 		
-		/*
-		 * RoomService rservice = new RoomService(); HashMap<String, String> map = new
-		 * HashMap<String, String>(); map.put("roomseq", roomseq);
-		 * map.put("checkin",checkin); int n = rservice.date(map);
-		 * System.out.println("n : " + n); if(n==1) {
-		 * request.setCharacterEncoding("UTF-8");
-		 * response.setContentType("text/html; charset=utf-8"); PrintWriter out =
-		 * response.getWriter(); out.print("<html><head>"); out.
-		 * print("<meta http-equiv=\'Content-Type\' content=\'text/html; charset=utf-8\'>"
-		 * ); out.println("<script language='javascript'>");
-		 * out.println("alert('이미 예약이 된 방입니다.');"); out.println("history.back();");
-		 * out.println("</script>"); out.print("</head></html>"); }
-		 */
-		 
-			return "redirect:../RoomReserv";
+		  HashMap<String, String> map = new HashMap<String, String>(); 
+		  map.put("roomseq", roomseq);
+		  map.put("checkin",checkin); 
+		  int n = rservice.reserved(map);
+		  System.out.println("n : " + n); 
+		  String nextPage = null;
+		  
+		  if(n==1) {
+			  nextPage = "redirect:../historyback";
+			 
+		  }
+		 if(n!=1) {
+			 nextPage = "redirect:../RoomReserv";
+		 }
+			return nextPage;
 	}
+	
+	@RequestMapping("/historyback")
+	public String historyback() {
+		return "historyback"; // historyback.jsp
+	}
+	
 	@RequestMapping(value = "/loginCheck/KakaoPay")
 	public String KakaoPay(HttpSession session, ResvDTO rdto, RedirectAttributes attr ,String seq, String hotelseq,
 			String roomseq, int price) {
