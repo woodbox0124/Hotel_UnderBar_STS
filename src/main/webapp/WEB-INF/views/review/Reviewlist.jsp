@@ -269,9 +269,12 @@ function reviewAdminDelete(e, num) {
 	
  $(function() {
 	$("#check5").click(function () {
+		$("input:checkbox[id='check5']").prop("checked", true);
 		var rating=$("#check5").val();
 		console.log(rating);
 		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating="+rating;
+		$("input:checkbox[id='check5']").prop("checked", true);
+
 	})
 	$("#check4").click(function () {
 		var rating=$("#check4").val();
@@ -295,6 +298,10 @@ function reviewAdminDelete(e, num) {
 	})
 	$("#allcheck").click(function () {
 		location.href = "loginCheck/Review?hotelname=<%=hotelname%>";
+		if($("#allcheck").prop("checked")) { //해당화면에 전체 checkbox들을 체크해준다 
+			$("input[type=checkbox]").prop("checked",true); // 전체선택 체크박스가 해제된 경우
+			} else { //해당화면에 모든 checkbox들의 체크를해제시킨다.
+				$("input[type=checkbox]").prop("checked",false); } 
 	})
 	
 }) 
