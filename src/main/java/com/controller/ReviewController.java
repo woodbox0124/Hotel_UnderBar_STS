@@ -71,8 +71,7 @@ public class ReviewController {
 		System.out.println("contentType:  "+ contentType);
 		System.out.println("정보들======="+u_id+content+rating+title+hotelname);
 		
-		File f= new File("C:\\Users\\CHANGHO\\Documents\\GitHub\\Hotel_UnderBar_STS\\src\\main\\webapp\\WEB-INF\\views\\assets\\upload", originalFileName);
-		File f2= new File("C://Springmall/apache-tomcat-8.5.58-windows-x64/apache-tomcat-8.5.58/webapps/Hotel_UnderBar/WEB-INF/views/assets/upload", originalFileName);
+		File f= new File("C:\\upload",originalFileName);
 		ReviewDTO rvdto=new ReviewDTO();
 		   rvdto.setU_id(u_id);
 		   rvdto.setTitle(title);
@@ -158,7 +157,9 @@ public class ReviewController {
 	public String review(String hotelname,HttpSession session, HttpServletRequest request, RedirectAttributes attr){
 		List<ReviewDTO> list = service.review(hotelname); //호텔이름에 해당하는 리뷰들 뽑아오기
 		List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
-	    
+	    int sumcount=service.sumcount(hotelname); //리뷰 총갯수
+	   
+		
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
@@ -168,6 +169,7 @@ public class ReviewController {
 		session.setAttribute("admin", admin);
 		session.setAttribute("u_id1", u_id1);
 		session.setAttribute("reviewcount", reviewcount);
+		session.setAttribute("sumcount", sumcount);
 		
 		
 		return "redirect:../reviewlist";
@@ -209,11 +211,13 @@ public class ReviewController {
 		String hotelname = (String)session.getAttribute("hotelname");
 		List<ReviewDTO> list = service.review(hotelname);
 		List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
-		
+		 int sumcount=service.sumcount(hotelname); //리뷰 총갯수
+		 
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
 		
+		session.setAttribute("sumcount", sumcount);
 		session.setAttribute("reviewcount", reviewcount);
 		session.setAttribute("reviewlist", list);
 		session.setAttribute("admin", admin);
@@ -240,7 +244,31 @@ public class ReviewController {
 		
 		return "redirect:../reviewlist";
 	}
-
+	
+	@RequestMapping("/loginCheck/Reviewrating") //위에 레이팅필터 , rating점수에 맞는 리뷰들만 뽑아오기
+	public String reviewrating(int rating,String hotelname,HttpSession session, HttpServletRequest request, RedirectAttributes attr) {
+		System.out.println("받아온 리뷰점슈====="+rating);
+		
+		HashMap<Object, Object> map = new HashMap<Object, Object>();
+		map.put("rating",rating);
+		map.put("hotelname",hotelname);
+		List<ReviewDTO> list = service.reviewrating(map); //호텔이름과 rating에 해당하는 리뷰들 뽑아오기
+		List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
+	    int sumcount=service.sumcount(hotelname); //리뷰 총갯수
+	   System.out.println("rating에 맞는 리뷰리스트들==================="+list);
+		
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		int admin = dto.getAdmin();
+		String u_id1 = dto.getU_id();
+		
+		session.setAttribute("reviewlist", list);
+		session.setAttribute("hotelname", hotelname);
+		session.setAttribute("admin", admin);
+		session.setAttribute("u_id1", u_id1);
+		session.setAttribute("reviewcount", reviewcount);
+		session.setAttribute("sumcount", sumcount);
+		return "redirect:../reviewlist";
+	}
 	
 	
 }

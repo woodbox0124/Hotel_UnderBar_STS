@@ -65,4 +65,15 @@ public class ReviewDAO {
 		List<ReviewCountDTO> list = session.selectList("ReviewMapper.reviewCount", hotelname);
 		return list;
 	}
+
+	public int sumcount(String hotelname) {
+		int n=session.selectOne("ReviewMapper.sumCount",hotelname);
+		return n;
+	}
+
+
+	public List<ReviewDTO> reviewrating(HashMap<Object, Object> map) {
+		List<ReviewDTO> list=session.selectList("ReviewMapper.reviewRating",map);
+		return list;
+	}
 }
