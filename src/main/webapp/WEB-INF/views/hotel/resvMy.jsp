@@ -67,7 +67,7 @@
 		 console.log(hotelname);
 		 var url= "ReviewWrite?hotelname="+hotelname;
 				var name = "popup test"
-				var option = "width = 500, height=500, top=100,left=200";
+				var option = "width = 500, height=600, top=100,left=200";
 				window.open(url, name, option);
 			})
 	});
