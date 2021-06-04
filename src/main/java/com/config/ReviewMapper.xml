@@ -44,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<select id="reviewCount" parameterType="string" resultType="ReviewCountDTO">
-	select rating numrating ,round(ratio_to_report(count(rating)) over()*100,2) count from review where hotelname=#{hotelname} and not rating is null group by rating  order by rating
+	select rating numrating ,round(ratio_to_report(count(rating)) over()*100,2) count,count(rating) gc from review where hotelname=#{hotelname} and not rating is null group by rating  order by rating
 	</select>
 	
 	<select id="sumCount" parameterType="string" resultType="int">
@@ -54,4 +54,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="reviewRating" parameterType="hashmap" resultType="ReviewDTO">
 	select num,title, u_id, content,TO_CHAR(writedate, 'YYYY/MM/DD')writedate, origin,groupnum,hotelname,rating,review_img from review where hotelname = #{hotelname} and rating=#{rating}  order by origin desc,groupnum asc
 	</select>
+	
+	
 </mapper>
