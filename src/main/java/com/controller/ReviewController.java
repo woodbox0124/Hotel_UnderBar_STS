@@ -72,6 +72,7 @@ public class ReviewController {
 		System.out.println("정보들======="+u_id+content+rating+title+hotelname);
 		
 		File f= new File("C:\\upload",originalFileName);
+		File f2= new File("/Users/bitna",originalFileName);
 		ReviewDTO rvdto=new ReviewDTO();
 		   rvdto.setU_id(u_id);
 		   rvdto.setTitle(title);
@@ -81,11 +82,11 @@ public class ReviewController {
 		   rvdto.setReview_img(originalFileName); //파일이름
 		   System.out.println("리뷰dto에 담은 정보들=============="+rvdto);
 		   service.write(rvdto);
-		  //attr.addAttribute("mesg","리뷰작성이 완료되었습니다");
 		 request.setAttribute("mesg", "리뷰작성이 완료되었습니다");
 		 
 		try {
 			theFile.transferTo(f);
+			theFile.transferTo(f2);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
