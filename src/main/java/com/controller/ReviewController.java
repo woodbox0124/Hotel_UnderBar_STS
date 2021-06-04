@@ -8,10 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,8 +68,7 @@ public class ReviewController {
 		System.out.println("contentType:  "+ contentType);
 		System.out.println("정보들======="+u_id+content+rating+title+hotelname);
 		
-		File f= new File("C:\\Users\\CHANGHO\\Documents\\GitHub\\Hotel_UnderBar_STS\\src\\main\\webapp\\WEB-INF\\views\\assets\\upload", originalFileName);
-		File f2= new File("C://Springmall/apache-tomcat-8.5.58-windows-x64/apache-tomcat-8.5.58/webapps/Hotel_UnderBar/WEB-INF/views/assets/upload", originalFileName);
+		File f= new File("C:\\upload", originalFileName);
 		ReviewDTO rvdto=new ReviewDTO();
 		   rvdto.setU_id(u_id);
 		   rvdto.setTitle(title);

@@ -62,7 +62,7 @@
 				<value>com.dto.AdminHotelPageDTO</value>						
 				<value>com.dto.RatingDTO</value>	
 				<value>com.dto.ReviewCountDTO</value>					
-
+				<value>com.dto.HotelUpdateDTO</value>					
 			</list>		
 		</property>
 	</bean>	

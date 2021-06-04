@@ -47,9 +47,9 @@ public class MemberController {
 	    
 	    HashMap<String, String> set = new HashMap<String, String>();
 
-	    set.put("to", (String)request.getParameter("to")); // 받는 사람
+	    set.put("to", request.getParameter("to")); // 받는 사람
 	    set.put("from", "01020700391"); // 발신번호
-	    set.put("text", "안녕하세요. Hotel UnderBar입니다. 인증번호는 ["+(String)request.getParameter("text")+"]입니다"); // 문자내용
+	    set.put("text", "안녕하세요. Hotel UnderBar입니다. 인증번호는 ["+request.getParameter("text")+"]입니다"); // 문자내용
 	    set.put("type", "sms"); // 문자 타입
 
 	    

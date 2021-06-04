@@ -9,13 +9,15 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#pw").blur(function() {
+		$("#pw").blur(function(event) {
 			var passwd = $("#pw").val();
 			var passwd2 = $("#pw1").val();
 			if (passwd != passwd2) {
 				alert("비밀번호가 다릅니다. 다시 입력해주세요");
+				event.preventDefault();
 			} else {
 				alert("비밀번호가 같습니다. 회원가입을 계속 진행해주세요");
+				event.preventDefault();
 			}
 		})
 
@@ -29,6 +31,7 @@
 				},
 				success : function(responseData, status, xhr) {
 					alert(responseData);
+					event.preventDefault();
 				},
 				error : function(xhr, status, error) {
 					console.log("error")
@@ -45,7 +48,7 @@
 				},
 				success : function(responseData, status, xhr) {
 					if (responseData == "아이디가 중복됩니다. 다시 입력해주세요") {
-						console.log("world");
+						console.log("중복");
 						alert(responseData);
 					} else {
 						console.log("통과");

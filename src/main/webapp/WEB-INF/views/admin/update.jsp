@@ -49,9 +49,6 @@ $(document).ready(function() {
 				console.log(error);
 			}			
 		});//end ajax
-		$(".test").click(function() {
-			opener.parent.click();
-		});
 		
 	});		
 });
