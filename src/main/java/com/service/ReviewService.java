@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.ReviewDAO;
+import com.dto.ReviewCountDTO;
 import com.dto.ReviewDTO;
 
 @Service
@@ -50,5 +51,31 @@ public class ReviewService {
 		dao.reviewAdminUp(map);
 		
 	}
+
+	public void reviewAnswerUp(HashMap<Object, Object> map) {
+		dao.reviewAnswerUp(map);
+		
+	}
+
+	public List<ReviewCountDTO> reviewcount(String hotelname) {
+		List<ReviewCountDTO> reviewcount=dao.reviewcount(hotelname);
+		return reviewcount;
+	}
+
+	public int sumcount(String hotelname) {
+		 int n=dao.sumcount(hotelname);
+		return n;
+	}
+
+
+	public List<ReviewDTO> reviewrating(HashMap<Object, Object> map) {
+		List<ReviewDTO> reviewrating=dao.reviewrating(map);
+		return reviewrating;
+	}
+
+	public List<ReviewCountDTO> groubrating(String hotelname) {
+		List<ReviewCountDTO> list=dao.grouprating(hotelname);	
+		return list;
+				}
 
 }

@@ -10,6 +10,9 @@
 <link rel="stylesheet" href="jquery-ui-1.12.1/fontawesome-stars.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="jquery-ui-1.12.1/jquery.barrating.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="assets/css/font.css">
+<link rel="stylesheet" type="text/css" href="assets/css/default.css">
 <script type="text/javascript">
    $(function() {
       $('#star').barrating({
@@ -17,31 +20,109 @@
       });
    });
 </script>
+<style type="text/css">
+#theFile{
+font-size: 13px;
+}
+#title{
+font-size: 13px;
+margin-left: 20px;}
 
+#content{
+font-size: 13px;
+margin-left: 20px;
+width: 400px;}
+
+#u_id{
+font-size: 13px;
+}
+#aa{
+font-size: 15px;
+margin: auto;
+}
+#jumbotron{
+height: 80px;
+width: 800px;
+margin: auto;
+}
+#top{
+font-size: 20px;
+}
+.aa{
+margin-left: 20px;
+}
+#staraa{
+margin-left: 20px;
+}
+#btn:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+#btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+#btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: ;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-left: 20px;
+}
+
+
+</style>
 </head>
 <body>
+
+
+<div id="jumbotron" class="jumbotron">
+<p  id="top">리뷰 수정</p>
+</div>
 <%
-int num =Integer.parseInt(request.getParameter("num"));
+int num = Integer.parseInt(request.getParameter("num"));
 String hotelname = request.getParameter("hotelname");
 %>
+
 <form action="ReviewUpdateUp" method="POST" enctype="multipart/form-data" >
 <input type="hidden" id="num" name="num" value="<%=num%>">
 <input type="hidden" id="hotelname" name="hotelname" value="<%=hotelname%>">
-
-<select id="star" name="star">
+<div id=staraa>
+<a id="aa">평점</a>:<select id="star" name="star">
 	<option value="1">1</option>
 	<option value="2">2</option>
 	<option value="3">3</option>
 	<option value="4">4</option>
 	<option value="5">5</option>
 </select>
-
-작성자(ID): <input type="text" name="u_id" id="u_id" value="${login.u_name}"><br>
-제목: <input type="text" name="title" id="title"><br>
-내용: <input type="text" name="content" id="content"><br>
+</div>
+ <input type="text" name="title" id="title" class="form-control mt-4 mb-2"
+		placeholder="제목을 입력해주세요." required
+	>
+	<div class="form-group">
+		<textarea class="form-control" rows="10" name="content" id="content"
+			placeholder="내용을 입력해주세요" required
+		></textarea>
+	</div>
 <input type="file" name="theFile" id="theFile">
-<input type="reset" value="초기화">
-<input type="submit" value="업로드"/>
+<br>
+<br>
+<input type="reset" id="btn"  value="초기화">
+<input type="submit" id="btn" value="리뷰작성"/>
 </form>
 </body>
 </html>

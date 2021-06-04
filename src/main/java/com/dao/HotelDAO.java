@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dto.HotelDTO;
+import com.dto.HotelUpdateDTO;
 import com.dto.PageDTO;
 import com.dto.RatingDTO;
 
@@ -51,5 +52,18 @@ public class HotelDAO {
 		List<RatingDTO> list=template.selectList("HotelMapper.rating");
 		return list;
 	}
+	public int HotelDelete(String seq) {
+		int n= template.delete("HotelMapper.HotelDelete", seq);
+		return n;
+	}
+	public HotelDTO hotelSelect(String seq) {
+		HotelDTO hdto = template.selectOne("HotelMapper.hotelSelect", seq);
+		return hdto;
+	}
+	public int hotelUpdate(HotelUpdateDTO huDTO) {
+		int n = template.update("HotelMapper.hotelUpdate",huDTO);
+		return n;
+	}
+
 	
 }

@@ -1,16 +1,11 @@
 package com.dao;
 
-import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
-
 import com.dto.ResvDTO;
 import com.dto.ResvMyDTO;
 import com.dto.ResvPageDTO;

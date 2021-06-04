@@ -23,7 +23,7 @@
 <mvc:view-controller path="/roomdetail" view-name="roomdetail"/>
 <mvc:view-controller path="/KakaoPay" view-name="KakaoPay"/>
 <mvc:view-controller path="/searchId" view-name="searchId"/>
-<mvc:view-controller path="/Agree" view-name="Agree"/>
+<mvc:view-controller path="/agree" view-name="agree"/>
 <mvc:view-controller path="/adminMember" view-name="adminMember"/>
 <mvc:view-controller path="/adminHotel" view-name="adminHotel"/>
 <mvc:view-controller path="/adminRoom" view-name="adminRoom"/>
@@ -35,7 +35,14 @@
 <mvc:view-controller path="/faqWrite" view-name="faqWrite"/>
 <mvc:view-controller path="/faqInsert" view-name="faqInsert"/>
 <mvc:view-controller path="/admin/update" view-name="admin/update"/>
+<mvc:view-controller path="/admin/hotelupdate" view-name="admin/hotelupdate"/>
+
 <mvc:view-controller path="/reviewlist" view-name="reviewlist"/>
+<mvc:view-controller path="/ReviewOrder" view-name="ReviewOrder"/>
+<mvc:view-controller path="/ReviewNew" view-name="ReviewNew"/>
+<mvc:view-controller path="/ReviewDelete" view-name="ReviewDelete"/>
+<mvc:view-controller path="/ReviewAdminDelete" view-name="ReviewAdminDelete"/>
+
 <mvc:view-controller path="/eventWrite" view-name="eventWrite"/>
 <!-- web-inf 폴더는 반드시 리소스 등록 후 사용 -->
 <mvc:resources location="/WEB-INF/views/styles/" mapping="/styles/**"/>
@@ -61,7 +68,6 @@
 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	<property name="prefix" value="/WEB-INF/views/"></property>
 	<property name="suffix" value=".jsp"></property>
-	
 </bean>
 <context:component-scan base-package="com.*"></context:component-scan><!-- repoistory,service, controller 생성 -->
 <!-- 메일 -->

@@ -3,14 +3,46 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="AdminMapper">
-<select id="serachName" parameterType="hashmap" resultType="MemberDTO">
+<select id="adminMember" parameterType="hashmap" resultType="MemberDTO">
 select u_id, u_pw, u_name, u_phone, u_email from member 
         <if test="searchName == 'id' ">
 			where u_id LIKE '%'||#{searchValue}||'%'
 		</if>
-		<if test="searchName=='name'">
+		<if test="searchName =='name'">
 			where u_name LIKE '%'||#{searchValue}||'%'
 		</if>
 </select>
+
+<select id="totalCount" resultType="int" parameterType="hashmap">
+		select count(*)
+		from member
+		<if test="searchName == 'id'">
+			where u_id LIKE '%'||#{searchValue}||'%'
+		</if>
+		<if test="searchName == 'name'">
+			where u_name LIKE '%'||#{searchValue}||'%'
+		</if>
+	</select>
+<select id="adminHotel" parameterType="hashmap" resultType="HotelDTO">
+select seq, name, place, addr, rating, hotel_img from hotel 
+        <if test="searchName == 'name' ">
+			where name LIKE '%'||#{searchValue}||'%'
+		</if>
+		<if test="searchName =='addr'">
+			where addr LIKE '%'||#{searchValue}||'%'
+		</if>
+		order BY seq asc, DECODE (place, '서울', '부산', '제주')
+</select>
+
+<select id="HtotalCount" resultType="int" parameterType="hashmap">
+		select count(*)
+		from Hotel
+		<if test="searchName == 'name'">
+			where name LIKE '%'||#{searchValue}||'%'
+		</if>
+		<if test="searchName == 'addr'">
+			where addr LIKE '%'||#{searchValue}||'%'
+		</if>
+	</select>
 	
 </mapper>

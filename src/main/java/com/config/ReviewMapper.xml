@@ -12,6 +12,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{content},review_seq.nextval,#{hotelname},#{rating},#{review_img})
 	</insert>
 	<!-- 리뷰게시글 추가 -->
+	
+	<insert id="reviewAnswerUp" parameterType="ReviewDTO">
+		insert into review(num, title, u_id, content,origin,hotelname,groupnum)
+		values (review_seq.nextval, #{title}, #{u_id},
+		#{content},#{num},#{hotelname},1)
+	</insert>
 
 	<select id="review" parameterType="string" resultType="ReviewDTO">
 	select num,title, u_id, content,TO_CHAR(writedate, 'YYYY/MM/DD')writedate, origin,groupnum,hotelname,rating,review_img from review where hotelname = #{hotelname} order by origin desc,groupnum asc
@@ -30,11 +36,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<update id="reviewUpdate" parameterType="hashmap">
-	update review set title = #{title}, content = #{content}, rating = #{rating} where num = #{num}
+	update review set title = #{title}, content = #{content}, rating = #{rating}, review_img = #{review_img}  where num = #{num}
 	</update>
 	
 	<update id="reviewAdminUp" parameterType="hashmap">
 	update review set title = #{title}, content = #{content} where num = #{num}
 	</update>
-
+	
+	<select id="reviewCount" parameterType="string" resultType="ReviewCountDTO">
+	select rating numrating ,round(ratio_to_report(count(rating)) over()*100,2) count,count(rating) gc from review where hotelname=#{hotelname} and not rating is null group by rating  order by rating
+	</select>
+	
+	<select id="sumCount" parameterType="string" resultType="int">
+	select count(rating) from review where hotelname=#{hotelname}
+	</select>
+	
+	<select id="reviewRating" parameterType="hashmap" resultType="ReviewDTO">
+	select num,title, u_id, content,TO_CHAR(writedate, 'YYYY/MM/DD')writedate, origin,groupnum,hotelname,rating,review_img from review where hotelname = #{hotelname} and rating=#{rating}  order by origin desc,groupnum asc
+	</select>
+	
+	
 </mapper>

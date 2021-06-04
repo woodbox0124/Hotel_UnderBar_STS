@@ -15,7 +15,7 @@
 </head>
 <body>
 <%
-int num =Integer.parseInt(request.getParameter("num"));
+int num = Integer.parseInt(request.getParameter("num"));
 String hotelname = request.getParameter("hotelname");
 %>
 <form action="ReviewAdminUp" method="POST" enctype="multipart/form-data" >

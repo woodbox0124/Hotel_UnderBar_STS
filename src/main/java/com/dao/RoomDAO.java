@@ -18,6 +18,7 @@ public class RoomDAO {
 	
 	public List<RoomDTO> roomList(String seq) 
 	{
+		System.out.println("roomlist" + template);
 		List<RoomDTO> list = template.selectList("HotelMapper.roomList", seq);
 		return list;
 	}
@@ -27,16 +28,21 @@ public class RoomDAO {
 		return list;
 	}
 
-	public List<RoomDTO> roomList2(String seq) 
-	{
+	public List<RoomDTO> roomList2(String seq) {
 		List<RoomDTO> list = template.selectList("HotelMapper.roomList2", seq);
 		return list;
 	}
 
-	public int date(HashMap<String, String> map) {
-		System.out.println(map);
-		int n = template.selectOne("HotelMapper.date",map);
+	public int reserved(HashMap<String, String> map) {
+		System.out.println("map: " + map + template);
+		int n = template.selectOne("HotelMapper.reserved",map);
+		System.out.println("roomdao" + n);
 		return n;
+	}
+
+	public int selectMaxGuest(String roomseq) {
+		int MaxGuest = template.selectOne("HotelMapper.selectMaxGuest",roomseq);
+		return MaxGuest;
 	}
 
 

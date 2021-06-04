@@ -7,10 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.dto.MemberDTO;
 import com.dto.ResvDTO;
 import com.dto.RoomDTO;
 import com.dto.RoomInfoDTO;
@@ -43,7 +41,7 @@ public class RoomController
 		 * attr.addFlashAttribute("checkout", checkout);
 		 */
 		
-		System.out.println(list);
+		System.out.println("방 정보"+list);
 		return "redirect:../roomlist";
 	}
 	

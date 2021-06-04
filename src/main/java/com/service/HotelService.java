@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.HotelDAO;
+import com.dto.HotelDTO;
+import com.dto.HotelUpdateDTO;
 import com.dto.PageDTO;
 import com.dto.RatingDTO;
 
@@ -29,6 +31,26 @@ public class HotelService {
 		List<RatingDTO> list=dao.rating();
 		return list;
 	}
+
+	public int HotelDelete(String seq) {
+		int n = dao.HotelDelete(seq);
+	    return n;
+		
+	}
+
+	public HotelDTO hotelSelect(String seq) {
+		HotelDTO hDTO= dao.hotelSelect(seq);
+		return hDTO;
+	}
+
+	public int hotelUpdate(HotelUpdateDTO huDTO) {
+		int n = dao.hotelUpdate(huDTO);
+		return n;
+		
+	}
+
+
+
 
 	
 }

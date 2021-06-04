@@ -41,4 +41,16 @@ select * from roominfo where r_seq=#{seq} order by r_seq
 	select COUNT(*) from resv 
 	where roomseq = #{roomseq} and checkin = TO_DATE(#{checkin})
 </select>
+
+<select id="rating" resultType="RatingDTO">
+select hotelname,round(avg(rating),2) rating from review group by hotelname
+</select>
+
+
+<!-- 호텔 정보 삭제 -->
+<delete id="HotelDelete" parameterType="String">
+delete from hotel where seq = #{seq}
+</delete>
+<!-- 호텔 정보 삭제 -->
+
 </mapper>

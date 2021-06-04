@@ -8,13 +8,13 @@ public class HotelDTO {
 	private String name;
 	private String place;
 	private String addr;
-	private double use_count;
 	private double rating;
 	private String hotel_img;
 	private String hotel_img_real;
 	
 	public HotelDTO() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getSeq() {
@@ -49,14 +49,6 @@ public class HotelDTO {
 		this.addr = addr;
 	}
 
-	public double getUse_count() {
-		return use_count;
-	}
-
-	public void setUse_count(double use_count) {
-		this.use_count = use_count;
-	}
-
 	public double getRating() {
 		return rating;
 	}
@@ -81,14 +73,13 @@ public class HotelDTO {
 		this.hotel_img_real = hotel_img_real;
 	}
 
-	public HotelDTO(String seq, String name, String place, String addr, double use_count, double rating,
-			String hotel_img, String hotel_img_real) {
+	public HotelDTO(String seq, String name, String place, String addr, double rating, String hotel_img,
+			String hotel_img_real) {
 		super();
 		this.seq = seq;
 		this.name = name;
 		this.place = place;
 		this.addr = addr;
-		this.use_count = use_count;
 		this.rating = rating;
 		this.hotel_img = hotel_img;
 		this.hotel_img_real = hotel_img_real;
@@ -96,13 +87,8 @@ public class HotelDTO {
 
 	@Override
 	public String toString() {
-		return "HotelDTO [seq=" + seq + ", name=" + name + ", place=" + place + ", addr=" + addr + ", use_count="
-				+ use_count + ", rating=" + rating + ", hotel_img=" + hotel_img + ", hotel_img_real=" + hotel_img_real
-				+ "]";
-	}
-
-	
-	
-	
+		return "HotelDTO [seq=" + seq + ", name=" + name + ", place=" + place + ", addr=" + addr + ", rating=" + rating
+				+ ", hotel_img=" + hotel_img + ", hotel_img_real=" + hotel_img_real + "]";
+	}	
 
 }

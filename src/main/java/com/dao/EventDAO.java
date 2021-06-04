@@ -12,9 +12,6 @@ import org.springframework.stereotype.Repository;
 import com.dto.ReplyDTO;
 import com.dto.EventDTO;
 import com.dto.EventPageDTO;
-import com.dto.FaqDTO;
-import com.dto.NotiDTO;
-import com.dto.NotiPageDTO;
 
 
 @Repository

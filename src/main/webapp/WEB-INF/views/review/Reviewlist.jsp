@@ -1,3 +1,4 @@
+<%@page import="com.dto.ReviewCountDTO"%>
 <%@page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -13,21 +14,75 @@
 <link rel="stylesheet" type="text/css" href="assets/css/default.css">
 <style type="text/css">
 
-  select {
-  font-size: 18px;
+	select {
+ 		 font-size: 20px;
   }
   
-  form {
-  padding-left: 50px;
-  color: black;
-  font-size: 18px;
+	form {
+ 		 padding-left: 300px;
+ 		 padding-right: 600px;
+ 		 color: black;
+ 		 font-size: 20px;
+ 		 width: fit-content;
+ 		 margin-top: 10px;
   }
   
-  .hotellist{
-  font-size : 18px;
+	.hotellist{
+ 		 font-size : 20px;
+ 		 text-align: center;
   }
 
-  summary {
+	.title {
+		font-weight: 600;
+         font-size: 20px;
+	}
+	.content {
+		font-size: 18px;
+    width: 400px;
+}
+	}
+	.sort {
+		padding-top: 30px;
+	}
+	#allcheck{
+	margin: -2px 8px 0px 0px;
+	width: 30px;
+	}
+	#check1,#check2,#check3,#check4,#check5{
+	margin: -2px 8px 0px 0px;
+	width: 30px;
+	}
+	
+	.box{
+	 width: 360px; border : 1px solid #dddddd; padding: 8px; margin: 10px; 
+	
+	}
+	
+	.topreview{
+	    margin-left: 300px;
+ 		 color: black;
+ 		 font-size: 20px;
+ 		 width: fit-content;
+ 		 margin-top: 10px;
+	}
+	.top{
+	 padding-left: 300px;
+ 		 padding-right: 600px;
+ 		 color: black;
+ 		 font-size: 20px;
+ 		 width: fit-content;
+ 		 margin-top: 10px;
+	}
+	.reviewbar{
+  margin-top: 10px;
+	}
+	#gun{
+	
+	}
+	
+	
+	
+/*   summary {
     cursor: pointer;
   }
 
@@ -36,10 +91,15 @@
   }
   summary::-webkit-details-marker {
     display: none;
-  }
+  } */
   
 </style>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+
+
+
+</script>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -51,7 +111,42 @@ String checkin = (String)session.getAttribute("checkin");
 String checkout = (String)session.getAttribute("checkout");
 String guest = (String)session.getAttribute("guest");
 String location = (String)session.getAttribute("location");
+
+
 %>
+<div class="top">
+<p style="font-size:30px;margin-top: 20px;">이용후기</p>
+<small>100% 실제 투숙객이 작성한 후기입니다.</small>
+</div>
+
+
+<div class="topreview">
+<a class="box">총 ${sumcount}건</a>
+
+<div class="reviewbar">
+<input id="allcheck" type="checkbox"/>전체<br> 
+<c:forEach var="list" items="${reviewcount}">
+<c:if test="${list.numrating eq 5 }">
+<input id="check5" type="checkbox" value="5"/>매우만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}%  <a id="gun">${list.gc}건</a><br></c:if>
+
+<c:if test="${list.numrating eq 4}">
+<input id="check4" type="checkbox" value="4"/>만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}% <a id="gun">${list.gc}건</a><br></c:if>
+
+<c:if test="${list.numrating eq 3}">
+<input id="check3" type="checkbox" value="3"/>보통 <progress value="${list.count}" max="100.0"></progress> ${list.count}% <a id="gun">${list.gc}건</a><br></c:if>
+
+<c:if test="${list.numrating eq 2}">
+<input id="check2" type="checkbox" value="2"/>미흡 <progress value="${list.count}" max="100.0"></progress> ${list.count}% <a id="gun">${list.gc}건</a><br></c:if>
+
+<c:if test="${list.numrating eq 1}">
+<input id="check1" type="checkbox" value="1"/>불만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}% <a id="gun">${list.gc}건</a><br></c:if>
+
+</c:forEach>
+</div>
+</div>
+
+
+
 <form class="sort">
 <select class="selectsort">
 	<option value="최신순">최신순</option>
@@ -60,58 +155,71 @@ String location = (String)session.getAttribute("location");
 <input class="btn btn-primary" type="submit" value="변경">
 
 </form>
-
+<br>
 <form class="review">
 <c:forEach var="list" items="${reviewlist}">
-<c:if test="${list.groupnum == 1}">
-<img src='images/board/reply_icon.gif' />
-</c:if>
 
 <c:choose>
-	<c:when test="${list.groupnum eq 0}">
-		${list.u_id} : ${list.rating} ${list.writedate}
+	<c:when test="${list.groupnum eq 0 and list.rating eq 1}">
+		${list.u_id}  <img src='images/review/1star.png'/> <br>${list.writedate}
 	</c:when>
+	<c:when test="${list.groupnum eq 0 and list.rating eq 2}">
+		${list.u_id}  <img src='images/review/2star.png'/> <br>${list.writedate}
+	</c:when>
+	<c:when test="${list.groupnum eq 0 and list.rating eq 3}">
+		${list.u_id}  <img src='images/review/3star.png'/><br> ${list.writedate}
+	</c:when>
+	<c:when test="${list.groupnum eq 0 and list.rating eq 4}">
+		${list.u_id}  <img src='images/review/4star.png'/> <br>${list.writedate}
+	</c:when>
+	<c:when test="${list.groupnum eq 0 and list.rating eq 5}">
+		${list.u_id}  <img src='images/review/5star.png'/><br> ${list.writedate}
+	</c:when>
+</c:choose>
+<c:choose>	
 	<c:when test="${list.groupnum eq 1}">
-		${list.u_id} : ${list.writedate}
+		&nbsp;&nbsp;&nbsp;<img src='images/board/reply_icon.gif'/> ${list.u_id} <br> ${list.writedate}
 	</c:when>
 </c:choose>
 
 <c:if test="${u_id1 eq list.u_id and list.groupnum eq 0}">
-	<input class="btn btn-primary update" type="button" value="수정" onclick="reviewUpdate(event, ${list.num})"> <input class="btn btn-primary delete" type="button" value="삭제" onclick="reviewDelete(event, ${list.origin})">
+	<input class="btn btn-primary update" type="button" value="수정" onclick="reviewUpdate(${list.num})"> <input class="btn btn-primary delete" type="button" value="삭제" onclick="reviewDelete(event, ${list.origin})"><br>
 </c:if>
 
 <c:choose>
 	<c:when test="${admin eq 1 and list.groupnum eq 0}">
-		<input class="btn btn-primary answer" type="button" value="답글"> <input class="btn btn-primary adminDelete" type="button" value="삭제" onclick="reviewAdminDelete(event, ${list.num})">
+		<input class="btn btn-primary answer" type="button" value="답글" onclick="reviewAnswer(${list.num})"> <input class="btn btn-primary adminDelete" type="button" value="삭제" onclick="reviewAdminDelete(event, ${list.num})"><br>
 	</c:when>
 	
 	<c:when test="${admin eq 1 and list.groupnum eq 1}">
-		<input class="btn btn-primary update" type="button" value="수정" onclick="reviewAdminUpdate(event, ${list.num})"> <input class="btn btn-primary adminDelete" type="submit" value="삭제" onclick="loginCheck/ReviewAdminDelete=${reviewlisst.num}">
+		<input class="btn btn-primary update" type="button" value="수정" onclick="reviewAdminUpdate(${list.num})"> <input class="btn btn-primary adminDelete" type="submit" value="삭제" onclick="reviewAdminDelete(event, ${list.num})"><br>
 	</c:when>
 </c:choose>
 
 <c:choose>
+	<c:when test="${list.groupnum eq 1}">
+  			<br>&nbsp;&nbsp;&nbsp;<span class="title">${list.title}</span>
+ 			<br>&nbsp;&nbsp;&nbsp;<span class="content">${list.content}</span><br>
+ 			<hr>
+	</c:when>
 	<c:when test="${empty list.review_img}">
-		<details>
-  			<summary>${list.title}</summary> 
- 			<p>${list.content}</p>
-		</details><br>
+  			<p class="title">${list.title}</p><br>
+ 			<p class="content">${list.content}</p><br>
+ 			<hr>
 	</c:when>
 	
 	<c:when test="${!empty list.review_img}">
-		<details>
-			<c:out value="${list.num}"></c:out>
-  			<summary>${list.title}</summary> 
-  			<c:out value="${list.review_img}" ></c:out>
-  			<img src="c://upload/${list.review_img}">
- 			<p>${list.content}</p>
-		</details><br>
+  			<p class="title">${list.title}</p> 
+  			<img src="/review/img/${list.review_img}" width="300" height="300">
+ 			<p class="content">${list.content}</p><br>
+ 			<hr>
 	</c:when>
 </c:choose>
 	
 </c:forEach>	
 </form>		
-<a class="hotellist" href="HotelSearch?checkin=<%=checkin%>&checkout=<%=checkout%>&guest=<%=guest%>&location=<%=location%>">호텔 리스트로 돌아가기</a>
+
+<p class="hotellist"><a href="HotelSearch?checkin=<%=checkin%>&checkout=<%=checkout%>&guest=<%=guest%>&location=<%=location%>">호텔 리스트로 돌아가기</a></p>
 <script type="text/javascript">
 $(function () {
 	$(".selectsort").change(function () {
@@ -124,14 +232,20 @@ $(function () {
 		}
 		})
 	})
-function reviewUpdate(e, num) {
+function reviewUpdate(num) {
 	var url= "ReviewUpdate?hotelname=<%=hotelname%>&num="+num;
 	var name = "popup test"
 	var option = "width = 500, height=500, top=100,left=200";
 	window.open(url, name, option);
 }
-function reviewAdminUpdate(e, num) {
+function reviewAdminUpdate(num) {
 	var url= "ReviewAdminUpdate?hotelname=<%=hotelname%>&num="+num;
+	var name = "popup test"
+	var option = "width = 500, height=500, top=100,left=200";
+	window.open(url, name, option);
+}	
+function reviewAnswer(num) {
+	var url= "ReviewAnswer?hotelname=<%=hotelname%>&num="+num;
 	var name = "popup test"
 	var option = "width = 500, height=500, top=100,left=200";
 	window.open(url, name, option);
@@ -146,6 +260,55 @@ function reviewAdminDelete(e, num) {
 	location.href="loginCheck/ReviewAdminDelete?num="+num;
 	alert("리뷰가 삭제 되었습니다");
 }
+
+ /* $(function(){ //전체선택 체크박스 클릭
+	$("#allcheck").click(function(){ //만약 전체 선택 체크박스가 체크된상태일경우
+		if($("#allcheck").prop("checked")) { //해당화면에 전체 checkbox들을 체크해준다 
+			$("input[type=checkbox]").prop("checked",true); // 전체선택 체크박스가 해제된 경우
+			} else { //해당화면에 모든 checkbox들의 체크를해제시킨다.
+				$("input[type=checkbox]").prop("checked",false); } 
+	});
+	});  */
+	
+ $(function() {
+	$("#check5").click(function () {
+		$("input:checkbox[id='check5']").prop("checked", true);
+		var rating=$("#check5").val();
+		console.log(rating);
+		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating="+rating;
+		$("input:checkbox[id='check5']").prop("checked", true);
+
+	})
+	$("#check4").click(function () {
+		var rating=$("#check4").val();
+		console.log(rating);
+		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating="+rating;
+	})
+	$("#check3").click(function () {
+		var rating=$("#check3").val();
+		console.log(rating);
+		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating="+rating;
+	})
+	$("#check2").click(function () {
+		var rating=$("#check2").val();
+		console.log(rating);
+		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating="+rating;
+	})
+	$("#check1").click(function () {
+		var rating=$("#check1").val();
+		console.log(rating);
+		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating="+rating;
+	})
+	$("#allcheck").click(function () {
+		location.href = "loginCheck/Review?hotelname=<%=hotelname%>";
+		if($("#allcheck").prop("checked")) { //해당화면에 전체 checkbox들을 체크해준다 
+			$("input[type=checkbox]").prop("checked",true); // 전체선택 체크박스가 해제된 경우
+			} else { //해당화면에 모든 checkbox들의 체크를해제시킨다.
+				$("input[type=checkbox]").prop("checked",false); } 
+	})
+	
+}) 
+
 </script>
 
 
