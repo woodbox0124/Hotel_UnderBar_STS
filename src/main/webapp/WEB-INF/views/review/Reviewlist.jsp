@@ -76,6 +76,9 @@
 	.reviewbar{
   margin-top: 10px;
 	}
+	#gun{
+	
+	}
 	
 	
 	
@@ -123,20 +126,20 @@ String location = (String)session.getAttribute("location");
 <div class="reviewbar">
 <input id="allcheck" type="checkbox"/>전체<br> 
 <c:forEach var="list" items="${reviewcount}">
-<c:if test="${list.numrating eq 5}">
-<input id="check5" type="checkbox" value="5"/>매우만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
+<c:if test="${list.numrating eq 5 }">
+<input id="check5" type="checkbox" value="5"/>매우만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}%  <a id="gun">${list.gc}건</a><br></c:if>
 
 <c:if test="${list.numrating eq 4}">
-<input id="check4" type="checkbox" value="4"/>만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
+<input id="check4" type="checkbox" value="4"/>만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}% <a id="gun">${list.gc}건</a><br></c:if>
 
 <c:if test="${list.numrating eq 3}">
-<input id="check3" type="checkbox" value="3"/>보통 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
+<input id="check3" type="checkbox" value="3"/>보통 <progress value="${list.count}" max="100.0"></progress> ${list.count}% <a id="gun">${list.gc}건</a><br></c:if>
 
 <c:if test="${list.numrating eq 2}">
-<input id="check2" type="checkbox" value="2"/>미흡 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
+<input id="check2" type="checkbox" value="2"/>미흡 <progress value="${list.count}" max="100.0"></progress> ${list.count}% <a id="gun">${list.gc}건</a><br></c:if>
 
 <c:if test="${list.numrating eq 1}">
-<input id="check1" type="checkbox" value="1"/>불만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
+<input id="check1" type="checkbox" value="1"/>불만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}% <a id="gun">${list.gc}건</a><br></c:if>
 
 </c:forEach>
 </div>

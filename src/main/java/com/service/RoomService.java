@@ -48,4 +48,9 @@ public class RoomService
 		return n;
 	}
 
+	public int selectMaxGuest(String roomseq) {
+		int MaxGuest = dao.selectMaxGuest(roomseq);
+		return MaxGuest;
+	}
+
 }

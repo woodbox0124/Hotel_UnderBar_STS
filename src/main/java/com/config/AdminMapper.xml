@@ -31,6 +31,7 @@ select seq, name, place, addr, rating, hotel_img from hotel
 		<if test="searchName =='addr'">
 			where addr LIKE '%'||#{searchValue}||'%'
 		</if>
+		order BY seq asc, DECODE (place, '서울', '부산', '제주')
 </select>
 
 <select id="HtotalCount" resultType="int" parameterType="hashmap">

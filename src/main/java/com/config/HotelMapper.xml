@@ -45,6 +45,11 @@ select * from roominfo where r_seq=#{seq} order by r_seq
 <select id="rating" resultType="RatingDTO">
 select hotelname,round(avg(rating),2) rating from review group by hotelname
 </select>
+<!-- 룸 최대 인원수 가져오기 -->
+<select id="selectMaxGuest" parameterType="string" resultType="int">
+select max_guest from room where seq =#{roomseq}
+</select>
+<!-- 룸 최대 인원수 가져오기 -->
 
 <!-- 호텔 정보 삭제 -->
 <delete id="HotelDelete" parameterType="String">
@@ -65,6 +70,6 @@ update hotel set
      hotel_img = #{hotel_img}
     where seq = #{seq}
 </update>
-<!-- 호텔 정보 업데이트 -->
+
 
 </mapper>

@@ -107,6 +107,7 @@ public class ReviewController {
 		String originalFileName= theFile.getOriginalFilename();
 		String contentType= theFile.getContentType();
 		List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
+	
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
 		
 		File f= new File("C:\\upload",originalFileName);
@@ -119,6 +120,8 @@ public class ReviewController {
 		request.setAttribute("hotelname", hotelname);
 		request.setAttribute("mesg", "수정이 완료되었습니다");
 		session.setAttribute("reviewcount", reviewcount);
+	
+		
 		try {
 			theFile.transferTo(f);
 		}catch (Exception e) {
@@ -171,8 +174,9 @@ public class ReviewController {
 		List<ReviewDTO> list = service.review(hotelname); //호텔이름에 해당하는 리뷰들 뽑아오기
 		List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
 	    int sumcount=service.sumcount(hotelname); //리뷰 총갯수
-	   
+
 		
+	    
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
@@ -183,7 +187,7 @@ public class ReviewController {
 		session.setAttribute("u_id1", u_id1);
 		session.setAttribute("reviewcount", reviewcount);
 		session.setAttribute("sumcount", sumcount);
-		
+	
 		
 		return "redirect:../reviewlist";
 	}
@@ -226,15 +230,18 @@ public class ReviewController {
 		List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
 		 int sumcount=service.sumcount(hotelname); //리뷰 총갯수
 		 
+		 
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
+		
 		
 		session.setAttribute("sumcount", sumcount);
 		session.setAttribute("reviewcount", reviewcount);
 		session.setAttribute("reviewlist", list);
 		session.setAttribute("admin", admin);
 		session.setAttribute("u_id1", u_id1);
+		
 		
 		return "redirect:../reviewlist";
 	}

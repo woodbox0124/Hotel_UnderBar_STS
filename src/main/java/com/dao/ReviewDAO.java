@@ -76,4 +76,9 @@ public class ReviewDAO {
 		List<ReviewDTO> list=session.selectList("ReviewMapper.reviewRating",map);
 		return list;
 	}
+
+	public List<ReviewCountDTO> grouprating(String hotelname) {
+		List<ReviewCountDTO> list=session.selectList("ReviewMapper.groupRating",hotelname);
+		return list;
+	}
 }

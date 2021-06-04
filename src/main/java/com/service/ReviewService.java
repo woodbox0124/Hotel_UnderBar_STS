@@ -73,4 +73,9 @@ public class ReviewService {
 		return reviewrating;
 	}
 
+	public List<ReviewCountDTO> groubrating(String hotelname) {
+		List<ReviewCountDTO> list=dao.grouprating(hotelname);	
+		return list;
+				}
+
 }
