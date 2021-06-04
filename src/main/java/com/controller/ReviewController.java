@@ -100,17 +100,29 @@ public class ReviewController {
 		String content=dto.getContent();
 		String title=dto.getTitle();
 		int rating=dto.getStar();
+		CommonsMultipartFile theFile= dto.getTheFile();
+		long size = theFile.getSize();
+		String name= theFile.getName();
+		String originalFileName= theFile.getOriginalFilename();
+		String contentType= theFile.getContentType();
 		List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
+		
+		File f= new File("C:\\upload",originalFileName);
 		map.put("num", num);
 		map.put("rating", rating);
 		map.put("content", content);
 		map.put("title", title);
+		map.put("review_img", originalFileName);
 		service.reviewUpdateUp(map);
 		request.setAttribute("hotelname", hotelname);
 		request.setAttribute("mesg", "수정이 완료되었습니다");
 		session.setAttribute("reviewcount", reviewcount);
-		
+		try {
+			theFile.transferTo(f);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "review/Reviewend";
 		
 	}
