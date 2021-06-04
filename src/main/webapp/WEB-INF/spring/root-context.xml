@@ -56,13 +56,8 @@
 				<value>com.dto.FaqDTO</value>							
 				<value>com.dto.EventDTO</value>							
 				<value>com.dto.EventPageDTO</value>							
-<<<<<<< HEAD
 				<value>com.dto.ReplyDTO</value>	
-=======
-				<value>com.dto.CommentDTO</value>							
 				<value>com.dto.AdminMemberPageDTO</value>							
-				<value>com.dto.CommentDTO</value>	
->>>>>>> efac5598e41ec1c81bcb5d280950b46792cb767c
 				<value>com.dto.RatingDTO</value>						
 				<value>com.dto.AdminHotelPageDTO</value>						
 				<value>com.dto.RatingDTO</value>	
