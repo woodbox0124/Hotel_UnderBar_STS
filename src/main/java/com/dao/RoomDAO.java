@@ -40,6 +40,11 @@ public class RoomDAO {
 		return n;
 	}
 
+	public int selectMaxGuest(String roomseq) {
+		int MaxGuest = template.selectOne("HotelMapper.selectMaxGuest",roomseq);
+		return MaxGuest;
+	}
+
 
 
 }

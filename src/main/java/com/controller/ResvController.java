@@ -1,22 +1,22 @@
 package com.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.MemberDTO;
 import com.dto.ResvDTO;
 import com.dto.ResvPageDTO;
 import com.service.ResvService;
+import com.service.RoomService;
 
 @Controller
 public class ResvController {
@@ -59,28 +59,32 @@ public class ResvController {
 	@RequestMapping(value = "/loginCheck/RoomReserv")
 	public String RoomReserv(ResvDTO rdto, String hotelname, String roomseq, int price,
 		String hotelseq , HttpSession session, RedirectAttributes attr, HttpServletResponse response, HttpServletRequest request) throws Exception {
-
-
 		attr.addFlashAttribute("hotelseq", hotelseq);
 		attr.addFlashAttribute("roomseq", roomseq);
 		attr.addFlashAttribute("hotelname", hotelname);
 		attr.addFlashAttribute("price", price);
 		String checkin = (String)session.getAttribute("checkin");
-
+        String guest = (String)session.getAttribute("guest");
 		  HashMap<String, String> map = new HashMap<String, String>();
 		  map.put("roomseq", roomseq);
 		  map.put("checkin",checkin);
 		  int n = rservice.reserved(map);
+		  int MaxGuest = rservice.selectMaxGuest(roomseq);
 		  System.out.println("n : " + n);
-		  String nextPage = null;
-
-		  if(n==1) {
-			  nextPage = "redirect:../historyback";
-
+		  System.out.println("최대 인원수: "+MaxGuest);
+		  if(Integer.parseInt(guest)>MaxGuest){
+		  System.out.println("불통");
 		  }
-		 if(n!=1) {
+		  String nextPage = null;
+          if(Integer.parseInt(guest)>MaxGuest) {
+        	  session.setAttribute("MaxGuest", MaxGuest);
+			  nextPage = "redirect:../historyback";
+          }else if(n==1) {			  
+			  nextPage = "redirect:../historyback";
+		  }else if(n!=1&&Integer.parseInt(guest)<=MaxGuest) {
+			  System.out.println("통과");
 			 nextPage = "redirect:../RoomReserv";
-		 }
+		  }		 
 			return nextPage;
 	}
 
