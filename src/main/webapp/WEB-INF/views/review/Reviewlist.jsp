@@ -44,8 +44,11 @@
 	.sort {
 		padding-top: 30px;
 	}
-	
-	#check{
+	#allcheck{
+	margin: -2px 8px 0px 0px;
+	width: 30px;
+	}
+	#check1,#check2,#check3,#check4,#check5{
 	margin: -2px 8px 0px 0px;
 	width: 30px;
 	}
@@ -70,6 +73,9 @@
  		 width: fit-content;
  		 margin-top: 10px;
 	}
+	.reviewbar{
+  margin-top: 10px;
+	}
 	
 	
 	
@@ -85,7 +91,12 @@
   } */
   
 </style>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+
+
+
+</script>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -104,36 +115,33 @@ String location = (String)session.getAttribute("location");
 <p style="font-size:30px;margin-top: 20px;">이용후기</p>
 <small>100% 실제 투숙객이 작성한 후기입니다.</small>
 </div>
-<%
-List<ReviewCountDTO> rcount=(List<ReviewCountDTO>)request.getAttribute("reviewcount");
-%>
+
 
 <div class="topreview">
-
-<a class="box">10점 / 2960건</a>
+<a class="box">총 ${sumcount}건</a>
 
 <div class="reviewbar">
-<input id="check" type="checkbox"/>전체<br> 
+<input id="allcheck" type="checkbox"/>전체<br> 
 <c:forEach var="list" items="${reviewcount}">
 <c:if test="${list.numrating eq 5}">
-<input id="check" type="checkbox"/>매우만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
+<input id="check5" type="checkbox" value="5"/>매우만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
 
 <c:if test="${list.numrating eq 4}">
-<input id="check" type="checkbox"/>만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
+<input id="check4" type="checkbox" value="4"/>만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
 
 <c:if test="${list.numrating eq 3}">
-<input id="check" type="checkbox"/>보통 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
+<input id="check3" type="checkbox" value="3"/>보통 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
 
 <c:if test="${list.numrating eq 2}">
-<input id="check" type="checkbox"/>미흡 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
+<input id="check2" type="checkbox" value="2"/>미흡 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
 
 <c:if test="${list.numrating eq 1}">
-<input id="check" type="checkbox"/>불만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
+<input id="check1" type="checkbox" value="1"/>불만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}%<br></c:if>
 
 </c:forEach>
 </div>
 </div>
-</div>
+
 
 
 <form class="sort">
@@ -249,6 +257,55 @@ function reviewAdminDelete(e, num) {
 	location.href="loginCheck/ReviewAdminDelete?num="+num;
 	alert("리뷰가 삭제 되었습니다");
 }
+
+ /* $(function(){ //전체선택 체크박스 클릭
+	$("#allcheck").click(function(){ //만약 전체 선택 체크박스가 체크된상태일경우
+		if($("#allcheck").prop("checked")) { //해당화면에 전체 checkbox들을 체크해준다 
+			$("input[type=checkbox]").prop("checked",true); // 전체선택 체크박스가 해제된 경우
+			} else { //해당화면에 모든 checkbox들의 체크를해제시킨다.
+				$("input[type=checkbox]").prop("checked",false); } 
+	});
+	});  */
+	
+ $(function() {
+	$("#check5").click(function () {
+		$("input:checkbox[id='check5']").prop("checked", true);
+		var rating=$("#check5").val();
+		console.log(rating);
+		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating="+rating;
+		$("input:checkbox[id='check5']").prop("checked", true);
+
+	})
+	$("#check4").click(function () {
+		var rating=$("#check4").val();
+		console.log(rating);
+		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating="+rating;
+	})
+	$("#check3").click(function () {
+		var rating=$("#check3").val();
+		console.log(rating);
+		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating="+rating;
+	})
+	$("#check2").click(function () {
+		var rating=$("#check2").val();
+		console.log(rating);
+		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating="+rating;
+	})
+	$("#check1").click(function () {
+		var rating=$("#check1").val();
+		console.log(rating);
+		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating="+rating;
+	})
+	$("#allcheck").click(function () {
+		location.href = "loginCheck/Review?hotelname=<%=hotelname%>";
+		if($("#allcheck").prop("checked")) { //해당화면에 전체 checkbox들을 체크해준다 
+			$("input[type=checkbox]").prop("checked",true); // 전체선택 체크박스가 해제된 경우
+			} else { //해당화면에 모든 checkbox들의 체크를해제시킨다.
+				$("input[type=checkbox]").prop("checked",false); } 
+	})
+	
+}) 
+
 </script>
 
 

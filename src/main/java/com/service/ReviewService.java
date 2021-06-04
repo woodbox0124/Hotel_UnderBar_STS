@@ -62,4 +62,15 @@ public class ReviewService {
 		return reviewcount;
 	}
 
+	public int sumcount(String hotelname) {
+		 int n=dao.sumcount(hotelname);
+		return n;
+	}
+
+
+	public List<ReviewDTO> reviewrating(HashMap<Object, Object> map) {
+		List<ReviewDTO> reviewrating=dao.reviewrating(map);
+		return reviewrating;
+	}
+
 }

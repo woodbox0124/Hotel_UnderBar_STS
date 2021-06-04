@@ -34,15 +34,17 @@ public class RoomService
 		return list;
 	}
 
-	public int date(HashMap<String, String> map) {
+	public int reserved(HashMap<String, String> map) {
 		int n = 0;
-		try {
-			RoomDAO dao = new RoomDAO();
-			n = dao.date(map);
-		}catch (Exception e) {
-			e.printStackTrace();
-		
+		System.out.println(dao);
+		  try { 
+			  n = dao.reserved(map); 
 		}
+		  catch (Exception e) 
+		  { 
+			  System.out.println("=========="); e.printStackTrace(); 
+		  }
+		 
 		return n;
 	}
 
