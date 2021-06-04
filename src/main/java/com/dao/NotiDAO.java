@@ -8,8 +8,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.dto.EventDTO;
-import com.dto.EventPageDTO;
 import com.dto.FaqDTO;
 import com.dto.NotiDTO;
 import com.dto.NotiPageDTO;

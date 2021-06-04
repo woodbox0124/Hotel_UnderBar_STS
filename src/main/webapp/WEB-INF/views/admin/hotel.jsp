@@ -44,9 +44,9 @@ $(document).ready(function() {
 	});//end #delete
 		 $(".update").click(function(){
 			 console.log("수정버튼 클릭");
-			 var u_id= $(this).attr("data-id");
-			 console.log(u_id);
-			 var url= "loginCheck/update?u_id="+u_id;
+			 var seq= $(this).attr("data-seq");
+			 console.log(seq);
+			 var url= "loginCheck/hotelSelect?seq="+seq;
 					var name = "popup test"
 					var option = "width = 500, height=500, top=100,left=200";
 					window.open(url, name, option);
@@ -113,7 +113,7 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 	<h1 id="title" align="center" style="font-weight: bold; font-size: 40px;">호텔 관리</h1>
 	<table id="search" class="table">
 		<tr>
-		 <td colspan="7">
+		 <td colspan="6">
 		  <form action="loginCheck/adminHotel" class="searchbar">
 		   <select name="searchName">
 		    <option value="name">이름</option>
@@ -128,7 +128,6 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 			<td style="color: white;" width="100">호텔 이름</td>
 			<td style="color: white;" width="70">지역</td>
 			<td style="color: white;" width="150">주소</td>
-			<td style="color: white;" width="70">평점</td>
 			<td style="color: white;" width="70">호텔이미지</td>
 			<td style="color: white;" width="50">수정</td>
 			<td style="color: white;" width="50">탈퇴</td>
@@ -140,7 +139,6 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 			<td class="normal">${item.name}</td>
 			<td class="normal">${item.place}</td>
 			<td class="normal">${item.addr}</td>
-			<td class="normal">${item.rating}</td>
 			<td class="normal"><img src="images/hotel/${item.hotel_img}.jpg" width="150" height="150"></td>
 			<td class="normal"><input type="button" value="수정" class="btn btn-primary update" data-seq="${item.seq}"></td>
 			<td class="normal"><input type="button" value="삭제" class="btn btn-primary delete" data-seq="${item.seq}"></td>			

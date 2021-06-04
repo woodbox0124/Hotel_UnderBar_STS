@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.dto.AdminHotelPageDTO;
 import com.dto.AdminMemberPageDTO;
-import com.dto.BoardDTO;
-import com.dto.BoardPageDTO;
 import com.dto.HotelDTO;
 import com.dto.MemberDTO;
 

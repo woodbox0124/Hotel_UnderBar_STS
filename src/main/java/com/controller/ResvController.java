@@ -1,12 +1,5 @@
 package com.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,8 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,7 +17,6 @@ import com.dto.MemberDTO;
 import com.dto.ResvDTO;
 import com.dto.ResvPageDTO;
 import com.service.ResvService;
-import com.service.RoomService;
 
 @Controller
 public class ResvController {
@@ -65,81 +55,81 @@ public class ResvController {
 		service.resvCancel(seq);
 		return "redirect:../";
 	}
-	
+
 	@RequestMapping(value = "/loginCheck/RoomReserv")
-	public String RoomReserv(ResvDTO rdto, String hotelname, String roomseq, int price, 
+	public String RoomReserv(ResvDTO rdto, String hotelname, String roomseq, int price,
 		String hotelseq , HttpSession session, RedirectAttributes attr, HttpServletResponse response, HttpServletRequest request) throws Exception {
-		
-		
+
+
 		attr.addFlashAttribute("hotelseq", hotelseq);
 		attr.addFlashAttribute("roomseq", roomseq);
 		attr.addFlashAttribute("hotelname", hotelname);
 		attr.addFlashAttribute("price", price);
 		String checkin = (String)session.getAttribute("checkin");
-		
-		  HashMap<String, String> map = new HashMap<String, String>(); 
+
+		  HashMap<String, String> map = new HashMap<String, String>();
 		  map.put("roomseq", roomseq);
-		  map.put("checkin",checkin); 
+		  map.put("checkin",checkin);
 		  int n = rservice.reserved(map);
-		  System.out.println("n : " + n); 
+		  System.out.println("n : " + n);
 		  String nextPage = null;
-		  
+
 		  if(n==1) {
 			  nextPage = "redirect:../historyback";
-			 
+
 		  }
 		 if(n!=1) {
 			 nextPage = "redirect:../RoomReserv";
 		 }
 			return nextPage;
 	}
-	
+
 	@RequestMapping("/historyback")
 	public String historyback() {
 		return "historyback"; // historyback.jsp
 	}
-	
+
 	@RequestMapping(value = "/loginCheck/KakaoPay")
 	public String KakaoPay(HttpSession session, ResvDTO rdto, RedirectAttributes attr ,String seq, String hotelseq,
 			String roomseq, int price) {
 		System.out.println(price);
 		attr.addFlashAttribute("seq", seq);
-		attr.addFlashAttribute("hotelseq", hotelseq); 
-		attr.addFlashAttribute("roomseq", roomseq); 
+		attr.addFlashAttribute("hotelseq", hotelseq);
+		attr.addFlashAttribute("roomseq", roomseq);
 		session.setAttribute("price", price);
 		return "redirect:../KakaoPay";
 	}
-	
-	
+
+
 	@RequestMapping("/loginCheck/paySuccess")
 	public String paySuccess(HttpServletRequest request, String hotelseq,String u_id,
 			String roomseq,String checkin,String checkout,int price,String guest) {
-		
-		  ResvDTO dto = new ResvDTO(); 
-		  dto.setHotelseq(hotelseq); 
+
+		  ResvDTO dto = new ResvDTO();
+		  dto.setHotelseq(hotelseq);
 		  dto.setU_id(u_id);
-		  dto.setRoomseq(roomseq); 
-		  dto.setCheckin(checkin); 
+		  dto.setRoomseq(roomseq);
+		  dto.setCheckin(checkin);
 		  dto.setCheckout(checkout);
-		  dto.setPrice(price); 
+		  dto.setPrice(price);
 		  dto.setGuest(guest);
-		 
+
 		 System.out.println(dto);
 		int n = service.resvInsert(dto);
-		
+
 		return "redirect:../loginCheck/resvMy";
 	}
-	
+
 	/*
 	 * @RequestMapping(value = "/payFail") public String PayFail(HttpServletRequest
 	 * request, HttpServletResponse response, HttpSession session, String checkin,
 	 * String checkout, String guest, String location) throws ServletException,
 	 * IOException {
-	 * 
+	 *
 	 * session.setAttribute("checkin", checkin); session.setAttribute("checkout",
 	 * checkout); session.setAttribute("guest", guest);
 	 * session.setAttribute("location", location);
-	 * 
+	 *
 	 * return "hotelList"; }
 	 */
 }
