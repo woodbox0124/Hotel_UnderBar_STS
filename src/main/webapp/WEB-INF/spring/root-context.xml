@@ -34,6 +34,7 @@
 				<value>classpath:com/config/NotiMapper.xml</value>
 				<value>classpath:com/config/ReviewMapper.xml</value>				
 				<value>classpath:com/config/EventMapper.xml</value>				
+				<value>classpath:com/config/ReplyMapper.xml</value>				
 			</list>		
 		</property>
 		<property name="typeAliases">
@@ -55,7 +56,7 @@
 				<value>com.dto.FaqDTO</value>							
 				<value>com.dto.EventDTO</value>							
 				<value>com.dto.EventPageDTO</value>							
-				<value>com.dto.CommentDTO</value>	
+				<value>com.dto.ReplyDTO</value>	
 				<value>com.dto.RatingDTO</value>						
 			</list>		
 		</property>

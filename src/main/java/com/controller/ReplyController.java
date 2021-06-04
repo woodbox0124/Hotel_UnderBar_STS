@@ -1,72 +1,67 @@
 package com.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.dto.ReplyDTO;
-import com.dto.EventDTO;
-import com.dto.EventPageDTO;
-import com.service.EventService;
+import com.service.ReplyService;
 
-
-@Controller
-public class EventController {
+@RestController
+@RequestMapping("/replies")
+public class ReplyController {
 	@Autowired
-	EventService eService;
+	ReplyService rService;
 	//시작점
 	
 	
-	//EVENT 글쓰기 클릭 
-	@RequestMapping("/loginCheck/eventWrite")
-	public String eve_write() {
-		return "redirect:../eventWrite";
+	@RequestMapping(value="", method = RequestMethod.POST)
+	public ResponseEntity<String> register(@RequestBody ReplyDTO replyDTO){
+		ResponseEntity<String> entity = null;
+		
+		try {
+			rService.addReply(replyDTO);
+			entity = new ResponseEntity<>("regSuccess", HttpStatus.OK);
+		} catch(Exception e) {
+			entity = new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
+		return entity;
 	}
 	
-	//EVENT 글쓰기  
-	@RequestMapping("/loginCheck/eventInsert")
-	public String eve_insert(EventDTO dto) {
-		eService.eventInsert(dto);
-		System.out.println("eventInsert : "+dto);
-		return "redirect:../event";
+	@RequestMapping(value="/list/{e_code}", method = RequestMethod.GET)
+	public ResponseEntity<List<ReplyDTO>> list(@PathVariable("e_code") String e_code){
+		ResponseEntity<List<ReplyDTO>> entity = null;
+		try {
+			entity = new ResponseEntity<>(rService.replyList(e_code), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
 	}
 	
-	@RequestMapping("/event")
-	public ModelAndView event(@RequestParam(required=false, defaultValue="1") String curPage) {
-		//event 불러오기 + 페이징
-		System.out.println("이벤트 curpage" + curPage);
-		EventPageDTO epDTO = eService.eventList(Integer.parseInt(curPage));
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("epDTO",epDTO);
-		mav.setViewName("event");
-		return mav;			
+	@RequestMapping(value="/{c_code}", method = {RequestMethod.PUT, RequestMethod.PATCH})
+	public ResponseEntity<String> update(@PathVariable("c_code") String c_code, @RequestBody ReplyDTO replyDTO){
+		ResponseEntity<String> entity = null;
+		try {
+			replyDTO.setC_code(c_code);
+			rService.updateReply(replyDTO);
+			entity = new ResponseEntity<>("updateSuccess", HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
+		return entity;
 	}
 	
-	@RequestMapping("/eventRetrieve")
-	public ModelAndView event_retrieve(@RequestParam String code) {
-		//event retrieve
-		EventDTO eDTO = eService.eventRetrieve(code);
-		System.out.println(eDTO+": event_retrieve");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("eDTO",eDTO);
-		mav.setViewName("eventRetrieve");
-		return mav;			
-	}
+	
 	
 	
 	

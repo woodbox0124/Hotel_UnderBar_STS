@@ -2,15 +2,16 @@ package com.dto;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("CommentDTO")
-public class CommentDTO {
+@Alias("ReplyDTO")
+public class ReplyDTO {
 
 	private String c_code;
 	private String e_code;
 	private String comments;
 	private String writer;
 	private String regdate;
-	public CommentDTO() {
+	private String updateDate;
+	public ReplyDTO() {
 		super();
 	}
 	public String getC_code() {
@@ -43,19 +44,27 @@ public class CommentDTO {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	public CommentDTO(String c_code, String e_code, String comments, String writer, String regdate) {
+	public String getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
+	public ReplyDTO(String c_code, String e_code, String comments, String writer, String regdate, String updateDate) {
 		super();
 		this.c_code = c_code;
 		this.e_code = e_code;
 		this.comments = comments;
 		this.writer = writer;
 		this.regdate = regdate;
+		this.updateDate = updateDate;
 	}
 	@Override
 	public String toString() {
-		return "CommentDTO [c_code=" + c_code + ", e_code=" + e_code + ", comments=" + comments + ", writer=" + writer
-				+ ", regdate=" + regdate + "]";
+		return "ReplyDTO [c_code=" + c_code + ", e_code=" + e_code + ", comments=" + comments + ", writer=" + writer
+				+ ", regdate=" + regdate + ", updateDate=" + updateDate + "]";
 	}
+	
 	
 	
 	

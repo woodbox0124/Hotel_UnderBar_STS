@@ -28,20 +28,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="eventRetrieve" parameterType="String" resultType="EventDTO">
 		select * from event where code = #{code}
 	</select>
-	
-	<!-- 코멘트 작성 -->
-	<insert id="addComment" parameterType="CommentDTO">
-		insert into comments
-		values(com_seq.nextval,#{e_code},#{comments}, #{writer}, sysdate)
-	</insert>
-	
-	<!-- 댓글 리스트 불러오기 -->
-		<!-- clob처리를 위한 코드 -->
-		<resultMap id="comments" type="CommentDTO" >
-	    	<result property="content" column="content" jdbcType="CLOB" javaType="java.lang.String" />
-		</resultMap>
-	<select id="commentListByCode" parameterType="string" resultType="CommentDTO" resultMap="comments">
-		select * from comments where e_code = #{e_code}
-	</select>
 
 </mapper>

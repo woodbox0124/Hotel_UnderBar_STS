@@ -2,12 +2,13 @@ package com.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.EventDAO;
-import com.dto.CommentDTO;
+import com.dto.ReplyDTO;
 import com.dto.EventDTO;
 import com.dto.EventPageDTO;
 
@@ -36,18 +37,7 @@ public class EventService {
 		return eDTO;
 	}
 
-	public void addCommnet(CommentDTO cDTO) {
-		dao.addComment(cDTO);
-		
-	}
 
-	public List<CommentDTO> commentListByCode(String e_code) {
-		List<CommentDTO> cList = dao.commentListByCode(e_code);
-		return cList;
-	}
-
-	
-	
 	
 
 }

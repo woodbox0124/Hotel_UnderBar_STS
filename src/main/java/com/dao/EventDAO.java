@@ -2,13 +2,14 @@ package com.dao;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.dto.CommentDTO;
+import com.dto.ReplyDTO;
 import com.dto.EventDTO;
 import com.dto.EventPageDTO;
 import com.dto.FaqDTO;
@@ -48,16 +49,7 @@ public class EventDAO {
 		return eDTO;
 	}
 
-	public void addComment(CommentDTO cDTO) {
-		session.insert("EventMapper.addComment",cDTO);
-		System.out.println("dao : "+cDTO);
-		
-	}
-
-	public List<CommentDTO> commentListByCode(String e_code) {
-		List<CommentDTO> eList = session.selectList("EventMapper.commentListByCode", e_code);
-		return eList;
-	}
+	
 
 	
 	

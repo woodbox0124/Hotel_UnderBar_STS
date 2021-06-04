@@ -114,78 +114,50 @@ th{
 			</c:otherwise>
 		</c:choose>
 		<!-- 댓글창 구현  -->
-		
-		<div class="container">
-		    <form id="commentForm" name="commentForm" method="post">
-		    <br><br>
-				<div>
-					<div>
-						<span><strong>Comments</strong></span> <span id="cCnt"></span>
-					</div>
-				<div>
-				<%-- <c:if test="${!login.u_id eq null }"> --%>
-					<table class="table">                    
-						<tr>
-							<td>
-							<textarea style="width: 100%;" rows="3" cols="30" id="comment" name="comments" placeholder="댓글을 입력하세요"></textarea>
-						    	<br>
-								<div id="registerBtn">
-						        	<a href='#' onClick="fn_comment('${eDTO.code }')" class="btn pull-right btn-success">등록</a>
-						        </div>
-						   	</td>
-						</tr>
-					</table>
-					<%-- </c:if> --%>
-				</div>
-			</div>
-			<input type="hidden" id="e_code" name="e_code" value="${eDTO.code }" />        
-			<input type="hidden" id="writer" name="writer" value="${login.u_id }" />        
-		</form>
+		<div style="width:700px; text-align:center;">
+			<c:if test="${!login.userid eq null }" >
+				<textarea id="reply" rows="5" cols="80" placeholder="댓글을 작성해주세요.">
+				</textarea>
+				<br />
+				<button id="btnReply">댓글쓰기</button>
+				
+			</c:if>
 		</div>
+		<!-- 목록출력 -->
+		<div id="replyList"></div>
 		
-		<div class="container">
-			<form id="commentListForm" name="commentListForm" method="post">
-				<div id="commentList">
-				</div>
-		 	</form>
-		</div>
-	<!-- 댓글끝 -->
-	</div><!-- end content  -->
-</div><!-- end wrapper -->
-<script>
-//댓글 등록하기(Ajax)
-function fn_comment(code){
-    console.log(code);
-    $.ajax({
-        type:'POST',
-        url : "<c:url value='/event/addComment'/>",
-        data:$("#commentForm").serialize(),
-        success : function(data){
-            if(data=="success")
-            {console.log(data);
-                getCommentList();
-                $("#comment").val("");
-            }
-        },
-        error:function(request,status,error){
-            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-       }
-        
-    });
-}
- 
-/**
- * 초기 페이지 로딩시 댓글 불러오기
- */
+		
+		
+		
+		<Script>
+		$(function(){
+			$("#btnReply").click(function(){
+				reply();
+			})
+		})
+		function reply(){
+			var $replyText = ${"#replytext"}.val();
+			var e_code = "${eDTO.code}";
+			var param={"replytext":$replyText, "e_code":e_code};
+			$.ajax({
+				type:"post",
+				url:"${path}/event/addComment",
+				data : param,
+				success : function(){
+					
+				}//end success
+			})//end ajax 
+		}//end reply function
+		
+		
+	
+	/* 
+	    
+
 $(function(){
-    
     getCommentList();
-    
 });
- 
-/**
- * 댓글 불러오기(Ajax)
- */
+
 function getCommentList(){
     
     $.ajax({
@@ -195,28 +167,28 @@ function getCommentList(){
         data:$("#commentForm").serialize(),
         contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
         success : function(data){
-            
             var html = "";
             var cCnt = data.length;
-            
             if(data.length > 0){
-                
-                for(i=0; i<data.length; i++){
-                    html += "<div>";
-                    html += "<div><table class='table'>"
-                    html += "<h6><strong>"+data[i].writer+"</strong>&nbsp;&nbsp;&nbsp;<span>"+data[i].regdate+"</h6>";
-                    html += data[i].comment + "<tr><td></td></tr>";
-                    html += "</table></div>";
+            	$(data).each(function(){
+            		console.log(data);
+                	console.log(this.c_code,this.e_code,this.writer,this.comments);
+                    html += '<div id="c_code' + this.c_code + '">';
+                    html += '<div>';
+                    html += '<a href="javascript:" onClick="fn_editComment('+ this.c_code+','+ this.e_code+ ',' +this.writer +','+this.comments +')" class="updateComment" style="text-decoration:none; color:#444;">수정</a>&nbsp;&nbsp;&nbsp;';
+                    html += '<a href="javascript:" onClick="fn_delComment('+this.c_code+')" class="deleteComment" style="text-decoration:none; color:#444;" return false;>삭제</a>&nbsp;&nbsp;&nbsp;';
+                    html += "<div style='height:20px;'></div>";
+                    html += "<h6><strong>"+this.writer+"</strong>&nbsp;&nbsp;&nbsp;<span>"+this.regdate+"</span></h6>";
+                    html += "<div>"+this.comments+"</div>";
                     html += "</div>";
-                }
+                    html += "</div><hr>";
+                })
                 
             } else {
-                
                 html += "<div>";
                 html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
                 html += "</table></div>";
                 html += "</div>";
-                
             }
             
             $("#cCnt").html(cCnt);
@@ -228,7 +200,90 @@ function getCommentList(){
        }
         
     });
+	
+
+    
 }
+function fn_editComment( c_code, e_code, writer, comments){
+	console.log("수정",c_code, e_code, writer, comments)
+	var htmls = "";
+	htmls += '<div class="media text-muted pt-3" id="c_code' + c_code + '">';
+	htmls += '<title>Placeholder</title>';
+	htmls += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom horder-gray">';
+	htmls += '<span class="d-block">';
+	htmls += '<strong class="text-gray-dark">' + writer + '</strong>';
+	htmls += '<span style="padding-left: 7px; font-size: 9pt">';
+	htmls += '<a href="javascript:" onclick="fn_updateComment(' + c_code + ', '+ e_code + ','+ writer + ',' + comments +')" style="padding-right:5px" return false;>저장</a>';
+	htmls += '<a href="javascript:" onclick="getCommentList()">취소<a>';
+	htmls += '</span>';
+	htmls += '</span>';		
+	htmls += '<textarea name="editContent" id="editContent" class="form-control" rows="3">';
+	htmls += comments;
+	htmls += '</textarea>';
+	htmls += '</p>';
+	htmls += '</div>';
+	$('#c_code' + c_code).replaceWith(htmls);
+	$('#c_code' + c_code + ' #editContent').focus();
+}
+
+//댓글 삭제하기(Ajax)
+function fn_delComment(code){
+	var c_code ={"code":code};
+    console.log("delComment c_code : ",c_code);
+    $.ajax({
+        type:'post',
+        url : "<c:url value='/event/delComment'/>",
+        data: c_code,
+        success : function(){
+        	getCommentList();
+        },
+        error:function(request,status,error){
+            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+       }
+    });
+}
+//댓글 수정하기(Ajax)
+function fn_updateComment(c_code, e_code, writer,comments){
+	var dto =(
+			{"c_code":c_code,
+			"e_code":e_code,
+			"writer":writer,
+			"comments":comments}
+			);
+    console.log("fn_updateComment : ",dto);
+    $.ajax({
+        type:'post',
+        url : "<c:url value='/event/updateComment'/>",
+        ContentType:'application/x-www-form-urlencoded;charset=UTF-8',
+        data: dto,
+        dataType : "json", 
+        success: function(result) {
+           	var htmls = "";
+            $(result).each(function(){
+            	console.log(result);
+            htmls += '<div class="media text-muted pt-3" id="c_code' + this.c_code + '">';
+            htmls += '<title>Placeholder</title>';
+            htmls += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom horder-gray">';
+            htmls += '<span class="d-block">';
+            htmls += '<strong class="text-gray-dark">' + this.writer + '</strong>';
+            htmls += '<span style="padding-left: 7px; font-size: 9pt">';
+            htmls += '<a href="javascript:" onclick="fn_editComment(' + this.c_code + ',' + this.writer + ',' + this.comments +')" style="padding-right:5px">수정</a>';
+            htmls += '<a href="javascript:" onclick="fn_delComment(' + this.c_code + ')" >삭제</a>';
+            htmls += '</span>';
+            htmls += '</span>';
+            htmls += this.comments;
+            htmls += '</p>';
+            htmls += '</div>';
+           });	//each end
+         $('#c_code' + c_code).replaceWith(htmls);
+        },	   // Ajax success end
+        error:function(request,status,error){
+            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+       }
+    }); 
+}
+ */
+
  
 </script>
 </body>
