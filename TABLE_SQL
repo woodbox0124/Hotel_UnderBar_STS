@@ -87,6 +87,22 @@ internet VARCHAR2(200) NOT NULL,
 etc VARCHAR2(200) NOT NULL
 );
 
+--
+리뷰 게시판
+CREATE table review (    
+ num NUMBER(5) PRIMARY KEY not null,  
+ title VARCHAR2(50) not null,   
+ u_id VARCHAR2(20) not null,    
+ content VARCHAR2(100) not null,   
+ writedate DATE default SYSDATE,
+ origin NUMBER(10) not null, 
+ groupnum NUMBER(10)  default 0 not null,
+ hotelname VARCHAR2(50) not null,
+ rating NUMBER(3,2) not null,
+ review_img VARCHAR2(999) );
+
+create sequence review_seq;
+
 --공지사항 테이블
 create sequence noti_seq start with 1 increment by 1 nocache;
 create table noti(

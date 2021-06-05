@@ -1,3 +1,4 @@
+<%@page import="com.dto.ReviewPageDTO"%>
 <%@page import="com.dto.ReviewCountDTO"%>
 <%@page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -157,7 +158,7 @@ String location = (String)session.getAttribute("location");
 </form>
 <br>
 <form class="review">
-<c:forEach var="list" items="${reviewlist}">
+<c:forEach var="list" items="${reviewlist.list}">
 
 <c:choose>
 	<c:when test="${list.groupnum eq 0 and list.rating eq 1}">
@@ -219,6 +220,23 @@ String location = (String)session.getAttribute("location");
 </c:forEach>	
 </form>		
 
+<div style="font-size:15px; text-align: center;">
+                   <%
+                   ReviewPageDTO rDTO = (ReviewPageDTO)session.getAttribute("reviewlist");
+                    int curPage = rDTO.getCurPage();//현재페이지
+                    int perPage = rDTO.getPerPage();//페이지당 게시물수 
+                    int totalCount = rDTO.getTotalCount();//전체 레코드 수
+                    int totalPage = totalCount/perPage;  //필요한 페이지 
+                    if(totalCount%perPage!=0) totalPage++;
+                    for(int i=1; i<= totalPage; i++){
+                          if(i== curPage){
+                              out.print(i+"&nbsp;");
+                          }else{
+    out.print("<a href='loginCheck/Review?curPage="+i+"&hotelname="+hotelname+"'>"+i+"</a>&nbsp;");                       }
+                    }//end for
+               %>
+               </div><br>
+               
 <p class="hotellist"><a href="HotelSearch?checkin=<%=checkin%>&checkout=<%=checkout%>&guest=<%=guest%>&location=<%=location%>">호텔 리스트로 돌아가기</a></p>
 <script type="text/javascript">
 $(function () {

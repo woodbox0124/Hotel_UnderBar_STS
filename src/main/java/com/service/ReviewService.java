@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.dao.ReviewDAO;
 import com.dto.ReviewCountDTO;
 import com.dto.ReviewDTO;
+import com.dto.ReviewPageDTO;
 
 @Service
 public class ReviewService {
@@ -22,14 +23,10 @@ public class ReviewService {
 		
 	}
 
-	public List<ReviewDTO> review(String hotelname) {
-		List<ReviewDTO> list = dao.review(hotelname);
-		return list;
-	}
 
-	public List<ReviewDTO> reviewOrder(String hotelname) {
-		List<ReviewDTO> list = dao.reviewOrder(hotelname);
-		return list;
+	public ReviewPageDTO reviewOrder(int curPage, String hotelname) {
+		ReviewPageDTO rDTO = dao.reviewOrder(curPage, hotelname);
+		return rDTO;
 	}
 
 	public void reviewDelete(int origin) {
@@ -68,8 +65,8 @@ public class ReviewService {
 	}
 
 
-	public List<ReviewDTO> reviewrating(HashMap<Object, Object> map) {
-		List<ReviewDTO> reviewrating=dao.reviewrating(map);
+	public ReviewPageDTO reviewrating(int curPage, HashMap<Object, Object> map) {
+		ReviewPageDTO reviewrating =dao.reviewrating(curPage, map);
 		return reviewrating;
 	}
 
@@ -77,5 +74,10 @@ public class ReviewService {
 		List<ReviewCountDTO> list=dao.grouprating(hotelname);	
 		return list;
 				}
+
+	public ReviewPageDTO review(int curPage, String hotelname) {
+		ReviewPageDTO rdto = dao.review(curPage, hotelname);
+		return rdto;
+	}
 
 }

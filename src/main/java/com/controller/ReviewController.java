@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.dto.MemberDTO;
 import com.dto.ReviewCountDTO;
 import com.dto.ReviewDTO;
+import com.dto.ReviewPageDTO;
 import com.dto.UploadDTO;
 import com.service.ReviewService;
 
@@ -170,63 +171,78 @@ public class ReviewController {
 		
 	}
 	@RequestMapping("/loginCheck/Review") //호텔에서 평점보기 눌렀을때 넘어가서 뿌려주는 부분
-	public String review(String hotelname,HttpSession session, HttpServletRequest request, RedirectAttributes attr){
-		List<ReviewDTO> list = service.review(hotelname); //호텔이름에 해당하는 리뷰들 뽑아오기
-		List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
-	    int sumcount=service.sumcount(hotelname); //리뷰 총갯수
-
+	public String review(@RequestParam(required=false, defaultValue="1") String curPage, String hotelname,HttpSession session, HttpServletRequest request, RedirectAttributes attr){
 		
-	    
-		MemberDTO dto = (MemberDTO) session.getAttribute("login");
-		int admin = dto.getAdmin();
-		String u_id1 = dto.getU_id();
+		ReviewPageDTO rDTO = service.review(Integer.parseInt(curPage), hotelname);
 		
-		session.setAttribute("reviewlist", list);
-		session.setAttribute("hotelname", hotelname);
-		session.setAttribute("admin", admin);
-		session.setAttribute("u_id1", u_id1);
-		session.setAttribute("reviewcount", reviewcount);
-		session.setAttribute("sumcount", sumcount);
+		  List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
+		  int sumcount=service.sumcount(hotelname); //리뷰 총갯수
+		  
+		  
+		  
+		  MemberDTO dto = (MemberDTO) session.getAttribute("login"); 
+		  int admin = dto.getAdmin(); 
+		  String u_id1 = dto.getU_id();
+		  
+		  session.setAttribute("reviewlist", rDTO); 
+		  session.setAttribute("hotelname",hotelname); 
+		  session.setAttribute("admin", admin);
+		  session.setAttribute("u_id1", u_id1); 
+		  session.setAttribute("reviewcount",reviewcount); session.setAttribute("sumcount", sumcount);
+		 
 	
 		
 		return "redirect:../reviewlist";
 	}
 	@RequestMapping("/loginCheck/ReviewOrder") //필터 오래된순정렬
-	public String reviewOrder(HttpServletRequest request, RedirectAttributes attr, HttpSession session){
+	public String reviewOrder(@RequestParam(required=false, defaultValue="1") String curPage, HttpServletRequest request, RedirectAttributes attr, HttpSession session){
 		
 		String hotelname = (String)session.getAttribute("hotelname");
-		List<ReviewDTO> list = service.reviewOrder(hotelname);
+		ReviewPageDTO rDTO = service.reviewOrder(Integer.parseInt(curPage), hotelname);
+		 List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
+		  int sumcount=service.sumcount(hotelname); //리뷰 총갯수
+		  
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
 		
-		session.setAttribute("reviewlist", list);
-		session.setAttribute("admin", admin);
-		session.setAttribute("u_id1", u_id1);
+		session.setAttribute("reviewlist", rDTO); 
+		  session.setAttribute("hotelname",hotelname); 
+		  session.setAttribute("admin", admin);
+		  session.setAttribute("u_id1", u_id1); 
+		  session.setAttribute("reviewcount",reviewcount); 
+		  session.setAttribute("sumcount", sumcount);
 		
 		return "redirect:../reviewlist";
 	}
 	@RequestMapping("/loginCheck/ReviewNew") //필터 최신순정렬 
-	public String reviewNew(HttpServletRequest request, RedirectAttributes attr, HttpSession session){
+	public String reviewNew(@RequestParam(required=false, defaultValue="1") String curPage,HttpServletRequest request, RedirectAttributes attr, HttpSession session){
 		
 		String hotelname = (String)session.getAttribute("hotelname");
-		List<ReviewDTO> list = service.review(hotelname);
+		ReviewPageDTO rDTO = service.review(Integer.parseInt(curPage), hotelname);
 		
-		MemberDTO dto = (MemberDTO) session.getAttribute("login");
-		int admin = dto.getAdmin();
-		String u_id1 = dto.getU_id();
+		  List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
+		  int sumcount=service.sumcount(hotelname); //리뷰 총갯수
+		  
+		  MemberDTO dto = (MemberDTO) session.getAttribute("login"); 
+		  int admin = dto.getAdmin(); 
+		  String u_id1 = dto.getU_id();
+		  
+		  session.setAttribute("reviewlist", rDTO); 
+		  session.setAttribute("hotelname",hotelname); 
+		  session.setAttribute("admin", admin);
+		  session.setAttribute("u_id1", u_id1); 
+		  session.setAttribute("reviewcount",reviewcount); 
+		  session.setAttribute("sumcount", sumcount);
 		
-		session.setAttribute("reviewlist", list);
-		session.setAttribute("admin", admin);
-		session.setAttribute("u_id1", u_id1);
 		return "redirect:../reviewlist";
 	}
 	@RequestMapping("/loginCheck/ReviewDelete") 
-	public String reviewDelete(int origin, HttpSession session, HttpServletRequest request){
+	public String reviewDelete(@RequestParam(required=false, defaultValue="1") String curPage,int origin, HttpSession session, HttpServletRequest request){
 		service.reviewDelete(origin);
 		
 		String hotelname = (String)session.getAttribute("hotelname");
-		List<ReviewDTO> list = service.review(hotelname);
+		ReviewPageDTO rDTO = service.review(Integer.parseInt(curPage), hotelname);
 		List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
 		 int sumcount=service.sumcount(hotelname); //리뷰 총갯수
 		 
@@ -236,29 +252,29 @@ public class ReviewController {
 		String u_id1 = dto.getU_id();
 		
 		
-		session.setAttribute("sumcount", sumcount);
-		session.setAttribute("reviewcount", reviewcount);
-		session.setAttribute("reviewlist", list);
-		session.setAttribute("admin", admin);
-		session.setAttribute("u_id1", u_id1);
+		session.setAttribute("reviewlist", rDTO); 
+		  session.setAttribute("hotelname",hotelname); 
+		  session.setAttribute("admin", admin);
+		  session.setAttribute("u_id1", u_id1); 
+		  session.setAttribute("reviewcount",reviewcount); 
+		  session.setAttribute("sumcount", sumcount);
 		
 		
 		return "redirect:../reviewlist";
 	}
 	@RequestMapping("/loginCheck/ReviewAdminDelete") 
-	public String reviewAdminDelete(int num, HttpSession session, RedirectAttributes attr){
+	public String reviewAdminDelete(@RequestParam(required=false, defaultValue="1") String curPage,int num, HttpSession session, RedirectAttributes attr){
 		System.out.println(num);
 		service.reviewAdminDelete(num);
 		
 		String hotelname = (String)session.getAttribute("hotelname");
-		List<ReviewDTO> list = service.review(hotelname);
+		ReviewPageDTO rDTO = service.review(Integer.parseInt(curPage), hotelname);
 		
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
 		
 	
-		session.setAttribute("reviewlist", list);
 		session.setAttribute("admin", admin);
 		session.setAttribute("u_id1", u_id1);
 		
@@ -266,22 +282,20 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/loginCheck/Reviewrating") //위에 레이팅필터 , rating점수에 맞는 리뷰들만 뽑아오기
-	public String reviewrating(int rating,String hotelname,HttpSession session, HttpServletRequest request, RedirectAttributes attr) {
+	public String reviewrating(@RequestParam(required=false, defaultValue="1") String curPage,int rating,String hotelname,HttpSession session, HttpServletRequest request, RedirectAttributes attr) {
 		System.out.println("받아온 리뷰점슈====="+rating);
 		
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
 		map.put("rating",rating);
 		map.put("hotelname",hotelname);
-		List<ReviewDTO> list = service.reviewrating(map); //호텔이름과 rating에 해당하는 리뷰들 뽑아오기
+		ReviewPageDTO rDTO = service.reviewrating(Integer.parseInt(curPage), map); //호텔이름과 rating에 해당하는 리뷰들 뽑아오기
 		List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
 	    int sumcount=service.sumcount(hotelname); //리뷰 총갯수
-	   System.out.println("rating에 맞는 리뷰리스트들==================="+list);
 		
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
 		
-		session.setAttribute("reviewlist", list);
 		session.setAttribute("hotelname", hotelname);
 		session.setAttribute("admin", admin);
 		session.setAttribute("u_id1", u_id1);
