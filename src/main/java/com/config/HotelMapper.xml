@@ -71,5 +71,8 @@ update hotel set
     where seq = #{seq}
 </update>
 
+<delete id="RoomDelete" parameterType="String">
+delete from room where seq = #{seq}
+</delete>
 
 </mapper>

@@ -53,4 +53,9 @@ public class RoomService
 		return MaxGuest;
 	}
 
+	public int roomDelete(String seq) {
+		int n = dao.roomDelete(seq);
+	    return n;
+	}
+
 }

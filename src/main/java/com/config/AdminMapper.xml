@@ -45,4 +45,27 @@ select seq, name, place, addr, rating, hotel_img from hotel
 		</if>
 	</select>
 	
+	<select id="adminRoom" parameterType="hashmap" resultType="AdminRoomDTO">
+		select  r.seq, h.name hotelname, r.name roomname, r.price, r.max_guest, r.room_img 
+		from hotel h, room r
+        where r.hotelseq = h.seq 
+        <if test="searchName == 'name' ">
+			where name LIKE '%'||#{searchValue}||'%'
+		</if>
+		<if test="searchName =='addr'">
+			where addr LIKE '%'||#{searchValue}||'%'
+		</if>
+</select>
+
+<select id="RtotalCount" resultType="int" parameterType="hashmap">
+		select count(*)
+		from room
+		<if test="searchName == 'name'">
+			where name LIKE '%'||#{searchValue}||'%'
+		</if>
+		<if test="searchName == 'addr'">
+			where addr LIKE '%'||#{searchValue}||'%'
+		</if>
+	</select>
+	
 </mapper>

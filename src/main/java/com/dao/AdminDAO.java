@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.dto.AdminHotelPageDTO;
 import com.dto.AdminMemberPageDTO;
+import com.dto.AdminRoomDTO;
+import com.dto.AdminRoomPageDTO;
 import com.dto.HotelDTO;
 import com.dto.MemberDTO;
 
@@ -63,6 +65,27 @@ public class AdminDAO {
 	private int HtotalCount(HashMap<String, String> map) {
 		int num = template.selectOne("AdminMapper.HtotalCount", map);
 		System.out.println("HotelTotalCount : "+num);
+		return num;
+	}
+
+
+	public AdminRoomPageDTO adminRoom(int curPage, HashMap<String, String> map) {
+		AdminRoomPageDTO arpDTO = new AdminRoomPageDTO();
+		int perPage = arpDTO.getPerPage();
+		int offset = (curPage-1)*perPage;
+		List<AdminRoomDTO> list = template.selectList("AdminMapper.adminRoom", map, new RowBounds(offset,perPage));
+		arpDTO.setCurPage(curPage);
+		arpDTO.setList(list);
+		arpDTO.setTotalCount(RoomCount(map));
+		System.out.println(perPage);
+		System.out.println(offset);
+		System.out.println("AdminRoomPageDTO : " + arpDTO);
+		return arpDTO;
+	}
+	
+	private int RoomCount(HashMap<String, String> map) {
+		int num = template.selectOne("AdminMapper.RtotalCount", map);
+		System.out.println("RoomTotalCount : "+num);
 		return num;
 	}
 

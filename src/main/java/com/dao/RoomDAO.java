@@ -45,6 +45,11 @@ public class RoomDAO {
 		return MaxGuest;
 	}
 
+	public int roomDelete(String seq) {
+		int n = template.delete("HotelMapper.RoomDelete",seq);
+		return n;
+	}
+
 
 
 }
