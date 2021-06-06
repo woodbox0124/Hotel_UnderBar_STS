@@ -269,14 +269,20 @@ public class ReviewController {
 		
 		String hotelname = (String)session.getAttribute("hotelname");
 		ReviewPageDTO rDTO = service.review(Integer.parseInt(curPage), hotelname);
-		
+		List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
+		 int sumcount=service.sumcount(hotelname); //리뷰 총갯수
+		 
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
 		
 	
-		session.setAttribute("admin", admin);
-		session.setAttribute("u_id1", u_id1);
+		session.setAttribute("reviewlist", rDTO); 
+		  session.setAttribute("hotelname",hotelname); 
+		  session.setAttribute("admin", admin);
+		  session.setAttribute("u_id1", u_id1); 
+		  session.setAttribute("reviewcount",reviewcount); 
+		  session.setAttribute("sumcount", sumcount);
 		
 		return "redirect:../reviewlist";
 	}
