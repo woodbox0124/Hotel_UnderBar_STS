@@ -157,37 +157,46 @@ public class AdminController {
 		att.addFlashAttribute("hDTO", hDTO);
 		return "redirect:../admin/hotelupdate";
 	}
+	
+	// 회원 정보 수정 후 DB 전송을 위한 기능입니다.
+		@RequestMapping(value = "/loginCheck/HotelUpload", method = RequestMethod.POST)
+		public String HotelUpload(HotelUpdateDTO huDTO, @RequestParam(required = false, defaultValue = "1") String curPage,
+				@RequestParam(required = false, defaultValue = "id") String searchName,
+				@RequestParam(required = false, defaultValue = "") String searchValue, HttpSession session)
+				throws Exception {
+			String seq = huDTO.getSeq();
+			String hotelname = huDTO.getName();
+			String place = huDTO.getPlace();
+			String addr = huDTO.getAddr();
+			String hotel_img = huDTO.getHotel_img();
+			CommonsMultipartFile theFile = huDTO.getTheFile();
+			String originalFileName = theFile.getOriginalFilename();
+			System.out.println(
+					seq + "\t" + hotelname + "\t" + place + "\t" + addr + "\t" + hotel_img + "\t" + originalFileName);
+			File f = new File("C:\\upload", originalFileName);
+			int n = hService.hotelUpdate(huDTO);
+			System.out.println(curPage);
+			System.out.println(searchName);
+			System.out.println(searchValue);
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("searchName", searchName);
+			map.put("searchValue", searchValue);
+			System.out.println(map);
+			AdminHotelPageDTO ahpDTO = service.adminHotel(Integer.parseInt(curPage), map);
+			System.out.println("Controller" + ahpDTO);
+			session.setAttribute("ahpDTO", ahpDTO);
+			session.setAttribute("updatecomplete", n);
+			try {
+				theFile.transferTo(f);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return "redirect:../admin/hotelupdate";
+		}
+	
+	// 객실 관리
 
-	/*
-	 * // 회원 정보 수정 후 DB 전송을 위한 기능입니다.
-	 * 
-	 * @RequestMapping(value = "/loginCheck/HotelUpload", method =
-	 * RequestMethod.POST) public String HotelUpload(HotelUpdateDTO
-	 * huDTO, @RequestParam(required = false, defaultValue = "1") String curPage,
-	 * 
-	 * @RequestParam(required = false, defaultValue = "id") String searchName,
-	 * 
-	 * @RequestParam(required = false, defaultValue = "") String searchValue,
-	 * HttpSession session) throws Exception { String seq = huDTO.getSeq(); String
-	 * hotelname = huDTO.getName(); String place = huDTO.getPlace(); String addr =
-	 * huDTO.getAddr(); String hotel_img = huDTO.getHotel_img();
-	 * CommonsMultipartFile theFile = huDTO.getTheFile(); String originalFileName =
-	 * theFile.getOriginalFilename(); System.out.println( seq + "\t" + hotelname +
-	 * "\t" + place + "\t" + addr + "\t" + hotel_img + "\t" + originalFileName);
-	 * File f = new File("C:\\upload", originalFileName); int n =
-	 * hService.hotelUpdate(huDTO); System.out.println(curPage);
-	 * System.out.println(searchName); System.out.println(searchValue);
-	 * HashMap<String, String> map = new HashMap<String, String>();
-	 * map.put("searchName", searchName); map.put("searchValue", searchValue);
-	 * System.out.println(map); AdminHotelPageDTO ahpDTO =
-	 * service.adminHotel(Integer.parseInt(curPage), map);
-	 * System.out.println("Controller" + ahpDTO); session.setAttribute("ahpDTO",
-	 * ahpDTO); session.setAttribute("updatecomplete", n); try {
-	 * theFile.transferTo(f); } catch (Exception e) { e.printStackTrace(); } return
-	 * "redirect:../admin/hotelupdate"; }
-	 */
-
-	// 호텔 객실관리 페이지로 이동 합니다.
+	// 호텔 객실 관리 페이지로 이동 합니다.
 	@RequestMapping("/loginCheck/adminRoom")
 	public String room(@RequestParam(required = false, defaultValue = "1") String curPage,
 			@RequestParam(required = false, defaultValue = "name") String searchName,
@@ -224,5 +233,7 @@ public class AdminController {
 		att.addFlashAttribute("rDTO", rDTO);
 		return "redirect:../admin/roomupdate";
 	}
+
+	
 
 }
