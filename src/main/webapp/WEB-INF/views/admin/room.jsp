@@ -34,9 +34,9 @@ $(".delete").click(function() {
 		},
 		success: function(data, status, xhr) {
 			console.log("success");
-			//dom삭제 
+			
 			xxx.parents().filter("tr").remove();
-			var con_test = confirm("방을 삭제하시겠습니까?");   /* 문자를 보낼껀지 물어본다 */  
+			var con_test = confirm("방을 삭제하시겠습니까?");  
 	          if(con_test == true){
 	        	  alert("방을 삭제했습니다.");
 	          }
@@ -112,8 +112,8 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 		 <td colspan="7">
 		  <form action="loginCheck/adminRoom" class="searchbar">
 		   <select name="searchName">
-		    <option value="name">이름</option>
-		    <option value="addr">주소</option>
+		    <option value="hotelname">호텔 이름</option>
+		    <option value="roomname">방이름</option>
 		   </select>
 		    <input type="text" id="bar" name="searchValue">
 		    <input type="submit" class="btn btn-primary" value="검색">
@@ -137,7 +137,7 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 			<td class="normal">${item.seq}</td>
 			<td class="normal">${item.hotelname}</td>
 			<td class="normal">${item.roomname}</td>
-			<td class="normal">${item.price}</td>
+			<td class="normal">${item.price}원</td>
 			<td class="normal">${item.max_guest}</td>
 			<td class="normal"><img src="images/room/${item.room_img}.jpg" width="150" height="150"></td>
 			<td class="normal"><input type="button" value="수정" class="btn btn-primary update"  data-seq="${item.seq}"></td>
