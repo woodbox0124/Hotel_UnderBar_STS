@@ -302,6 +302,7 @@ public class ReviewController {
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
 		
+		session.setAttribute("reviewlist", rDTO); 
 		session.setAttribute("hotelname", hotelname);
 		session.setAttribute("admin", admin);
 		session.setAttribute("u_id1", u_id1);
