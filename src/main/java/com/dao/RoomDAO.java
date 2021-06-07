@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dto.AdminRoomDTO;
+import com.dto.HotelDTO;
 import com.dto.RoomDTO;
 import com.dto.RoomInfoDTO;
 
@@ -50,6 +52,11 @@ public class RoomDAO {
 		return n;
 	}
 
+	public RoomDTO roomSelect(String seq) {
+		RoomDTO rdto = template.selectOne("HotelMapper.roomSelect", seq);
+		return rdto;
+	}
+	
 
 
 }

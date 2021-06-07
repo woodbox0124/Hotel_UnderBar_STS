@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.RoomDAO;
+import com.dto.AdminRoomDTO;
 import com.dto.RoomDTO;
 import com.dto.RoomInfoDTO;
 
@@ -56,6 +57,11 @@ public class RoomService
 	public int roomDelete(String seq) {
 		int n = dao.roomDelete(seq);
 	    return n;
+	}
+
+	public RoomDTO roomSelect(String seq) {
+		RoomDTO rDTO= dao.roomSelect(seq);
+		return rDTO;
 	}
 
 }

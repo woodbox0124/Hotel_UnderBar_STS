@@ -65,6 +65,7 @@
 				<value>com.dto.RatingDTO</value>	
 				<value>com.dto.ReviewCountDTO</value>					
 				<value>com.dto.HotelUpdateDTO</value>					
+				<value>com.dto.RoomUpdateDTO</value>					
 			</list>		
 		</property>
 	</bean>	
