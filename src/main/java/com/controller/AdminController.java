@@ -189,14 +189,15 @@ public class AdminController {
 	//호텔 방관리 페이지로 이동 합니다.
 			@RequestMapping("/loginCheck/adminRoom")
 			public String room(@RequestParam(required=false, defaultValue="1") String curPage ,
-					 @RequestParam(required=false, defaultValue="id") String searchName,
+					 @RequestParam(required=false, defaultValue="name") String searchName,
 						@RequestParam(required=false, defaultValue="") String searchValue, HttpSession session)throws Exception {
 				System.out.println(curPage);
 				System.out.println(searchName);
 				System.out.println(searchValue);
 				HashMap<String, String> map= new HashMap<String, String>();
+				
 				map.put("searchName", searchName);
-				map.put("searchValue", searchValue);		
+				map.put("searchValue", searchValue);	
 				System.out.println(map);
 				AdminRoomPageDTO arpDTO= service.adminRoom(Integer.parseInt(curPage),map);	
 				System.out.println("Controller"+arpDTO);
