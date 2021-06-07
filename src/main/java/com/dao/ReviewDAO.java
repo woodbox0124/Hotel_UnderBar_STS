@@ -78,11 +78,11 @@ public class ReviewDAO {
 		ReviewPageDTO rdto = new ReviewPageDTO();
 		int perPage = rdto.getPerPage(); //10
         int offset = (curPage -1)*perPage; //0
-        String hotelname = (String)map.get("hotelname");
+        //String hotelname = (String)map.get("hotelname");
         List<ReviewDTO> list = session.selectList("ReviewMapper.reviewRating",map, new RowBounds(offset,perPage));
 		rdto.setCurPage(curPage);
 	    rdto.setList(list);
-	    rdto.setTotalCount(ReviewCount(hotelname));
+	    rdto.setTotalCount(ReviewCount1(map));
 		return rdto;
 	}
 
@@ -103,6 +103,10 @@ public class ReviewDAO {
 	}
 	private int ReviewCount(String hotelname) {
         int num = session.selectOne("ReviewMapper.ReviewCount", hotelname);
+        return num;
+    }
+	private int ReviewCount1(HashMap<Object, Object> map) {
+        int num = session.selectOne("ReviewMapper.ReviewCount1", map);
         return num;
     }
 }

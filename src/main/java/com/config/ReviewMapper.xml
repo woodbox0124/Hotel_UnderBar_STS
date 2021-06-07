@@ -60,4 +60,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where hotelname = #{hotelname}
     </select>
 	
+	<select id="ReviewCount1" resultType="int" parameterType="hashmap">
+        select count(*)
+        from review
+        where hotelname = #{hotelname} and rating = #{rating}
+    </select>
 </mapper>

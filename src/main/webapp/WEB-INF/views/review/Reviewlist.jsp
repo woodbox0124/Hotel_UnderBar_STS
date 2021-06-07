@@ -179,7 +179,7 @@ String location = (String)session.getAttribute("location");
 </c:choose>
 <c:choose>	
 	<c:when test="${list.groupnum eq 1}">
-		&nbsp;&nbsp;&nbsp;<img src='images/board/reply_icon.gif'/> ${list.u_id} <br> ${list.writedate}
+		&nbsp;&nbsp;&nbsp;<img src='images/board/reply_icon.gif'/> ${list.u_id} <br> &nbsp;&nbsp;&nbsp;${list.writedate}
 	</c:when>
 </c:choose>
 
