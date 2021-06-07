@@ -59,11 +59,14 @@ select seq, name, place, addr, rating, hotel_img from hotel
 
 	<select id="RtotalCount" resultType="int" parameterType="hashmap">
 		select count(*) from room
-		 <if test="searchName == 'hotelname'">
-			 hotel where name LIKE '%'||#{searchValue}||'%' 
-		</if>
 		<if test="searchName =='roomname'">
-			room where name LIKE '%'||#{searchValue}||'%' 
+			where name LIKE '%'||#{searchValue}||'%' 
+		</if>
+	</select>
+	<select id="RtotalCount2" resultType="int" parameterType="hashmap">
+		select count(*) from hotel
+		 <if test="searchName == 'hotelname'">
+			where name LIKE '%'||#{searchValue}||'%' 
 		</if>
 	</select>
 	

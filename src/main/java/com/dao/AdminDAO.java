@@ -84,7 +84,14 @@ public class AdminDAO {
 	}
 	
 	private int RoomCount(HashMap<String, String> map) {
-		int num = template.selectOne("AdminMapper.RtotalCount", map);
+		String searchName = map.get("searchName");
+		int num = 0;
+		if(searchName.equals("roomname")) {
+		num = template.selectOne("AdminMapper.RtotalCount", map);
+		}
+		if(searchName.equals("hotelname")){
+	    num = template.selectOne("AdminMapper.RtotalCount2", map);
+		}
 		System.out.println("RoomTotalCount : "+num);
 		return num;
 	}
