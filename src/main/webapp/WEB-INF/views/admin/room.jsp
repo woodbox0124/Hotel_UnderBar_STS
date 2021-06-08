@@ -17,13 +17,13 @@
 	integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
 	crossorigin="anonymous"></script>
 <meta charset="UTF-8">
-<title>관리자 방 관리</title>
+<title>관리자 객실 관리</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(function(){
 $(".delete").click(function() {
 	console.log("delete 클릭 ");
-	var seq= $(this).attr("data-seq");//삭제할 방 번호
+	var seq= $(this).attr("data-seq");//삭제할 객실 번호
 	var xxx= $(this); //td태그 
 	$.ajax({
 		url: "loginCheck/RoomDelete",
@@ -36,9 +36,9 @@ $(".delete").click(function() {
 			console.log("success");
 			
 			xxx.parents().filter("tr").remove();
-			var con_test = confirm("방을 삭제하시겠습니까?");  
+			var con_test = confirm("객실을 삭제하시겠습니까?");  
 	          if(con_test == true){
-	        	  alert("방을 삭제했습니다.");
+	        	  alert("객실이 삭제되었습니다.");
 	          }
 		},
 		error: function(xhr, status, error) {
@@ -46,6 +46,16 @@ $(".delete").click(function() {
 		}			
 	});//end ajax
 });//end delete
+
+$(".update").click(function(){
+	 console.log("수정버튼 클릭");
+	 var seq= $(this).attr("data-seq");
+	 console.log(seq);
+	 var url= "loginCheck/roomSelect?seq="+seq;
+			var name = "popup test"
+			var option = "width = 550, height=450";
+			window.open(url, name, option);
+		}); //end update
 })
 </script>
 
@@ -106,14 +116,14 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 </head>
 <body>
  <div class="container">
-	<h1 id="title" align="center" style="font-weight: bold; font-size: 40px;">방 관리</h1>
+	<h1 id="title" align="center" style="font-weight: bold; font-size: 40px;">객실 관리</h1>
 	<table id="search" class="table">
 		<tr>
 		 <td colspan="7">
 		  <form action="loginCheck/adminRoom" class="searchbar">
 		   <select name="searchName">
 		    <option value="hotelname">호텔 이름</option>
-		    <option value="roomname">방이름</option>
+		    <option value="roomname">객실 이름</option>
 		   </select>
 		    <input type="text" id="bar" name="searchValue">
 		    <input type="submit" class="btn btn-primary" value="검색">
@@ -121,12 +131,12 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 		 </td> 
 		</tr>
 		<tr id = "ab">
-			<td style="color: white;" width="50">방 번호</td>
+			<td style="color: white;" width="50">객실 번호</td>
 			<td style="color: white;" width="100">호텔 이름</td>
-			<td style="color: white;" width="100">방 이름</td>
+			<td style="color: white;" width="100">객실 이름</td>
 			<td style="color: white;" width="70">가격</td>
 			<td style="color: white;" width="70">최대 인원 수</td>
-			<td style="color: white;" width="80">방이미지 </td>
+			<td style="color: white;" width="80">객실 이미지 </td>
 			<td style="color: white;" width="80">수정</td>
 			<td style="color: white;" width="80">삭제</td>
 		</tr>

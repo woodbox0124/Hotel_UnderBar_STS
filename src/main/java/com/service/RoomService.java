@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.RoomDAO;
+import com.dto.AdminRoomDTO;
 import com.dto.RoomDTO;
 import com.dto.RoomInfoDTO;
 
 @Service
-public class RoomService 
+public class RoomService
 {
 	@Autowired
 	RoomDAO dao;
@@ -22,13 +23,13 @@ public class RoomService
 		return list;
 	}
 
-	public List<RoomInfoDTO> roomInfo(String seq) 
+	public List<RoomInfoDTO> roomInfo(String seq)
 	{
 		List<RoomInfoDTO> list = dao.roomInfo(seq);
 		return list;
 	}
 
-	public List<RoomDTO> roomList2(String seq) 
+	public List<RoomDTO> roomList2(String seq)
 	{
 		List<RoomDTO> list = dao.roomList2(seq);
 		return list;
@@ -37,14 +38,14 @@ public class RoomService
 	public int reserved(HashMap<String, String> map) {
 		int n = 0;
 		System.out.println(dao);
-		  try { 
-			  n = dao.reserved(map); 
+		  try {
+			  n = dao.reserved(map);
 		}
-		  catch (Exception e) 
-		  { 
-			  System.out.println("=========="); e.printStackTrace(); 
+		  catch (Exception e)
+		  {
+			  System.out.println("=========="); e.printStackTrace();
 		  }
-		 
+
 		return n;
 	}
 
@@ -58,6 +59,9 @@ public class RoomService
 	    return n;
 	}
 
-	
+	public RoomDTO roomSelect(String seq) {
+		RoomDTO rDTO= dao.roomSelect(seq);
+		return rDTO;
+	}
 
 }

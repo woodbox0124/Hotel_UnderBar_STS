@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dto.AdminRoomDTO;
+import com.dto.HotelDTO;
 import com.dto.RoomDTO;
 import com.dto.RoomInfoDTO;
 
@@ -15,8 +17,8 @@ public class RoomDAO {
 
 	@Autowired
 	SqlSessionTemplate template;
-	
-	public List<RoomDTO> roomList(String seq) 
+
+	public List<RoomDTO> roomList(String seq)
 	{
 		System.out.println("roomlist" + template);
 		List<RoomDTO> list = template.selectList("HotelMapper.roomList", seq);

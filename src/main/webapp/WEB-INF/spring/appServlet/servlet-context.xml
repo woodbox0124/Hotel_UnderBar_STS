@@ -38,13 +38,14 @@
 <mvc:view-controller path="/admin/hotelupdate" view-name="admin/hotelupdate"/>
 <mvc:view-controller path="/admin/hotelinsert" view-name="admin/hotelinsert"/>
 
+
 <mvc:view-controller path="/reviewlist" view-name="reviewlist"/>
 <mvc:view-controller path="/ReviewOrder" view-name="ReviewOrder"/>
 <mvc:view-controller path="/ReviewNew" view-name="ReviewNew"/>
 <mvc:view-controller path="/ReviewDelete" view-name="ReviewDelete"/>
 <mvc:view-controller path="/ReviewAdminDelete" view-name="ReviewAdminDelete"/>
-
 <mvc:view-controller path="/eventWrite" view-name="eventWrite"/>
+
 <!-- web-inf 폴더는 반드시 리소스 등록 후 사용 -->
 <mvc:resources location="/WEB-INF/views/styles/" mapping="/styles/**"/>
 <mvc:resources location="/WEB-INF/views/assets/" mapping="/assets/**"/>
@@ -86,7 +87,7 @@
 			<prop key="mail.debug">true</prop>
 			<prop key="mail.smtp.starttls.enable">true</prop>
 			<prop key="mail.smtp.ssl.checkserveridentity">true</prop>
-			<prop key="mail.smtp.auth">true</prop>				
+			<prop key="mail.smtp.auth">true</prop>
 			<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
 		</props>
 	</property>
