@@ -5,12 +5,12 @@ import org.apache.ibatis.type.Alias;
 @Alias("ReplyDTO")
 public class ReplyDTO {
 
-	private String c_code;
-	private String e_code;
-	private String comments;
-	private String writer;
-	private String regdate;
-	private String updateDate;
+	private String c_code; //댓글번호
+	private String e_code; //게시물번호
+	private String comments; //내용
+	private String writer; // 작성자
+	private String regdate; // 작성일자
+	private String updateDate; //업데이트일자
 	public ReplyDTO() {
 		super();
 	}

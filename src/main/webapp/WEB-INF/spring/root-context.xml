@@ -57,6 +57,7 @@
 				<value>com.dto.EventDTO</value>							
 				<value>com.dto.EventPageDTO</value>							
 				<value>com.dto.ReplyDTO</value>	
+				<value>com.dto.ReplyPageDTO</value>	
 				<value>com.dto.AdminMemberPageDTO</value>							
 				<value>com.dto.RatingDTO</value>						
 				<value>com.dto.AdminHotelPageDTO</value>						

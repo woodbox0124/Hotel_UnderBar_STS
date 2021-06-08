@@ -42,8 +42,8 @@
 <mvc:view-controller path="/ReviewNew" view-name="ReviewNew"/>
 <mvc:view-controller path="/ReviewDelete" view-name="ReviewDelete"/>
 <mvc:view-controller path="/ReviewAdminDelete" view-name="ReviewAdminDelete"/>
-
 <mvc:view-controller path="/eventWrite" view-name="eventWrite"/>
+
 <!-- web-inf 폴더는 반드시 리소스 등록 후 사용 -->
 <mvc:resources location="/WEB-INF/views/styles/" mapping="/styles/**"/>
 <mvc:resources location="/WEB-INF/views/assets/" mapping="/assets/**"/>

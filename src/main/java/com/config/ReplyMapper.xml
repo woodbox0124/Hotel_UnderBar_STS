@@ -1,36 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ReplyMapper">
 
+
 	
-	<!-- 코멘트 작성 -->
-	<insert id="addReply" parameterType="ReplyDTO">
+	<!-- 게시물별 총 댓글 수  -->
+	<select id="totalCount" resultType="string">
+		select count(*) from event where e_code = #{e_code}
+	</select>
+	
+	<!-- 댓글 리스트 불러오기 -->
+	<!-- clob처리를 위한 코드 -->
+		<resultMap id="replyList" type="ReplyDTO" >
+	    	<result property="content" column="content" jdbcType="CLOB" javaType="java.lang.String" />
+		</resultMap>
+	<select id="list" parameterType="string" resultType="ReplyDTO" resultMap="replyList">
+		select * from reply where e_code = #{e_code} order by c_code desc
+	</select>
+	
+
+	
+	<!--  댓글 작성 --> 
+	<insert id="insert" parameterType="ReplyDTO" >
 		insert into reply
 		values(com_seq.nextval,#{e_code},#{comments}, #{writer}, sysdate, sysdate)
 	</insert>
 	
-	<!-- 코멘트 삭제 -->
-	<delete id="delCommnet" parameterType="ReplyDTO">
+	<!-- 댓글 삭제 -->
+	<delete id="delete" parameterType="String" >
 		delete from reply
 		where c_code=#{c_code}
 		
 	</delete>
-	<!-- 코멘트 업데이트 -->
-	<update id="updateComment" parameterType="ReplyDTO">
+	<!-- 댓글 업데이트 -->
+	<update id="update" parameterType="ReplyDTO">
 		update reply set comments=#{comments}, updateDate = sysdate where c_code=#{c_code}
 	</update>
 	
 	
 	
-	<!-- 댓글 리스트 불러오기 -->
-		<!-- clob처리를 위한 코드 -->
-		<resultMap id="replyList" type="ReplyDTO" >
-	    	<result property="content" column="content" jdbcType="CLOB" javaType="java.lang.String" />
-		</resultMap>
-	<select id="replyList" parameterType="string" resultType="ReplyDTO" resultMap="replyList">
-		select * from reply where e_code = #{e_code} order by c_code desc
-	</select>
+
 
 </mapper>
