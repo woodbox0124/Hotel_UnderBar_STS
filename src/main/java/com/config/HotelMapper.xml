@@ -76,7 +76,12 @@ delete from room where seq = #{seq}
 </delete>
 
 <select id="hotelInsertGO" resultType="int">
-select seq_hotel.nextval from dual
+select SEQ_HOTEL.nextval from dual
 </select>
+
+<insert id="hotelInsert" parameterType="HotelInsertDTO">
+insert into hotel (seq, name, place, addr, rating, hotel_img, hotel_img_real) 
+ values (seq_hotel.nextval, #{name}, #{place}, #{addr}, 0, #{hotel_img}, null)
+</insert>
 
 </mapper>

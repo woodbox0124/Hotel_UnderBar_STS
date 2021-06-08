@@ -140,7 +140,7 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 			<td class="normal">${item.name}</td>
 			<td class="normal">${item.place}</td>
 			<td class="normal">${item.addr}</td>
-			<td class="normal"><img src="images/hotel/${item.hotel_img}.jpg" width="150" height="150"></td>
+			<td class="normal"><img src="images/hotel/${item.hotel_img}" width="150" height="150"></td>
 			<td class="normal"><input type="button" value="수정" class="btn btn-primary update" data-seq="${item.seq}"></td>
 			<td class="normal"><input type="button" value="삭제" class="btn btn-primary delete" data-seq="${item.seq}"></td>			
 		</tr>			

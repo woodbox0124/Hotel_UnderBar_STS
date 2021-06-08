@@ -351,7 +351,7 @@ String guest = (String)session.getAttribute("guest");%>
 
 
 				<div class="card">
-					<img src="images/hotel/<%= hotel_img %>.jpg" class="card-img-top"
+					<img src="images/hotel/<%= hotel_img %>" class="card-img-top"
 						alt="...">
 					<div class="card-body">
 					<%

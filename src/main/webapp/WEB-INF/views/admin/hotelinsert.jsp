@@ -24,15 +24,14 @@
 		<%
 		session.removeAttribute("updatecomplete");
 		%>
-		window.close();
+		history.go(-1);
 	</script>
 </c:if>
 
 </head>
 <body>
 <div class="main">
-<form action="../loginCheck/HotelUpload" method="POST" encType="multipart/form-data">
-<input type="hidden" name="seq" value="">
+<form action="../loginCheck/hotelInsert" method="POST" encType="multipart/form-data">
 <input type="hidden" name="hotel_img" value="">
 
 이름:<input type="text" name="name" class="input" required/><br><br>
@@ -45,13 +44,13 @@
 	<br><br>
 주소:<input type="text" name="addr" id="sample6_address" class="input" required/><input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기"><br><br>
 
-사진이름:HOTEL${seq}<br><br>
+사진이름:HOTEL${seq+1}<br><br>
 ※사진파일명을 위에 사진이름과 동일하게 수정 후 업로드 바랍니다.
 <br><br>
 호텔사진:<input type="file" name="theFile">
 <br><br>
 <div id="test">
-<input type="submit" value="수정" class="btn btn-primary update">
+<input type="submit" value="추가" class="btn btn-primary update">
 </div>
 </form>
 </div>

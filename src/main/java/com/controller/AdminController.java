@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,10 @@ import com.dto.AdminHotelPageDTO;
 import com.dto.AdminMemberPageDTO;
 import com.dto.AdminRoomPageDTO;
 import com.dto.HotelDTO;
+import com.dto.HotelInsertDTO;
 import com.dto.HotelUpdateDTO;
 import com.dto.MemberDTO;
 import com.dto.RoomDTO;
-import com.dto.RoomUpdateDTO;
 import com.service.AdminService;
 import com.service.HotelService;
 import com.service.MemberService;
@@ -160,14 +162,12 @@ public class AdminController {
 	//호텔 정보 추가를 위한 정보 전달 기능입니다.
 	@RequestMapping("/loginCheck/hotelInsertGO")
 	public String hotelInsertGO(RedirectAttributes att, HttpSession session) {
-
 			int seq = hService.hotelInsertGO();
-
 			System.out.println(seq);
 			session.setAttribute("seq", seq);
 			return "redirect:../admin/hotelinsert";
 			}
-	//회원 정보 수정 후 DB 전송을 위한 기능입니다.
+	//호텔 정보 수정 후 DB 전송을 위한 기능입니다.
 	@RequestMapping(value = "/loginCheck/HotelUpload", method = RequestMethod.POST)
 	public String HotelUpload(HotelUpdateDTO huDTO,
 			@RequestParam(required=false, defaultValue="1") String curPage ,
@@ -202,6 +202,28 @@ public class AdminController {
 				}
 		       return "redirect:../admin/hotelupdate";
 	}
+	
+	//호텔 정보 추가 후 DB 전송을 위한 기능입니다.
+		@RequestMapping(value = "/loginCheck/hotelInsert", method = RequestMethod.POST)
+		public String  hotelInsert(HotelInsertDTO hiDTO, HttpServletRequest request){
+			       String hotelname=hiDTO.getName();
+			       String place=hiDTO.getPlace();
+			       String addr=hiDTO.getAddr();
+			       CommonsMultipartFile theFile= hiDTO.getTheFile();
+			       String originalFileName= theFile.getOriginalFilename();		
+				   File f= new File("C:\\Shop_STS\\WORKSHOP\\Hotel_UnderBar_STS\\src\\main\\webapp\\WEB-INF\\views\\images\\hotel", originalFileName);				   
+				   hiDTO.setHotel_img(originalFileName);				   
+				   System.out.println(hotelname+"\t"+place+"\t"+addr+"\t"+
+						   originalFileName);
+				   int n = hService.hotelInsert(hiDTO);
+				   System.out.println(n+" 업데이트 성공");
+			       try {
+						theFile.transferTo(f);
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+			       return "redirect:../loginCheck/adminMember";
+		}
 	
 
 

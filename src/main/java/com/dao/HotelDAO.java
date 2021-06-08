@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dto.HotelDTO;
+import com.dto.HotelInsertDTO;
 import com.dto.HotelUpdateDTO;
 import com.dto.PageDTO;
 import com.dto.RatingDTO;
@@ -67,6 +68,10 @@ public class HotelDAO {
 	public int hotelInsertGO() {
 		int seq = template.selectOne("HotelMapper.hotelInsertGO");
 		return seq;
+	}
+	public int hotelInsert(HotelInsertDTO hiDTO) {
+		int n = template.insert("HotelMapper.hotelInsert", hiDTO);
+		return n;
 	}
 	
 
