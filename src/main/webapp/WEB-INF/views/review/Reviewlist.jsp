@@ -1,3 +1,4 @@
+<%@page import="com.dto.ReviewPageDTO"%>
 <%@page import="com.dto.ReviewCountDTO"%>
 <%@page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -34,7 +35,9 @@
 
 	.title {
 		font-weight: 600;
-         font-size: 20px;
+         font-size: 20px;        
+         margin-top: 4px;
+}
 	}
 	.content {
 		font-size: 18px;
@@ -46,15 +49,21 @@
 	}
 	#allcheck{
 	margin: -2px 8px 0px 0px;
-	width: 30px;
+	width: 20px;
+	height: 15px;
+
 	}
 	#check1,#check2,#check3,#check4,#check5{
 	margin: -2px 8px 0px 0px;
-	width: 30px;
+	width: 20px;
+	border-radius: 4px;
+	height: 15px;
+
+
 	}
 	
 	.box{
-	 width: 360px; border : 1px solid #dddddd; padding: 8px; margin: 10px; 
+	 width: 360px; border : 1px solid #dddddd; padding: 8px; 
 	
 	}
 	
@@ -76,11 +85,82 @@
 	.reviewbar{
   margin-top: 10px;
 	}
-	#gun{
-	
-	}
 	
 	
+ #check5:hover {
+
+  background: #0d6efd;
+
+  color: white;
+
+}
+ #check4:hover {
+
+  background: #0d6efd;
+
+  color: white;
+
+} #check3:hover {
+
+  background: #0d6efd;
+
+  color: white;
+
+} #check2:hover {
+
+  background: #0d6efd;
+
+  color: white;
+
+} #check1:hover {
+
+  background: #0d6efd;
+
+  color: white;
+
+} #allcheck:hover {
+
+  background: #0d6efd;
+
+  color: white;
+
+}
+
+	
+.update{
+height: 30px;
+    width: 40px;
+    text-align: center;
+    padding: unset;
+    margin-top: 4px;
+}
+
+.answer{
+height: 30px;
+    width: 40px;
+    text-align: center;
+    padding: unset;
+    margin-top: 4px;
+}
+
+.delete{
+height: 30px;
+    width: 40px;
+    text-align: center;
+    padding: unset;
+    margin-top: 4px;
+    }
+    
+    .adminDelete{
+    
+    height: 30px;
+    width: 40px;
+    text-align: center;
+    padding: unset;
+    margin-top: 4px;
+    }
+    }
+   
 	
 /*   summary {
     cursor: pointer;
@@ -124,22 +204,22 @@ String location = (String)session.getAttribute("location");
 <a class="box">총 ${sumcount}건</a>
 
 <div class="reviewbar">
-<input id="allcheck" type="checkbox"/>전체<br> 
+<input id="allcheck" type="button"></a>전체<br> 
 <c:forEach var="list" items="${reviewcount}">
 <c:if test="${list.numrating eq 5 }">
-<input id="check5" type="checkbox" value="5"/>매우만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}%  <a id="gun">${list.gc}건</a><br></c:if>
+<input id="check5" type="button" />매우만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}%  <a id="gun">${list.gc}건</a><br></c:if>
 
 <c:if test="${list.numrating eq 4}">
-<input id="check4" type="checkbox" value="4"/>만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}% <a id="gun">${list.gc}건</a><br></c:if>
+<input id="check4" type="button"  />만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}% <a id="gun">${list.gc}건</a><br></c:if>
 
 <c:if test="${list.numrating eq 3}">
-<input id="check3" type="checkbox" value="3"/>보통 <progress value="${list.count}" max="100.0"></progress> ${list.count}% <a id="gun">${list.gc}건</a><br></c:if>
+<input id="check3" type="button"   />보통 <progress value="${list.count}" max="100.0"></progress> ${list.count}% <a id="gun">${list.gc}건</a><br></c:if>
 
 <c:if test="${list.numrating eq 2}">
-<input id="check2" type="checkbox" value="2"/>미흡 <progress value="${list.count}" max="100.0"></progress> ${list.count}% <a id="gun">${list.gc}건</a><br></c:if>
+<input id="check2" type="button"  />미흡 <progress value="${list.count}" max="100.0"></progress> ${list.count}% <a id="gun">${list.gc}건</a><br></c:if>
 
 <c:if test="${list.numrating eq 1}">
-<input id="check1" type="checkbox" value="1"/>불만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}% <a id="gun">${list.gc}건</a><br></c:if>
+<input id="check1" type="button" />불만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}% <a id="gun">${list.gc}건</a><br></c:if>
 
 </c:forEach>
 </div>
@@ -157,28 +237,28 @@ String location = (String)session.getAttribute("location");
 </form>
 <br>
 <form class="review">
-<c:forEach var="list" items="${reviewlist}">
+<c:forEach var="list" items="${reviewlist.list}">
 
 <c:choose>
 	<c:when test="${list.groupnum eq 0 and list.rating eq 1}">
-		${list.u_id}  <img src='images/review/1star.png'/> <br>${list.writedate}
+		${list.u_id}  <img src='images/review/1star.png'/> <br>
 	</c:when>
 	<c:when test="${list.groupnum eq 0 and list.rating eq 2}">
-		${list.u_id}  <img src='images/review/2star.png'/> <br>${list.writedate}
+		${list.u_id}  <img src='images/review/2star.png'/> <br>
 	</c:when>
 	<c:when test="${list.groupnum eq 0 and list.rating eq 3}">
-		${list.u_id}  <img src='images/review/3star.png'/><br> ${list.writedate}
+		${list.u_id}  <img src='images/review/3star.png'/><br> 
 	</c:when>
 	<c:when test="${list.groupnum eq 0 and list.rating eq 4}">
-		${list.u_id}  <img src='images/review/4star.png'/> <br>${list.writedate}
+		${list.u_id}  <img src='images/review/4star.png'/> <br>
 	</c:when>
 	<c:when test="${list.groupnum eq 0 and list.rating eq 5}">
-		${list.u_id}  <img src='images/review/5star.png'/><br> ${list.writedate}
+		${list.u_id}  <img src='images/review/5star.png'/><br> 
 	</c:when>
 </c:choose>
 <c:choose>	
 	<c:when test="${list.groupnum eq 1}">
-		&nbsp;&nbsp;&nbsp;<img src='images/board/reply_icon.gif'/> ${list.u_id} <br> ${list.writedate}
+		&nbsp;&nbsp;&nbsp;<img src='images/board/reply_icon.gif'/> ${list.u_id} <br> &nbsp;&nbsp;&nbsp;${list.writedate}
 	</c:when>
 </c:choose>
 
@@ -203,13 +283,15 @@ String location = (String)session.getAttribute("location");
  			<hr>
 	</c:when>
 	<c:when test="${empty list.review_img}">
-  			<p class="title">${list.title}</p><br>
+  			<p class="title">${list.title}</p>
+  			${list.writedate}<br>
  			<p class="content">${list.content}</p><br>
  			<hr>
 	</c:when>
 	
 	<c:when test="${!empty list.review_img}">
   			<p class="title">${list.title}</p> 
+  			${list.writedate}<br>
   			<img src="/review/img/${list.review_img}" width="300" height="300">
  			<p class="content">${list.content}</p><br>
  			<hr>
@@ -218,7 +300,24 @@ String location = (String)session.getAttribute("location");
 	
 </c:forEach>	
 </form>		
-
+<hr>
+<div style="font-size:15px; text-align: center;">
+                   <%
+                   ReviewPageDTO rDTO = (ReviewPageDTO)session.getAttribute("reviewlist");
+                    int curPage = rDTO.getCurPage();//현재페이지
+                    int perPage = rDTO.getPerPage();//페이지당 게시물수 
+                    int totalCount = rDTO.getTotalCount();//전체 레코드 수
+                    int totalPage = totalCount/perPage;  //필요한 페이지 
+                    if(totalCount%perPage!=0) totalPage++;
+                    for(int i=1; i<= totalPage; i++){
+                          if(i== curPage){
+                              out.print(i+"&nbsp;");
+                          }else{
+    out.print("<a href='loginCheck/Review?curPage="+i+"&hotelname="+hotelname+"'>"+i+"</a>&nbsp;");                       }
+                    }//end for
+               %>
+               </div><br>
+               
 <p class="hotellist"><a href="HotelSearch?checkin=<%=checkin%>&checkout=<%=checkout%>&guest=<%=guest%>&location=<%=location%>">호텔 리스트로 돌아가기</a></p>
 <script type="text/javascript">
 $(function () {
@@ -275,36 +374,36 @@ function reviewAdminDelete(e, num) {
 		$("input:checkbox[id='check5']").prop("checked", true);
 		var rating=$("#check5").val();
 		console.log(rating);
-		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating="+rating;
+		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating=5";
 		$("input:checkbox[id='check5']").prop("checked", true);
 
 	})
 	$("#check4").click(function () {
 		var rating=$("#check4").val();
 		console.log(rating);
-		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating="+rating;
+		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating=4";
 	})
 	$("#check3").click(function () {
 		var rating=$("#check3").val();
 		console.log(rating);
-		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating="+rating;
+		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating=3";
 	})
 	$("#check2").click(function () {
 		var rating=$("#check2").val();
 		console.log(rating);
-		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating="+rating;
+		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating=2";
 	})
 	$("#check1").click(function () {
 		var rating=$("#check1").val();
 		console.log(rating);
-		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating="+rating;
+		location.href = "loginCheck/Reviewrating?hotelname=<%=hotelname%>&rating=1";
 	})
 	$("#allcheck").click(function () {
 		location.href = "loginCheck/Review?hotelname=<%=hotelname%>";
 		if($("#allcheck").prop("checked")) { //해당화면에 전체 checkbox들을 체크해준다 
-			$("input[type=checkbox]").prop("checked",true); // 전체선택 체크박스가 해제된 경우
+			$("input[type=button]").prop("checked",true); // 전체선택 체크박스가 해제된 경우
 			} else { //해당화면에 모든 checkbox들의 체크를해제시킨다.
-				$("input[type=checkbox]").prop("checked",false); } 
+				$("input[type=button]").prop("checked",false); } 
 	})
 	
 }) 

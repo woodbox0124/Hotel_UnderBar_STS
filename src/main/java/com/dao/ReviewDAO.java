@@ -3,12 +3,14 @@ package com.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dto.ReviewCountDTO;
 import com.dto.ReviewDTO;
+import com.dto.ReviewPageDTO;
 
 @Repository
 public class ReviewDAO {
@@ -23,16 +25,16 @@ public class ReviewDAO {
 		
 	}
 
-	public List<ReviewDTO> review(String hotelname) {
-		System.out.println(hotelname);
-		List<ReviewDTO> list = session.selectList("ReviewMapper.review", hotelname);
-		System.out.println(list);
-		return list;
-	}
-
-	public List<ReviewDTO> reviewOrder(String hotelname) {
-		List<ReviewDTO> list = session.selectList("ReviewMapper.reviewOrder", hotelname);
-		return list;
+	
+	public ReviewPageDTO reviewOrder(int curPage, String hotelname) {
+		ReviewPageDTO rdto = new ReviewPageDTO();
+		int perPage = rdto.getPerPage(); //10
+        int offset = (curPage -1)*perPage; //0
+        List<ReviewDTO> list = session.selectList("ReviewMapper.reviewOrder", hotelname, new RowBounds(offset,perPage));
+        rdto.setCurPage(curPage);
+        rdto.setList(list);
+        rdto.setTotalCount(ReviewCount(hotelname));
+        return rdto;
 	}
 
 	public void reviewDelete(int origin) {
@@ -72,13 +74,39 @@ public class ReviewDAO {
 	}
 
 
-	public List<ReviewDTO> reviewrating(HashMap<Object, Object> map) {
-		List<ReviewDTO> list=session.selectList("ReviewMapper.reviewRating",map);
-		return list;
+	public ReviewPageDTO reviewrating(int curPage, HashMap<Object, Object> map) {
+		ReviewPageDTO rdto = new ReviewPageDTO();
+		int perPage = rdto.getPerPage(); //10
+        int offset = (curPage -1)*perPage; //0
+        //String hotelname = (String)map.get("hotelname");
+        List<ReviewDTO> list = session.selectList("ReviewMapper.reviewRating",map, new RowBounds(offset,perPage));
+		rdto.setCurPage(curPage);
+	    rdto.setList(list);
+	    rdto.setTotalCount(ReviewCount1(map));
+		return rdto;
 	}
 
 	public List<ReviewCountDTO> grouprating(String hotelname) {
 		List<ReviewCountDTO> list=session.selectList("ReviewMapper.groupRating",hotelname);
 		return list;
 	}
+
+	public ReviewPageDTO review(int curPage, String hotelname) {
+		ReviewPageDTO rdto = new ReviewPageDTO();
+		int perPage = rdto.getPerPage(); //10
+        int offset = (curPage -1)*perPage; //0
+        List<ReviewDTO> list = session.selectList("ReviewMapper.review", hotelname, new RowBounds(offset,perPage));
+        rdto.setCurPage(curPage);
+        rdto.setList(list);
+        rdto.setTotalCount(ReviewCount(hotelname));
+        return rdto;
+	}
+	private int ReviewCount(String hotelname) {
+        int num = session.selectOne("ReviewMapper.ReviewCount", hotelname);
+        return num;
+    }
+	private int ReviewCount1(HashMap<Object, Object> map) {
+        int num = session.selectOne("ReviewMapper.ReviewCount1", map);
+        return num;
+    }
 }

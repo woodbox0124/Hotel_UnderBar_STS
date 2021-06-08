@@ -23,7 +23,7 @@
 <div class="adminmenu">
 <a href="loginCheck/adminMember" id="member" class="menubar3" style="color: blue; text-decoration: none;" >회원관리</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="loginCheck/adminHotel" id="hotel" class="menubar3" style="color: blue; text-decoration: none;" >호텔관리</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="loginCheck/adminRoom" id="room" class="menubar3" style="color: blue; text-decoration: none;" >방관리</a>
+<a href="loginCheck/adminRoom" id="room" class="menubar3" style="color: blue; text-decoration: none;" >객실관리</a>
 </div>
 <jsp:include page="admin/room.jsp" flush="true"></jsp:include>
 </body>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.dao.AdminDAO;
 import com.dto.AdminHotelPageDTO;
 import com.dto.AdminMemberPageDTO;
+import com.dto.AdminRoomPageDTO;
 import com.dto.MemberDTO;
 
 @Service
@@ -29,6 +30,11 @@ public class AdminService {
 	public AdminHotelPageDTO adminHotel(int curPage, HashMap<String, String> map) {
 		AdminHotelPageDTO ahpDTO = dao.adminHotel(curPage, map);
 		return ahpDTO;
+	}
+
+	public AdminRoomPageDTO adminRoom(int curPage, HashMap<String, String> map) {
+		AdminRoomPageDTO arpDTO = dao.adminRoom(curPage, map);
+		return arpDTO;
 	}
 
 }
