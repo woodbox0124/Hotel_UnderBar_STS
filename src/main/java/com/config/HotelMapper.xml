@@ -71,10 +71,6 @@ update hotel set
     where seq = #{seq}
 </update>
 
-<delete id="RoomDelete" parameterType="String">
-delete from room where seq = #{seq}
-</delete>
-
 <select id="hotelInsertGO" resultType="int">
 select SEQ_HOTEL.nextval from dual
 </select>
@@ -84,4 +80,27 @@ insert into hotel (seq, name, place, addr, rating, hotel_img, hotel_img_real)
  values (seq_hotel.nextval, #{name}, #{place}, #{addr}, 0, #{hotel_img}, null)
 </insert>
 
+<!-- 객실 관리  -->
+<!-- 객실 삭제 -->
+<delete id="RoomDelete" parameterType="String">
+delete from room where seq = #{seq}
+</delete>
+<!-- 객실 삭제 -->
+
+<!-- 객실 정보 가져오기 -->
+<select id="roomSelect" parameterType="string"  resultType="RoomDTO">
+select * from room where seq = #{seq}
+</select>
+<!-- 객실 정보 가져오기 -->
+
+<!-- 객실 수정 -->
+<update id="RoomUpdate" parameterType="RoomUpdateDTO">
+update room set
+     name = #{name},
+     price = #{price},
+     max_guest = #{max_guest},
+     room_img = #{room_img}
+    where seq = #{seq}
+</update>
+<!-- 객실 관리  -->
 </mapper>

@@ -10,6 +10,7 @@ import com.dao.RoomDAO;
 import com.dto.AdminRoomDTO;
 import com.dto.RoomDTO;
 import com.dto.RoomInfoDTO;
+import com.dto.RoomUpdateDTO;
 
 @Service
 public class RoomService
@@ -64,6 +65,9 @@ public class RoomService
 		return rDTO;
 	}
 
-
+	public int roomUpdate(RoomUpdateDTO ruDTO) {
+		int n = dao.roomUpdate(ruDTO);
+		return n;
+	}
 
 }

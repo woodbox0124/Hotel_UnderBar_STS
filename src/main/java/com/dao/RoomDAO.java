@@ -11,6 +11,7 @@ import com.dto.AdminRoomDTO;
 import com.dto.HotelDTO;
 import com.dto.RoomDTO;
 import com.dto.RoomInfoDTO;
+import com.dto.RoomUpdateDTO;
 
 @Repository
 public class RoomDAO {
@@ -53,8 +54,12 @@ public class RoomDAO {
 	}
 
 	public RoomDTO roomSelect(String seq) {
-		// TODO Auto-generated method stub
-		return null;
+		RoomDTO rdto = template.selectOne("HotelMapper.roomSelect", seq);
+		return rdto;
 	}
-
+	
+	public int roomUpdate(RoomUpdateDTO ruDTO) {
+		int n = template.update("HotelMapper.RoomUpdate",ruDTO);
+		return n;
+	}
 }
