@@ -1,10 +1,10 @@
-update.css@charset "UTF-8";
+@charset "UTF-8";
 * {
 	font-family: 'twayair', 'Roboto', 'sans-serif';
 }
 .main{
-	width: 500px;
-	height: 400px;
+	width: 1200;
+	height: 800;
 	text-align: center;
 	padding-top: 100px;
 	
@@ -14,5 +14,5 @@ update.css@charset "UTF-8";
 	text-align: center;
 }
 .input{
-	width: 200px;
+	width: 300px;
 }

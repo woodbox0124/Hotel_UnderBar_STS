@@ -159,12 +159,12 @@ public class AdminController {
 			}
 	//호텔 정보 추가를 위한 정보 전달 기능입니다.
 	@RequestMapping("/loginCheck/hotelInsertGO")
-	public String hotelInsertGO(RedirectAttributes att) {
+	public String hotelInsertGO(RedirectAttributes att, HttpSession session) {
 
 			int seq = hService.hotelInsertGO();
 
 			System.out.println(seq);
-			att.addFlashAttribute("seq", seq);
+			session.setAttribute("seq", seq);
 			return "redirect:../admin/hotelinsert";
 			}
 	//회원 정보 수정 후 DB 전송을 위한 기능입니다.
@@ -202,50 +202,32 @@ public class AdminController {
 				}
 		       return "redirect:../admin/hotelupdate";
 	}
-	//호텔 방관리 페이지로 이동 합니다.
-			@RequestMapping("/loginCheck/adminRoom")
-			public String room(@RequestParam(required=false, defaultValue="1") String curPage ,
-					 @RequestParam(required=false, defaultValue="roomname") String searchName,
-						@RequestParam(required=false, defaultValue="") String searchValue, HttpSession session)throws Exception {
-				System.out.println(curPage);
-				System.out.println(searchName);
-				System.out.println(searchValue);
-				HashMap<String, String> map= new HashMap<String, String>();
+	
 
-				map.put("searchName", searchName);
-				map.put("searchValue", searchValue);
-				System.out.println(map);
-				AdminRoomPageDTO arpDTO= service.adminRoom(Integer.parseInt(curPage),map);
-				System.out.println("Controller"+arpDTO);
-				session.setAttribute("arpDTO",arpDTO);
-				session.setAttribute("searchName",searchName);
-				session.setAttribute("searchValue",searchValue);
-				return "redirect:../adminRoom";
-			}
-			return "redirect:../admin/hotelupdate";
-		}
 
 	// 객실 관리
-
-	// 호텔 객실 관리 페이지로 이동 합니다.
+	
+	//호텔 객실관리 페이지로 이동 합니다.
 	@RequestMapping("/loginCheck/adminRoom")
-	public String room(@RequestParam(required = false, defaultValue = "1") String curPage,
-			@RequestParam(required = false, defaultValue = "name") String searchName,
-			@RequestParam(required = false, defaultValue = "") String searchValue, HttpSession session)
-			throws Exception {
+	public String room(@RequestParam(required=false, defaultValue="1") String curPage ,
+			 @RequestParam(required=false, defaultValue="roomname") String searchName,
+				@RequestParam(required=false, defaultValue="") String searchValue, HttpSession session)throws Exception {
 		System.out.println(curPage);
 		System.out.println(searchName);
 		System.out.println(searchValue);
-		HashMap<String, String> map = new HashMap<String, String>();
+		HashMap<String, String> map= new HashMap<String, String>();
 
 		map.put("searchName", searchName);
 		map.put("searchValue", searchValue);
 		System.out.println(map);
-		AdminRoomPageDTO arpDTO = service.adminRoom(Integer.parseInt(curPage), map);
-		System.out.println("Controller" + arpDTO);
-		session.setAttribute("arpDTO", arpDTO);
+		AdminRoomPageDTO arpDTO= service.adminRoom(Integer.parseInt(curPage),map);
+		System.out.println("Controller"+arpDTO);
+		session.setAttribute("arpDTO",arpDTO);
+		session.setAttribute("searchName",searchName);
+		session.setAttribute("searchValue",searchValue);
 		return "redirect:../adminRoom";
 	}
+
 
 	// 객실 삭제 기능
 	@RequestMapping("/loginCheck/RoomDelete")

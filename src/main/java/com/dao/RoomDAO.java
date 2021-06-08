@@ -52,4 +52,9 @@ public class RoomDAO {
 		return n;
 	}
 
+	public RoomDTO roomSelect(String seq) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -68,6 +68,7 @@ public class HotelDAO {
 		int seq = template.selectOne("HotelMapper.hotelInsertGO");
 		return seq;
 	}
+	
 
 	
 }
