@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 호텔 정보 수정</title>
+<title>관리자 호텔 정보 추가</title>
 <!-- JQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- JQuery -->
@@ -31,20 +31,20 @@
 <body>
 <div class="main">
 <form action="../loginCheck/HotelUpload" method="POST" encType="multipart/form-data">
-<input type="hidden" name="seq" value="${hDTO.seq}">
-<input type="hidden" name="hotel_img" value="${hDTO.hotel_img}">
+<input type="hidden" name="seq" value="">
+<input type="hidden" name="hotel_img" value="">
 
-이름:<input type="text" name="name" value="${hDTO.name}" class="input" required/><br><br>
+이름:<input type="text" name="name" class="input" required/><br><br>
 
 지역:<select class="place booking_input input" id="place booking_input" name="place">
-		<option value="서울" <c:if test="${hDTO.place eq '서울'}">selected</c:if>>서울</option>
-		<option value="부산" <c:if test="${hDTO.place eq '부산'}">selected</c:if>>부산</option>
-		<option value="제주" <c:if test="${hDTO.place eq '제주'}">selected</c:if>>제주</option>
+		<option value="서울">서울</option>
+		<option value="부산">부산</option>
+		<option value="제주">제주</option>
 	</select>
 	<br><br>
-주소:<input type="text" name="addr" value="${hDTO.addr}" class="input" required/><br><br>
+주소:<input type="text" name="addr" value="" class="input" required/><br><br>
 
-사진이름:${hDTO.hotel_img}<br><br>
+사진이름:HOTEL${seq}<br><br>
 ※사진파일명을 위에 사진이름과 동일하게 수정 후 업로드 바랍니다.
 <br><br>
 호텔사진:<input type="file" name="theFile">

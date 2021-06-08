@@ -64,6 +64,10 @@ public class HotelDAO {
 		int n = template.update("HotelMapper.hotelUpdate",huDTO);
 		return n;
 	}
+	public int hotelInsertGO() {
+		int seq = template.selectOne("HotelMapper.hotelInsertGO");
+		return seq;
+	}
 
 	
 }

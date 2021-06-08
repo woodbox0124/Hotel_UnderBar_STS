@@ -136,7 +136,7 @@ public class MemberController {
 				String from = "dltjrwhd3@naver.com";
 				
 				// 받는 사람
-				String to = "32popo@naver.com";
+				String to = u_email;
 				
 				try {
 					// 메일 내용 넣을 객체와, 이를 도와주는 Helper 객체 생성

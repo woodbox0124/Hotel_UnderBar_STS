@@ -49,6 +49,11 @@ public class HotelService {
 		
 	}
 
+	public int hotelInsertGO() {
+		int seq = dao.hotelInsertGO();
+		return seq;
+	}
+
 
 
 

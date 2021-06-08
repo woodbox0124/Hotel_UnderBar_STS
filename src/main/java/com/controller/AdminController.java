@@ -151,6 +151,16 @@ public class AdminController {
 			att.addFlashAttribute("hDTO", hDTO);
 			return "redirect:../admin/hotelupdate";
 			}
+	//호텔 정보 추가를 위한 정보 전달 기능입니다.
+	@RequestMapping("/loginCheck/hotelInsertGO")
+	public String hotelInsertGO(RedirectAttributes att) {
+		
+			int seq = hService.hotelInsertGO();
+			
+			System.out.println(seq);
+			att.addFlashAttribute("seq", seq);
+			return "redirect:../admin/hotelinsert";
+			}
 	//회원 정보 수정 후 DB 전송을 위한 기능입니다.
 	@RequestMapping(value = "/loginCheck/HotelUpload", method = RequestMethod.POST)
 	public String HotelUpload(HotelUpdateDTO huDTO,
