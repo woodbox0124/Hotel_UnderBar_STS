@@ -21,7 +21,6 @@ import com.dto.EventDTO;
 import com.dto.EventPageDTO;
 import com.service.EventService;
 
-import net.coobird.thumbnailator.Thumbnailator;
 
 
 @Controller
