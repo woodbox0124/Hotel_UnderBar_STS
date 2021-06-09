@@ -17,6 +17,17 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/hotelinsert.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/font.css">
+<c:if test="${!empty updatecomplete }">
+	<script>
+		alert("업데이트가 완료 되었습니다.");
+		opener.location.reload();
+		<%
+		session.removeAttribute("updatecomplete");
+		%>
+		history.go(-1);
+	</script>
+</c:if>
+
 </head>
 <body>
 <div class="main">

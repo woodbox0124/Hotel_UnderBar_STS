@@ -161,7 +161,7 @@ public class AdminController {
 			}
 	//호텔 정보 추가를 위한 정보 전달 기능입니다.
 	@RequestMapping("/loginCheck/hotelInsertGO")
-	public String hotelInsertGO(RedirectAttributes att, HttpSession session) {
+	public String hotelInsertGO(HttpSession session) {
 			int seq = hService.hotelInsertGO();
 			System.out.println(seq);
 			session.setAttribute("seq", seq);
@@ -222,7 +222,7 @@ public class AdminController {
 					}catch (Exception e) {
 						e.printStackTrace();
 					}
-			       return "redirect:../loginCheck/adminMember";
+			       return "redirect:../loginCheck/adminHotel";
 		}
 	
 
@@ -268,6 +268,15 @@ public class AdminController {
 		att.addFlashAttribute("rDTO", rDTO);
 		return "redirect:../admin/roomupdate";
 	}
+	// 객실 추가를 위한 정보 전달 기능입니다.
+	@RequestMapping("/loginCheck/roomInsertGo")
+	public String roomInsertGo(@RequestParam("seq") String seq, HttpSession session) {
+			String seq = seq;
+		    int room_seq = rService.roomInsertGo();
+			System.out.println(seq);
+			session.setAttribute("seq", seq);
+			return "redirect:../admin/hotelinsert";
+			}
 
 
 

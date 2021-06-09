@@ -53,8 +53,14 @@ public class RoomDAO {
 	}
 
 	public RoomDTO roomSelect(String seq) {
-		// TODO Auto-generated method stub
-		return null;
+        RoomDTO rdto = template.selectOne("HotelMapper.roomSelect", seq);
+        return rdto;
+    }
+
+	public int roomInsertGo() {
+		int room_seq = template.selectOne(statement, parameter)
+		return 0;
 	}
+
 
 }

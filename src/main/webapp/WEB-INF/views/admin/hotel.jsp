@@ -51,6 +51,12 @@ $(document).ready(function() {
 					var option = "width = 500, height=500, top=100,left=200";
 					window.open(url, name, option);
 				}); //end update
+		 $(".insert").click(function(){
+			 console.log("객실추가버튼 클릭");
+			 var seq= $(this).attr("data-seq");
+			 console.log(seq);
+			 var url= "loginCheck/roomInsertGo?seq="+seq;
+				}); //end update
 			
 });//end jQuery
 </script>
@@ -114,7 +120,7 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 	<a href="loginCheck/hotelInsertGO">호텔 정보 추가</a>
 	<table id="search" class="table">
 		<tr>
-		 <td colspan="6">
+		 <td colspan="7">
 		  <form action="loginCheck/adminHotel" class="searchbar">
 		   <select name="searchName">
 		    <option value="name">이름</option>
@@ -131,7 +137,8 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 			<td style="color: white;" width="150">주소</td>
 			<td style="color: white;" width="70">호텔이미지</td>
 			<td style="color: white;" width="50">수정</td>
-			<td style="color: white;" width="50">탈퇴</td>
+			<td style="color: white;" width="50">삭제</td>
+			<td style="color: white;" width="55">객실추가</td>
 		</tr>
 		 <c:if test="${!empty ahpDTO}">
 		 <c:forEach var ="item" items="${ahpDTO.list}">			
@@ -143,6 +150,7 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 			<td class="normal"><img src="images/hotel/${item.hotel_img}" width="150" height="150"></td>
 			<td class="normal"><input type="button" value="수정" class="btn btn-primary update" data-seq="${item.seq}"></td>
 			<td class="normal"><input type="button" value="삭제" class="btn btn-primary delete" data-seq="${item.seq}"></td>			
+			<td class="normal"><input type="button" value="객실추가" class="btn btn-primary insert" data-seq="${item.seq}"></td>			
 		</tr>			
 		</tbody>
 		</c:forEach>

@@ -74,6 +74,4 @@ public class HotelDAO {
 		return n;
 	}
 	
-
-	
 }
