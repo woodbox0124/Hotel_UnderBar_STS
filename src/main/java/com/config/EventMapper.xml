@@ -5,10 +5,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="EventMapper">
 
 	<!-- 이벤트 등록  -->
-	<insert id="eventInsert" parameterType="FaqDTO">
+	<insert id="eventInsert" parameterType="EventDTO">
 		insert into event 
-		values('A'||TO_CHAR(faq_seq.nextval), #{subject}, #{author}, #{content},#{eventImg},sysdate)
+		values('A'||TO_CHAR(event_seq.nextval), #{subject}, #{author}, #{content},#{eventImg},sysdate)
 	</insert>
+	<!-- 이벤트 등록  -->
+	<update id="update" parameterType="EventDTO">
+		update event 
+		set subject= #{subject}, author=#{author}, content=#{content}
+		where code = #{code}
+	</update>
+	
+	<!-- 이벤트 삭제  -->
+	<delete id="delete" parameterType="string">
+		delete from event
+		where code = #{code}
+	</delete>
 
 	<!-- EVENT 조회 -->
 		<!-- clob처리를 위한 코드 -->

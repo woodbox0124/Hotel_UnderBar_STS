@@ -20,7 +20,7 @@
   }
   
 	form {
- 		 padding-left: 300px;
+ 		 padding-left: 50px;
  		 padding-right: 600px;
  		 color: black;
  		 font-size: 20px;
@@ -157,11 +157,20 @@ height: 30px;
     }
     
   .hotelback{
-      margin-left: 300px;
-    font-size: 15px;
+          font-size: 18px;
     margin-top: 100px;
   }
+  .bottom{
   
+  
+  }
+  
+  .common{
+  display: -webkit-inline-box;
+  }
+  element.style {
+    font-size: 15px;
+}
  
     }
    
@@ -203,12 +212,12 @@ String location = (String)session.getAttribute("location");
 <small>100% 실제 투숙객이 작성한 후기입니다.</small>
 </div>
 
-
+<div class="common">
 <div class="topreview">
 <a class="box">총 ${sumcount}건</a>
 
 <div class="reviewbar">
-<input id="allcheck" type="button"></a>전체<br> 
+<input id="allcheck" type="button">전체<br> 
 <c:forEach var="list" items="${reviewcount}">
 <c:if test="${list.numrating eq 5 }">
 <input id="check5" type="button" />매우만족 <progress value="${list.count}" max="100.0"></progress> ${list.count}%  <a id="gun">${list.gc}건</a><br></c:if>
@@ -227,10 +236,11 @@ String location = (String)session.getAttribute("location");
 
 </c:forEach>
 </div>
-</div>
+
 
 <a class="hotelback" href="HotelSearch?checkin=<%=checkin%>&checkout=<%=checkout%>&guest=<%=guest%>&location=<%=location%>">호텔 리스트로 돌아가기</a>
-
+</div>
+<div class="bottom">
 <form class="sort">
 <select class="selectsort">
 	<option value="최신순">최신순</option>
@@ -287,15 +297,15 @@ String location = (String)session.getAttribute("location");
  			<hr>
 	</c:when>
 	<c:when test="${empty list.review_img}">
+	${list.writedate}<br>
   			<p class="title">${list.title}</p>
-  			${list.writedate}<br>
  			<p class="content">${list.content}</p><br>
  			<hr>
 	</c:when>
 	
 	<c:when test="${!empty list.review_img}">
+	${list.writedate}<br>
   			<p class="title">${list.title}</p> 
-  			${list.writedate}<br>
   			<img src="/review/img/${list.review_img}" width="300" height="300">
  			<p class="content">${list.content}</p><br>
  			<hr>
@@ -305,7 +315,7 @@ String location = (String)session.getAttribute("location");
 </c:forEach>	
 </form>		
 <hr>
-<div style="font-size:15px; text-align: center;">
+<div style="font-size: 15px; margin-left: 390px;">
                    <%
                    ReviewPageDTO rDTO = (ReviewPageDTO)session.getAttribute("reviewlist");
                     int curPage = rDTO.getCurPage();//현재페이지
@@ -320,8 +330,8 @@ String location = (String)session.getAttribute("location");
     out.print("<a href='loginCheck/Review?curPage="+i+"&hotelname="+hotelname+"'>"+i+"</a>&nbsp;");                       }
                     }//end for
                %>
-               </div><br>
-               
+               </div></div><br>
+               </div>
 
 <script type="text/javascript">
 $(function () {

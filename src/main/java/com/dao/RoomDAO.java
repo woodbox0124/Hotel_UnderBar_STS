@@ -3,15 +3,15 @@ package com.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.dto.AdminRoomDTO;
-import com.dto.HotelDTO;
 import com.dto.RoomDTO;
 import com.dto.RoomInfoDTO;
 import com.dto.RoomInsertDTO;
+import com.dto.RoomPageDTO;
 import com.dto.RoomUpdateDTO;
 
 @Repository
@@ -58,17 +58,16 @@ public class RoomDAO {
 		RoomDTO rdto = template.selectOne("HotelMapper.roomSelect", seq);
 		return rdto;
 	}
-	
+
 	public int roomUpdate(RoomUpdateDTO ruDTO) {
 		int n = template.update("HotelMapper.RoomUpdate",ruDTO);
 		return n;
 	}
-	
+
 	public int roomInsertGo() {
 		int room_seq = template.selectOne("HotelMapper.roomInsertGo");
 		return room_seq;
 	}
-
 	public int roomInsert(RoomInsertDTO riDTO) {
 		int n = template.insert("HotelMapper.roomInsert", riDTO);
 		return n;
@@ -77,5 +76,22 @@ public class RoomDAO {
 	public int roomInfoInsert(RoomInfoDTO rifDTO) {
 		int n1 = template.insert("HotelMapper.roomInfoInsert", rifDTO);
 		return n1;
+
+	public RoomPageDTO roomListpage(int curPage, String seq) {
+		RoomPageDTO RpDTO = new RoomPageDTO();
+		int perPage = RpDTO.getPerPage();
+		int offset = (curPage-1)*perPage;
+		List<RoomDTO> list = template.selectList("HotelMapper.roomListpage", seq, new RowBounds(offset,perPage));
+		RpDTO.setCurPage(curPage);//현재 페이지
+		RpDTO.setList(list);//리스트 저장
+		RpDTO.setTotalCount(totalCount(seq));
+		System.out.println("RpDTO\t"+RpDTO);
+		return RpDTO;
+	}
+
+	private int totalCount(String seq) {
+		int num = template.selectOne("HotelMapper.RoomtotalCount",seq);
+		System.out.println("totalCount\t"+num);
+		return num;
 	}
 }

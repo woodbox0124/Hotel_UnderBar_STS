@@ -37,6 +37,14 @@ public class EventService {
 		return eDTO;
 	}
 
+	public void delete(String code) {
+		dao.delete(code);
+	}
+
+	public void update(EventDTO dto) {
+		dao.update(dto);
+	}
+
 
 	
 

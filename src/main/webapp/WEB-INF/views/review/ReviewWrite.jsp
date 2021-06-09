@@ -23,15 +23,21 @@
 <style type="text/css">
 #theFile{
 font-size: 13px;
+    width: 650px;
 }
 #title{
 font-size: 13px;
-margin-left: 20px;}
+margin-left: 20px;
+width: 700px;
+}
+
 
 #content{
 font-size: 13px;
 margin-left: 20px;
-width: 400px;}
+width: 700px;
+    height: 400px;
+}
 
 #u_id{
 font-size: 13px;
@@ -46,7 +52,7 @@ width: 800px;
 margin: auto;
 }
 #top{
-font-size: 20px;
+font-size: 30px;
 }
 .aa{
 margin-left: 20px;
@@ -97,7 +103,7 @@ margin-left: 20px;
 
 <form action="Reviewupload" method="POST" enctype="multipart/form-data" >
 <input type="hidden" id="hotelname" name="hotelname" value="<%=hotelname%>">
-<input type="hidden" name="u_id" id="u_id" value="${login.u_name}"><br>
+<input type="hidden" name="u_id" id="u_id" value="${login.u_id}"><br>
 <div id=staraa>
 <a id="aa">평점</a>:<select id="star" name="star">
 	<option value="1">1</option>

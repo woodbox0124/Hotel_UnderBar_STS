@@ -59,7 +59,15 @@ public class NotiService {
 		return fList;
 	}
 
-	
+	public void faqDelete(String code) {
+		dao.faqDelete(code);
+	}
+
+//	public void faqUpdate(FaqDTO dto) {
+//		dao.faqUpdate(dto);
+//	}
+//
+//	
 
 	
 	

@@ -33,7 +33,7 @@
 				<input class="btn btn-outline-secondary" type="submit" value="글쓰기">
 				<!-- content or subject empty -> modal 적용  -->
 				<input class="btn btn-outline-secondary" type="reset" value="다시작성"> 
-				<a class="btn btn-outline-secondary" href="notiList">목록보기</a>
+				<a class="btn btn-outline-secondary" href="notification">목록보기</a>
 			</div>
 		</form>	
 	</div>

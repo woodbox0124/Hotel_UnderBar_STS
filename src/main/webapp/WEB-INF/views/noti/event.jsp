@@ -37,6 +37,11 @@ rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbi
 		float:left;
 		margin:10px;
 	}
+	.card-img-top{
+		width:280px;
+		height:320px;
+		
+	}
 	
 	.outer::after{
 		content:"";
@@ -45,6 +50,9 @@ rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbi
 	}
 	#paging{
 		text-align:center;
+	}
+	.outer{
+		height:930px;
 	}
 
 		
@@ -57,12 +65,13 @@ rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbi
 		<div class="outer">	
 			<c:forEach var="eDTO" items="${epDTO.list}">
 				<div class="card">
-					<img class="card-img-top" src="<%-- ${eDTO.eventImg } --%>http://placehold.it/280x310" alt="이벤트">
+					<img class="card-img-top" src="images/uploadImg/${eDTO.eventImg }" alt="이벤트">
 					<div class="card-body">
 						<h5 class="card-title">${eDTO.subject }</h5>
 						<a class="card-text" href="">${eDTO.content }</a>
 						<a href="eventRetrieve?code=${eDTO.code}" class="btn btn-primary">click</a>
 					</div>
+					
 				</div>
 			</c:forEach>
 		</div>

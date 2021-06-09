@@ -46,6 +46,15 @@ public class EventDAO {
 		return eDTO;
 	}
 
+	public void delete(String code) {
+		session.delete("EventMapper.delete",code);
+	}
+
+	public void update(EventDTO dto) {
+		session.update("EventMapper.update",dto);
+		
+	}
+
 	
 
 	

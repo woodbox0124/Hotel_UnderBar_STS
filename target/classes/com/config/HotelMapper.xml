@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select count(*) from hotel where place= #{location}
 </select>
 <select id="totalCount1" parameterType="string" resultType="int">
-	select count(*) from hotel 
+	select count(*) from hotel
 </select>
 
 <select id="roomList" resultType="RoomDTO" parameterType="string">
@@ -38,7 +38,7 @@ select * from roominfo where r_seq=#{seq} order by r_seq
 </select>
 
 <select id="date" resultType="int" parameterType="hashmap">
-	select COUNT(*) from resv 
+	select COUNT(*) from resv
 	where roomseq = #{roomseq} and checkin = TO_DATE(#{checkin})
 </select>
 
@@ -63,13 +63,49 @@ select * from hotel where seq = #{seq}
 </select>
 <!-- 호텔 정보 가져오기 -->
 <update id="hotelUpdate" parameterType="HotelUpdateDTO">
-update hotel set  
-     name = #{name}, 
-     place = #{place}, 
+update hotel set
+     name = #{name},
+     place = #{place},
      addr = #{addr},
      hotel_img = #{hotel_img}
     where seq = #{seq}
 </update>
 
+<select id="hotelInsertGO" resultType="int">
+select SEQ_HOTEL.nextval from dual
+</select>
 
+<insert id="hotelInsert" parameterType="HotelInsertDTO">
+insert into hotel (seq, name, place, addr, rating, hotel_img, hotel_img_real) 
+ values (seq_hotel.nextval, #{name}, #{place}, #{addr}, 0, #{hotel_img}, null)
+</insert>
+
+<!-- 객실 관리  -->
+<!-- 객실 삭제 -->
+<delete id="RoomDelete" parameterType="String">
+delete from room where seq = #{seq}
+</delete>
+<!-- 객실 삭제 -->
+
+<!-- 객실 정보 가져오기 -->
+<select id="roomSelect" parameterType="string"  resultType="RoomDTO">
+select * from room where seq = #{seq}
+</select>
+<!-- 객실 정보 가져오기 -->
+
+<!-- 객실 수정 -->
+<update id="RoomUpdate" parameterType="RoomUpdateDTO">
+update room set
+     name = #{name},
+     price = #{price},
+     max_guest = #{max_guest},
+     room_img = #{room_img}
+    where seq = #{seq}
+</update>
+<!-- 객실 seq 가져오기 -->
+<select id="roomInsertGo" resultType="int">
+select SEQ_ROOM.nextval from dual
+</select>
+<!-- 객실 seq 가져오기 -->
+<!-- 객실 관리  -->
 </mapper>

@@ -42,13 +42,15 @@ th{
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#revise").on("click",function(){
-			$("form").attr("action","loginCheck/eventUpdate");
-			$("form").submit();
+			$("#eventForm").attr("action","loginCheck/eventUpdate");
+			console.log($("#code").val())
+			$("#eventForm").submit();
+			alert("수정되었습니다.");
 		})
 		$("#delete").on("click",function(){
-			
-			$("form").attr("action","loginCheck/eventDelete");
-			$("form").submit();
+			$("#eventForm").attr("action","loginCheck/eventDelete");
+			$("#eventForm").submit();
+			alert("삭제되었습니다.");
 		})
 		
 	})
@@ -59,8 +61,8 @@ th{
 	<div class="content">
 		<c:choose>
 			<c:when test="${login.u_id eq 'admin'}">
-				<form action="" method="post">
-					<input type="hidden" name=num value="${eDTO.code }">
+				<form action="" method="post" id="eventForm">
+					<input type="hidden" name="code" value="${eDTO.code }" id="code">
 					<table>
 						<tr>
 							<th>제목</th>
