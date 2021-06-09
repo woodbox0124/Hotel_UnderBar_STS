@@ -65,10 +65,17 @@ public class NotiController {
 		nService.notiUpdate(nDTO);
 		return "redirect:../notification";			
 	}
+	
 	//글 삭제
 	@RequestMapping("/loginCheck/notiDelete")
 	public String noti_delete(@RequestParam int num,RedirectAttributes attr) {
 		nService.notiDelete(num);
+		return "redirect:../notification";			
+	}
+	//faq 삭제
+	@RequestMapping("/loginCheck/faq_del")
+	public String faq_del(@RequestParam String code) {
+		nService.faqDelete(code);
 		return "redirect:../notification";			
 	}
 	

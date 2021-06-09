@@ -46,6 +46,10 @@ rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbi
 	#paging{
 		text-align:center;
 	}
+	#change{
+		text-align:right;
+		padding-right:10px;
+	}
 	
 		
 </style>
@@ -129,6 +133,7 @@ rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbi
 		      			<div class="accordion-body">
 		       				${fDTO.content }
 						</div>
+						<div id="change"><a href="loginCheck/faq_del?code=${fDTO.code}">삭제</a></div>
 		   			</div>
 				</div>
 	  		</div>

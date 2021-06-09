@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select count(*) from hotel where place= #{location}
 </select>
 <select id="totalCount1" parameterType="string" resultType="int">
-	select count(*) from hotel 
+	select count(*) from hotel
 </select>
 
 <select id="roomList" resultType="RoomDTO" parameterType="string">
@@ -38,7 +38,7 @@ select * from roominfo where r_seq=#{seq} order by r_seq
 </select>
 
 <select id="date" resultType="int" parameterType="hashmap">
-	select COUNT(*) from resv 
+	select COUNT(*) from resv
 	where roomseq = #{roomseq} and checkin = TO_DATE(#{checkin})
 </select>
 
@@ -63,13 +63,20 @@ select * from hotel where seq = #{seq}
 </select>
 <!-- 호텔 정보 가져오기 -->
 <update id="hotelUpdate" parameterType="HotelUpdateDTO">
-update hotel set  
-     name = #{name}, 
-     place = #{place}, 
+update hotel set
+     name = #{name},
+     place = #{place},
      addr = #{addr},
      hotel_img = #{hotel_img}
     where seq = #{seq}
 </update>
 
+<delete id="RoomDelete" parameterType="String">
+delete from room where seq = #{seq}
+</delete>
+
+<select id="hotelInsertGO" resultType="int">
+select seq_hotel.nextval from dual
+</select>
 
 </mapper>

@@ -1,28 +1,27 @@
 package com.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.json.JSONArray;
+import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dto.ReplyDTO;
 import com.dto.EventDTO;
 import com.dto.EventPageDTO;
 import com.service.EventService;
+
+import net.coobird.thumbnailator.Thumbnailator;
 
 
 @Controller
@@ -37,10 +36,36 @@ public class EventController {
 	public String eve_write() {
 		return "redirect:../eventWrite";
 	}
+	@RequestMapping("/loginCheck/eventDelete")
+	public String eve_delete(@RequestParam String code) {
+		eService.delete(code);
+		return "redirect:../event";
+	}
+	@RequestMapping("/loginCheck/eventUpdate")
+	public String eve_update(EventDTO dto ) {
+		eService.update(dto);
+		return "redirect:../event";
+	}
 	
 	//EVENT 글쓰기  
 	@RequestMapping("/loginCheck/eventInsert")
-	public String eve_insert(EventDTO dto) {
+	public String eve_insert(EventDTO dto, MultipartFile[] uploadFile, Model model) {
+		System.out.println("찍히는 dto는 ?"+dto);
+		System.out.println(uploadFile);
+		String uploadFolder = "/Users/bitna/Documents/GitHub/Hotel_UnderBar_STS/src/main/webapp/WEB-INF/views/images/uploadImg";
+		for(MultipartFile multipartFile : uploadFile) {
+			System.out.println("===============");
+			System.out.println("upload file name :" + multipartFile.getOriginalFilename());
+			System.out.println("upload file size :" + multipartFile.getSize());
+			
+			dto.setEventImg(multipartFile.getOriginalFilename());
+			File saveFile = new File(uploadFolder, multipartFile.getOriginalFilename());
+			try {
+				multipartFile.transferTo(saveFile);
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
 		eService.eventInsert(dto);
 		System.out.println("eventInsert : "+dto);
 		return "redirect:../event";
@@ -70,90 +95,7 @@ public class EventController {
 	
 	
 	
-//	@ResponseBody
-//	@RequestMapping("/event/addComment")
-//	public String ajax_addComment(CommentDTO cDTO, HttpServletRequest request){
-//		
-//			eService.addCommnet(cDTO);
-//			System.out.println(cDTO);
-//		
-//		
-//		return "success";
-//		
-//	}
-//	@ResponseBody
-//	@RequestMapping("/event/delComment")
-//	public String ajax_delComment(@RequestParam String code){
-//		System.out.println("파싱값 : "+code);
-//		int c_code = Integer.parseInt(code);
-//		System.out.println(c_code);
-//		eService.delCommnet(c_code);
-//		
-//		
-//		return "success";
-//		
-//	}
-//	@ResponseBody
-//	@RequestMapping("/event/updateComment")
-//	public ModelAndView ajax_updateComment(@RequestParam Map<String, String> map) {
-//		
-//		 Iterator<String> keys = map.keySet().iterator();
-//	        while( keys.hasNext() ){
-//	            String key = keys.next();
-//	            String value = map.get(key);
-//	            System.out.println("키 : "+key+", 값 : "+value);
-//	        }
-//	        String e_code = map.get("e_code");
-//	        System.out.println(e_code);
-//	        
-//	        int num = eService.updateComment(map);
-//	        System.out.println("업데이트 댓글 : " +  num);
-//	        
-//	        //객체를 뿌려주기위함
-//	        //CommentDTO cDTO = eService.commentListByCode(e_code);
-////	        ModelAndView mav = new ModelAndView();
-////	        mav.addObject("cDTO", cDTO);
-////	        System.out.println(cDTO);
-//
-//	        return null;
-//		
-//	}
-//	
-//	
-//	
-//	@ResponseBody
-//	@RequestMapping(value = "/event/commentList", produces="application/json; charset=utf8")
-//	public ResponseEntity ajax_commentList(CommentDTO commentDTO, HttpServletRequest request) throws Exception{
-//		
-//		HttpHeaders responseHeaders = new HttpHeaders();
-//		ArrayList<HashMap> hmList = new ArrayList<HashMap>();
-//		String e_code = commentDTO.getE_code();
-//		System.out.println(e_code);
-//		
-//		//해당 게시물 댓글
-//		List<CommentDTO> cList = eService.commentListByCode(e_code);
-//		
-//
-//        if(cList.size() > 0){
-//            for(int i=0; i<cList.size(); i++){
-//                HashMap map = new HashMap();
-//                map.put("c_code", cList.get(i).getC_code());
-//                map.put("e_code", cList.get(i).getE_code());
-//                map.put("comments", cList.get(i).getComments());
-//                map.put("writer", cList.get(i).getWriter());
-//                map.put("regdate", cList.get(i).getRegdate());
-//                
-//                hmList.add(map);
-//            }
-//            
-//        }
-//        
-//        JSONArray json = new JSONArray(hmList);        
-//        return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
-//		
-//	}
-//	
-//	
+	
 	
 	
 	

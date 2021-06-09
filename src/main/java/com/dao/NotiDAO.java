@@ -76,6 +76,15 @@ public class NotiDAO {
 		return fList;
 	}
 
+	public void faqDelete(String code) {
+		session.delete("NotiMapper.faqDelete",code);
+	}
+
+//	public void faqUpdate(FaqDTO dto) {
+//		session.update("NotiMapper.faqUpdate", dto);
+//		
+//	}
+
 	
 	
 	

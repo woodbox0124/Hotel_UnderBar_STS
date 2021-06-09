@@ -33,12 +33,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from noti where num = #{num}
 	</delete>
 	
+	<!--  faq삭제 -->
+	<delete id="faqDelete" parameterType="String">
+		delete from faq where code = #{code}
+	</delete>
+	
 	<!--  공지사항수정 -->
 	<update id="notiUpdate" parameterType="NotiDTO">
 		update noti 
 		set subject= #{subject}, author=#{author}, content=#{content}
 		where num = #{num}
 	</update>
+	
+	<!-- faq 수정
+	<update id="faqUpdate" parameterType="FaqDTO">
+		update faq 
+		set subject= #{subject}, author=#{author}, content=#{content}
+		where code = #{code}
+	</update> -->
 	
 	<!-- 조회수 증가  -->
 	<update id="updateHit" parameterType="int">
