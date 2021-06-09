@@ -27,11 +27,6 @@
  		 width: fit-content;
  		 margin-top: 10px;
   }
-  
-	.hotellist{
- 		 font-size : 20px;
- 		 text-align: center;
-  }
 
 	.title {
 		font-weight: 600;
@@ -84,6 +79,7 @@
 	}
 	.reviewbar{
   margin-top: 10px;
+    margin-bottom: 5px;
 	}
 	
 	
@@ -159,6 +155,14 @@ height: 30px;
     padding: unset;
     margin-top: 4px;
     }
+    
+  .hotelback{
+      margin-left: 300px;
+    font-size: 15px;
+    margin-top: 100px;
+  }
+  
+ 
     }
    
 	
@@ -225,7 +229,7 @@ String location = (String)session.getAttribute("location");
 </div>
 </div>
 
-
+<a class="hotelback" href="HotelSearch?checkin=<%=checkin%>&checkout=<%=checkout%>&guest=<%=guest%>&location=<%=location%>">호텔 리스트로 돌아가기</a>
 
 <form class="sort">
 <select class="selectsort">
@@ -318,7 +322,7 @@ String location = (String)session.getAttribute("location");
                %>
                </div><br>
                
-<p class="hotellist"><a href="HotelSearch?checkin=<%=checkin%>&checkout=<%=checkout%>&guest=<%=guest%>&location=<%=location%>">호텔 리스트로 돌아가기</a></p>
+
 <script type="text/javascript">
 $(function () {
 	$(".selectsort").change(function () {
