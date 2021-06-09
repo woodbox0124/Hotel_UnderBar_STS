@@ -10,6 +10,7 @@ import com.dao.RoomDAO;
 import com.dto.AdminRoomDTO;
 import com.dto.RoomDTO;
 import com.dto.RoomInfoDTO;
+import com.dto.RoomInsertDTO;
 import com.dto.RoomUpdateDTO;
 
 @Service
@@ -73,6 +74,18 @@ public class RoomService
 	public int roomInsertGo() {
 		int room_seq = dao.roomInsertGo();
 		return room_seq;
+	}
+
+	public int roomInsert(RoomInsertDTO riDTO) {
+		int n = dao.roomInsert(riDTO);
+		return n;
+		
+	}
+
+
+	public int roomInfoInsert(RoomInfoDTO rifDTO) {
+		int n1 = dao.roomInfoInsert(rifDTO);
+		return n1;
 	}
 
 

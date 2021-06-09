@@ -224,10 +224,10 @@ String guest = (String)session.getAttribute("guest");
 	
 	 <div class="slideshow-container">
        <div class="mySlides fadein" >
-        <img src="${pageContext.request.contextPath}/images/room/${x.room_img}.jpg" style="width:100%; "> 
+        <img src="${pageContext.request.contextPath}/images/room/${x.room_img}" style="width:100%; "> 
       </div>
       <div class="mySlides fadein">
-        <img src="${pageContext.request.contextPath}/images/room/${x.room_img_real}.jpg" style="width:100%;">
+        <img src="${pageContext.request.contextPath}/images/room/${x.room_img_real}" style="width:100%;">
       </div>
     
       <!-- Next and previous buttons -->

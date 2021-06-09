@@ -2,16 +2,22 @@
 * {
 	font-family: 'twayair', 'Roboto', 'sans-serif';
 }
+#wrapper{
+	width: 1200px;
+	height: 800px;
+	margin: 0 auto;;
+}
 .main{
-	width: 1200;
-	height: 800;
+	width: 600px;
+	margin: 0 auto;
 	text-align: center;
 	padding-top: 100px;
-	
+	float: left;
 }
 #test{
 	margin: 0 auto;
 	text-align: center;
+	clear:left
 }
 .input{
 	width: 300px;

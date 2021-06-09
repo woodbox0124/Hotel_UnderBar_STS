@@ -86,7 +86,7 @@ img {
 	<c:forEach var="list" items="${roomlist}">
 
 	<div class="card">
-			<img src="${pageContext.request.contextPath}/images/room/${list.room_img}.jpg" class="card-img-top"
+			<img src="${pageContext.request.contextPath}/images/room/${list.room_img}" class="card-img-top"
 				alt="...">
 			<div class="card-body">
 				<h5 class="card-title">${list.name}</h5>

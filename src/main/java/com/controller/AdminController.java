@@ -25,6 +25,8 @@ import com.dto.HotelInsertDTO;
 import com.dto.HotelUpdateDTO;
 import com.dto.MemberDTO;
 import com.dto.RoomDTO;
+import com.dto.RoomInfoDTO;
+import com.dto.RoomInsertDTO;
 import com.dto.RoomUpdateDTO;
 import com.service.AdminService;
 import com.service.HotelService;
@@ -206,7 +208,7 @@ public class AdminController {
 	
 	//호텔 정보 추가 후 DB 전송을 위한 기능입니다.
 		@RequestMapping(value = "/loginCheck/hotelInsert", method = RequestMethod.POST)
-		public String  hotelInsert(HotelInsertDTO hiDTO, HttpServletRequest request){
+		public String  hotelInsert(HotelInsertDTO hiDTO){
 			       String hotelname=hiDTO.getName();
 			       String place=hiDTO.getPlace();
 			       String addr=hiDTO.getAddr();
@@ -280,6 +282,42 @@ public class AdminController {
 			session.setAttribute("room_seq", room_seq);
 			return "redirect:../admin/roominsert";
 			}
+	// 객실 추가 기능입니다.
+	
+	@RequestMapping("/loginCheck/roomInsert")
+	public String roomInsert(RoomInsertDTO riDTO, @RequestParam("r_seq") String r_seq,
+			@RequestParam("bath") String bath, @RequestParam("eat") String eat,
+			@RequestParam("internet") String internet, @RequestParam("etc") String etc) {
+		RoomInfoDTO rifDTO = new RoomInfoDTO();
+		rifDTO.setR_seq(r_seq);
+		rifDTO.setBath(bath);
+		rifDTO.setEat(eat);
+		rifDTO.setInternet(internet);
+		rifDTO.setEtc(etc);
+		CommonsMultipartFile theFile = riDTO.getTheFile();
+		CommonsMultipartFile theFile1 = riDTO.getTheFile1();
+		String originalFileName = theFile.getOriginalFilename();
+		String originalFileName1 = theFile1.getOriginalFilename();
+		File f = new File("C:\\Shop_STS\\WORKSHOP\\Hotel_UnderBar_STS\\src\\main\\webapp\\WEB-INF\\views\\images\\room",
+				originalFileName);
+		File f1 = new File(
+				"C:\\Shop_STS\\WORKSHOP\\Hotel_UnderBar_STS\\src\\main\\webapp\\WEB-INF\\views\\images\\room",
+				originalFileName1); 
+		 riDTO.setRoom_img(originalFileName);
+		 riDTO.setRoom_img_real(originalFileName1);
+		int n = rService.roomInsert(riDTO);
+		int n1 = rService.roomInfoInsert(rifDTO);
+		System.out.println(n+"객실 추가 성공");
+		System.out.println(n1+"객싱 자세한 정보 추가 성공");
+		try {
+			theFile.transferTo(f);
+			theFile.transferTo(f1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:../loginCheck/adminRoom";
+	}
+	 
 
 	// 객실 정보 수정 후 DB 전송을 위한 기능입니다
 			@RequestMapping(value = "/loginCheck/roomUpload", method = RequestMethod.POST)

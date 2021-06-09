@@ -68,6 +68,7 @@
 				<value>com.dto.HotelUpdateDTO</value>					
 				<value>com.dto.RoomUpdateDTO</value>					
 				<value>com.dto.HotelInsertDTO</value>					
+				<value>com.dto.RoomInsertDTO</value>					
 			</list>		
 		</property>
 	</bean>	

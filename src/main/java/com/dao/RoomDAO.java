@@ -11,6 +11,7 @@ import com.dto.AdminRoomDTO;
 import com.dto.HotelDTO;
 import com.dto.RoomDTO;
 import com.dto.RoomInfoDTO;
+import com.dto.RoomInsertDTO;
 import com.dto.RoomUpdateDTO;
 
 @Repository
@@ -66,5 +67,15 @@ public class RoomDAO {
 	public int roomInsertGo() {
 		int room_seq = template.selectOne("HotelMapper.roomInsertGo");
 		return room_seq;
+	}
+
+	public int roomInsert(RoomInsertDTO riDTO) {
+		int n = template.insert("HotelMapper.roomInsert", riDTO);
+		return n;
+	}
+
+	public int roomInfoInsert(RoomInfoDTO rifDTO) {
+		int n1 = template.insert("HotelMapper.roomInfoInsert", rifDTO);
+		return n1;
 	}
 }
