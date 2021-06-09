@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.dao.HotelDAO;
 import com.dto.HotelDTO;
+import com.dto.HotelInsertDTO;
 import com.dto.HotelUpdateDTO;
 import com.dto.PageDTO;
 import com.dto.RatingDTO;
@@ -54,7 +55,12 @@ public class HotelService {
 		return seq;
 	}
 
-	
+	public int hotelInsert(HotelInsertDTO hiDTO) {
+		int n = dao.hotelInsert(hiDTO);
+		return n;
+	}
+
+
 
 
 

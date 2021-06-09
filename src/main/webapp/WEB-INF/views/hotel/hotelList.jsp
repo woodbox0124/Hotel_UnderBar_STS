@@ -134,8 +134,8 @@ img {
 
 .card-body>.btn {
 	position: absolute;
-	right: 9px;
-	bottom: 9px;
+	right: 3px;
+	bottom: 4px;
 }
 
 .card-body {
@@ -213,6 +213,14 @@ img {
 .page{
 	font-size:20px;
 	text-align:center;
+}
+.score{
+margin-left: 2px;
+font-size: 13px;
+}
+
+.reviewsee{
+margin-left: 3px;
 }
 </style>
 
@@ -351,7 +359,7 @@ String guest = (String)session.getAttribute("guest");%>
 
 
 				<div class="card">
-					<img src="images/hotel/<%= hotel_img %>.jpg" class="card-img-top"
+					<img src="images/hotel/<%= hotel_img %>" class="card-img-top"
 						alt="...">
 					<div class="card-body">
 					<%
@@ -359,13 +367,13 @@ String guest = (String)session.getAttribute("guest");%>
 						%>
 						<p class="card-text">
 						<%if(ratingDTO.getHotelname().equals(hotelname)) {%>
-							<span style="color: red;">평점:<%=ratingDTO.getRating() %></span> 
+							<span class="score" style="color: blue;">평점:<%=ratingDTO.getRating() %></span> 
 							<%} %>
 							<%} %>
 							<h5 class="card-title"><%= hotelname %></h5>
 							<span id="place"><%= place %></span>
 						</p>
-						<a href="loginCheck/Review?hotelname=<%=hotelname%>">리뷰보기</a>
+						<a class="reviewsee"  href="loginCheck/Review?hotelname=<%=hotelname%>">리뷰보기</a>
 						<a
 							href="loginCheck/roomlist?hotelname=<%=hotelname%>&seq=<%=seq%>&checkin=<%=checkin%>&checkout=<%=checkout%>&place=<%=place%>"
 							class="btn btn-primary">OPEN</a>

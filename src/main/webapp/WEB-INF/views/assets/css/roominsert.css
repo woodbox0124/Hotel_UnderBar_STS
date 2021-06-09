@@ -1,0 +1,18 @@
+@charset "UTF-8";
+* {
+	font-family: 'twayair', 'Roboto', 'sans-serif';
+}
+.main{
+	width: 1200;
+	height: 800;
+	text-align: center;
+	padding-top: 100px;
+	
+}
+#test{
+	margin: 0 auto;
+	text-align: center;
+}
+.input{
+	width: 300px;
+}

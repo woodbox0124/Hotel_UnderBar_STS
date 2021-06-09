@@ -38,7 +38,9 @@
 <mvc:view-controller path="/faqInsert" view-name="faqInsert"/>
 <mvc:view-controller path="/admin/update" view-name="admin/update"/>
 <mvc:view-controller path="/admin/hotelupdate" view-name="admin/hotelupdate"/>
+<mvc:view-controller path="/admin/roomupdate" view-name="admin/roomupdate"/>
 <mvc:view-controller path="/admin/hotelinsert" view-name="admin/hotelinsert"/>
+<mvc:view-controller path="/admin/roominsert" view-name="admin/roominsert"/>
 
 
 <mvc:view-controller path="/reviewlist" view-name="reviewlist"/>
