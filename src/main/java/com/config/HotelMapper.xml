@@ -102,5 +102,10 @@ update room set
      room_img = #{room_img}
     where seq = #{seq}
 </update>
+<!-- 객실 seq 가져오기 -->
+<select id="roomInsertGo" resultType="int">
+select SEQ_ROOM.nextval from dual
+</select>
+<!-- 객실 seq 가져오기 -->
 <!-- 객실 관리  -->
 </mapper>

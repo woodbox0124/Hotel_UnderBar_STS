@@ -55,7 +55,7 @@ $(document).ready(function() {
 			 console.log("객실추가버튼 클릭");
 			 var seq= $(this).attr("data-seq");
 			 console.log(seq);
-			 var url= "loginCheck/roomInsertGo?seq="+seq;
+			 location.href="loginCheck/roomInsertGo?seq="+seq;
 				}); //end update
 			
 });//end jQuery

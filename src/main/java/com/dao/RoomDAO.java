@@ -62,4 +62,9 @@ public class RoomDAO {
 		int n = template.update("HotelMapper.RoomUpdate",ruDTO);
 		return n;
 	}
+	
+	public int roomInsertGo() {
+		int room_seq = template.selectOne("HotelMapper.roomInsertGo");
+		return room_seq;
+	}
 }

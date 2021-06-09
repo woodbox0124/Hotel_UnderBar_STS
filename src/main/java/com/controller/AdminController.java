@@ -271,12 +271,14 @@ public class AdminController {
 	}
 	// 객실 추가를 위한 정보 전달 기능입니다.
 	@RequestMapping("/loginCheck/roomInsertGo")
-	public String roomInsertGo(@RequestParam("seq") String seq, HttpSession session) {
-			String seq = seq;
+	public String roomInsertGo(@RequestParam("seq") int seq, HttpSession session) {
+			int hotel_seq = seq;
 		    int room_seq = rService.roomInsertGo();
-			System.out.println(seq);
-			session.setAttribute("seq", seq);
-			return "redirect:../admin/hotelinsert";
+			System.out.println(hotel_seq);
+			System.out.println(room_seq);
+			session.setAttribute("hotel_seq", hotel_seq);
+			session.setAttribute("room_seq", room_seq);
+			return "redirect:../admin/roominsert";
 			}
 
 	// 객실 정보 수정 후 DB 전송을 위한 기능입니다

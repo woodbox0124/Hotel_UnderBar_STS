@@ -70,5 +70,10 @@ public class RoomService
 		return n;
 	}
 
+	public int roomInsertGo() {
+		int room_seq = dao.roomInsertGo();
+		return room_seq;
+	}
+
 
 }
