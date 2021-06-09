@@ -10,6 +10,7 @@ import com.dao.RoomDAO;
 import com.dto.AdminRoomDTO;
 import com.dto.RoomDTO;
 import com.dto.RoomInfoDTO;
+import com.dto.RoomPageDTO;
 import com.dto.RoomUpdateDTO;
 
 @Service
@@ -73,6 +74,11 @@ public class RoomService
 	public int roomInsertGo() {
 		int room_seq = dao.roomInsertGo();
 		return room_seq;
+	}
+
+	public RoomPageDTO roomListpage(int curPage, String seq) {
+		RoomPageDTO RpDTO = dao.roomListpage(curPage,seq);
+		return RpDTO;
 	}
 
 

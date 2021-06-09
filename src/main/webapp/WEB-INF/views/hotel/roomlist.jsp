@@ -1,3 +1,4 @@
+<%@page import="com.dto.RoomPageDTO"%>
 <%@page import="org.apache.taglibs.standard.tag.common.xml.ForEachTag"%>
 <%@page import="com.dto.HotelDTO"%>
 <%@page import="com.dto.MemberDTO"%>
@@ -7,6 +8,8 @@
 <%@ page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!DOCTYPE html>
+<html>
 <head>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -75,18 +78,19 @@ img {
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
 </head>
+<body>
 	<div id="wrapper">
 	<div class="cards">
 	<div id="aa">
-	 <%
+	<%--  <%
 	MemberDTO dto2 = (MemberDTO)session.getAttribute("login");
 	String u_id = dto2.getU_id();
-	%>
+	%> --%>
 	
-	<c:forEach var="list" items="${roomlist}">
+	<c:forEach var="list" items="${RpDTO.list}">
 
 	<div class="card">
-			<img src="${pageContext.request.contextPath}/images/room/${list.room_img}.jpg" class="card-img-top"
+			<img src="${pageContext.request.contextPath}/images/room/${list.room_img}" class="card-img-top"
 				alt="...">
 			<div class="card-body">
 				<h5 class="card-title">${list.name}</h5>
@@ -105,5 +109,34 @@ img {
 	</c:forEach>
 	
 	</div>
-		</div>	 
+		</div>	
+		<div class="page" style="text-align: center; font-size: 17px;" >
+		<%	
+		RoomPageDTO RpDTO = (RoomPageDTO) request.getAttribute("RpDTO");
+			String seq = (String) request.getAttribute("seq");
+			int curPage = RpDTO.getCurPage();//현재페이지
+			int perPage = RpDTO.getPerPage();//페이지당 게시물수
+			int totalCount = RpDTO.getTotalCount();//전체 레코드수 
+			int totalPage = totalCount / perPage;// 필요한 페이지
+			System.out.println(curPage);
+			System.out.println(perPage);
+			System.out.println(totalCount);
+			System.out.println(totalPage);
+
+			if (totalCount % perPage != 0)
+				totalPage++;
+			for (int i = 1; i <= totalPage; i++) {
+				if (i == curPage) {
+					System.out.print("if i" + i);
+					out.print(i + "&nbsp;");
+				} else {
+					System.out.print("else i" + i);
+					out.print("<a href='loginCheck/roomlist?curPage=" + i + "&seq=" + seq + "'>" + i + "</a>&nbsp;");
+				} //end for		
+			}
+		%>
+
+	</div> 
 </div>
+</body>
+</html>

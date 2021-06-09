@@ -47,6 +47,7 @@
 				<value>com.dto.ResvMyDTO</value>				
 				<value>com.dto.ResvPageDTO</value>				
 				<value>com.dto.RoomDTO</value>				
+				<value>com.dto.RoomPageDTO</value>				
 				<value>com.dto.RoomInfoDTO</value>							
 				<value>com.dto.MemberDTO</value>							
 				<value>com.dto.NotiDTO</value>	
