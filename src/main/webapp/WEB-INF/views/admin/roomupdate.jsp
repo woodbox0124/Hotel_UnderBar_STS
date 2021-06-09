@@ -37,15 +37,15 @@
 <input type="hidden" name="room_img" value="${rDTO.room_img}">
 
 <%-- 호텔 이름 : <input type="text" name="hotelname" value="${hotelname}" class="input" disabled required/><br><br> --%>
-객실 이름 : <input type="text" name="roomname" value="${rDTO.name}" class="input" required/><br><br>
+객실 이름 : <input type="text" name="name" value="${rDTO.name}" class="input" required/><br><br>
 
 가격 : <input type="text" name="price" value="${rDTO.price}" class="input" required/><br><br>
 최대 인원 수 : <input type="text" name="max_guest" value="${rDTO.max_guest}" class="input" required/><br><br>
 </div>
-사진이름:${rDTO.room_img}<br><br>
+사진이름 : ${rDTO.room_img}<br><br>
 ※사진파일명을 위에 사진이름과 동일하게 수정 후 업로드 바랍니다.
 <br><br>
-객실 사진:<input type="file" name="theFile">
+객실 사진 : <input type="file" name="theFile">
 <br><br>
 <div id="test">
 <input type="submit" value="수정" class="btn btn-primary update">

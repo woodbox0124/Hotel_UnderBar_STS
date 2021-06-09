@@ -25,6 +25,7 @@ import com.dto.HotelInsertDTO;
 import com.dto.HotelUpdateDTO;
 import com.dto.MemberDTO;
 import com.dto.RoomDTO;
+import com.dto.RoomUpdateDTO;
 import com.service.AdminService;
 import com.service.HotelService;
 import com.service.MemberService;
@@ -278,6 +279,40 @@ public class AdminController {
 			return "redirect:../admin/hotelinsert";
 			}
 
-
+	// 객실 정보 수정 후 DB 전송을 위한 기능입니다
+			@RequestMapping(value = "/loginCheck/roomUpload", method = RequestMethod.POST)
+			public String roomUpload(RoomUpdateDTO ruDTO, @RequestParam(required = false, defaultValue = "1") String curPage,
+					@RequestParam(required = false, defaultValue = "roomname") String searchName,
+					@RequestParam(required = false, defaultValue = "") String searchValue, HttpSession session)
+					throws Exception {
+				String seq = ruDTO.getSeq();
+				String name = ruDTO.getName();
+				int price = ruDTO.getPrice();
+				int max_guest = ruDTO.getMax_guest();
+				String room_img = ruDTO.getRoom_img();
+				CommonsMultipartFile theFile = ruDTO.getTheFile();
+				String originalFileName = theFile.getOriginalFilename();
+				System.out.println(
+						seq + "\t" + name + "\t" + price + "\t" + room_img + "\t" + originalFileName);
+				File f = new File("C:\\upload", originalFileName);
+				int n = rService.roomUpdate(ruDTO);
+				System.out.println(curPage);
+				System.out.println(searchName);
+				System.out.println(searchValue);
+				HashMap<String, String> map = new HashMap<String, String>();
+				map.put("searchName", searchName);
+				map.put("searchValue", searchValue);
+				System.out.println(map);
+				AdminRoomPageDTO arpDTO = service.adminRoom(Integer.parseInt(curPage), map);
+				System.out.println("Controller" + arpDTO);
+				session.setAttribute("arpDTO", arpDTO);
+				session.setAttribute("updatecomplete", n);
+				try {
+					theFile.transferTo(f);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return "redirect:../admin/roomupdate";
+			}
 
 }
