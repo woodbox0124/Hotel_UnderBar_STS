@@ -78,7 +78,7 @@ public class RoomDAO {
 		return n1;
 	}
 
-	RoomPageDTO roomListpage(int curPage, String seq) {
+	public RoomPageDTO roomListpage(int curPage, String seq) {
 		RoomPageDTO RpDTO = new RoomPageDTO();
 		int perPage = RpDTO.getPerPage();
 		int offset = (curPage-1)*perPage;

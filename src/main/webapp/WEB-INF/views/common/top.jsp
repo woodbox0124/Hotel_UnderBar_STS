@@ -13,7 +13,7 @@ a {
 </style>
 <div id = "menubar">
 <c:if test="${!empty login}">
-	<a class="menubar1" style="color: black; text-decoration: none;">${login.u_id}님 어서오세요.</a> <a href="loginCheck/logout" class="a" style="color: blue; text-decoration: none;" >&nbsp;로그아웃</a>
+	<a class="menubar1" style="color: black; text-decoration: none;">${login.u_name}님 어서오세요.</a> <a href="loginCheck/logout" class="a" style="color: blue; text-decoration: none;" >&nbsp;로그아웃</a>
 	<a href="loginCheck/myPage" class="menubar2" style="color: blue; text-decoration: none;" >&nbsp;마이페이지&nbsp;</a>
 	<a href="loginCheck/resvMy" class="menubar2" style="color: blue; text-decoration: none;" >예약 확인</a>
 	<a href="loginCheck/boardList" class="menubar2" style="color: blue; text-decoration: none;" >Q&A게시판</a>

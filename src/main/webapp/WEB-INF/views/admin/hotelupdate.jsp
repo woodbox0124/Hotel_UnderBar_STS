@@ -33,7 +33,7 @@
 <form action="../loginCheck/HotelUpload" method="POST" encType="multipart/form-data">
 <input type="hidden" name="seq" value="${hDTO.seq}">
 <input type="hidden" name="hotel_img" value="${hDTO.hotel_img}">
-
+<h2>호텔 정보 변경</h2><br><br>
 이름:<input type="text" name="name" value="${hDTO.name}" class="input" required/><br><br>
 
 지역:<select class="place booking_input input" id="place booking_input" name="place">
