@@ -51,7 +51,7 @@ rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbi
 		padding-right:10px;
 	}
 	#wrapper{
-		height : 850px;
+		height : auto;
 	}
 	
 		

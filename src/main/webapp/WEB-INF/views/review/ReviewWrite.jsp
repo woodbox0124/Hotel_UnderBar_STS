@@ -23,19 +23,19 @@
 <style type="text/css">
 #theFile{
 font-size: 13px;
-    width: 650px;
+    width: 600px;
 }
 #title{
 font-size: 13px;
 margin-left: 20px;
-width: 700px;
+width: 600px;
 }
 
 
 #content{
 font-size: 13px;
 margin-left: 20px;
-width: 700px;
+width: 600px;
     height: 400px;
 }
 
