@@ -123,8 +123,8 @@
 }
 
 img {
-	width: 100%;
-	height: 100%;
+	width: 378px;
+	height: 271.77px;
 }
 
 #place {
@@ -213,6 +213,7 @@ img {
 .page{
 	font-size:20px;
 	text-align:center;
+	clear:left
 }
 .score{
 margin-left: 2px;
@@ -225,7 +226,8 @@ margin-left: 3px;
 </style>
 
 </head>
-<%String location = (String)session.getAttribute("location"); 
+<%
+String location = (String) session.getAttribute("location");
 String checkin = (String) session.getAttribute("checkin");
 String checkout = (String) session.getAttribute("checkout");
 String guest = (String)session.getAttribute("guest");%>
@@ -237,10 +239,10 @@ String guest = (String)session.getAttribute("guest");%>
 						<div id="area">
 							<span>지역</span> <select class="place booking_input" id="place booking_input"
 								name="location">
-								<option value="" <%if(location.equals("")){%>selected<%}%>>모든지역</option>
-								<option value="서울" <%if(location.equals("서울")){%>selected<%}%>>서울</option>
-								<option value="부산" <%if(location.equals("부산")){%>selected<%}%>>부산</option>
-								<option value="제주" <%if(location.equals("제주")){%>selected<%}%>>제주</option>
+								<option value="" <c:if test="${location eq ''}">selected</c:if>>모든지역</option>
+								<option value="서울" <c:if test="${location eq '서울'}">selected</c:if>>서울</option>
+								<option value="부산" <c:if test="${location eq '부산'}">selected</c:if>>부산</option>
+								<option value="제주" <c:if test="${location eq '제주'}">selected</c:if>>제주</option>
 							</select>
 						</div>
 						<div id="map">

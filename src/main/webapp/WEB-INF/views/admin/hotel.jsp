@@ -117,7 +117,7 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 <body>
 <div class="container">
 	<h1 id="title" align="center" style="font-weight: bold; font-size: 40px;">호텔 관리</h1>
-	<a href="loginCheck/hotelInsertGO">호텔 정보 추가</a>
+	<a href="loginCheck/hotelInsertGO" id="insert"class="btn btn-primary" >호텔 정보 추가</a>
 	<table id="search" class="table">
 		<tr>
 		 <td colspan="7">
