@@ -22,9 +22,14 @@
 		 console.log(u_id);
 		 location.href="loginCheck/MemberDelete?u_id="+u_id;
 	 })	
-	 $("#update").click(function(){
+	 $("#update").click(function(event){
+		 if($("#pw1").val()==$("#pw2").val()){
 			$("#form").attr("action","loginCheck/MemberUpdate");
 			$("#form").submit();
+		 }else{
+			 alert("비밀번호가 일치하지 않습니다.");
+			 event.preventDefault();
+		 }
 		}) 
 });
 </script>
@@ -73,17 +78,17 @@
 						</tr>
 						<tr>
 							<th>이름</th>
-							<td>${login.u_name}<input type="hidden" value="${login.u_name}"
+							<td><input type="text" value="${login.u_name}"
 								name="u_name"></td>
 						</tr>
 						<tr>
 							<th>비밀번호</th>
-							<td><input type="password" class="update" id="pw"
+							<td><input type="password" class="update pw" id="pw1"
 								value="${login.u_pw}" name="u_pw"></td>
 						</tr>
 						<tr>
 							<th>비밀번호 확인</th>
-							<td><input type="password" class="update" id="pw"></td>
+							<td><input type="password" class="update pw" id="pw2"></td>
 						</tr>
 
 						<tr>

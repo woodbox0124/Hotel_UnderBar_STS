@@ -199,24 +199,12 @@ obj.value = phone;
 }
 //end 휴대폰번호 입력시 자동 하이픈(-) 추가
 </script>
-
-<!-- alert mesg 시작 -->
-<c:if test="${!empty mesg }">
-	<script>
-		alert("${mesg}");
-	</script>
-	<%
-		session.removeAttribute("mesg");
-	%>
-</c:if>
-<!-- alert mesg 끝 -->
 <style>
 #login>p {
 	text-align: center;
 }
 
 #check_span>a::before {
-	content: ' | ';
 	display: inline-block;
 	margin: 0 10px;
 }
@@ -321,18 +309,6 @@ obj.value = phone;
 </c:if>
 <!-- alert mesg 끝 -->
 </head>
-<%
-	String msg = (String) request.getAttribute("msg");
-	Cookie[] c = request.getCookies();
-	String cookieVal = "";
-	if (c != null) {
-		for (Cookie i : c) {
-			if (i.getName().equals("savepw")) {
-				cookieVal = i.getValue();
-			} //end if
-		} //end for
-	} //end if
-%>
 <div class="wrap">
 	<div class="form-wrap">
 		<div class="button-wrap">
@@ -347,13 +323,12 @@ obj.value = phone;
 		</div>
 		<form id="login" action="login" class="input-group" method="post">
 			<input name="u_id" type="text" class="input-field" placeholder="Enter ID" required>
-			<input name="u_pw" type="password" class="input-field" value="<%=cookieVal != "" ? cookieVal : ""%>" placeholder="Enter Password"
+			<input name="u_pw" type="password" class="input-field"  placeholder="Enter Password"
 				required
 			>
 			<p>
-				<input name="savepw" type="checkbox" class="checkbox" <%=cookieVal != "" ? "checked" : ""%>>
-				<span id="check_span">비밀번호저장 &nbsp;<a href="searchId"
-					onclick="window.open(this.href, '_blank', 'width=500,height=700,toolbars=no,scrollbars=no'); return false;"
+				<span id="check_span"><a href="searchId"
+                 onclick="window.open(this.href, '_blank', 'width=500,height=700,toolbars=no,scrollbars=no'); return false;"
 				>아이디/비밀번호찾기</a>
 				</span>
 			</p>
