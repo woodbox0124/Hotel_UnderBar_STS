@@ -136,7 +136,9 @@ rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbi
 		      			<div class="accordion-body">
 		       				${fDTO.content }
 						</div>
+						<c:if test="${login.u_id eq 'admin'}">
 						<div id="change"><a href="loginCheck/faq_del?code=${fDTO.code}">삭제</a></div>
+						</c:if>
 		   			</div>
 				</div>
 	  		</div>

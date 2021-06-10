@@ -1,3 +1,4 @@
+<%@page import="com.dto.RoomDTO"%>
 <%@page import="java.io.Console"%>
 <%@ page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -24,12 +25,15 @@ String location = (String)session.getAttribute("location");
 String checkin = (String)session.getAttribute("checkin");
 String checkout = (String)session.getAttribute("checkout");
 String guest = (String)session.getAttribute("guest");
+String rooname = (String)session.getAttribute("roomname");
 
 MemberDTO dto = (MemberDTO) session.getAttribute("login");
 String u_id = dto.getU_id();
 String phone = dto.getU_phone();
 String name = dto.getU_name();
 
+RoomDTO rdto = new RoomDTO();
+String roomname = rdto.getName();
 %>
 <style type="text/css">
 *{
@@ -107,13 +111,13 @@ form{
 				호텔이름 : ${hotelname}</p> <br>
 				
 			<div class="room">
-				객실 이름 : <%=name%><br>
+				객실 이름 : <%=roomname%><br>
 				인원수 : <%=guest %><br> 
 				<p class="date"><%=checkin %>
 					~
 					<%=checkout %></p><br> 
 					
-				예약자 이름 : <%=u_id %><br> 
+				예약자 이름 : <%=name%><br> 
 				예약자 전화번호 : <input class="number" type="text"
 					value="<%=phone%>"> <br><br>
 					요금 :  ${price}<br>
