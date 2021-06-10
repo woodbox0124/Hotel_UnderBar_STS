@@ -50,6 +50,9 @@ rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbi
 		text-align:right;
 		padding-right:10px;
 	}
+	#wrapper{
+		height : 850px;
+	}
 	
 		
 </style>

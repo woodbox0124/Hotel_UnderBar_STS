@@ -69,12 +69,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from board where num= #{num}
 	</select>
 
+	
+	<!-- 조회 수 증가 -->
 	<update id="readCnt" parameterType="int">
 		update board
 		set readCnt=(readCnt+1)
 		where num = #{num}
 	</update>
-	<!-- 조회 수 증가 -->
 
 
 	<!-- 댓글 -->

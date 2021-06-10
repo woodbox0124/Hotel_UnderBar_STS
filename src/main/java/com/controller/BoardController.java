@@ -70,6 +70,8 @@ public class BoardController {
 	@RequestMapping(value="boardRetrieve", produces="text/plain;charset=UTF-8")
 	public ModelAndView boardRetrieve(@RequestParam int num) {
 		System.out.println(num);
+		//조회수 증가
+		bService.readCnt(num);
 		BoardDTO bDTO = bService.selectByNum(num);
 		System.out.println(bDTO);
 		ModelAndView mav = new ModelAndView();
@@ -111,9 +113,7 @@ public class BoardController {
 		bDTO.setAuthor(bDTO.getAuthor());
 		bDTO.setTitle(bDTO.getTitle());
 		bDTO.setContent(bDTO.getContent());
-		//조회수 증가
-		int num = bDTO.getNum();
-		bService.readCnt(num);
+		
 		
 		int n = bService.boardAnsInsert(bDTO);
 		System.out.println(bDTO);
