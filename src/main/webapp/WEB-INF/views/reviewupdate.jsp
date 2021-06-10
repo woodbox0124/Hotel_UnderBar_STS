@@ -8,5 +8,6 @@
 </head>
 <body>
 	<jsp:include page="review/ReviewUpdate.jsp" flush="true" ></jsp:include>
+	<jsp:include page="common/sidemenu.jsp" flush="true"></jsp:include>
 </body>
 </html>

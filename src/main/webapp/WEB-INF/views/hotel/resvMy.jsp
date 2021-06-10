@@ -204,6 +204,6 @@
 		%>
 
 	</div>
-
+<jsp:include page="../common/sidemenu.jsp" flush="true"></jsp:include>
 </body>
 </html>

@@ -385,8 +385,8 @@ String guest = (String)session.getAttribute("guest");%>
 				}
 				%>
 				
-				
-		<div class="page">
+			</div>
+			<div class="page">
 		<%
 			int curPage = pDTO.getCurPage();//현재페이지
 			int perPage = pDTO.getPerPage();//페이지당 게시물수
@@ -408,8 +408,6 @@ String guest = (String)session.getAttribute("guest");%>
 				}//end for		
 			}
 		%>
-		
 		</div>
-			</div>
 	</div><!-- end wrapper -->
 </div><!-- end section -->

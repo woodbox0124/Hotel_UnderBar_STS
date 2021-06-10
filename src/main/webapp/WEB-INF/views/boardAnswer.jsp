@@ -82,6 +82,7 @@ a {
 	<jsp:include page="board/BoardAnswer.jsp" flush="true" />
 	<br>
 	<jsp:include page="hotel/footer.jsp" flush="true"></jsp:include>
+	<jsp:include page="common/sidemenu.jsp" flush="true"></jsp:include>
 </body>
 </html>
 	
