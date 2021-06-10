@@ -363,10 +363,10 @@ obj.value = phone;
 			<button class="submit">
 				<a href="/hotelunderbar">메인으로 돌아가기</a>
 			</button>
-			<jsp:include page="common/sidemenu.jsp" flush="true"></jsp:include>
 		</form>
 	</div>
 </div>
+<jsp:include page="common/sidemenu.jsp" flush="true"></jsp:include>
 <script>
 	var x = document.getElementById("login");
 	var y = document.getElementById("register");

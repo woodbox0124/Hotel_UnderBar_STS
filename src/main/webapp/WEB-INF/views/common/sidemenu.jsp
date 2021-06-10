@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="assets/css/font.css">
+<link rel="stylesheet" type="text/css" href="assets/css/sidemenu.css">
 <script type="text/javascript">
  var stmnLEFT = 10; // 오른쪽 여백 
  var stmnGAP1 = 0; // 위쪽 여백 
@@ -39,14 +41,11 @@
 	}
 </script>
 
-<style type="text/css">
-#STATICMENU { margin: 0pt; padding: 0pt;  position: absolute; right: 0px; top: 0px;}
-</style>
 </head>
 <body onload="InitializeStaticMenu();">
 
 <div id="STATICMENU">
-<input class="btn btn-primary chat" type="button" value="실시간상담" onclick="Chat();">
+<input class="chatbtn chatbtn-primary chat" type="button" value="실시간상담" onclick="Chat();">
 </div>
 
 </body>

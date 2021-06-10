@@ -76,16 +76,12 @@ img {
 
 </script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
 </head>
 <body>
 	<div id="wrapper">
 	<div class="cards">
 	<div id="aa">
-	<%--  <%
-	MemberDTO dto2 = (MemberDTO)session.getAttribute("login");
-	String u_id = dto2.getU_id();
-	%> --%>
+	
 	
 	<c:forEach var="list" items="${RpDTO.list}">
 
@@ -98,7 +94,7 @@ img {
 					<span id="price">가격 ${list.price}</span>
 				</p>
 
-				<a href="loginCheck/RoomReserv?hotelseq=${list.hotelseq}&hotelname=${hotelname}
+				<a href="loginCheck/RoomReserv?hotelseq=${list.hotelseq}&hotelname=${hotelname}&name=${list.name}
 				&roomseq=${list.seq}&price=${list.price}" id="resv">지금예약</a>
 				<ul>
 					<li><a href="loginCheck/roomdetail?seq=${list.seq}&hotelname=${hotelname}&checkin=${checkin}&checkout=${checkout}&place=${place}"
