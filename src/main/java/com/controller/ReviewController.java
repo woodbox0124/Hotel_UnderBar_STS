@@ -72,7 +72,7 @@ public class ReviewController {
 		System.out.println("contentType:  "+ contentType);
 		System.out.println("정보들======="+u_id+content+rating+title+hotelname);
 		
-		File f= new File("C:\\upload",originalFileName);
+		File f= new File("C:\\Shop_STS\\WORKSHOP\\Hotel_UnderBar_STS\\src\\main\\webapp\\WEB-INF\\views\\images\\review",originalFileName);
 		File f2= new File("/Users/bitna",originalFileName);
 		ReviewDTO rvdto=new ReviewDTO();
 		   rvdto.setU_id(u_id);
@@ -111,7 +111,7 @@ public class ReviewController {
 	
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
 		
-		File f= new File("C:\\upload",originalFileName);
+		File f= new File("C:\\Shop_STS\\WORKSHOP\\Hotel_UnderBar_STS\\src\\main\\webapp\\WEB-INF\\views\\images\\review",originalFileName);
 		map.put("num", num);
 		map.put("rating", rating);
 		map.put("content", content);
