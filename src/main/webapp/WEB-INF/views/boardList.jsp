@@ -72,6 +72,7 @@ a {
 	<jsp:include page="common/menu.jsp" flush="true"></jsp:include><br>
 	<jsp:include page="board/list.jsp" flush="true" ></jsp:include>
 	<jsp:include page="hotel/footer.jsp" flush="true"></jsp:include>
+	<jsp:include page="common/sidemenu.jsp" flush="true"></jsp:include>
 </body>
 </html>
 	

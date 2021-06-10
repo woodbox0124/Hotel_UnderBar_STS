@@ -131,4 +131,5 @@ option {
 			</div>
 		</div>
 </body>
+<jsp:include page="common/sidemenu.jsp" flush="true"></jsp:include>
 </html>

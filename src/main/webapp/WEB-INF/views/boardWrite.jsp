@@ -19,6 +19,7 @@
 	<jsp:include page="common/menu.jsp" flush="true" /><br>
 	<jsp:include page="board/write.jsp" flush="true" /><br>
 	<jsp:include page="hotel/footer.jsp" flush="true"></jsp:include>
+	<jsp:include page="common/sidemenu.jsp" flush="true"></jsp:include>
 </body>
 </html>
 	
