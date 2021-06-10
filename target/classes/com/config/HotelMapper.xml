@@ -81,6 +81,18 @@ insert into hotel (seq, name, place, addr, rating, hotel_img, hotel_img_real)
 </insert>
 
 <!-- 객실 관리  -->
+
+<!-- 객실 리스트 페이징 -->
+<select id="roomListpage" resultType="RoomDTO" parameterType="string">
+	select * from room where hotelseq = #{seq}
+</select>
+
+<select id="RoomtotalCount" parameterType="string" resultType="int">
+		select count(*) from room where seq = #{seq}
+</select>
+<!-- 객실 리스트 페이징 -->
+
+
 <!-- 객실 삭제 -->
 <delete id="RoomDelete" parameterType="String">
 delete from room where seq = #{seq}
@@ -107,5 +119,17 @@ update room set
 select SEQ_ROOM.nextval from dual
 </select>
 <!-- 객실 seq 가져오기 -->
+<!-- 객실 추가 -->
+<insert id="roomInsert" parameterType="RoomInsertDTO">
+insert into room (seq, name, hotelseq, price, max_guest, room_img, room_img_real) 
+ values (seq_room.nextval, #{name}, #{hotelseq}, #{price}, #{max_guest}, #{room_img}, #{room_img_real})
+</insert>
+<!-- 객실 추가 -->
+<!-- 객실 자세한 정보 추가 -->
+<insert id="roomInfoInsert" parameterType="RoomInfoDTO">
+insert into roominfo (r_seq, bath, eat, internet, etc) 
+ values (#{r_seq}, #{bath}, #{eat}, #{internet}, #{etc})
+</insert>
+<!-- 객실 자세한 정보 추가 -->
 <!-- 객실 관리  -->
 </mapper>
