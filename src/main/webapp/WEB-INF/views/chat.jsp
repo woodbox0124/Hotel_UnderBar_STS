@@ -50,7 +50,7 @@
                 return;
             }
             //ws = new WebSocket("ws://localhost:8041/echo.do");
-            ws = new WebSocket("ws://localhost:8041/hotelunderbar/echo.do");
+            ws = new WebSocket("ws://localhost:8880/hotelunderbar/echo.do");
             ws.onopen = function(event){
                 if(event.data === undefined){
               		return;

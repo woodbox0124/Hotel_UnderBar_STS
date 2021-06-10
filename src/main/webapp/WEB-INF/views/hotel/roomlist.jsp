@@ -99,7 +99,7 @@ img {
 				</p>
 
 				<a href="loginCheck/RoomReserv?hotelseq=${list.hotelseq}&hotelname=${hotelname}
-				&roomseq=${list.seq}&price=${list.price}" id="resv">지금예약</a>
+				&roomseq=${list.seq}&price=${list.price}&roomname=${list.name}" id="resv">지금예약</a>
 				<ul>
 					<li><a href="loginCheck/roomdetail?seq=${list.seq}&hotelname=${hotelname}&checkin=${checkin}&checkout=${checkout}&place=${place}"
 						style="color: black">객실 정보 자세히보기</a><br>
