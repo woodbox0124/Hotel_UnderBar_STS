@@ -131,7 +131,7 @@ img {
 					out.print(i + "&nbsp;");
 				} else {
 					System.out.print("else i" + i);
-					out.print("<a href='loginCheck/roomlist?curPage=" + i + "&seq=" + seq + "'>" + i + "</a>&nbsp;");
+					out.print("<a style='color: black;' href ='loginCheck/roomlist?curPage=" + i + "&seq=" + seq + "'>" + i + "</a>&nbsp;");
 				} //end for		
 			}
 		%>
