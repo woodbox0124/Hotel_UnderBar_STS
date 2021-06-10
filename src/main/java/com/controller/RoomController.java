@@ -9,6 +9,7 @@ import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.ResvDTO;
@@ -26,7 +27,7 @@ public class RoomController
 	
 	
 	@RequestMapping(value = "/loginCheck/roomlist")
-	public String RoomList(RoomDTO rDTO,String hotelname,String place, HttpServletRequest request, HttpSession session, RedirectAttributes attr)
+	public String RoomList(RoomDTO rDTO,String hotelname, String place, HttpServletRequest request, HttpSession session, RedirectAttributes attr)
 	{	
 		
 		String curPage = request.getParameter("curPage");// 현재 페이지 얻기

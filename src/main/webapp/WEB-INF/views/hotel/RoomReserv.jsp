@@ -25,15 +25,15 @@ String location = (String)session.getAttribute("location");
 String checkin = (String)session.getAttribute("checkin");
 String checkout = (String)session.getAttribute("checkout");
 String guest = (String)session.getAttribute("guest");
-String rooname = (String)session.getAttribute("roomname");
+
+String roomname = (String)request.getAttribute("roomname");
+String hotelname = (String)session.getAttribute("hotelname");
 
 MemberDTO dto = (MemberDTO) session.getAttribute("login");
 String u_id = dto.getU_id();
 String phone = dto.getU_phone();
 String name = dto.getU_name();
 
-RoomDTO rdto = new RoomDTO();
-String roomname = rdto.getName();
 %>
 <style type="text/css">
 *{
@@ -45,7 +45,7 @@ body{
 
 .room {
 	margin-left: 8%;
-	font-size : 30px;
+	font-size : 25px;
 }
 .number {
 	width: 60%;
@@ -68,7 +68,7 @@ body{
 }
 
 .hotelseq {
-	font-size: 50px;
+	font-size: 40px;
 }
 
 form{
@@ -111,16 +111,13 @@ form{
 				호텔이름 : ${hotelname}</p> <br>
 				
 			<div class="room">
-				객실 이름 : <%=roomname%><br>
-				인원수 : <%=guest %><br> 
-				<p class="date"><%=checkin %>
-					~
-					<%=checkout %></p><br> 
-					
+				객실 이름 : <%=roomname%><br><br>
+				인원수 : <%=guest %><br><br>
+				입실 날짜 : <%=checkin %><br>
+				퇴실 날짜 : <%=checkout %><br><br>
 				예약자 이름 : <%=name%><br> 
-				예약자 전화번호 : <input class="number" type="text"
-					value="<%=phone%>"> <br><br>
-					요금 :  ${price}<br>
+				예약자 전화번호 : <%=phone%><br><br>
+				요금 : ${price}원<br>
 			</div>
 			<input class="btn btn-primary input_btn" type="submit"
 							value="결제하기"/>

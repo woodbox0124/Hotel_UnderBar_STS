@@ -57,13 +57,15 @@ public class ResvController {
 	}
 
 	@RequestMapping(value = "/loginCheck/RoomReserv")
-	public String RoomReserv(ResvDTO rdto, String hotelname, String roomseq, int price,
-		String hotelseq, String name, HttpSession session, RedirectAttributes attr, HttpServletResponse response, HttpServletRequest request) throws Exception {
+	public String RoomReserv(ResvDTO rdto, String hotelname ,String name, String roomseq, int price,
+		String hotelseq, HttpSession session, RedirectAttributes attr, HttpServletResponse response, HttpServletRequest request) throws Exception {
+		
 		attr.addFlashAttribute("hotelseq", hotelseq);
 		attr.addFlashAttribute("roomseq", roomseq);
-		attr.addFlashAttribute("hotelname", hotelname);
-		attr.addFlashAttribute("price", price);
+		attr.addFlashAttribute("hotelname",hotelname);
 		attr.addFlashAttribute("roomname", name);
+		attr.addFlashAttribute("price", price);
+		
 		System.out.println(name);
 		String checkin = (String)session.getAttribute("checkin");
         String guest = (String)session.getAttribute("guest");
