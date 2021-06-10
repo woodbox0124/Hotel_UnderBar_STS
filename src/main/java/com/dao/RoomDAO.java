@@ -76,7 +76,7 @@ public class RoomDAO {
 	public int roomInfoInsert(RoomInfoDTO rifDTO) {
 		int n1 = template.insert("HotelMapper.roomInfoInsert", rifDTO);
 		return n1;
-
+	}
 	public RoomPageDTO roomListpage(int curPage, String seq) {
 		RoomPageDTO RpDTO = new RoomPageDTO();
 		int perPage = RpDTO.getPerPage();

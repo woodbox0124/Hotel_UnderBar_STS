@@ -85,7 +85,7 @@ public class RoomService
 	public int roomInfoInsert(RoomInfoDTO rifDTO) {
 		int n1 = dao.roomInfoInsert(rifDTO);
 		return n1;
-
+	}
 	public RoomPageDTO roomListpage(int curPage, String seq) {
 		RoomPageDTO RpDTO = dao.roomListpage(curPage,seq);
 		return RpDTO;
