@@ -93,14 +93,14 @@ $(document).ready(function(e){
 		</tr>
 			<tr>
 			<td colspan="2" align="center">
-			<c:if test="${bDTO.author eq login.u_id}">
+			<c:if test="${bDTO.author eq login.u_id || login.u_id eq 'admin'}">
 				<input class="btn btn-primary" type="button" value="수정" id="update">
              	<input class="btn btn-primary" type="button" value="삭제" id="delete">
-				<c:if test="${bDTO.author eq login.u_id || bDTO.author eq 'admin'}">
-					<input class="btn btn-primary" type="button" value="답글쓰기" id="answer">
-				</c:if>
 			</c:if>
-             	<a class="btn btn-primary" href="loginCheck/boardList">목록보기</a>
+			<c:if test="${bDTO.author eq login.u_id || login.u_id eq 'admin'}">
+				<input class="btn btn-primary" type="button" value="답글쓰기" id="answer">
+			</c:if>
+             <a class="btn btn-primary" href="loginCheck/boardList">목록보기</a>
 			</td>
 		</tr>
 	</table>

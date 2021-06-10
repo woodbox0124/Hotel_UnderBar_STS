@@ -84,7 +84,7 @@ function formcheck(e) {
 		<tr>
 			<td width="70" align="center">작성자</td>
 			<td>
-			<input id="author" size="45" type="text" name="author" size="50" value="${bDTO.author}" readonly> <!-- if로 인해 jstl 사용 -->
+			<input id="author" size="45" type="text" name="author" size="50" value="${login.u_id}" readonly> <!-- if로 인해 jstl 사용 -->
 			</td>
 		</tr>
 		<tr>
