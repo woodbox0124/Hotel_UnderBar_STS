@@ -51,7 +51,6 @@
 				 <label for="gdsImg">이미지</label>
 				<input class="form-control form-control-sm" id="gdsImg" type="file" name="uploadFile" multiple>
 				 <div class="select_img"><img src="" /></div>
-				 <%=request.getRealPath("/") %>
 			</div>
 			 
 			 <script>
