@@ -17,17 +17,13 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/roominsert.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/font.css">
-<c:if test="${!empty updatecomplete }">
 	<script>
-		alert("업데이트가 완료 되었습니다.");
-		opener.location.reload();
-		<%
-		session.removeAttribute("updatecomplete");
-		%>
-		history.go(-1);
+	$(document).ready(function(){			
+		$(".update").click(function() {
+			alert("추가 완료");
+		})		
+	})
 	</script>
-</c:if>
-
 </head>
 <body>
 <div id="wrapper">
@@ -42,15 +38,14 @@
     <input type="text" name="price" class="input" style = "text-align:center;" required/><br><br>
     <h4>최대인원</h4>
     <input type="text" name="max_guest" style = "text-align:center;" required/><br><br>
-
-        객실 사진이름: ROOM${room_seq+1}<br><br>
-           ※사진파일명을 위에 객실 사진이름과 동일하게 수정 후 업로드 바랍니다.
-    <br><br>
+    <h4>객실사진1</h4>
+      ※사진파일명을 아래에 객실 사진이름과 동일하게 수정 후 업로드 바랍니다.<br>
+        객실 사진이름: ROOM${room_seq+1}<br>        
         객실 사진:<input type="file" name="theFile">
-    <br><br>
-       사진이름:ROOM${room_seq+1}_1<br><br>
-          ※사진파일명을 위에 사진이름과 동일하게 수정 후 업로드 바랍니다.
-    <br><br>
+    <br><br><br>
+    <h4>객실사진2</h4>
+      ※사진파일명을 아래에 사진이름과 동일하게 수정 후 업로드 바랍니다.<br>
+       사진이름:ROOM${room_seq+1}_1<br>
         객실 자세히 사진:<input type="file" name="theFile1">
     <br><br>
     </div>
