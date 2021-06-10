@@ -85,6 +85,7 @@ public class BoardDAO {
 		
 	}
 	public BoardDTO selectByNum(int num) {
+		
 		BoardDTO bDTO = session.selectOne("BoardMapper.selectByNum", num);
 		return bDTO;
 	}
