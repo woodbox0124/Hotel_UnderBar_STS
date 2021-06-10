@@ -1,4 +1,4 @@
-update.css@charset "UTF-8";
+@charset "UTF-8";
 * {
 	font-family: 'twayair', 'Roboto', 'sans-serif';
 }
@@ -6,7 +6,7 @@ update.css@charset "UTF-8";
 	width: 500px;
 	height: 400px;
 	text-align: center;
-	padding-top: 100px;
+	padding-top: 50px;
 	
 }
 #test{
