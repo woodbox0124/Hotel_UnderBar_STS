@@ -93,7 +93,7 @@ $(document).ready(function(e){
 		</tr>
 			<tr>
 			<td colspan="2" align="center">
-			<c:if test="${bDTO.author eq login.u_id || login.u_id eq 'admin'}">
+			<c:if test="${bDTO.author eq login.u_id}">
 				<input class="btn btn-primary" type="button" value="수정" id="update">
              	<input class="btn btn-primary" type="button" value="삭제" id="delete">
 			</c:if>
