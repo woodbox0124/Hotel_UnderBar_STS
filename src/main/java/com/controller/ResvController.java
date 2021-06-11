@@ -62,9 +62,9 @@ public class ResvController {
 		
 		attr.addFlashAttribute("hotelseq", hotelseq);
 		attr.addFlashAttribute("roomseq", roomseq);
-		attr.addFlashAttribute("hotelname",hotelname);
-		attr.addFlashAttribute("roomname", name);
-		attr.addFlashAttribute("price", price);
+		session.setAttribute("hotelname",hotelname);
+		session.setAttribute("roomname", name);
+		session.setAttribute("price", price);
 		
 		System.out.println(name);
 		String checkin = (String)session.getAttribute("checkin");
