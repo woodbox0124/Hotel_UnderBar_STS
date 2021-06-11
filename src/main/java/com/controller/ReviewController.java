@@ -83,6 +83,14 @@ public class ReviewController {
 		   rvdto.setReview_img(originalFileName); //파일이름
 		   System.out.println("리뷰dto에 담은 정보들=============="+rvdto);
 		   service.write(rvdto);
+		   
+		   double hotelbyrating=service.hotelbyrating(hotelname); //해당 호텔의 리뷰레이팅 평균값
+		   System.out.println("해당 호텔의 리뷰====="+hotelname);
+		   System.out.println("해당 호텔의 리뷰레이팅 평균값===+"+hotelbyrating);
+		   HashMap<Object, Object> map = new HashMap<Object, Object>();
+		   map.put("rating",hotelbyrating);
+		   map.put("hotelname", hotelname);
+		   service.hotelupdate(map); //호텔데이터베이스의 평균을 업데이트 연동
 		 request.setAttribute("mesg", "리뷰작성이 완료되었습니다");
 		 
 		try {
@@ -251,6 +259,13 @@ public class ReviewController {
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
 		
+		double hotelbyrating=service.hotelbyrating(hotelname); //해당 호텔의 리뷰레이팅 평균값
+		   System.out.println("해당 호텔의 리뷰====="+hotelname);
+		   System.out.println("해당 호텔의 리뷰레이팅 평균값===+"+hotelbyrating);
+		   HashMap<Object, Object> map = new HashMap<Object, Object>();
+		   map.put("rating",hotelbyrating);
+		   map.put("hotelname", hotelname);
+		   service.hotelupdate(map); //호텔데이터베이스의 평균을 업데이트 연동
 		
 		session.setAttribute("reviewlist", rDTO); 
 		  session.setAttribute("hotelname",hotelname); 

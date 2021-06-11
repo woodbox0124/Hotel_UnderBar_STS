@@ -372,7 +372,7 @@ String guest = (String)session.getAttribute("guest");%>
 							<span class="score" style="color: blue;">평점:<%=ratingDTO.getRating() %></span> 
 							<%} %>
 							<%} %>
-							<h5 class="card-title"><%= hotelname %></h5>
+							<h5 class="card-title"><%= hotelname%></h5>
 							<span id="place"><%= place %></span>
 						</p>
 						<a class="reviewsee"  href="loginCheck/Review?hotelname=<%=hotelname%>">리뷰보기</a>

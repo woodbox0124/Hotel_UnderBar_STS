@@ -65,4 +65,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         from review
         where hotelname = #{hotelname} and rating = #{rating}
     </select>
+    
+    
+    <select id="hotelbyrating" resultType="double" parameterType="string">
+    
+     select round(avg(rating),2) rating from review where hotelname=#{hotelname}
+    </select>
+    
+    <update id="hotelupdate" parameterType="map">
+    update hotel set rating=#{rating} where name=#{hotelname}
+    </update>
+    
 </mapper>

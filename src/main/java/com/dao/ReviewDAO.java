@@ -109,4 +109,18 @@ public class ReviewDAO {
         int num = session.selectOne("ReviewMapper.ReviewCount1", map);
         return num;
     }
+
+
+
+	public double hotelbyrating(String hotelname) {
+		double n=session.selectOne("ReviewMapper.hotelbyrating",hotelname);
+		return n;
+	}
+
+
+	public void hotelupdate(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		session.update("ReviewMapper.hotelupdate",map);
+		
+	}
 }
