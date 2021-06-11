@@ -139,7 +139,7 @@ img {
 }
 
 .card-body {
-	height: 170px;
+	
 }
 
 #people>a {
