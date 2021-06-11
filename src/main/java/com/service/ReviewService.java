@@ -80,4 +80,17 @@ public class ReviewService {
 		return rdto;
 	}
 
+
+
+	public double hotelbyrating(String hotelname) {
+		double n=dao.hotelbyrating(hotelname);
+		return n;
+	}
+
+
+	public void hotelupdate(HashMap<Object, Object> map) {
+		dao.hotelupdate(map);
+		
+	}
+
 }

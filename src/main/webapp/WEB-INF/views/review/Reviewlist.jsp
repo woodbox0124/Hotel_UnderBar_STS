@@ -36,7 +36,7 @@
 	}
 	.content {
 		font-size: 18px;
-    width: 400px;
+    width: 350px;
 }
 	}
 	.sort {
