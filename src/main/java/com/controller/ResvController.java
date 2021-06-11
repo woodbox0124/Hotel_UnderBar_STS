@@ -112,7 +112,6 @@ public class ResvController {
 	@RequestMapping("/loginCheck/paySuccess")
 	public String paySuccess(HttpServletRequest request, String hotelseq,String u_id,
 			String roomseq,String checkin,String checkout,int price,String guest) {
-
 		  ResvDTO dto = new ResvDTO();
 		  dto.setHotelseq(hotelseq);
 		  dto.setU_id(u_id);

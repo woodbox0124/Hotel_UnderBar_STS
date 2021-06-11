@@ -345,8 +345,7 @@ obj.value = phone;
 			<input name="u_email" type="email" class="input-field u_email" placeholder="Email" required>
 			<div class="in-line">
 				<input name="u_phone" type="text" class="input-field phone" id="to" placeholder="Phone Number" onKeyup="inputPhoneNumber(this);"
-					maxlength='13' required
-				>
+					maxlength='13' required>
 				<input type="button" name="name" id="send" value="인증번호 받기">
 			</div>
 			<div class="in-line2" style="display: none;">
