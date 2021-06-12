@@ -38,6 +38,11 @@ public class ResvService {
 		return n;
 	}
 
+	public void resvCheckout(int seq) {
+		dao.resvCheckout(seq);
+		
+	}
+
 }
 
 

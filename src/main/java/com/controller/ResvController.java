@@ -55,6 +55,30 @@ public class ResvController {
 		service.resvCancel(seq);
 		return "redirect:../";
 	}
+	
+	@RequestMapping("/loginCheck/checkout")
+	public String checkout(@RequestParam("seq") int seq, HttpSession session, HttpServletRequest request,
+			RedirectAttributes attr) {
+		service.resvCheckout(seq);
+		
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		
+		// 페이징
+		String curPage = request.getParameter("curPage");// 현재 페이지 얻기
+		if (curPage == null)
+			curPage = "1";
+		ResvPageDTO RpDTO = null;
+		String u_id = dto.getU_id();
+		System.out.println("회원 아이디 : " + u_id);
+		System.out.println("curPage" + curPage);
+		RpDTO = service.resvMyList(Integer.parseInt(curPage), u_id);
+		// 페이징 끝
+		System.out.println("ResvController : " + RpDTO);
+
+		attr.addFlashAttribute("RpDTO", RpDTO);
+		attr.addFlashAttribute("u_id", u_id);
+		return "redirect:../resvMy";
+	}
 
 	@RequestMapping(value = "/loginCheck/RoomReserv")
 	public String RoomReserv(ResvDTO rdto, String hotelname ,String name, String roomseq, int price,

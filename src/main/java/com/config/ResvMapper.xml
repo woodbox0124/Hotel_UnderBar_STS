@@ -6,14 +6,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="resvInsert" parameterType="ResvDTO">
 		insert into RESV
 		values(resv_seq.nextval,#{hotelseq},#{u_id},#{roomseq},#{checkin},#{checkout},SYSDATE,
-		#{price},#{guest},null)
+		#{price},#{guest},0)
 	</insert>
 	<select id="resvMy" resultType="ResvMyDTO"
 		parameterType="string">
 		select re.seq, h.rating, h.name hotelName, h.addr,
 		ro.name roomName,
 		re.checkin, re.checkout, re.resvdate, re.guest,
-		re.price, re.cancel
+		re.price, re.checkresv
 		from Hotel h, resv re, room ro
 		where h.seq =
 		re.hotelseq and re.roomseq = ro.seq and re.u_id = #{u_id}
@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select re.seq, h.rating, h.name hotelName, h.addr,
 		ro.name roomName,
 		re.checkin, re.checkout, re.resvdate, re.guest,
-		re.price, re.cancel
+		re.price, re.checkresv
 		from Hotel h, resv re, room ro
 		where h.seq =
 		re.hotelseq and re.roomseq = ro.seq and re.u_id = #{u_id}
@@ -42,5 +42,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		re.hotelseq and re.roomseq = ro.seq and re.u_id = #{u_id}
 	</select>
 	
+	<update id="checkout" parameterType="int">
+	UPDATE RESV SET CHECKRESV = 1 WHERE SEQ = #{seq}
+	</update>
 	
 </mapper>
