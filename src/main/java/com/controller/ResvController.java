@@ -62,9 +62,9 @@ public class ResvController {
 		
 		attr.addFlashAttribute("hotelseq", hotelseq);
 		attr.addFlashAttribute("roomseq", roomseq);
-		attr.addFlashAttribute("hotelname",hotelname);
-		attr.addFlashAttribute("roomname", name);
-		attr.addFlashAttribute("price", price);
+		session.setAttribute("hotelname",hotelname);
+		session.setAttribute("roomname", name);
+		session.setAttribute("price", price);
 		
 		System.out.println(name);
 		String checkin = (String)session.getAttribute("checkin");
@@ -112,7 +112,6 @@ public class ResvController {
 	@RequestMapping("/loginCheck/paySuccess")
 	public String paySuccess(HttpServletRequest request, String hotelseq,String u_id,
 			String roomseq,String checkin,String checkout,int price,String guest) {
-
 		  ResvDTO dto = new ResvDTO();
 		  dto.setHotelseq(hotelseq);
 		  dto.setU_id(u_id);

@@ -116,7 +116,7 @@ public class ReviewController {
 		String originalFileName= theFile.getOriginalFilename();
 		String contentType= theFile.getContentType();
 		List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
-	
+	    
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
 		
 		File f= new File("C:\\Shop_STS\\WORKSHOP\\Hotel_UnderBar_STS\\src\\main\\webapp\\WEB-INF\\views\\images\\review",originalFileName);
