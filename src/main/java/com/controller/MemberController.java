@@ -197,16 +197,19 @@ public class MemberController {
 			}							
 		return "main";
 	}
+	
 	@RequestMapping("/loginCheck/myPage") //Interceptor
 	public String myPage(HttpSession session) {
 		MemberDTO dto =(MemberDTO)session.getAttribute("login");     
 		// 사용자 id를 꺼내 sevice.mypage(id)이용 DB에서 데이터를 다시 가져오기	
 		String u_id = dto.getU_id();
 		MemberDTO mdto = mService.myPage(u_id);
-		System.out.println(mdto);
+
 		session.setAttribute("login", mdto);//다시 session에 저장
+		
 		return "redirect:../mypage";
 	}
+	
 	@RequestMapping("/loginCheck/MemberUpdate")
 	public String MemberUpdate(MemberDTO mdto , HttpSession session) {
 		MemberDTO dto =(MemberDTO)session.getAttribute("login");

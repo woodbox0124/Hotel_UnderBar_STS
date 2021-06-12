@@ -61,6 +61,7 @@ public class LoginController<kakao_restapi> {
 	     }//end else				
 		return nextPage ;
 	}
+	
 	@RequestMapping("loginCheck/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("login");
