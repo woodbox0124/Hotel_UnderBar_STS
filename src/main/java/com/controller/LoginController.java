@@ -10,12 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dto.MemberDTO;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.kakao.KakaoUserInfo;
 import com.service.MemberService;
 
 @Controller
-public class LoginController {
+public class LoginController<kakao_restapi> {
 	@Autowired
 	MemberService service;
 	//아이디 찾기 화면 전환
@@ -63,5 +67,67 @@ public class LoginController {
 		session.setAttribute("mesg", "로그아웃이 완료 되었습니다.");
 		return "redirect:../";
 	}
+	
+private com.kakao.kakao_restapi kakao_restapi = new com.kakao.kakao_restapi();
+    
+    @RequestMapping(value = "/oauth", produces = "application/json", method = { RequestMethod.GET, RequestMethod.POST })
+    public String kakaoLogin(@RequestParam("code") String code, HttpSession session) 
+    {
+    	 System.out.println("로그인 할때 임시 코드값");
+         //카카오 홈페이지에서 받은 결과 코드
+         System.out.println(code);
+         System.out.println("로그인 후 결과값");
+         //카카오 rest api 객체 선언
+         com.kakao.kakao_restapi kr = new com.kakao.kakao_restapi();
+         //결과값을 node에 담아줌
+         JsonNode node = kr.getAccessToken(code);
+         JsonNode accessToken = node.get("access_token");
+         JsonNode userinfo = KakaoUserInfo.getKakaoUserInfo(accessToken);
+         
+         String id = userinfo.path("id").asText();
+         String name = null;
+         String email = null;
+         
+         JsonNode properties = userinfo.path("properties");
+         JsonNode kakao_account = userinfo.path("kakao_account");
+
+         name = properties.path("nickname").asText();
+         email = kakao_account.path("email").asText();
+         
+         //결과값 출력
+         System.out.println("node : " + node);
+         //노드 안에 있는 access_token값을 꺼내 문자열로 변환
+         if(accessToken != null)
+         {
+        	 String token = node.get("access_token").toString();
+         }
+         //세션에 담아준다.
+        
+         session.setAttribute("name", name);
+         session.setAttribute("kemail", email);
+         
+         System.out.println("id : " + id);
+         System.out.println("name : " + name);
+         System.out.println("email : " + email);
+         
+         if(email != null)
+         {
+        	 session.setAttribute("mesg", "카카오 로그인이 완료되었습니다. 휴대전화 번호 입력을 위해 회원가입을 진행해주세요."); //사업자 등록하면 휴대폰 번호 가져올 수 있음 안되니 회원가입 진행
+         }
+         
+         return "login_register";
+    }
+    
+    @RequestMapping(value = "/kakaologout", produces = "application/json")
+    public String kakaoLogout(HttpSession session) 
+   {
+        //kakao restapi 객체 선언
+        com.kakao.kakao_restapi kr = new com.kakao.kakao_restapi();
+        //노드에 로그아웃한 결과값음 담아줌 매개변수는 세션에 잇는 token을 가져와 문자열로 변환
+        JsonNode node = kr.Logout(session.getAttribute("token").toString());
+        //결과 값 출력
+        System.out.println("로그인 후 반환되는 아이디 : " + node.get("id"));
+        return "redirect:../";
+    }    
 
 }

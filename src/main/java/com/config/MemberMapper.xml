@@ -61,4 +61,8 @@ update member set
 	u_phone=#{u_phone} and 
 	u_email=#{u_email}
 	</select>		
+	
+	<update id="updatepw">
+	update member set u_pw = #{u_pw} where u_id = #{u_id}
+	</update>
 </mapper>

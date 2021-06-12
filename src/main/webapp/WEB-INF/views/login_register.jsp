@@ -338,6 +338,8 @@ obj.value = phone;
 			</button>
 		</form>
 		<form id="register" action="#" class="input-group" method="post">
+				<c:choose>
+		<c:when test="${empty kemail}">
 			<input name="u_id" id="u_id" type="text" class="input-field u_id" placeholder="아이디" required>
 			<input name="u_pw1" id="pw1" type="password" class="input-field u_pw1" placeholder="비밀번호" required>
 			<input name="u_pw" id="pw" type="password" class="input-field u_pw2" placeholder="password" required>
@@ -349,12 +351,12 @@ obj.value = phone;
 				>
 				<input type="button" name="name" id="send" value="인증번호 받기">
 			</div>
-			<div class="in-line2" style="display: none;">
+				<div class="in-line2" style="display: none;">
 				<input type="text" class="input-field number" id="number" placeholder="인증번호 입력" maxlength='6' required>
 				<input type="button" name="name" id="confirm" value="확인">
 				<input type="hidden" name="text" id="text">
 			</div>
-			<span id="check_span"><p id="Agree">
+					<span id="check_span"><p id="Agree">
 					<input type="checkbox" id="check_2" class="checked" name="check" onclick="return false">
 					<a id="Agree" style="vertical-align: 9px;">약관동의(필수)</a>
 				</p></span>
@@ -363,6 +365,36 @@ obj.value = phone;
 			<button class="submit">
 				<a href="/hotelunderbar">메인으로 돌아가기</a>
 			</button>
+			</c:when>
+			
+			<c:when test="${!empty kemail}">
+			<input name="u_id" id="u_id" type="text" class="input-field u_id" placeholder="아이디" value="${kemail}" required>
+			<input name="u_pw1" id="pw1" type="password" class="input-field u_pw1" placeholder="비밀번호" required>
+			<input name="u_pw" id="pw" type="password" class="input-field u_pw2" placeholder="password" required>
+			<input name="u_name" type="text" class="input-field u_name" placeholder="name" value="${name}" required>
+			<input name="u_email" type="email" class="input-field u_email" placeholder="Email" value="${kemail}" required>
+			<div class="in-line">
+				<input name="u_phone" type="text" class="input-field phone" id="to" placeholder="Phone Number" onKeyup="inputPhoneNumber(this);"
+					maxlength='13' required
+				>
+				<input type="button" name="name" id="send" value="인증번호 받기">
+			</div>
+				<div class="in-line2" style="display: none;">
+				<input type="text" class="input-field number" id="number" placeholder="인증번호 입력" maxlength='6' required>
+				<input type="button" name="name" id="confirm" value="확인">
+				<input type="hidden" name="text" id="text">
+			</div>
+						<span id="check_span"><p id="Agree">
+					<input type="checkbox" id="check_2" class="checked" name="check" onclick="return false">
+					<a id="Agree" style="vertical-align: 9px;">약관동의(필수)</a>
+				</p></span>
+			<p id="Agree2">위 약관 동의를 클릭해주세요.</p>
+			<button class="submit" id="submit" name="register">REGISTER</button>
+			<button class="submit">
+				<a href="/hotelunderbar">메인으로 돌아가기</a>
+			</button>
+			</c:when>
+			</c:choose>
 		</form>
 	</div>
 </div>
