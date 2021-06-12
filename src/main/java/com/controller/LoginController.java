@@ -57,6 +57,7 @@ public class LoginController {
 	     }//end else				
 		return nextPage ;
 	}
+	
 	@RequestMapping("loginCheck/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("login");

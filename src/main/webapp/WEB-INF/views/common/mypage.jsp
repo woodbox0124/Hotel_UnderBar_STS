@@ -90,15 +90,12 @@
 							<th>비밀번호 확인</th>
 							<td><input type="password" class="update pw" id="pw2"></td>
 						</tr>
-
 						<tr>
 							<th>전화번호</th>
 							<td><input type="text" class="update" value="${login.u_phone}"
 								name="u_phone"></td>
 						</tr>
-
 						<tr>
-
 							<th>e-mail</th>
 							<td><input type="text" class="update" value="${login.u_email}"
 								name="u_email"></td>
