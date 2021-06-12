@@ -32,17 +32,17 @@ public class ReviewController {
 	ReviewService service;
 
 	@RequestMapping("/ReviewWrite") //리뷰쓰기
-	public String reviewwirte(@RequestParam("hotelname") String hotelname,RedirectAttributes attr){
+	public String reviewwirte(@RequestParam("hotelname") String hotelname, RedirectAttributes attr){
 		attr.addFlashAttribute("hotelname",hotelname);
 		return "review/ReviewWrite";
 	}
 	@RequestMapping("/ReviewAdminUpdate") // 어드민 리뷰 수정
-	public String reviewadminup(int num,RedirectAttributes attr){
+	public String reviewadminup(int num, RedirectAttributes attr){
 		attr.addFlashAttribute("num", num);
 		return "review/ReviewAdminUpdate";
 	}
 	@RequestMapping("/ReviewUpdate") //리뷰 수정
-	public String reviewupdate(int num,RedirectAttributes attr){
+	public String reviewupdate(int num, RedirectAttributes attr){
 		attr.addFlashAttribute("num", num);
 		return "review/ReviewUpdate";
 	}
