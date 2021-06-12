@@ -64,5 +64,12 @@ public class MemberService {
 		dao.memberUpdate1(dto1);		
 	}
 
+	public int updatepw(String u_id) 
+	{
+		int a= dao.updatepw(u_id);
+		return a;
+		
+	}
+
 
 }

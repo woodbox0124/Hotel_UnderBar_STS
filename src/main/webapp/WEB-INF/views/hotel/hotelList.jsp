@@ -29,6 +29,29 @@
 				}
 		})
 		
+		$(".card-img-top").on("click", function() {
+			var data = $(this).attr("data-xxx");
+			var map1 = $("#map1_" + data).val();
+			var map2 = $("#map2_" + data).val();
+			console.log("좌표 : " + map1 + map2);				
+			$.ajax({
+				type: "post",
+				url: "mapchange",
+				dataType: "text",
+				data:{
+					map1 : map1, map2 : map2
+				},
+				success: function(data, status, xhr) {
+					console.log("성공");
+					 $("#mapWrapper").load(window.location.href + "#mapWrapper");
+				},
+				error: function(xhr, status, data) {
+					console.log("실패");
+				}
+			})
+	
+		})
+		
 	})
 	
 </script>
@@ -250,7 +273,7 @@ String guest = (String)session.getAttribute("guest");%>
 							<div id="container" class="view_map">
 								<div id="mapWrapper"
 									style="width: 100%; height: 100%; position: relative;">
-									<div id="map" style="width: 100%; height: 100%"></div>
+									<div id="map00" style="width: 100%; height: 100%"></div>
 									<!-- 지도를 표시할 div 입니다 -->
 									<input type="button" id="btnRoadview"
 										onclick="toggleMap(false)" title="로드뷰 보기" value="로드뷰">
@@ -270,9 +293,11 @@ String guest = (String)session.getAttribute("guest");%>
 							    btnMap = document.getElementById('btnMap'), // 로드뷰 위의 지도 버튼, 클릭하면 로드뷰는 감춰지고 지도가 보입니다 
 							    rvContainer = document.getElementById('roadview'), // 로드뷰를 표시할 div 입니다
 							    mapContainer = document.getElementById('map'); // 지도를 표시할 div 입니다
+							    var maploc1 = ${maploc1};
+							    var maploc2 = ${maploc2};
 
 							// 지도와 로드뷰 위에 마커로 표시할 특정 장소의 좌표입니다 
-							var placePosition = new kakao.maps.LatLng(37.55648107824386, 127.00616129183668);
+							var placePosition = new kakao.maps.LatLng(maploc1, maploc2);
 
 							// 지도 옵션입니다 
 							var mapOption = {
@@ -353,6 +378,8 @@ String guest = (String)session.getAttribute("guest");%>
 				double rating = dto.getRating();
 				String hotel_img = dto.getHotel_img();
 				String hotel_img_real = dto.getHotel_img_real();
+				String map1 = dto.getMaplocation1();
+				String map2 = dto.getMaplocation2();
 				
 				
 				List<RatingDTO> rlist=(List<RatingDTO>)request.getAttribute("rating");
@@ -361,8 +388,10 @@ String guest = (String)session.getAttribute("guest");%>
 
 
 				<div class="card">
-					<img src="images/hotel/<%= hotel_img %>" class="card-img-top"
-						alt="...">
+					<input type="hidden" id="map1_<%=hotel_img %>" value="<%=map1%>">
+				<input type="hidden" id="map2_<%=hotel_img %>" value="<%=map2%>">
+					<img src="images/hotel/<%= hotel_img %>.jpg" class="card-img-top"
+						alt="..." data-xxx="<%= hotel_img%>">
 					<div class="card-body">
 					<%
 						for (RatingDTO ratingDTO : rlist) {

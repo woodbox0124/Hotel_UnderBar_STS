@@ -13,6 +13,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +35,9 @@ public class MemberController {
 	//시작점
 	@Autowired
 	JavaMailSender mailSender;
+	
+	@Autowired
+	BCryptPasswordEncoder pwdEncoder;
 	
 	//휴대폰 인증
 	@ResponseBody
@@ -122,16 +126,22 @@ public class MemberController {
 		String u_id = dto.getU_id();
 		
 		MemberDTO mdto = new MemberDTO();
+		String u_pw = "";
+		for(int i = 0; i <12; i++)
+		{
+			u_pw += (char)((Math.random() * 26) + 97);
+		}
+		mdto.setU_pw(u_pw);
+		mService.updatepw(u_id);
 		mdto.setU_name(u_name);
 		mdto.setU_phone(u_phone);
 		mdto.setU_email(u_email);
 		mdto.setU_id(u_id);
 		System.out.println(u_name + "\t" + u_phone + "\t" + u_email + "\t" + u_id);
-		String u_pw = mService.pwSearch(mdto);
 		xx.addFlashAttribute("mesg1", "메일을 확인해주세요.");
 		// 메일 제목, 내용
-				String subject = "비밀번호 찾기에 성공 하였습니다.";
-				String content = "고객님의 비밀번호는 "+u_pw+"입니다.";		
+				String subject = "임시 비밀번호 발급 안내입니다.";
+				String content = "고객님의 임시 비밀번호는 "+u_pw+"입니다.";		
 				// 보내는 사람
 				String from = "dltjrwhd3@naver.com";
 				
@@ -165,7 +175,8 @@ public class MemberController {
 		String u_phone = dto.getU_phone();
 		String u_email = dto.getU_email();
 		String u_id = dto.getU_id();
-		String u_pw = dto.getU_pw();
+		String inputpass = dto.getU_pw();
+		String u_pw = pwdEncoder.encode(inputpass);
 		
 		MemberDTO mdto = new MemberDTO();
 		
@@ -184,7 +195,7 @@ public class MemberController {
 			}else {
 		    session.setAttribute("mesg", "비정상적인 접근 입니다.");
 			}							
-		return "main";			
+		return "main";
 	}
 	
 	@RequestMapping("/loginCheck/myPage") //Interceptor
@@ -207,7 +218,9 @@ public class MemberController {
 		if(dto!=null) {//로그인 정보가 있는 경우					
 			MemberDTO dto1 = new MemberDTO();
 			dto1.setU_id(mdto.getU_id());
-			dto1.setU_pw(mdto.getU_pw());
+			String inputpass = mdto.getU_pw();
+			String u_pw = pwdEncoder.encode(inputpass);
+			dto1.setU_pw(u_pw);
 			dto1.setU_name(mdto.getU_name());
 			dto1.setU_phone(mdto.getU_phone());
 			dto1.setU_email(mdto.getU_email());		

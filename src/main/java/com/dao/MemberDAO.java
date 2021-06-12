@@ -64,6 +64,12 @@ public class MemberDAO {
 		session.update("MemberMapper.memberUpdate1",dto1);
 	}
 
+	public int updatepw(String u_id) 
+	{
+		int a = session.update("MemberMapper.udatepw", u_id);
+		return a;
+	}
+
 
 
 }
