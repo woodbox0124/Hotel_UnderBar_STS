@@ -107,6 +107,6 @@ public class ResvMyDTO {
 	public void setCheckresv(int checkresv) {
 		this.checkresv = checkresv;
 	}
-
+	
 	
 }

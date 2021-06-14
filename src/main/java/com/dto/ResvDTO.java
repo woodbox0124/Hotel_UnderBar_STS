@@ -14,7 +14,31 @@ public class ResvDTO
     private String resvdate;
     private int price;
     private String guest;
-    private String cancel;
+    private String checkresv;
+	public ResvDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public ResvDTO(String seq, String hotelseq, String u_id, String roomseq, String checkin, String checkout,
+			String resvdate, int price, String guest, String checkresv) {
+		super();
+		this.seq = seq;
+		this.hotelseq = hotelseq;
+		this.u_id = u_id;
+		this.roomseq = roomseq;
+		this.checkin = checkin;
+		this.checkout = checkout;
+		this.resvdate = resvdate;
+		this.price = price;
+		this.guest = guest;
+		this.checkresv = checkresv;
+	}
+	@Override
+	public String toString() {
+		return "ResvDTO [seq=" + seq + ", hotelseq=" + hotelseq + ", u_id=" + u_id + ", roomseq=" + roomseq
+				+ ", checkin=" + checkin + ", checkout=" + checkout + ", resvdate=" + resvdate + ", price=" + price
+				+ ", guest=" + guest + ", checkresv=" + checkresv + "]";
+	}
 	public String getSeq() {
 		return seq;
 	}
@@ -69,37 +93,11 @@ public class ResvDTO
 	public void setGuest(String guest) {
 		this.guest = guest;
 	}
-	public String getCancel() {
-		return cancel;
+	public String getCheckresv() {
+		return checkresv;
 	}
-	public void setCancel(String cancel) {
-		this.cancel = cancel;
+	public void setCheckresv(String checkresv) {
+		this.checkresv = checkresv;
 	}
-	public ResvDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public ResvDTO(String seq, String hotelseq, String u_id, String roomseq, String checkin, String checkout,
-			String resvdate, int price, String guest, String cancel) {
-		super();
-		this.seq = seq;
-		this.hotelseq = hotelseq;
-		this.u_id = u_id;
-		this.roomseq = roomseq;
-		this.checkin = checkin;
-		this.checkout = checkout;
-		this.resvdate = resvdate;
-		this.price = price;
-		this.guest = guest;
-		this.cancel = cancel;
-	}
-	@Override
-	public String toString() {
-		return "ResvDTO [seq=" + seq + ", hotelseq=" + hotelseq + ", u_id=" + u_id + ", roomseq=" + roomseq
-				+ ", checkin=" + checkin + ", checkout=" + checkout + ", resvdate=" + resvdate + ", price=" + price
-				+ ", guest=" + guest + ", cancel=" + cancel + "]";
-	}
-    
 	
-    
 }

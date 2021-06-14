@@ -24,19 +24,15 @@ public class NotiController {
 	@RequestMapping("/notification")
 	public ModelAndView noti_main(@RequestParam(required=false, defaultValue="1") String curPage) {
 		//noti 불러오기 + 페이징 
-		System.out.println("공지 curpage" + curPage);
 		NotiPageDTO pDTO= nService.notiList(Integer.parseInt(curPage));
 		
 		//faq 불러오기 
 		List<FaqDTO> fList = nService.faqList();
-		System.out.println("FaqDTO : "+fList);
-		
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pDTO",pDTO);
 		mav.addObject("fList",fList);
 		mav.setViewName("notification");
-		System.out.println("notiPDTO : "+pDTO.toString());
 		return mav;			
 	}
 	

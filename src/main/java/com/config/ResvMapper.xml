@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="ResvMapper">
 	<insert id="resvInsert" parameterType="ResvDTO">
 		insert into RESV
-		values(resv_seq.nextval,#{hotelseq},#{u_id},#{roomseq},#{checkin},#{checkout},SYSDATE,
-		#{price},#{guest},0)
+		values(resv_seq.nextval,#{hotelseq},#{u_id},#{roomseq},
+		#{checkin},#{checkout},SYSDATE,#{price},#{guest},0)
 	</insert>
 	<select id="resvMy" resultType="ResvMyDTO"
 		parameterType="string">

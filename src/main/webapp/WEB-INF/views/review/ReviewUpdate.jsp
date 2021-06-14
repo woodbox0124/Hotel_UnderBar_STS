@@ -122,7 +122,7 @@ String hotelname = request.getParameter("hotelname");
 <br>
 <br>
 <input type="reset" id="btn"  value="초기화">
-<input type="submit" id="btn" value="리뷰작성"/>
+<input type="submit" id="btn" value="리뷰수정"/>
 </form>
 </body>
 </html>

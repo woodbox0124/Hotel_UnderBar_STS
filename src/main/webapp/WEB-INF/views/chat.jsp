@@ -49,7 +49,6 @@
                 writeResponse("WebSocket is already opened.");
                 return;
             }
-            //ws = new WebSocket("ws://localhost:8041/echo.do");
             ws = new WebSocket("ws://localhost:8880/hotelunderbar/echo.do");
             ws.onopen = function(event){
                 if(event.data === undefined){
@@ -72,7 +71,6 @@
         }
         
         function send(){
-           // var text=document.getElementById("messageinput").value+","+document.getElementById("sender").value;
             var text = document.getElementById("messageinput").value+","+document.getElementById("sender").value;
             ws.send(text);
             text = "";
@@ -88,7 +86,7 @@
 
         function clearText(){
             console.log(messages.parentNode);
-            messages.parentNode.removeChild(messages)
+            messages.parentNode.removeChild(messages);
       	}
         
   </script>

@@ -224,9 +224,7 @@ public class MemberController {
 			dto1.setU_name(mdto.getU_name());
 			dto1.setU_phone(mdto.getU_phone());
 			dto1.setU_email(mdto.getU_email());		
-			System.out.println(dto1);
 			mService.memberUpdate(dto1);
-			System.out.println(mdto);
 			session.setAttribute("login", mdto);//다시 session에 저장
 			session.setAttribute("mesg", "회원 정보 수정 완료");	
 			nextPage = "redirect:../mypage";

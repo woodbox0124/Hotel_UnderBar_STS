@@ -18,18 +18,6 @@ public class ChatController {
 
 		private static final Logger logger = LoggerFactory.getLogger(ChatController.class);
 		
-	/*
-	 * @RequestMapping(value="/login", method = RequestMethod.GET) public String
-	 * login() { return "login"; }
-	 * 
-	 * @RequestMapping(value="/loginProcess", method = RequestMethod.POST) public
-	 * String loginprocess(@RequestParam String id, HttpServletRequest request) {
-	 * logger.info("Welcome "+id);
-	 * 
-	 * HttpSession session = request.getSession(); session.setAttribute("id", id);
-	 * return "chat"; }
-	 */
-		
 		@RequestMapping(value="/Chat", method = RequestMethod.GET)
 		public String chat(HttpServletRequest request, HttpSession session1) {
 			String id = "익명";

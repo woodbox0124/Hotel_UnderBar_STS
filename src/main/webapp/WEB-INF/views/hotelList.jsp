@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HotelUnderbar</title>
 </head>
 <body>
 	<jsp:include page="common/menu.jsp" flush="true"></jsp:include><br>

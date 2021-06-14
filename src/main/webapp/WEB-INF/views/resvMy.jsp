@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>예약내역</title>
 </head>
 <body>
 <jsp:include page="common/menu.jsp" flush="true"></jsp:include><br>

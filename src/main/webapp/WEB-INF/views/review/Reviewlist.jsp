@@ -295,7 +295,7 @@ String location = (String)session.getAttribute("location");
 	<c:when test="${!empty list.review_img}">
 	${list.writedate}<br>
   			<p class="title">${list.title}</p> 
-  			<img src="images/review/${list.review_img}" width="300" height="300">
+  			<img src='/review/img/${list.review_img}' width="300" height="300">
  			<p class="content">${list.content}</p><br>
  			<hr>
 	</c:when>
@@ -361,7 +361,7 @@ function reviewDelete(e, origin) {
 function reviewAdminDelete(e, num) {
 	e.preventDefault();
 	location.href="loginCheck/ReviewAdminDelete?num="+num;
-	alert("리뷰가 삭제 되었습니다");
+	alert("답글이 삭제 되었습니다");
 }
 
  /* $(function(){ //전체선택 체크박스 클릭

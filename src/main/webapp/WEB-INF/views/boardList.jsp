@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Q&A게시판</title>
 <link rel="stylesheet" href="assets/css/font.css" />
 <link rel="stylesheet" type="text/css" href="assets/css/default.css">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">

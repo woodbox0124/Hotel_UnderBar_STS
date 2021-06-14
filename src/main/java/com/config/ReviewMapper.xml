@@ -23,7 +23,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<select id="reviewOrder" parameterType="string" resultType="ReviewDTO">
-	select num,title, u_id, content,TO_CHAR(writedate, 'YYYY/MM/DD')writedate, origin,groupnum,hotelname,rating,review_img from review where hotelname = #{hotelname} order by origin asc,groupnum asc
+	select num,title, u_id, content,TO_CHAR(writedate, 'YYYY/MM/DD')writedate, origin,groupnum,hotelname,rating,
+	review_img from review where hotelname = #{hotelname} order by origin asc,groupnum asc
 	</select>
 	
 	<delete id="reviewDelete" parameterType="int">
@@ -35,7 +36,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<update id="reviewUpdate" parameterType="hashmap">
-	update review set title = #{title}, content = #{content}, rating = #{rating}, review_img = #{review_img}  where num = #{num}
+	update review set title = #{title}, content = #{content}, 
+	rating = #{rating}, review_img = #{review_img}  where num = #{num}
 	</update>
 	
 	<update id="reviewAdminUp" parameterType="hashmap">
@@ -68,7 +70,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     
     <select id="hotelbyrating" resultType="double" parameterType="string">
-    
      select round(avg(rating),2) rating from review where hotelname=#{hotelname}
     </select>
     

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>리뷰게시판</title>
 </head>
 <body>
 	<jsp:include page="common/menu.jsp" flush="true"/>

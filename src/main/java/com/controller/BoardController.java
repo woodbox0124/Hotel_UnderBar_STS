@@ -32,16 +32,12 @@ public class BoardController {
 	public String boardList(RedirectAttributes attr,@RequestParam(required=false, defaultValue="1") String curPage ,
 		 @RequestParam(required=false, defaultValue="title") String searchName,
 		@RequestParam(required=false, defaultValue="") String searchValue) throws Exception {
-		System.out.println(curPage);
-		System.out.println(searchName);
-		System.out.println(searchValue);
 	
 		HashMap<String, String> map= new HashMap<String, String>();
 		map.put("searchName", searchName);
 		map.put("searchValue", searchValue);		
-		System.out.println(map);
+		
 		BoardPageDTO pDTO= bService.boardList(Integer.parseInt(curPage),map);	
-		System.out.println("Controller"+pDTO);
 		attr.addFlashAttribute("pDTO",pDTO);
 		return "redirect:../boardList";
 	}
@@ -92,9 +88,7 @@ public class BoardController {
 	}
 	@RequestMapping(value="/loginCheck/boardDelete", produces="text/plain;charset=UTF-8")
 	public String boardDelete(BoardDTO bDTO) {
-		System.out.println(bDTO);
 		int num = bDTO.getNum();
-		System.out.println(num);
 		bService.boardDelete(num);
 		
 		return "redirect:../loginCheck/boardList";

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항</title>
 
 	<jsp:include page="common/menu.jsp" flush="true"></jsp:include><br>
 	<jsp:include page="noti/notification.jsp" flush="true" ></jsp:include>

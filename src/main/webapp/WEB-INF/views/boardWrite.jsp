@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시글 작성</title>
 <link rel="stylesheet" href="assets/css/font.css" />
 <link rel="stylesheet" href="assets/css/font.css" />
 <link rel="stylesheet" type="text/css" href="assets/css/default.css">
