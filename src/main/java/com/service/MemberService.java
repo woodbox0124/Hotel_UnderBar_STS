@@ -29,9 +29,9 @@ public class MemberService {
 		return n;
 	}
 
-	public MemberDTO login(HashMap<String, String> map) {
-		System.out.println(map);
-		MemberDTO dto = dao.login(map);
+	public MemberDTO login(String u_id) {
+		System.out.println(u_id);
+		MemberDTO dto = dao.login(u_id);
 		return dto;
 	}
 
@@ -70,6 +70,5 @@ public class MemberService {
 		return a;
 		
 	}
-
 
 }

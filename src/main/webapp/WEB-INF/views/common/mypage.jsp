@@ -84,7 +84,7 @@
 						<tr>
 							<th>비밀번호</th>
 							<td><input type="password" class="update pw" id="pw1"
-								value="${login.u_pw}" name="u_pw"></td>
+								 name="u_pw"></td>
 						</tr>
 						<tr>
 							<th>비밀번호 확인</th>
