@@ -60,7 +60,7 @@
 					console.log("error")
 				}
 			});//end ajax 
-		}); //end u_id
+		}); //end u_id 
 
 		
 		//약관 동의
@@ -75,6 +75,8 @@
 				return false;
 			}
 		})//end 약관동의
+		
+		
 
 		//팝업창 중앙 정렬
 		$("#Agree").click(function(){
@@ -317,9 +319,9 @@ obj.value = phone;
 			<button type="button" class="togglebtn" onclick="register()">REGISTER</button>
 		</div>
 		<div class="social-icons">
-			<img src="assets/css/images/fb.png" alt="facebook"> <img src="assets/css/images/kakao.png" alt="kakao"> <img
-				src="assets/css/images/gl.png" alt="google"
-			>
+			<a href = "https://kauth.kakao.com/oauth/authorize?client_id=7e79baaa5ce8a2ead9c31edd16ba56f9&redirect_uri=http://localhost:8880/hotelunderbar/oauth&response_type=code">
+        <img src="assets/css/images/kakao.png" alt="kakao">
+    </a>
 		</div>
 		<form id="login" action="login" class="input-group" method="post">
 			<input name="u_id" type="text" class="input-field" placeholder="Enter ID" required>
@@ -338,8 +340,8 @@ obj.value = phone;
 			</button>
 		</form>
 		<form id="register" action="#" class="input-group" method="post">
-				<c:choose>
-		<c:when test="${empty kemail}">
+		<c:choose>
+		 <c:when test="${empty kemail}">
 			<input name="u_id" id="u_id" type="text" class="input-field u_id" placeholder="아이디" required>
 			<input name="u_pw1" id="pw1" type="password" class="input-field u_pw1" placeholder="비밀번호" required>
 			<input name="u_pw" id="pw" type="password" class="input-field u_pw2" placeholder="password" required>
@@ -367,7 +369,7 @@ obj.value = phone;
 			</c:when>
 			
 			<c:when test="${!empty kemail}">
-			<input name="u_id" id="u_id" type="text" class="input-field u_id" placeholder="아이디" value="${kemail}" required>
+			<input name="u_id" id="u_id" type="text" class="input-field u_id" placeholder="아이디" required>
 			<input name="u_pw1" id="pw1" type="password" class="input-field u_pw1" placeholder="비밀번호" required>
 			<input name="u_pw" id="pw" type="password" class="input-field u_pw2" placeholder="password" required>
 			<input name="u_name" type="text" class="input-field u_name" placeholder="name" value="${name}" required>

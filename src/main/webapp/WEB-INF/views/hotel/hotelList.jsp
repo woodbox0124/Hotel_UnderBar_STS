@@ -387,7 +387,7 @@ String guest = (String)session.getAttribute("guest");%>
 				<div class="card">
 					<input type="hidden" id="map1_<%=hotel_img %>" value="<%=map1%>">
 				<input type="hidden" id="map2_<%=hotel_img %>" value="<%=map2%>">
-					<img src="images/hotel/<%= hotel_img %>" class="card-img-top"
+					<img src="images/hotel/<%= hotel_img %>.jpg" class="card-img-top"
 						alt="..." data-xxx="<%= hotel_img%>">
 					<div class="card-body">
 					<%
