@@ -269,10 +269,8 @@ String guest = (String)session.getAttribute("guest");%>
 							</select>
 						</div>
 						<div id="map">
-
 							<div id="container" class="view_map">
-								<div id="mapWrapper"
-									style="width: 100%; height: 100%; position: relative;">
+								<div id="mapWrapper" style="width: 100%; height: 100%; position: relative;">
 									<div id="map00" style="width: 100%; height: 100%"></div>
 									<!-- 지도를 표시할 div 입니다 -->
 									<input type="button" id="btnRoadview"
@@ -350,7 +348,7 @@ String guest = (String)session.getAttribute("guest");%>
 							        // 지도가 숨겨지도록 지도와 로드뷰를 감싸고 있는 div의 class를 변경합니다
 							        container.className = "view_roadview"   
 							    }
-							}
+							};
 								</script>
 							</div>
 						</div>
@@ -360,7 +358,6 @@ String guest = (String)session.getAttribute("guest");%>
 					</form>
 				</div>
 			</div>
-
 			<div class="cards">
 			
 				<%
