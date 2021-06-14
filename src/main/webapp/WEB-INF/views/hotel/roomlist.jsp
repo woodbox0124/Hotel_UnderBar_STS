@@ -110,7 +110,6 @@ img {
 		<%	
 		RoomPageDTO RpDTO = (RoomPageDTO) request.getAttribute("RpDTO");
 			String seq = (String) request.getAttribute("seq");
-			String hotelname = (String) request.getAttribute("hotelname");
 			int curPage = RpDTO.getCurPage();//현재페이지
 			int perPage = RpDTO.getPerPage();//페이지당 게시물수
 			int totalCount = RpDTO.getTotalCount();//전체 레코드수 
@@ -128,7 +127,7 @@ img {
 					out.print(i + "&nbsp;");
 				} else {
 					System.out.print("else i" + i);
-					out.print("<a style='color: black;' href ='loginCheck/roomlist?curPage=" + i + "&seq=" + seq + "&hotelname=" + hotelname + "'>" + i + "</a>&nbsp;");
+					out.print("<a style='color: black;' href ='loginCheck/roomlist?curPage=" + i + "&seq=" + seq + "'>" + i + "</a>&nbsp;");
 				} //end for		
 			}
 		%>

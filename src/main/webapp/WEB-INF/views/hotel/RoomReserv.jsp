@@ -26,9 +26,8 @@ String checkin = (String)session.getAttribute("checkin");
 String checkout = (String)session.getAttribute("checkout");
 String guest = (String)session.getAttribute("guest");
 
-String roomname = (String)session.getAttribute("roomname");
+String roomname = (String)request.getAttribute("roomname");
 String hotelname = (String)session.getAttribute("hotelname");
-int price = (int)session.getAttribute("price");
 
 MemberDTO dto = (MemberDTO) session.getAttribute("login");
 String u_id = dto.getU_id();
@@ -45,12 +44,8 @@ body{
 }
 
 .room {
-    font-size: 25px;
-    text-align: initial;
-    width: 42%;
-    height: 428px;
-    position: relative;
-    left: 27%;
+	margin-left: 8%;
+	font-size : 25px;
 }
 .number {
 	width: 60%;
@@ -61,12 +56,15 @@ body{
 	font-size: 20px;
 }
 .btn {
-	text-align: center;
-    position: relative;
-    top: 33px;
-    font-size: 27px;
-    border-radius: 10px;
-    font-family: 'twayair';
+	
+	text-align :center;
+	position: relative;
+	font-size: 50px;
+	font-weight: 500;
+	border-radius: 10px;
+	margin-left: 40%;
+	margin-bottom: 10px;
+	font-family: 'twayair';
 }
 
 .hotelseq {
@@ -78,12 +76,12 @@ form{
 }
 
 .list-caption {
-	width: 100%;
+	top : 100px;
+	background-color: white;
+	margin-left: 300px;
+	margin-right: 300px;
 	position: relative;
 	color: black;
-	top: 32px;
-	height: 535px;
-	text-align: center;
 }
 
 .main {
@@ -109,24 +107,20 @@ form{
 	<input type="hidden" name="phone" value="<%=phone%>">
 	<input type="hidden" name="price" value="${price}">
 		<div class="list-caption">
-			<p class="hotelseq">호텔이름 :
-				${hotelname}</p>
-			<br>
-
+		<p class="hotelseq" style="text-align: center;">
+				호텔이름 : ${hotelname}</p> <br>
+				
 			<div class="room">
-				객실 이름 :
-				<%=roomname%><br>
-				<br> 인원수 :
-				<%=guest%><br>
-				<br> 입실 날짜 :
-				<%=checkin%><br> 퇴실 날짜 :
-				<%=checkout%><br>
-				<br> 예약자 이름 :
-				<%=name%><br> 예약자 전화번호 :
-				<%=phone%><br>
-				<br> 요금 : <%=price%>원<br>
+				객실 이름 : <%=roomname%><br><br>
+				인원수 : <%=guest %><br><br>
+				입실 날짜 : <%=checkin %><br>
+				퇴실 날짜 : <%=checkout %><br><br>
+				예약자 이름 : <%=name%><br> 
+				예약자 전화번호 : <%=phone%><br><br>
+				요금 : ${price}원<br>
 			</div>
-			<input class="btn btn-primary input_btn" type="submit" value="결제하기" />
+			<input class="btn btn-primary input_btn" type="submit"
+							value="결제하기"/>
 		</div>
 
 	
