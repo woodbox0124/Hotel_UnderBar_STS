@@ -142,7 +142,7 @@
 											String resvdate = dto.getResvdate();
 											int guest = dto.getGuest();
 											int price = dto.getPrice();
-											int cancel = dto.getCancel();
+											int checkresv = dto.getCheckresv();
 									%>
 
 								<td class="cell100 column1"><%=seq%></td>
@@ -160,8 +160,19 @@
 										style="margin-bottom: 15px" data-xxx="<%=seq%>">취소</button>
 								</td>
 								<td>
-									<button type="button"  class="btn btn-outline-primary write"
-										style="margin-bottom: 15px" data-yyy="<%=hotelname%>">리뷰쓰기</button>
+									<%
+								if(checkresv == 0){
+								%>
+								<button type="button"  class="btn btn-outline-primary checkout"
+										style="margin-bottom: 15px" data-zzz="<%=seq%>">체크아웃</button>
+								<%
+								}else{
+								%>
+								<button type="button"  class="btn btn-outline-primary write"
+								style="margin-bottom: 15px" data-yyy="<%=hotelname%>">리뷰쓰기</button>
+								<% 
+								}
+								%>
 								</td>
 							</tr>
 
