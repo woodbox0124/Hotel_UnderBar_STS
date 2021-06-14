@@ -161,6 +161,8 @@ height: 30px;
     margin-top: 100px;
   }
   .bottom{
+  
+  
   }
   
   .common{
@@ -170,10 +172,20 @@ height: 30px;
     font-size: 15px;
 }
  
-  .wrapper{
-	width:100%;	
-}
+    }
+   
 	
+/*   summary {
+    cursor: pointer;
+  }
+
+  summary {
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  } */
+  
 </style>
 
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
@@ -195,7 +207,6 @@ String location = (String)session.getAttribute("location");
 
 
 %>
-<div class="wrapper">
 <div class="top">
 <p style="font-size:30px;margin-top: 20px;">이용후기</p>
 <small>100% 실제 투숙객이 작성한 후기입니다.</small>
@@ -304,7 +315,7 @@ String location = (String)session.getAttribute("location");
 </c:forEach>	
 </form>		
 <hr>
-<div style="font-size: 15px; text-align:center; ">
+<div style="font-size: 15px; margin-left: 390px;">
                    <%
                    ReviewPageDTO rDTO = (ReviewPageDTO)session.getAttribute("reviewlist");
                     int curPage = rDTO.getCurPage();//현재페이지
@@ -320,7 +331,6 @@ String location = (String)session.getAttribute("location");
                     }//end for
                %>
                </div></div><br>
-               </div>
                </div>
 
 <script type="text/javascript">

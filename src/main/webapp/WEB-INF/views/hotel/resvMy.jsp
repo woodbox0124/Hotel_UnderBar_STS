@@ -70,15 +70,6 @@
 				var option = "width = 500, height=600, top=100,left=200";
 				window.open(url, name, option);
 			})
-		$(".checkout").click(function(){ //체크아웃
-		 var seq = $(this).attr("data-zzz");
-		 if (confirm("체크아웃 하시겠습니까?")) {
-				alert("체크아웃 되셨습니다. 이용해주셔서 감사합니다.");
-				location.href = "loginCheck/checkout?seq=" + seq;
-			}
-			$("#form").attr("action", "loginCheck/resvMy");
-			$("#form").submit();
-		})
 	});
 	
 	window.onload = function() {
@@ -92,12 +83,7 @@
 	}
 </script>
 <!-- jQuery 끝-->
-<style type="text/css">
- .ex {
- 	text-align: center;
- 	font-size: 20px;
- }
-</style>
+
 <title>예약확인</title>
 <meta charset="utf-8">
 
@@ -121,7 +107,6 @@
 				<div class="table100 ver1 m-b-110">
 					<div class="table100-head">
 						<div class="username">${login.u_name}님의예약정보</div>
-						<div class="ex">체크아웃 시 리뷰를 작성할 수 있습니다.</div>
 						<table>
 							<!-- <thead> -->
 							<tr class="row100 head">
@@ -157,8 +142,9 @@
 											String resvdate = dto.getResvdate();
 											int guest = dto.getGuest();
 											int price = dto.getPrice();
-											int checkresv = dto.getCheckresv();
+											int cancel = dto.getCancel();
 									%>
+
 								<td class="cell100 column1"><%=seq%></td>
 								<td class="cell100 column2"><%=rating%></td>
 								<td class="cell100 column3"><%=hotelname%></td>
@@ -174,19 +160,8 @@
 										style="margin-bottom: 15px" data-xxx="<%=seq%>">취소</button>
 								</td>
 								<td>
-								<%
-								if(checkresv == 0){
-								%>
-								<button type="button"  class="btn btn-outline-primary checkout"
-										style="margin-bottom: 15px" data-zzz="<%=seq%>">체크아웃</button>
-								<%
-								}else{
-								%>
-								<button type="button"  class="btn btn-outline-primary write"
+									<button type="button"  class="btn btn-outline-primary write"
 										style="margin-bottom: 15px" data-yyy="<%=hotelname%>">리뷰쓰기</button>
-								<% 
-								}
-								%>
 								</td>
 							</tr>
 

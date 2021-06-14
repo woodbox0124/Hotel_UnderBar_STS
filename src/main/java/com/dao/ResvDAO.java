@@ -48,9 +48,4 @@ public class ResvDAO {
 		session.delete("ResvMapper.resvCancel",seq);
 	}
 
-	public void resvCheckout(int seq) {
-		session.update("ResvMapper.checkout", seq);
-		
-	}
-
 }
