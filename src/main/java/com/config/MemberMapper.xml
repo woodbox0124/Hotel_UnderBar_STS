@@ -7,10 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 insert into member(u_id, u_pw, u_name, u_email, u_phone)  
 values(#{u_id}, #{u_pw}, #{u_name}, #{u_email}, #{u_phone})
 </insert>
-<select id="login" parameterType="String" resultType="MemberDTO">
+
+<select id="login" parameterType="Hashmap" resultType="MemberDTO">
 	  select u_id ,u_pw ,u_name, u_email, u_phone, admin 
       from member
-      where u_id = #{u_id}
+      where u_id = #{u_id} and u_pw = #{u_pw}
 	</select>
 	
 	<select id="myPage" resultType="MemberDTO" parameterType="string">
