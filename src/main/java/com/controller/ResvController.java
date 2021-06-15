@@ -37,11 +37,8 @@ public class ResvController {
 			curPage = "1";
 		ResvPageDTO RpDTO = null;
 		String u_id = dto.getU_id();
-		System.out.println("회원 아이디 : " + u_id);
-		System.out.println("curPage" + curPage);
 		RpDTO = service.resvMyList(Integer.parseInt(curPage), u_id);
 		// 페이징 끝
-		System.out.println("ResvController : " + RpDTO);
 
 		attr.addFlashAttribute("RpDTO", RpDTO);
 		attr.addFlashAttribute("u_id", u_id);
@@ -56,6 +53,27 @@ public class ResvController {
 		return "redirect:../";
 	}
 
+	@RequestMapping("/loginCheck/checkout")
+	public String checkout(@RequestParam("seq") int seq, HttpSession session, HttpServletRequest request,
+			RedirectAttributes attr) {
+		service.resvCheckout(seq);
+		
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		
+		// 페이징
+		String curPage = request.getParameter("curPage");// 현재 페이지 얻기
+		if (curPage == null)
+			curPage = "1";
+		ResvPageDTO RpDTO = null;
+		String u_id = dto.getU_id();
+		RpDTO = service.resvMyList(Integer.parseInt(curPage), u_id);
+		// 페이징 끝
+
+		attr.addFlashAttribute("RpDTO", RpDTO);
+		attr.addFlashAttribute("u_id", u_id);
+		return "redirect:../resvMy";
+	}
+	
 	@RequestMapping(value = "/loginCheck/RoomReserv")
 	public String RoomReserv(ResvDTO rdto, String hotelname ,String name, String roomseq, int price,
 		String hotelseq, HttpSession session, RedirectAttributes attr, HttpServletResponse response, HttpServletRequest request) throws Exception {
@@ -66,7 +84,6 @@ public class ResvController {
 		session.setAttribute("roomname", name);
 		session.setAttribute("price", price);
 		
-		System.out.println(name);
 		String checkin = (String)session.getAttribute("checkin");
         String guest = (String)session.getAttribute("guest");
 		  HashMap<String, String> map = new HashMap<String, String>();
@@ -74,10 +91,7 @@ public class ResvController {
 		  map.put("checkin",checkin);
 		  int n = rservice.reserved(map);
 		  int MaxGuest = rservice.selectMaxGuest(roomseq);
-		  System.out.println("n : " + n);
-		  System.out.println("최대 인원수: "+MaxGuest);
 		  if(Integer.parseInt(guest)>MaxGuest){
-		  System.out.println("불통");
 		  }
 		  String nextPage = null;
           if(Integer.parseInt(guest)>MaxGuest) {
@@ -86,7 +100,6 @@ public class ResvController {
           }else if(n==1) {			  
 			  nextPage = "redirect:../historyback";
 		  }else if(n!=1&&Integer.parseInt(guest)<=MaxGuest) {
-			  System.out.println("통과");
 			 nextPage = "redirect:../RoomReserv";
 		  }		 
 			return nextPage;
@@ -127,16 +140,4 @@ public class ResvController {
 		return "redirect:../loginCheck/resvMy";
 	}
 
-	/*
-	 * @RequestMapping(value = "/payFail") public String PayFail(HttpServletRequest
-	 * request, HttpServletResponse response, HttpSession session, String checkin,
-	 * String checkout, String guest, String location) throws ServletException,
-	 * IOException {
-	 *
-	 * session.setAttribute("checkin", checkin); session.setAttribute("checkout",
-	 * checkout); session.setAttribute("guest", guest);
-	 * session.setAttribute("location", location);
-	 *
-	 * return "hotelList"; }
-	 */
 }

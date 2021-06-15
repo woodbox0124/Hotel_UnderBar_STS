@@ -70,6 +70,15 @@
 				var option = "width = 500, height=600, top=100,left=200";
 				window.open(url, name, option);
 			})
+		$(".checkout").click(function(){ //체크아웃
+		 var seq = $(this).attr("data-zzz");
+		 if (confirm("체크아웃 하시겠습니까?")) {
+				alert("체크아웃 되셨습니다. 이용해주셔서 감사합니다.");
+				location.href = "loginCheck/checkout?seq=" + seq;
+			}
+			$("#form").attr("action", "loginCheck/resvMy");
+			$("#form").submit();
+		})
 	});
 	
 	window.onload = function() {
