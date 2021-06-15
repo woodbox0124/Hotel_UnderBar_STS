@@ -30,9 +30,10 @@
 		})
 		
 		$(".card-img-top").on("click", function() {
-			var data = $(this).attr("data-xxx");
-			var map1 = $("#map1_" + data).val();
-			var map2 = $("#map2_" + data).val();
+			var data = $(this).attr("data-xxx");		
+			console.log(data);
+			var map1 = $("#map1_"+data).val();
+			var map2 = $("#map2_"+data).val();
 			console.log("좌표 : " + map1 + map2);				
 			$.ajax({
 				type: "post",
@@ -377,17 +378,16 @@ String guest = (String)session.getAttribute("guest");%>
 				String hotel_img_real = dto.getHotel_img_real();
 				String map1 = dto.getMaplocation1();
 				String map2 = dto.getMaplocation2();
-				
-				
+				hotel_img = hotel_img.replace(".jpg", "");			
 				List<RatingDTO> rlist=(List<RatingDTO>)request.getAttribute("rating");
 				
 				%>
 
 
 				<div class="card">
-					<input type="hidden" id="map1_<%=hotel_img %>" value="<%=map1%>">
-				<input type="hidden" id="map2_<%=hotel_img %>" value="<%=map2%>">
-					<img src="images/hotel/<%= hotel_img %>.jpg" class="card-img-top"
+				<input type="hidden" id="map1_<%=hotel_img%>" value="<%=map1%>">
+				<input type="hidden" id="map2_<%=hotel_img%>" value="<%=map2%>">
+					<img src="images/hotel/<%= hotel_img%>.jpg" class="card-img-top"
 						alt="..." data-xxx="<%= hotel_img%>">
 					<div class="card-body">
 					<%
