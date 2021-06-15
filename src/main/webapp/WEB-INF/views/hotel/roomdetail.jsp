@@ -170,6 +170,10 @@ function doDisplay() {
     top: 47px;
     left: 7.5%;
 }
+#cc{
+margin-right: 150px;
+    margin-top: 50px;
+}
 </style>
 </head>
 <body>
@@ -223,23 +227,19 @@ String guest = (String)session.getAttribute("guest");
 	<div  id="cc">
 	
 	 <div class="slideshow-container">
-       <div class="mySlides fadein" >
+      
         <img src="${pageContext.request.contextPath}/images/room/${x.room_img}" style="width:100%; "> 
-      </div>
-      <div class="mySlides fadein">
-        <img src="${pageContext.request.contextPath}/images/room/${x.room_img_real}" style="width:100%;">
-      </div>
+     
+      
     
       <!-- Next and previous buttons -->
-      <a class="prev" onclick="moveSlides(-1)">&#10094;</a>
-      <a class="next" onclick="moveSlides(1)">&#10095;</a>
+    
     </div>
   
     <!-- The dots/circles -->
     <div id ="ff">
     <div>
-      <span class="dot" onclick="currentSlide(0)"></span>
-      <span class="dot" onclick="currentSlide(1)"></span>
+   
     </div>
     
    
