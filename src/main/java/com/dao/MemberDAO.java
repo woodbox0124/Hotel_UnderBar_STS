@@ -29,8 +29,8 @@ public class MemberDAO {
 		return n;
 	}
 
-	public MemberDTO login(HashMap<String, String> map) {
-		MemberDTO dto = session.selectOne("MemberMapper.login", map);
+	public MemberDTO login(String u_id) {
+		MemberDTO dto = session.selectOne("MemberMapper.login", u_id);
 		System.out.println(dto);
 		return dto;
 	}
