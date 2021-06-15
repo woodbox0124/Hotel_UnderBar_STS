@@ -13,7 +13,6 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,10 +34,6 @@ public class MemberController {
 	//시작점
 	@Autowired
 	JavaMailSender mailSender;
-	
-	@Autowired
-	BCryptPasswordEncoder pwdEncoder;
-	
 	//휴대폰 인증
 	@ResponseBody
 	@RequestMapping(value = "/phone", method = RequestMethod.POST)
@@ -175,8 +170,7 @@ public class MemberController {
 		String u_phone = dto.getU_phone();
 		String u_email = dto.getU_email();
 		String u_id = dto.getU_id();
-		String inputpass = dto.getU_pw();
-		String u_pw = pwdEncoder.encode(inputpass);
+		String u_pw = dto.getU_pw();
 		
 		MemberDTO mdto = new MemberDTO();
 		
@@ -218,9 +212,7 @@ public class MemberController {
 		if(dto!=null) {//로그인 정보가 있는 경우					
 			MemberDTO dto1 = new MemberDTO();
 			dto1.setU_id(mdto.getU_id());
-			String inputpass = mdto.getU_pw();
-			String u_pw = pwdEncoder.encode(inputpass);
-			dto1.setU_pw(u_pw);
+			dto1.setU_pw(mdto.getU_pw());
 			dto1.setU_name(mdto.getU_name());
 			dto1.setU_phone(mdto.getU_phone());
 			dto1.setU_email(mdto.getU_email());		

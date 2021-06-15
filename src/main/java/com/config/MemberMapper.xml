@@ -10,7 +10,7 @@ values(#{u_id}, #{u_pw}, #{u_name}, #{u_email}, #{u_phone})
 <select id="login" parameterType="String" resultType="MemberDTO">
 	  select u_id ,u_pw ,u_name, u_email, u_phone, admin 
       from member
-      where u_id = #{u_id}
+      where u_id = #{u_id} and u_pw = #{u_pw}
 	</select>
 	
 	<select id="myPage" resultType="MemberDTO" parameterType="string">
