@@ -77,11 +77,10 @@ public class HotelController {
 	}
 
 	@RequestMapping(value = "/mapchange", method = RequestMethod.POST)
-	public @ResponseBody String mapchange(String map1, String map2, HttpSession session) {
+	public @ResponseBody void mapchange(String map1, String map2, HttpSession session) {
 		System.out.println("mapchange : " + map1 + " " + map2);
 		session.setAttribute("maploc1", map1);
 		session.setAttribute("maploc2", map2);
-		return "ok";
 	}
 
 	@RequestMapping("/hotelList")
