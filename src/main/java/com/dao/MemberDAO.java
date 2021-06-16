@@ -71,4 +71,9 @@ public class MemberDAO {
 		return a;
 	}
 
+	public int memberCheck(MemberDTO mdto) {
+		int n = session.selectOne("MemberMapper.memberCheck", mdto);
+		return n;
+	}
+
 }

@@ -38,16 +38,11 @@
     <input type="text" name="price" class="input" style = "text-align:center;" required/><br><br>
     <h4>최대인원</h4>
     <input type="text" name="max_guest" style = "text-align:center;" required/><br><br>
-    <h4>객실사진1</h4>
+    <h4>객실사진</h4>
       ※사진파일명을 아래에 객실 사진이름과 동일하게 수정 후 업로드 바랍니다.<br>
         객실 사진이름: ROOM${room_seq+1}<br>        
         객실 사진:<input type="file" name="theFile">
     <br><br><br>
-    <h4>객실사진2</h4>
-      ※사진파일명을 아래에 사진이름과 동일하게 수정 후 업로드 바랍니다.<br>
-       사진이름:ROOM${room_seq+1}_1<br>
-        객실 자세히 사진:<input type="file" name="theFile1">
-    <br><br>
     </div>
  <div class="main">
    <h2>객실 자세히 보기 정보</h2><br><br>

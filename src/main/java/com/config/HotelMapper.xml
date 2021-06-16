@@ -121,8 +121,8 @@ select SEQ_ROOM.nextval from dual
 <!-- 객실 seq 가져오기 -->
 <!-- 객실 추가 -->
 <insert id="roomInsert" parameterType="RoomInsertDTO">
-insert into room (seq, name, hotelseq, price, max_guest, room_img, room_img_real) 
- values (seq_room.nextval, #{name}, #{hotelseq}, #{price}, #{max_guest}, #{room_img}, #{room_img_real})
+insert into room (seq, name, hotelseq, price, max_guest, room_img) 
+ values (seq_room.nextval, #{name}, #{hotelseq}, #{price}, #{max_guest}, #{room_img})
 </insert>
 <!-- 객실 추가 -->
 <!-- 객실 자세한 정보 추가 -->

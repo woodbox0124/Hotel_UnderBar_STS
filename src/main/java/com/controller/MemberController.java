@@ -124,25 +124,26 @@ public class MemberController {
 		String u_phone = dto.getU_phone();
 		String u_email = dto.getU_email();
 		String u_id = dto.getU_id();
-		
 		MemberDTO mdto = new MemberDTO();
-		String u_pw = "";
-		for(int i = 0; i <12; i++)
-		{
-			u_pw += (char)((Math.random() * 26) + 97);
-		}
-		mdto.setU_pw(u_pw);
 		mdto.setU_name(u_name);
 		mdto.setU_phone(u_phone);
 		mdto.setU_email(u_email);
 		mdto.setU_id(u_id);
-		
+		int n = mService.memberCheck(mdto);
+		if (n==0) {//db에 일치 데이터 없음
+			xx.addFlashAttribute("mesg", "아이디, 메일, 이름, 핸드폰 번호를 확인해주시길 바랍니다.");
+		}else{			
+		String u_pw = "";
+		for(int i = 0; i <12; i++)
+		{
+			u_pw += (char)((Math.random() * 26) + 97);
+		}	
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("u_id", u_id);
 		map.put("u_pw", u_pw);
 		mService.updatepw(map);
 		
-		System.out.println(u_name + "\t" + u_phone + "\t" + u_email + "\t" + u_id);
+		System.out.println("성공==========="+u_name + "\t"+u_pw+"\t"+ u_phone + "\t" + u_email + "\t" + u_id);
 		xx.addFlashAttribute("mesg1", "메일을 확인해주세요.");
 		// 메일 제목, 내용
 				String subject = "임시 비밀번호 발급 안내입니다.";
@@ -171,6 +172,7 @@ public class MemberController {
 					e.printStackTrace();
 				}			
 		System.out.println("searchPw 불러옴" + u_pw);
+			}
 		return "redirect:/searchId";			
 	}
 	

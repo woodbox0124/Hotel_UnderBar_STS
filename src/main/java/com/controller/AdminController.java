@@ -295,23 +295,16 @@ public class AdminController {
 		rifDTO.setInternet(internet);
 		rifDTO.setEtc(etc);
 		CommonsMultipartFile theFile = riDTO.getTheFile();
-		CommonsMultipartFile theFile1 = riDTO.getTheFile1();
 		String originalFileName = theFile.getOriginalFilename();
-		String originalFileName1 = theFile1.getOriginalFilename();
 		File f = new File("C:\\Shop_STS\\WORKSHOP\\Hotel_UnderBar_STS\\src\\main\\webapp\\WEB-INF\\views\\images\\room",
-				originalFileName);
-		File f1 = new File(
-				"C:\\Shop_STS\\WORKSHOP\\Hotel_UnderBar_STS\\src\\main\\webapp\\WEB-INF\\views\\images\\room",
-				originalFileName1); 
+				originalFileName);		
 		 riDTO.setRoom_img(originalFileName);
-		 riDTO.setRoom_img_real(originalFileName1);
 		int n = rService.roomInsert(riDTO);
 		int n1 = rService.roomInfoInsert(rifDTO);
 		System.out.println(n+"객실 추가 성공");
 		System.out.println(n1+"객싱 자세한 정보 추가 성공");
 		try {
 			theFile.transferTo(f);
-			theFile.transferTo(f1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -72,4 +72,9 @@ public class MemberService {
 		
 	}
 
+	public int memberCheck(MemberDTO mdto) {
+		int n = dao.memberCheck(mdto);
+		return n;
+	}
+
 }
