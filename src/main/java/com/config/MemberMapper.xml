@@ -62,7 +62,7 @@ update member set
 	u_email=#{u_email}
 	</select>		
 	
-	<update id="updatepw">
+	<update id="updatepw" parameterType="hashmap">
 	update member set u_pw = #{u_pw} where u_id = #{u_id}
 	</update>
 </mapper>

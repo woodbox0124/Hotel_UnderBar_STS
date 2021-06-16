@@ -3,6 +3,7 @@ package com.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -127,11 +128,16 @@ public class MemberController {
 			u_pw += (char)((Math.random() * 26) + 97);
 		}
 		mdto.setU_pw(u_pw);
-		mService.updatepw(u_id);
 		mdto.setU_name(u_name);
 		mdto.setU_phone(u_phone);
 		mdto.setU_email(u_email);
 		mdto.setU_id(u_id);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("u_id", u_id);
+		map.put("u_pw", u_pw);
+		mService.updatepw(map);
+		
 		System.out.println(u_name + "\t" + u_phone + "\t" + u_email + "\t" + u_id);
 		xx.addFlashAttribute("mesg1", "메일을 확인해주세요.");
 		// 메일 제목, 내용
