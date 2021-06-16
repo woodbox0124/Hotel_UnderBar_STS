@@ -83,6 +83,9 @@ public class MemberController {
 		mdto.setU_email(u_email);
 		System.out.println(u_name + "\t" + u_phone + "\t" + u_email);
 		String u_id = mService.idSearch(mdto);
+		if (u_id==null) {//db에 일치 데이터 없음
+		xx.addFlashAttribute("mesg", "메일, 이름, 핸드폰 번호를 확인해주시길 바랍니다.");
+		}else {
 		xx.addFlashAttribute("mesg1", "메일을 확인해주세요.");
 		// 메일 제목, 내용
 		String subject = "아이디 찾기에 성공 하였습니다.";
@@ -111,6 +114,7 @@ public class MemberController {
 			e.printStackTrace();
 		}		
 		System.out.println("searchId 불러옴" + u_id);
+		}
 		return "redirect:/searchId";			
 	}	
 	@RequestMapping(value = "/MemberPwSearch")
@@ -127,7 +131,6 @@ public class MemberController {
 			u_pw += (char)((Math.random() * 26) + 97);
 		}
 		mdto.setU_pw(u_pw);
-		mService.updatepw(u_id);
 		mdto.setU_name(u_name);
 		mdto.setU_phone(u_phone);
 		mdto.setU_email(u_email);

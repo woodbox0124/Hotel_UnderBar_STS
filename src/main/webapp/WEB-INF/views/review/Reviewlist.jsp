@@ -306,7 +306,7 @@ String location = (String)session.getAttribute("location");
 	<c:when test="${!empty list.review_img}">
 	${list.writedate}<br>
   			<p class="title">${list.title}</p> 
-  			<img src='/review/img/${list.review_img}' width="300" height="300">
+  			<img src='images/review/${list.review_img}' width="300" height="300">
  			<p class="content">${list.content}</p><br>
  			<hr>
 	</c:when>

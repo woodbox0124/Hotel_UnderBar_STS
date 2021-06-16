@@ -68,7 +68,7 @@ rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbi
 					<img class="card-img-top" src="images/uploadImg/${eDTO.eventImg }" alt="이벤트">
 					<div class="card-body">
 						<h5 class="card-title">${eDTO.subject }</h5>
-						<a class="card-text" href="">${eDTO.content }</a>
+						
 						<a href="eventRetrieve?code=${eDTO.code}" class="btn btn-primary">click</a>
 					</div>
 					

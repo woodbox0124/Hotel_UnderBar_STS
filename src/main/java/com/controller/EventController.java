@@ -51,7 +51,8 @@ public class EventController {
 	public String eve_insert(EventDTO dto, MultipartFile[] uploadFile, Model model) {
 		System.out.println("찍히는 dto는 ?"+dto);
 		System.out.println(uploadFile);
-		String uploadFolder = "/Users/bitna/Documents/GitHub/Hotel_UnderBar_STS/src/main/webapp/WEB-INF/views/images/uploadImg";
+		//String uploadFolder = "/Users/bitna/Documents/GitHub/Hotel_UnderBar_STS/src/main/webapp/WEB-INF/views/images/uploadImg";
+		String uploadFolder = "C:\\Shop_STS\\WORKSHOP\\Hotel_UnderBar_STS\\src\\main\\webapp\\WEB-INF\\views\\images\\uploadImg";
 		for(MultipartFile multipartFile : uploadFile) {
 			System.out.println("===============");
 			System.out.println("upload file name :" + multipartFile.getOriginalFilename());
