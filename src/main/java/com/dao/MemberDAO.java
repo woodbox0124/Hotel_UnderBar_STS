@@ -1,6 +1,7 @@
 package com.dao;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,9 +65,9 @@ public class MemberDAO {
 		session.update("MemberMapper.memberUpdate1",dto1);
 	}
 
-	public int updatepw(String u_id) 
+	public int updatepw(Map<String, String> map) 
 	{
-		int a = session.update("MemberMapper.updatepw", u_id);
+		int a = session.update("MemberMapper.updatepw", map);
 		return a;
 	}
 

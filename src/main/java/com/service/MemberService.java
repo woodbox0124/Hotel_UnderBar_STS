@@ -1,6 +1,7 @@
 package com.service;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,9 +65,9 @@ public class MemberService {
 		dao.memberUpdate1(dto1);		
 	}
 
-	public int updatepw(String u_id) 
+	public int updatepw(Map<String, String> map) 
 	{
-		int a= dao.updatepw(u_id);
+		int a= dao.updatepw(map);
 		return a;
 		
 	}
