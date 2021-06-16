@@ -46,4 +46,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	UPDATE RESV SET CHECKRESV = 1 WHERE SEQ = #{seq}
 	</update>
 	
+	
+	
 </mapper>

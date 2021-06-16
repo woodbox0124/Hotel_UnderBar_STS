@@ -132,4 +132,7 @@ insert into roominfo (r_seq, bath, eat, internet, etc)
 </insert>
 <!-- 객실 자세한 정보 추가 -->
 <!-- 객실 관리  -->
+<select id="reserved" parameterType="hashmap" resultType="int">
+	select count(*) from resv where roomseq = #{roomseq} and checkin = #{checkin}
+	</select>
 </mapper>

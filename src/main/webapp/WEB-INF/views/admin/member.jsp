@@ -126,7 +126,6 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 		<tr id = "ab">
 			<td style="color: white;" width="70">이  름</td>
 			<td style="color: white;" width="70">아이디</td>
-			<td style="color: white;" width="70">비밀 번호</td>
 			<td style="color: white;" width="70">전화번호</td>
 			<td style="color: white;" width="120">이메일</td>
 			<td style="color: white;" width="50">수정</td>
@@ -138,7 +137,7 @@ text-overflow: ellipsis; white-space: nowrap; max-width: 40px; /* 40px를 넘어
 		<tr class="tr">
 			<td class="normal name${item.u_id}">${item.u_name}</td>
 			<td class="normal">${item.u_id}</td>
-			<td class="normal pw${item.u_id}">${item.u_pw}</td>
+			<%-- <td class="normal pw${item.u_id}">${item.u_pw}</td> --%>
 			<td class="normal phone${item.u_id}">${item.u_phone}</td>
 			<td class="normal email${item.u_id}">${item.u_email}</td>
 			<td class="normal"><input type="button" value="수정" class="btn btn-primary update" data-id="${item.u_id}"></td>

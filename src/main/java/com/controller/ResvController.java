@@ -91,6 +91,7 @@ public class ResvController {
 		  map.put("checkin",checkin);
 		  int n = rservice.reserved(map);
 		  int MaxGuest = rservice.selectMaxGuest(roomseq);
+		  System.out.println("예약된방이드아아아아아====="+n);
 		  if(Integer.parseInt(guest)>MaxGuest){
 		  }
 		  String nextPage = null;

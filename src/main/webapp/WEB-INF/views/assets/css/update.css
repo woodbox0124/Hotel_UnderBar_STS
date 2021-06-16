@@ -13,3 +13,6 @@
 	margin: 0 auto;
 	text-align: center;
 }
+input[type=password]{
+	font-family: 'sans-serif';
+}

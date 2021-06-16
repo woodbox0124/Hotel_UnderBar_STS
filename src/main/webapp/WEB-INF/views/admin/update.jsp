@@ -61,7 +61,7 @@ $(document).ready(function() {
 
 이름: <input type="text" id="u_name" value="${mdto.u_name}"/><br><br>
 
-비밀번호: <input type="text" id="u_pw" value="${mdto.u_pw}"/><br><br>
+비밀번호: <input type="password" id="u_pw" value="${mdto.u_pw}"/><br><br>
 
 전화번호:<input type="text" id="u_phone" value="${mdto.u_phone}"/><br><br>
 
