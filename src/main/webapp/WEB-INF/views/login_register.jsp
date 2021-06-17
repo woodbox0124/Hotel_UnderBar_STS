@@ -388,12 +388,6 @@ obj.value = phone;
 				IN</button>
 			<button type="button" class="togglebtn" onclick="register()">REGISTER</button>
 		</div>
-		<div class="social-icons">
-			<a
-				href="https://kauth.kakao.com/oauth/authorize?client_id=7e79baaa5ce8a2ead9c31edd16ba56f9&redirect_uri=http://localhost:8880/hotelunderbar/oauth&response_type=code">
-				<img src="assets/css/images/kakao.png" alt="kakao">
-			</a>
-		</div>
 		<form id="login" action="login" class="input-group" method="post">
 			<input name="u_id" type="text" class="input-field"
 				placeholder="Enter ID" required> <input name="u_pw"
@@ -413,12 +407,12 @@ obj.value = phone;
 			<c:choose>
 				<c:when test="${empty kemail}">
 					<input name="u_id" id="u_id" type="text" class="input-field u_id"
-						placeholder="아이디" required>
+						placeholder="id" required>
 					<button type="button" class="id_check_button">중복검사</button>
 					<img class="id_check_img" style="display: none;"
 						src="images/icon/ID_Check.PNG">
 					<input name="u_pw1" id="pw1" type="password"
-						class="input-field u_pw1" placeholder="비밀번호" required>
+						class="input-field u_pw1" placeholder="password" required>
 					<input name="u_pw" id="pw" type="password"
 						class="input-field u_pw2" placeholder="password" required>
 					<input name="u_name" type="text" class="input-field u_name"
