@@ -18,7 +18,6 @@ public boolean preHandle(HttpServletRequest request, HttpServletResponse respons
 		response.sendRedirect("../login_register");//servlet-context.xml 
 		return false;  //주의
 	}else {
-		System.out.println("나 interceptor들림 ");
 		return true; //주의
 	}
 }

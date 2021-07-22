@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="searchName=='author'">
 			where author LIKE '%'||#{searchValue}||'%'
 		</if>
-		order by origin desc,grouplayer,groupnum asc
+		order by origin desc,groupnum asc
 	</select>
 	<!-- 게시글 목록 -->
 
@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			where author LIKE '%'||#{searchValue}||'%'
 		</if>
 
-		order by origin desc,grouplayer,groupnum asc
+		order by origin desc,groupnum asc
 	</select>
 	<!-- 검색 기능 -->
 	

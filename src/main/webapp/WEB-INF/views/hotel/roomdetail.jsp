@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>객실 정보 자세히보기</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- 글꼴 CSS 시작-->
 <link rel="stylesheet" type="text/css" href="assets/css/font.css">
@@ -180,11 +180,6 @@ margin-right: 150px;
 <%
 MemberDTO mdto = (MemberDTO)session.getAttribute("login");
 String u_id = mdto.getU_id();
-
-String location = (String)session.getAttribute("location");
-String checkin = (String)session.getAttribute("checkin");
-String checkout = (String)session.getAttribute("checkout");
-String guest = (String)session.getAttribute("guest");
 %>
 <div id ="main">
 <div id ="herder">객실정보</div><br>
@@ -229,9 +224,7 @@ String guest = (String)session.getAttribute("guest");
 	 <div class="slideshow-container">
       
         <img src="${pageContext.request.contextPath}/images/room/${x.room_img}" style="width:100%; "> 
-     
-      
-    
+        
       <!-- Next and previous buttons -->
     
     </div>

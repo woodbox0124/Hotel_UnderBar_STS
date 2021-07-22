@@ -3,7 +3,6 @@ package com.controller;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +42,6 @@ public class ResvController {
 		attr.addFlashAttribute("RpDTO", RpDTO);
 		attr.addFlashAttribute("u_id", u_id);
 		return "redirect:../resvMy";
-
-
 	}
 	 //예약 취소
 	@RequestMapping("/loginCheck/resvCancel")
@@ -76,7 +73,7 @@ public class ResvController {
 	
 	@RequestMapping(value = "/loginCheck/RoomReserv")
 	public String RoomReserv(ResvDTO rdto, String hotelname ,String name, String roomseq, int price,
-		String hotelseq, HttpSession session, RedirectAttributes attr, HttpServletResponse response, HttpServletRequest request) throws Exception {
+		String hotelseq, HttpSession session, RedirectAttributes attr, HttpServletRequest request) throws Exception {
 		
 		attr.addFlashAttribute("hotelseq", hotelseq);
 		attr.addFlashAttribute("roomseq", roomseq);
@@ -91,7 +88,6 @@ public class ResvController {
 		  map.put("checkin",checkin);
 		  int n = rservice.reserved(map);
 		  int MaxGuest = rservice.selectMaxGuest(roomseq);
-		  System.out.println("예약된방이드아아아아아====="+n);
 		  if(Integer.parseInt(guest)>MaxGuest){
 		  }
 		  String nextPage = null;
@@ -134,8 +130,6 @@ public class ResvController {
 		  dto.setCheckout(checkout);
 		  dto.setPrice(price);
 		  dto.setGuest(guest);
-
-		 System.out.println(dto);
 		int n = service.resvInsert(dto);
 
 		return "redirect:../loginCheck/resvMy";

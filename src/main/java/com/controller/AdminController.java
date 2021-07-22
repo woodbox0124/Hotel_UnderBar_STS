@@ -1,11 +1,12 @@
+
+
+
 package com.controller;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,15 +51,10 @@ public class AdminController {
 			@RequestParam(required = false, defaultValue = "id") String searchName,
 			@RequestParam(required = false, defaultValue = "") String searchValue, HttpSession session)
 			throws Exception {
-		System.out.println(curPage);
-		System.out.println(searchName);
-		System.out.println(searchValue);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("searchName", searchName);
 		map.put("searchValue", searchValue);
-		System.out.println(map);
 		AdminMemberPageDTO ampDTO = service.adminMember(Integer.parseInt(curPage), map);
-		System.out.println("Controller" + ampDTO);
 		session.setAttribute("ampDTO", ampDTO);
 		return "redirect:../adminMember";
 	}
@@ -73,6 +69,7 @@ public class AdminController {
 		map.put("searchName", searchName);
 		map.put("searchValue", searchValue);
 		List<MemberDTO> list = service.serachName(map);
+		
 		System.out.println(list);
 		attr.addFlashAttribute("member", list);
 		return "redirect:../adminMember";
@@ -104,11 +101,6 @@ public class AdminController {
 			@RequestParam(required = false, defaultValue = "id") String searchName,
 			@RequestParam(required = false, defaultValue = "") String searchValue, HttpSession session) {
 		MemberDTO dto1 = new MemberDTO();
-		System.out.println(u_id);
-		System.out.println(u_pw);
-		System.out.println(u_name);
-		System.out.println(u_phone);
-		System.out.println(u_email);
 		dto1.setU_id(u_id);
 		dto1.setU_pw(u_pw);
 		dto1.setU_name(u_name);
@@ -120,9 +112,7 @@ public class AdminController {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("searchName", searchName);
 		map.put("searchValue", searchValue);
-		System.out.println(map);
 		AdminMemberPageDTO ampDTO = service.adminMember(Integer.parseInt(curPage), map);
-		System.out.println("Controller" + ampDTO);
 		session.setAttribute("ampDTO", ampDTO);
 	}
 
@@ -148,17 +138,13 @@ public class AdminController {
 	// 호텔정보 삭제 기능입니다.
 	@RequestMapping("/loginCheck/HotelDelete")
 	public @ResponseBody void hDelete(@RequestParam("seq") String seq) {
-		System.out.println("넘어온 호텔 아이디" + seq);
 		int n = hService.HotelDelete(seq);
-		System.out.println(n + "개 삭제 성공");
 	}
 
 	// 호텔 정보 수정을 위해 자식창으로 정보 전달을 위한 기능입니다.
 	@RequestMapping("/loginCheck/hotelSelect")
 	public String hotelSelect(@RequestParam("seq") String seq, RedirectAttributes att) {
-		System.out.println(seq);
 			HotelDTO hDTO = hService.hotelSelect(seq);
-			System.out.println(hDTO);
 			att.addFlashAttribute("hDTO", hDTO);
 			return "redirect:../admin/hotelupdate";
 			}
@@ -166,7 +152,6 @@ public class AdminController {
 	@RequestMapping("/loginCheck/hotelInsertGO")
 	public String hotelInsertGO(HttpSession session) {
 			int seq = hService.hotelInsertGO();
-			System.out.println(seq);
 			session.setAttribute("seq", seq);
 			return "redirect:../admin/hotelinsert";
 			}
@@ -257,17 +242,13 @@ public class AdminController {
 	// 객실 삭제 기능
 	@RequestMapping("/loginCheck/RoomDelete")
 	public @ResponseBody void rDelete(@RequestParam("seq") String seq) {
-		System.out.println("객실 번호  : " + seq);
 		int n = rService.roomDelete(seq);
-		System.out.println("삭제된 갯수 : " + n);
 	}
 
 	// 객실 정보 수정을 위해 자식창으로 정보 전달을 위한 기능입니다.
 	@RequestMapping("/loginCheck/roomSelect")
 	public String roomSelect(@RequestParam("seq") String seq, RedirectAttributes att) {
-		System.out.println(seq);
 		RoomDTO rDTO = rService.roomSelect(seq);
-		System.out.println(rDTO);
 		att.addFlashAttribute("rDTO", rDTO);
 		return "redirect:../admin/roomupdate";
 	}
@@ -276,14 +257,11 @@ public class AdminController {
 	public String roomInsertGo(@RequestParam("seq") int seq, HttpSession session) {
 			int hotel_seq = seq;
 		    int room_seq = rService.roomInsertGo();
-			System.out.println(hotel_seq);
-			System.out.println(room_seq);
 			session.setAttribute("hotel_seq", hotel_seq);
 			session.setAttribute("room_seq", room_seq);
 			return "redirect:../admin/roominsert";
 			}
-	// 객실 추가 기능입니다.
-	
+	// 객실 추가 기능입니다.	
 	@RequestMapping("/loginCheck/roomInsert")
 	public String roomInsert(RoomInsertDTO riDTO, @RequestParam("r_seq") String r_seq,
 			@RequestParam("bath") String bath, @RequestParam("eat") String eat,
@@ -301,8 +279,6 @@ public class AdminController {
 		 riDTO.setRoom_img(originalFileName);
 		int n = rService.roomInsert(riDTO);
 		int n1 = rService.roomInfoInsert(rifDTO);
-		System.out.println(n+"객실 추가 성공");
-		System.out.println(n1+"객싱 자세한 정보 추가 성공");
 		try {
 			theFile.transferTo(f);
 		} catch (Exception e) {
@@ -318,26 +294,15 @@ public class AdminController {
 					@RequestParam(required = false, defaultValue = "roomname") String searchName,
 					@RequestParam(required = false, defaultValue = "") String searchValue, HttpSession session)
 					throws Exception {
-				String seq = ruDTO.getSeq();
-				String name = ruDTO.getName();
-				int price = ruDTO.getPrice();
-				int max_guest = ruDTO.getMax_guest();
-				String room_img = ruDTO.getRoom_img();
 				CommonsMultipartFile theFile = ruDTO.getTheFile();
 				String originalFileName = theFile.getOriginalFilename();
-				System.out.println(
-						seq + "\t" + name + "\t" + price + "\t" + room_img + "\t" + originalFileName);
+
 				File f = new File("C:\\upload", originalFileName);
 				int n = rService.roomUpdate(ruDTO);
-				System.out.println(curPage);
-				System.out.println(searchName);
-				System.out.println(searchValue);
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put("searchName", searchName);
 				map.put("searchValue", searchValue);
-				System.out.println(map);
 				AdminRoomPageDTO arpDTO = service.adminRoom(Integer.parseInt(curPage), map);
-				System.out.println("Controller" + arpDTO);
 				session.setAttribute("arpDTO", arpDTO);
 				session.setAttribute("updatecomplete", n);
 				try {

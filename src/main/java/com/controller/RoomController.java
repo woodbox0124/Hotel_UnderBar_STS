@@ -19,12 +19,9 @@ import com.dto.RoomPageDTO;
 import com.service.RoomService;
 
 @Controller
-public class RoomController 
-{
+public class RoomController {
 	@Autowired
 	RoomService service;
-	
-	
 	
 	@RequestMapping(value = "/loginCheck/roomlist")
 	public String RoomList(RoomDTO rDTO,String hotelname, String place, HttpServletRequest request, HttpSession session, RedirectAttributes attr)
@@ -35,24 +32,17 @@ public class RoomController
 			curPage = "1";
 			RoomPageDTO RpDTO = null;
 			String seq = rDTO.getSeq();
-			System.out.println("객실 번호 : " + seq);
-			System.out.println("curPage" + curPage);
 			RpDTO = service.roomListpage(Integer.parseInt(curPage), seq);
 
 			attr.addFlashAttribute("RpDTO", RpDTO);
 			attr.addFlashAttribute("hotelname", hotelname);
 			attr.addFlashAttribute("place", place);
 			attr.addFlashAttribute("seq", seq);
-			System.out.println("객실 정보 : "+ RpDTO);
-			
-			System.out.println("객실 정보"+ RpDTO);
 			return "redirect:../roomlist";
 	}
-	
-	
+		
 	@RequestMapping("/loginCheck/roomdetail")
-	   public String RoomDetail(String seq, String hotelname,
-	          String checkin, String checkout, String place, RedirectAttributes attr)
+	   public String RoomDetail(String seq, String hotelname, RedirectAttributes attr)
 	   {   
 	      List<RoomInfoDTO> ilist = service.roomInfo(seq);
 	      List<RoomDTO> rlist = service.roomList2(seq);
@@ -60,8 +50,8 @@ public class RoomController
 	      attr.addFlashAttribute("roominfo", ilist);
 	      attr.addFlashAttribute("roomlist", rlist);
 	      attr.addFlashAttribute("hotelname", hotelname);
-
 	      
 	      return "redirect:../roomdetail";
 	   }
+	
 }

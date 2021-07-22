@@ -97,7 +97,7 @@ img {
 				<a href="loginCheck/RoomReserv?hotelseq=${list.hotelseq}&hotelname=${hotelname}&name=${list.name}
 				&roomseq=${list.seq}&price=${list.price}" id="resv">지금예약</a>
 				<ul>
-					<li><a href="loginCheck/roomdetail?seq=${list.seq}&hotelname=${hotelname}&checkin=${checkin}&checkout=${checkout}&place=${place}"
+					<li><a href="loginCheck/roomdetail?seq=${list.seq}&hotelname=${hotelname}"
 						style="color: black">객실 정보 자세히보기</a><br>
 				</ul>
 			</div>

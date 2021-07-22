@@ -23,8 +23,6 @@ public class WebSocketChat {
 	private static final Logger logger = LoggerFactory.getLogger(WebSocketChat.class);
 	
 	public WebSocketChat() {
-		// TODO Auto-generated constructor stub
-		System.out.println("웹소캣 객체 생성");
 	}
 	
 	@OnOpen

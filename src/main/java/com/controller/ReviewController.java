@@ -8,10 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -63,14 +60,7 @@ public class ReviewController {
 		String name= theFile.getName();
 		String originalFileName= theFile.getOriginalFilename();
 		String contentType= theFile.getContentType();
-		System.out.println("내용 "+content);
-		System.out.println("파일"+theFile);
-		System.out.println("================");
-		System.out.println("size:  "+ size);
-		System.out.println("name:  "+ name);
-		System.out.println("originalFileName:  "+ originalFileName);
-		System.out.println("contentType:  "+ contentType);
-		System.out.println("정보들======="+u_id+content+rating+title+hotelname);
+
 		
 		File f= new File("C:\\Shop_STS\\WORKSHOP\\Hotel_UnderBar_STS\\src\\main\\webapp\\WEB-INF\\views\\images\\review",originalFileName);
 		File f2= new File("/Users/bitna",originalFileName);
@@ -81,7 +71,6 @@ public class ReviewController {
 		   rvdto.setHotelname(hotelname);
 		   rvdto.setRating(rating);
 		   rvdto.setReview_img(originalFileName); //파일이름
-		   System.out.println("리뷰dto에 담은 정보들=============="+rvdto);
 		   service.write(rvdto);
 		   
 		   double hotelbyrating=service.hotelbyrating(hotelname); //해당 호텔의 리뷰레이팅 평균값
@@ -149,7 +138,6 @@ public class ReviewController {
 		map.put("num", num);
 		map.put("content", content);
 		map.put("title", title);
-		System.out.println(map);
 		service.reviewAdminUp(map);
 		request.setAttribute("hotelname", hotelname);
 		 request.setAttribute("mesg", "수정이 완료되었습니다");
@@ -170,7 +158,6 @@ public class ReviewController {
 		map.put("content", content);
 		map.put("title", title);
 		map.put("u_id", u_id);
-		System.out.println(map);
 		service.reviewAnswerUp(map);
 		request.setAttribute("hotelname", hotelname);
 		 request.setAttribute("mesg", "답글작성이 완료되었습니다");
@@ -214,7 +201,7 @@ public class ReviewController {
 		int admin = dto.getAdmin();
 		String u_id1 = dto.getU_id();
 		
-		session.setAttribute("reviewlist", rDTO); 
+		  session.setAttribute("reviewlist", rDTO); 
 		  session.setAttribute("hotelname",hotelname); 
 		  session.setAttribute("admin", admin);
 		  session.setAttribute("u_id1", u_id1); 
@@ -252,7 +239,7 @@ public class ReviewController {
 		String hotelname = (String)session.getAttribute("hotelname");
 		ReviewPageDTO rDTO = service.review(Integer.parseInt(curPage), hotelname);
 		List<ReviewCountDTO> reviewcount=service.reviewcount(hotelname); //리뷰점수들 평균내기
-		 int sumcount=service.sumcount(hotelname); //리뷰 총갯수
+   	    int sumcount=service.sumcount(hotelname); //리뷰 총갯수
 		 
 		 
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
